@@ -1,0 +1,26 @@
+{% extends "employerMain.html" %}
+{% set active_page  = "employerDashboard" %}
+
+{% block child %}
+<div class="well"><h1>Monthly Caregiver usage</h1></div>
+<div class="row"> 
+	<div id="chart_monthly" style="width: 1200px; height: 300px;"></div>
+</div>
+
+<br>
+
+<div class="well"><h1>June 2014 Usage by Geography</h1></div>
+<div class="row"> 
+	<div id="chart_usage" style="width: 900px; height: 500px;"></div>
+</div>
+
+<br>
+
+<div class="well"><h1>Sentiment Indices</h1></div>
+<div class="row"> 
+	<div id="chart_sentiment" style="width: 900px; height: 500px;"></div>
+</div>
+
+<script src="/js/employer.js"></script>	
+
+{% endblock %} 

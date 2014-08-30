@@ -1,0 +1,31 @@
+{% extends "admin.html" %}
+{% set active_page = "contactus" %}
+{% block content %}
+
+		{% set child_navigation = [
+		    ('/ctadminContactUs?', 'contactUsMain', 'Main'),
+		    ('/ctadminContactUsEdit?', 'contactUsEdit', 'Edit'),
+		    
+		] -%}
+
+		{% set child_active_page = child_active_page |default('contactUsMain') -%} <!-- SET THE CURRENT ACTIVE_PAGE VARIABLE -->										
+
+		<h1 class="page-header"> Contact Us </h1> 
+          <h4 class="sub-header">
+				<ul class="nav nav-pills">
+					{% for href, id, caption in child_navigation %}
+					  <li{% if id == child_active_page  %} class="active"{% endif %}>
+					  	<a href="{{ href|e }}">{{ caption|e }}</a>
+					  </li>
+					{% endfor %}
+				</ul>     
+          </h4>
+
+			{% if child_active_page == 'contactUsMain' %}
+				<br>
+				<div class="alert alert-info">No Notifications.</div>				 
+			{% endif %}          
+				               				          
+          {% block child_content %}{% endblock %}
+          
+{% endblock %}

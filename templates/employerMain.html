@@ -1,0 +1,47 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">        
+          
+			{% set navigation_bar = [
+			    ('/employerMainPage?', 'employerMain', 'Main'),
+			    ('/employerDashboard?', 'employerDashboard', 'Dashboard'),	
+			    ('/employerScorecard?', 'employerScorecard', 'Scorecard'),	
+			    ('/employerSurvey?', 'employerSurvey', 'Survey'),			    			    
+			] -%}
+			
+			{% set active_page = active_page|default('employerMain') -%} <!-- SET THE CURRENT ACTIVE_PAGE VARIABLE -->
+			
+			<ul class="nav nav-sidebar" id="navigation">
+				{% for href, id, caption in navigation_bar %}
+				  <li{% if id == active_page %} class="active"{% endif %}>
+				  	<a href="{{ href|e }}">{{ caption|e }}</a>
+				  </li>
+				{% endfor %}
+			</ul>          
+        </div>        
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">     
+				<!-- CHILD TEMPLATES -->  
+					          
+			        {% if active_page == 'employerMain' %} 
+			        <div class="well">
+				        <h2>Back then, I was so obsessed with turning in a profit margin of 6% or higher; and, no matter how you slice it in the retail business, payroll is one of the most important parts of overhead.</h2>
+				        <p><h2> - Sam Walton</h2></p>
+			        </div> 	
+			        {% endif %}		        
+
+				  	{% block child %}{% endblock %} 
+		                		        
+			        <!-- END CHILD TEMPLATES --> 
+			         		                                                        
+        </div>
+      </div>
+    </div>
+
+
+		<script src="/js/admin.js"></script>	
+{% endblock %}
+

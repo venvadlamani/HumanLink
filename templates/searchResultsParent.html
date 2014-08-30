@@ -1,0 +1,86 @@
+{% extends "searchMain.html" %}
+{% block searchResults %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 sidebar">        
+			{% set navigation_bar_1 = [
+			    ('/searchResultsAllConnections?', 'AllConnections', 'All Connections'),			    			    			    
+			    ('/search1stConnections?', '1stConnections', '1st Connections'),	
+			    ('/search2ndConnections?', '2ndConnections', '2nd Connections'),	
+			    ('/searchEveryoneElse?', '3rd+EveryoneElse', '3rd + Everyone Else'),
+			] -%}
+			
+			{% set navigation_bar_2 = [
+			    ('/searchResultsAllConnections?', 'AllConnections', 'All Skills'),			    			    			    
+			    ('/search1stConnections?', '1stConnections', 'CNA'),	
+			    ('/search2ndConnections?', '2ndConnections', 'PCA'),	
+			    ('/searchEveryoneElse?', '3rd+EveryoneElse', 'Nurses'),
+			] -%}
+		
+			
+			<!-- SET THE CURRENT ACTIVE_PAGE VARIABLE -->
+			{% set active_page = active_page|default('AllConnections') -%} 
+			          		
+			<ul class="nav" id="navigation">				
+				<div class="list-group">
+				  <a href="#" class="list-group-item" style="background-color: #FAFAFF;">
+				    <small><b>Relationship</b></small>
+				  </a>
+					{% for href, id, caption in navigation_bar_1 %}
+
+					 {% if id == active_page %}
+					 <a class="list-group-item active"  href="{{ href|e }}"> <span class="badge pull-right">2</span><small> {{ caption|e }} </small></a>
+					 {% else %}
+					 <a class="list-group-item"  href="{{ href|e }}"> <span class="badge pull-right">2</span><small> {{ caption|e }} </small></a>					  				 
+					 {% endif %} 		  
+
+					{% endfor %}
+				</div>			   
+			</ul>   
+			
+			<ul class="nav" id="navigation">				
+				<div class="list-group">
+				  <a href="#" class="list-group-item" style="background-color: #FAFAFF;">
+				    <small><b>Skills</b></small>
+				  </a>
+					{% for href, id, caption in navigation_bar_2 %}
+
+					 {% if id == active_page %}
+					 <a class="list-group-item active"  href="{{ href|e }}"> <span class="badge pull-right">2</span><small> {{ caption|e }} </small></a>
+					 {% else %}
+					 <a class="list-group-item"  href="{{ href|e }}"> <span class="badge pull-right">2</span><small> {{ caption|e }} </small></a>					  				 
+					 {% endif %} 		  
+
+					{% endfor %}
+				</div>			   
+			</ul>  			      
+        </div>        
+        
+        <div class="col-md-8 col-md-offset-2 main">     
+			<!-- CHILD TEMPLATES -->  										
+			{% block searchResultsChild %}				
+			{% endblock %}
+	         		                                                       
+        </div>
+
+      </div>
+    </div>
+
+    	<script>
+    	$('sidebar_menu > a').click(function() {
+		    $('li').removeClass();
+		    $(this).parent().addClass('active');
+			});
+			
+			//    	
+    	</script>
+    	    	       	
+		<script src="/js/admin.js"></script>	
+
+		<br/>	
+         <ul class="pager">
+           <li><a href="#">Previous</a></li>
+           <li><a href="#">Next</a></li>
+         </ul>
+
+{% endblock %}

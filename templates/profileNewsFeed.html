@@ -1,0 +1,166 @@
+{% extends "profileMainPage.html" %}
+
+{% block child %}
+<div class="panel panel-primary">
+  <div class="panel-body">
+  
+	<ul class="nav nav-tabs" role="tablist" id="myTab">
+		<li class="active"><a href="#Search" role="tab" data-toggle="tab">Search News Feed</a></li>	
+		<li><a href="#Share" role="tab" data-toggle="tab">Share</a></li>
+	</ul>  
+
+
+	<div class="tab-content">
+		
+		<div class="tab-pane active" id="#Search">
+			<br>
+			<form class="form form-horizontal" role="form">
+			  <div class="form-group">
+			    <div class=" col-md-12">				   
+					<input type="text" class="form-control" placeholder="Search CareNews..."></input>	
+				</div>
+			  </div>
+			  <div class="col-sm-3">			  
+				  <button type="submit" class="btn btn-primary" >Search</button>
+			  </div>	  			
+			</form>						
+		</div>	
+
+		<div class="tab-pane" id="#Share">
+			<br>
+			<form class="form form-horizontal" role="form">
+			  <textarea class="form-control" rows="1" placeholder="Share something with your community..."></textarea>
+			  <br>	
+			  <div class="form-group">
+			    <div class="col-sm-3">
+			      <button type="submit" class="btn btn-primary btn-block" >Share</button>
+			    </div>
+			  </div>
+			</form>			
+		</div>
+		
+	</div>
+	
+	</div>
+</div>	
+
+
+<br>
+
+<div class="panel panel-primary">
+	<div class="panel-body">     
+			    <div class="col-md-1">
+				    <h3><span class="label label-default">CareNews for - 72758</span></h3>
+				</div>
+	</div>
+</div>	
+
+<br>	
+
+<div class="panel panel-primary">
+	<div class="panel-body">     
+	 
+	<div class="col-md-12 row">
+		<div class="col-md-10 col-md-offset-1 row">			
+			<div class="page-header">
+			    <p><h4>Area Agency on Aging - Bentonville</h4></p>
+		    </div>
+		    
+		    <p>We need two drivers for our meals-on-wheels for Wed and Friday. Will pay $15/hr. <a href="#">Details...</a> </p>	    
+		</div>
+		
+		<div class="col-md-10 col-md-offset-1 row">		
+		<textarea class="form-control" rows="2" placeholder="Write a comment..."></textarea>
+		</div>
+	</div>				
+	</div>
+</div>	
+
+<div class="panel panel-primary">
+	<div class="panel-body">     
+	 
+	<div class="col-md-12 row">
+		<div class="col-md-10 col-md-offset-1 row">	
+			<div class="page-header">
+			    <p><h4>Your connection, Ariana S., was recommended by John Smith</h4></p>
+		    </div>
+		    
+		    <p>Ariana was a great help for our Mother while she was transitioning from the Hospital. <a href="#">Details...</a>  </p>	    
+		</div>
+		
+		<div class="col-md-10 col-md-offset-1 row">		
+		<textarea class="form-control" rows="2" placeholder="Write a comment..."></textarea>
+		</div>
+	</div>				
+	</div>
+</div>	
+      
+
+<div class="panel panel-primary">
+	<div class="panel-body">     
+	 
+	<div class="col-md-12 row">
+		<div class="col-md-10 col-md-offset-1 row">	
+			<div class="page-header">
+			    <p><h4>Caregiver needed in Bella Vista</h4></p>
+		    </div>
+		    
+			<p>Female pt, handicapped, requires part time caregiver. $15 per hour. Experience in transferring, dressing, assisting w/shower. 
+			<a href="#">Details...</a></p>    
+		</div>
+		
+		<div class="col-md-10 col-md-offset-1 row">		
+		<textarea class="form-control" rows="2" placeholder="Write a comment..."></textarea>
+		</div>
+	</div>				
+	</div>
+</div>
+               
+<div class="panel panel-primary">
+	<div class="panel-body">     
+	 
+	<div class="col-md-12 row">
+		<div class="col-md-10 col-md-offset-1 row">	
+			<div class="page-header">
+			    <p><h4>CareGivers & CNA's needed in Springdale, Fayetteville </h4></p>
+		    </div>
+		    <p>Are you a caring person with a positive dispositon? Upto $11 per hour. <a href="#">Details...</a></p>
+			 
+		</div>
+		<div class="col-md-10 col-md-offset-1 row">		
+		<textarea class="form-control" rows="2" placeholder="Write a comment..."></textarea>
+		</div>
+	</div>				
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-body">     
+	 
+	<div class="col-md-12 row">
+		<div class="col-md-10 col-md-offset-1 row">	
+			<div class="page-header">
+			    <p><h4>What is dementia? </h4></p>
+		    </div>
+		</div>
+		<!-- 16:9 aspect ratio -->
+		<div class="embed-responsive embed-responsive-16by9">
+		  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=t--mkzfHuIE"></iframe>
+		</div>			 
+		<div class="col-md-10 col-md-offset-1 row">		
+		<textarea class="form-control" rows="2" placeholder="Write a comment..."></textarea>
+		</div>
+	</div>				
+	</div>
+</div>
+
+
+        
+<script>
+
+$('#myTab a[href='#Search]').tab('show')
+$('#myTab a[href='#Share]').tab('show')
+
+</script>       
+  
+{% endblock %}

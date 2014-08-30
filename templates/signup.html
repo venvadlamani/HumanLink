@@ -1,0 +1,54 @@
+{% extends "navbar.html" %}
+{% block content %}
+<div class="jumbotron">
+<div class="text-center">
+  <h1>Sign Up </h1>
+</div>
+</div>
+
+<form class="form-horizontal" role="form" action="/registerInformation" method="post">
+
+  <div class="form-group">
+    <label for="inputFirstName" class="col-sm-2 control-label input-lg">Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control input-lg" name="inputFirstName" id="inputFirstName" placeholder="First Name">
+		<br>
+      <input type="text" class="form-control input-lg" name="inputLastName" id="inputLastName" placeholder="Last Name">
+    </div>
+  </div>
+ 
+  <br>
+  <div class="form-group">
+    <label for="inputMobileNumber" class="col-sm-2 control-label input-lg">Mobile Number</label>
+    <div class="col-sm-6">
+      <input type="tel" class="form-control input-lg" name="inputMobileNumber" id="inputMobileNumber" placeholder="(777) 777 - 7777">
+    </div>
+  </div>
+    
+  <br>
+  <div class="form-group">
+    <label for="inputEmail" class="col-sm-2 control-label input-lg">Email</label>
+    <div class="col-sm-6">
+      <input type="email" class="form-control input-lg" name="inputEmail" id="inputEmail" placeholder="{{ user.email() }}">
+    </div>
+  </div>
+ 
+  <br>
+  <div class="form-group">
+    <label for="inputNickName" class="col-sm-2 control-label input-lg">NickName</label>
+    <div class="col-sm-6">
+      <input type="email" class="form-control input-lg" name="inputNickName" id="inputNickName" placeholder="{{ user.nickname() }}">
+    </div>
+  </div>
+    
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary input-lg">Sign Up</button>
+    </div>
+  </div>
+  
+</form>
+
+
+{% endblock %}

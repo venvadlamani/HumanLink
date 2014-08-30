@@ -1,0 +1,106 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+    <div class="container-fluid">
+      <div class="row">
+      
+        <div class="col-sm-3 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Post Job</a></li>
+            <li><a href="#">Current Job postings</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href="">Historical Transactions</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="">Caregiver notes</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 main">
+        
+          <h1 class="page-header">Post Job</h1>
+          <!-- <div class="row placeholders"> -->
+          
+				<form action="/createJob" method="post" role="form" class="form-horizontal">	
+				
+					<div class="form-group">
+						<label class="control-label"></label>
+						<div class="col-md-5">
+				          <select name="careType" class="form-control" required>
+				                  <option>Please select caregiver type</option>                			          
+				          	  	{% for caretype in careGiverType %}
+				        			<option>{{caretype['type'] }}</option>
+				   				{% endfor %}
+				          </select>
+				          <span class="help-block">What type of care do you need?</span>
+				        </div>
+					</div> 
+					  				  
+					<div class="form-group">	
+						<label class="control-label"></label>
+						<div class="col-md-5">
+				             <input name="careDate" type="date" class="form-control" required>
+				             <span class="help-block">On what day is the care required?</span>
+						</div>
+					</div>
+					  
+				
+					 <div class="form-group">
+						<label class="control-label"></label>
+						<div class="col-md-5">
+				           <select name="genderPreference" class="form-control">
+				               <option>No gender preference</option>                
+				               <option>Female</option>                
+				               <option>Male</option>                
+				           </select>
+				           <span class="help-block">Do you have any gender preference for your Caregiver needs?</span>
+						</div>
+					 </div>
+						  	
+					 <div class="form-group">
+						<label class="control-label"></label>
+						  <div class="col-md-5">		
+						  <div class="input-group">					  
+						      <span class="input-group-addon">
+						        <input type="checkbox" name="backGroundVerified">
+						      </span>
+						      <input type="text" class="form-control" placeholder="Background verfied" disabled style="background:white">				 	  
+					      </div>
+					           <span class="help-block">Select caregivers with verified backgrounds only.</span>
+				
+					      </div>					 	  
+					 </div>	  	
+				
+					<div class="form-group">	
+						<label class="control-label"></label>
+						<div class="col-md-5">
+				             <textarea name="jobDescription" class="form-control input-lg" rows="4" placeholder="Job Description"></textarea>
+				             <span class="help-block">Please provide any relevant details for our awesome Caregivers</span>
+						</div>
+					</div>
+						  	 						  					
+					 <div class="form-group">
+						<label class="control-label"></label>
+						<div class="col-md-5">
+				             <button type="submit" class="btn btn-success btn-lg">Create Job</button>
+				           </div>  	
+					  </div>
+					  
+				</form>	
+	
+          <!-- </div> -->
+        </div>
+        
+      </div>
+    </div>
+	          		
+{% endblock %}

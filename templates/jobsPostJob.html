@@ -1,0 +1,114 @@
+{% extends "jobsMainPage.html" %}
+{% block child %}  
+<br>
+
+<div class="col-md-offset-1 col-md-10" >	
+
+<div class="panel panel-primary">
+  <div class="panel-body">
+	<form class="form-horizontal" role="form">
+
+
+	  <div class="form-group">
+	    <div class="col-md-12">	    	    
+		<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Who do you want to send the beacon to?</h3>
+			  </div>
+			  
+				<br>
+
+				<div class="row">
+				  <div class="col-lg-6">
+				    <div class="input-group">
+				      <span class="input-group-addon">
+				        <input type="radio" id="optionsRadios2" value="option2">
+				      </span>
+				      <label class="form-control">Post to all Connections </label>
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->				  
+				</div><!-- /.row -->
+				
+				<br>
+
+
+				<div class="row">
+				  <div class="col-lg-6">
+				    <div class="input-group">
+				      <span class="input-group-addon">
+				        <input type="radio" id="optionsRadios2" value="option2">
+				      </span>
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+						    Post Beacon to my Collection. Select...
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Daytime CareGiver Collection</a></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nighttime CareGiver Collection</a></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Community Leader Collection</a></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nurses Collection</a></li>
+						  </ul>
+						</div>
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->				  
+				</div><!-- /.row -->				
+				
+				<br>
+			
+				<div class="row">
+				  <div class="col-lg-6">
+					  <div class="checkbox">
+					    <label>
+					      <input type="checkbox"> Post Anonymously
+					    </label>
+					  </div>
+				  </div><!-- /.col-lg-6 -->				  
+				</div><!-- /.row -->
+			
+				<br>
+		</div>									
+		</div>
+	  </div>
+
+
+	  <div class="form-group">
+	    <div class="col-md-12">
+	    <label for="input1">Title</label>
+	    <input class="form-control" id="input1" placeholder="Enter a brief description of the job">
+		</div>
+	  </div>
+
+
+	  <div class="form-group">
+	    <div class="col-md-12">
+		    <label for="input1">Rate</label>
+		    <div class="input-group">
+		    	<span class="input-group-addon">$ per hour</span>
+			    <input class="form-control" id="input1" placeholder="Enter how much you are willing to pay">
+		    </div>
+		</div>
+	  </div>
+
+	  <div class="form-group">
+	    <div class="col-md-12">
+	    <label for="input1">Job Details</label>
+		<textarea class="form-control" rows="3" placeholder="Job Details. Number of Hours, Start Date, Description of work..."></textarea> <br>	
+		</div>
+	  </div>
+	  
+	  <br>
+	  	
+	  <div class="form-group">
+	    <div class="col-sm-3">
+	      <button type="submit" class="btn btn-primary btn-block" >Post Job</button>
+	    </div>
+	  </div>
+	  
+	</form>		
+	</div>
+	
+</div>	
+
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "profileMainPage.html" %}
+{% block child %}
+
+		{% set child_navigation = [
+		    ('/profileNotifications?', 'profileNotificationsInbox', 'Inbox'),
+		    ('/profileNotificationsInvitations?', 'profileNotificationsInvitations', 'Invitations'),
+		    ('/profileNotificationsSent?', 'profileNotificationsSent', 'Sent'),
+		    ('/profileNotificationsArchive?', 'profileNotificationsArchive', 'Archive'),
+		    ('/profileNotificationsTrash?', 'profileNotificationsTrash', 'Trash'),
+		    
+		] -%}
+
+		<!-- SET THE CURRENT ACTIVE_PAGE VARIABLE -->	
+		{% set child_active_page = child_active_page |default('profileNotificationsInbox') -%} 									
+		<div class="col-md-8" >	
+          <h4 class="sub-header">
+				<ul class="nav nav-pills">
+					{% for href, id, caption in child_navigation %}
+					  <li{% if id == child_active_page  %} class="active"{% endif %}>
+					  	<a href="{{ href|e }}">{{ caption|e }}</a>
+					  </li>
+					{% endfor %}
+				</ul>     
+          </h4>
+		</div>		 
+         				          
+          {% block child_content %}{% endblock %}
+
+{% endblock %}

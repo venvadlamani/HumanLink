@@ -1,0 +1,287 @@
+{% extends "collectionsMainPage.html" %}
+
+{% block child %}  
+<br>
+
+<div class="col-md-offset-1 col-md-10" >	
+
+	<div class="panel panel-primary">
+	<div class="panel-body">
+		Hello {{ user.email()}}. Your collections ...
+	</div>	
+	</div>	
+	
+<!-- PANEL -->	
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Daytime caregiver collection for Dad and Mom</h3>
+	  </div>
+	  <div class="panel-body">
+
+			
+			<div class="row">				  
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/jamie-hopperton.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Jaime</h5>     		
+				      </div>
+				    </div>	  
+				  </div>
+				  
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/Jane_CNA.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Jane</h5>     		
+				      </div>
+				    </div>	  
+				  </div>
+				  
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/Nancy_HomeMaker.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Nancy</h5>     		
+				      </div>
+				    </div>	  
+				  </div>
+				  
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/addPerson.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Add a new person</h5> 
+				      </div>
+				    </div>	  
+				  </div>
+				  		  
+			</div>
+		
+			<div class="row">	
+					<!-- Button trigger modal -->
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+					  Send beacon to collection
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					        <h4 class="modal-title" id="myModalLabel">Please confirm</h4>
+					      </div>
+					      <div class="modal-body">
+					        ...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					        <button type="button" class="btn btn-primary">Post Beacon</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+			</div>	
+	</div>
+	</div>	
+
+
+
+<!-- PANEL -->	
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Nighttime CareGiver Collection for Dad</h3>
+	  </div>
+	  <div class="panel-body">
+	  	
+			<div class="row">
+				  
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/male_nurse.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Noah</h5> 
+		    		
+				      </div>
+				    </div>	  
+				  </div>
+		
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/alex-milton.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Alex</h5> 
+		    		
+				      </div>
+				    </div>	  
+				  </div>
+				  
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/addPerson.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Add a new person</h5> 
+				      </div>
+				    </div>	  
+				  </div>
+				  
+			</div>
+
+			<div class="row">	
+					<!-- Button trigger modal -->
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+					  Send beacon to collection
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					        <h4 class="modal-title" id="myModalLabel">Please confirm</h4>
+					      </div>
+					      <div class="modal-body">
+					        Your credit card will be charged...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					        <button type="button" class="btn btn-primary">Post beacon</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+			</div>	
+	</div>
+	</div>
+
+<!-- PANEL -->	
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Community Leader Collection </h3>
+	  </div>
+	  <div class="panel-body">
+	  	
+			<div class="row">
+		
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/nurse_elder.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Joan</h5> 
+				      </div>
+				    </div>	  
+				  </div>
+				  
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/pastor-jones.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>James</h5> 
+				      </div>
+				    </div>	  
+				  </div>
+
+				  <div class="col-sm-4 col-md-3">  
+				    <div class="thumbnail">
+				      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/addPerson.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+				      <div>
+				        <h5>Add a new person</h5> 
+				      </div>
+				    </div>	  
+				  </div>
+
+			</div>
+
+			<div class="row">	
+					<!-- Button trigger modal -->
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+					  Send beacon to collection
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					        <h4 class="modal-title" id="myModalLabel">Please confirm</h4>
+					      </div>
+					      <div class="modal-body">
+					        Your credit card will be charged...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					        <button type="button" class="btn btn-primary">Post beacon</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+			</div>	
+	</div>
+	</div>	
+	
+	
+<!-- PANEL -->	
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Mom and Dad's primary Nurse Collection  </h3>
+	  </div>
+	  <div class="panel-body">
+	  		
+				<div class="row">
+					  
+					  <div class="col-sm-4 col-md-3">  
+					    <div class="thumbnail">
+					      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/Jane_CNA.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+					      <div>
+					        <h5>Jane</h5>     		
+					      </div>
+					    </div>	  
+					  </div>	
+					  
+					  <div class="col-sm-4 col-md-3">  
+					    <div class="thumbnail">
+					      <a href="/searchProfilePreviewCommunityLeader"><img src="/images/addPerson.jpg" style="width: 150px; height: 135px;" alt="..."></a>	      
+					      <div>
+					        <h5>Add a new person</h5> 
+					      </div>
+					    </div>	  
+					  </div>
+					  	  
+				</div>
+	
+	
+				<div class="row">	
+					<!-- Button trigger modal -->
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+					  Send beacon to collection
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					        <h4 class="modal-title" id="myModalLabel">Please confirm</h4>
+					      </div>
+					      <div class="modal-body">
+					        Your credit card will be charged...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					        <button type="button" class="btn btn-primary">Post beacon</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+			</div>	
+	</div>
+	</div>	
+	
+	
+
+</div>
+{% endblock %}
