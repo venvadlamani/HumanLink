@@ -48,9 +48,9 @@ class adminPage(webapp2.RequestHandler):
         jsonobject = json.loads(jsonstring)
         
         #print the JSON object to the terminal
-        #logging.error(pprint(jsonobject))
-        #logging.error(jsonobject['firstname'])
-        #logging.error(jsonobject['project']['id'])
+        logging.error(pprint(jsonobject))
+        logging.error(jsonobject['firstname'])
+        logging.error(jsonobject['project']['id'])
         
 
 #CAREERS =========================================================================        
