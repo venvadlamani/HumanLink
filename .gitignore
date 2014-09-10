@@ -1,10 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
 
-templates/landingPageNavbar.html
+# C extensions
+*.so
 
-src/profile.pyc
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
 
-templates/jobsPostJob.html
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
 
-templates/jobsPostJob.html
+# Django stuff:
+*.log
+*.pot
 
-templates/navbar.html
+# IDEs
+.settings/
+.idea/
