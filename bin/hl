@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+HL=$(dirname $0)
+
+function deploy {
+  msg="Usage: deploy dev|staging|prod"
+  if [ -z "$1" ]; then
+    echo $msg
+  else
+    case $1 in
+      'dev') dev_appserver.py $HL ;;
+      'staging') appcfg.py --oauth2 --application=care-tiger-staging update $HL ;;
+      'prod') appcfg.py --oauth2 update $HL ;;
+      *) echo $msg ;;
+    esac
+  fi
+}
+
+function usage {
+  msg="Usage: hl deploy"
+  echo $msg
+}
+
+if [ -z "$1" ]; then
+  usage
+else
+  case $1 in
+    'deploy') deploy $2 ;;
+    'update') echo 'updating...' ;;
+
+    'help') usage ;;
+    '-h') usage ;;
+    *) usage ;;
+  esac
+fi
