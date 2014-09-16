@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HL=$(dirname $0)
+HL=$(dirname $0)/../
 
 function deploy {
   msg="Usage: deploy dev|staging|prod"
