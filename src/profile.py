@@ -9,6 +9,7 @@ import os
 import jinja2
 import logging
 import urllib
+import pprint
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.ext import blobstore
@@ -57,16 +58,17 @@ class profileEdit(webapp2.RequestHandler):
     def post(self):       
         user = users.get_current_user()
         self.response.out.write("This is a POST Request \n")
-        req = self.request
-        a = req.body
-        b = json.loads(a)
+        
+        #jsonstring = self.request.body
+        #jsonobject = json.loads(jsonstring)
 
-        self.response.out.write(b)
-        self.response.out.write(b['reg_id'])
-        self.response.out.write(b['datetime'])
-        self.response.out.write(type(b))
+        #print the JSON object to the terminal
+        #logging.error(pprint(jsonobject))
+        #logging.error(jsonobject['firstname'])
+        #logging.error(jsonobject['project']['id'])
           
- 
+        logging.error("Hello Dolly")
+
             
 class profileViews(webapp2.RequestHandler):
     def get(self):
