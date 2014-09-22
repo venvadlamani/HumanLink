@@ -1,43 +1,27 @@
-
-
 application: care-tiger
 version: 1-1
 runtime: python27
 api_version: 1
 threadsafe: true
 
-
 handlers:
 
 - url: /stylesheets
-  static_dir: stylesheets
+  static_dir: assets/stylesheets
 
 - url: /js
-  static_dir: js
+  static_dir: assets/js
 
-# image files
-- url: /images/(.*\.(gif|png|jpg))
-  static_files: images/\1
-  upload: images/(.*\.(gif|png|jpg))
+- url: /images
+  static_dir: assets/images
 
-#the static_dir handlers have to before the .* handler
 - url: /.*
   script: main.application
 
-  
 libraries:
 
 - name: webapp2
   version: latest
 
 - name: jinja2
-  version: latest
-
-- name: matplotlib
-  version: latest
-
-- name: PIL
-  version: latest
-
-- name: numpy
   version: latest
