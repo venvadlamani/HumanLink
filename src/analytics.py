@@ -14,8 +14,8 @@ from google.appengine.api import users
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 import json
-from model.PersonModel import Person
-from model.JobModel import Job
+from models.PersonModel import Person
+from models.JobModel import Job
 
 
 # Configure the Jinja2 environment.

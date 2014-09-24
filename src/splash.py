@@ -11,7 +11,7 @@ import logging
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.api import users
 import json
-from model.contactUsModel import ContactUs
+from models.contactUsModel import ContactUs
 
 # Configure the Jinja2 environment.
 JINJA_ENVIRONMENT = jinja2.Environment(
