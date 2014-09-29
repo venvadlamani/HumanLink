@@ -20,8 +20,7 @@ from src import analytics
 
 
 #URL ROUTING
-jobsTuple = [             
-                             
+jobsTuple = [
 #LOGIN AND LOGOUT
              (r'/login', login.Login),
              (r'/logout', login.Logout),
@@ -113,7 +112,13 @@ configDict['webapp2_extras.sessions'] = {
 
 
 
-application = webapp2.WSGIApplication(routes=jobsTuple, debug=True, config=configDict)
+#application = webapp2.WSGIApplication(routes=jobsTuple, debug=True, config=configDict)
+
+
+application = webapp2.WSGIApplication([
+    webapp2.Route(r'/signup', handler='controllers.accounts.Accounts:signup')
+], debug=True)
+
 
 def main():
     run_wsgi_app(application)
