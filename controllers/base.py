@@ -1,4 +1,3 @@
-import jinja2
 import webapp2
 
 from webapp2_extras import jinja2
@@ -17,7 +16,7 @@ class BaseHandler(webapp2.RequestHandler):
         See jinja2.default_config for default jinja2 configs."""
         return jinja2.get_jinja2(app=self.app)
 
-    def render(self, template, **context):
+    def render(self, template, context):
         """Renders a template and writes the result to the response."""
         rv = self.jinja2.render_template(template, **context)
         self.response.write(rv)
