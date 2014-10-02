@@ -18,12 +18,21 @@ handlers:
 - url: /.*
   script: main.application
 
+- url: /_ah/spi/.*
+  script: main_api.application
+
 libraries:
 
-- name: webapp2
+# Google Cloud Endpoints.
+- name: endpoints
   version: latest
 
+# Templating.
 - name: jinja2
+  version: latest
+
+# Route handling.
+- name: webapp2
   version: latest
 
 skip_files:
