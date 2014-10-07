@@ -8,7 +8,7 @@
   "license": "/None/",
   "private": true,
   "dependencies": {
-    "angularjs": "~1.2.26",
-    "bootstrap": "~3.2.0"
+    "angularjs": "~1",
+    "bootstrap": "~3"
   }
 }
