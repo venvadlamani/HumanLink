@@ -25,3 +25,8 @@ coverage.xml
 # IDEs
 .settings/
 .idea/
+
+# FE Build Directories
+node_modules/
+bower_components/
+assets/stylesheets/build/
