@@ -1,0 +1,26 @@
+{
+  "name": "HumanLink",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CareTiger/HumanLink.git"
+  },
+  "author": "HumanLink",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/CareTiger/HumanLink/issues"
+  },
+  "homepage": "https://github.com/CareTiger/HumanLink",
+  "dependencies": {
+    "gulp": "~3",
+    "gulp-less": "~1",
+    "gulp-sourcemaps": "~1",
+    "gulp-uglify": "~1",
+    "gulp-concat": "~2"
+  }
+}

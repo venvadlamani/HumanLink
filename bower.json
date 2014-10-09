@@ -1,0 +1,14 @@
+{
+  "name": "HumanLink",
+  "version": "0.0.0",
+  "homepage": "https://github.com/CareTiger/HumanLink",
+  "authors": [
+    "HumanLink"
+  ],
+  "license": "/None/",
+  "private": true,
+  "dependencies": {
+    "angularjs": "~1",
+    "bootstrap": "~3"
+  }
+}

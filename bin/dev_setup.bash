@@ -42,8 +42,40 @@ function ins_flake8 {
   print_status 'flake8'
 }
 
+function ins_node {
+  echo 'Installing node/npm...'
+  brew install node
+  print_status 'node/npm'
+}
+
+function ins_bower {
+  echo 'Installing bower/gulp...'
+  npm install -g gulp
+  print_status 'gulp'
+  npm install -g bower
+  print_status 'bower'
+}
+
+function ins_bower_deps {
+  echo 'Installing FE dependencies'
+  bower install
+  print_status 'bower'
+  npm install
+  print_Status 'npm'
+}
+
+function jmake {
+  echo 'Building frontend components'
+  gulp
+  print_status 'gulp'
+}
+
 ins_brew
 ins_git
 ins_py
 ins_pip
 ins_flake8
+ins_node
+ins_bower
+ins_bower_deps
+jmake
