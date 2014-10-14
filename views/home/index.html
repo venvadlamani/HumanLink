@@ -1,9 +1,25 @@
-hello
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Human Link</title>
+    <link rel="stylesheet" href="/stylesheets/build/style.css"/>
+</head>
+<body>
+    {% include 'nav.html' %}
 
-{% if user %}
-    {{ user.name }} <br/>
-    <a href="/logout">Logout</a>
-{% else %}
-    <br/>
-    <a href="/signup">Login / Sign up </a>
-{% endif %}
+
+    hello
+
+    {% if user %}
+        {{ user.name }} <br/>
+        <a href="/logout">Logout</a>
+    {% else %}
+        <br/>
+        <a href="/signup">Login / Sign up </a>
+    {% endif %}
+
+
+    <script src="/js/build/scripts.min.js"></script>
+
+</body>
+</html>
