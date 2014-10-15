@@ -3,15 +3,10 @@ Created on Apr 21, 2014
 
 @author: Venkatesh
 '''
-import cgi
 import webapp2
-import os
 import jinja2
-import logging
-from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.api import users
-import json
-from models.contactUsModel import ContactUs
+from models.ndb.contacts import ContactUs
 
 # Configure the Jinja2 environment.
 JINJA_ENVIRONMENT = jinja2.Environment(
