@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat');
 
 var paths = {
-    js: 'assets/js/*.js',
+    js: 'app/**/*.js',
     less: 'assets/stylesheets/less/*.less'
 };
 
@@ -32,9 +32,14 @@ gulp.task('compile-js', function() {
     return gulp.src([
         'bower_components/jquery/dist/jquery.js',
         'bower_components/bootstrap/dist/js/bootstrap.js',
+        'bower_components/angular/angular.js',
+        'bower_components/angular-ui-router/release/angular-ui-router.js',
+        'app/**/*.js',
     ])
-        .pipe(uglify())
-        .pipe(concat('scripts.min.js'))
+        .pipe(sourcemaps.init())
+            .pipe(concat('scripts.min.js'))
+            .pipe(uglify())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./assets/js/build/'));
 });
 

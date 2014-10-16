@@ -15,6 +15,10 @@ handlers:
 - url: /images
   static_dir: assets/images
 
+- url: /views/(.*)/partials/(.*)
+  static_files: views/\1/partials/\2
+  upload: views/.*/partials/.*
+
 - url: /_ah/spi/.*
   script: main_api.application
 
