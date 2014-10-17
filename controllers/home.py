@@ -1,6 +1,6 @@
-import base
+from controllers import base
 
-from models.ndb.contacts import ContactUs
+from models.kinds.contacts import ContactUs
 
 
 class Home(base.BaseHandler):

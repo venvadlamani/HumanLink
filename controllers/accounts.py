@@ -1,7 +1,9 @@
-import base
 import logging
 
-from base import login_required
+from controllers import base
+from controllers.base import login_required
+from services import accounts as accounts_service
+
 from webapp2_extras import auth
 
 
@@ -56,4 +58,16 @@ class Accounts(base.BaseHandler):
         """Log-out the current user.
         Redirects to home page after logging out."""
         self.auth.unset_session()
-        self.redirect_to('home')
+        return self.redirect_to('home')
+
+    @login_required
+    def select_profile(self):
+        """Sets the selected profile in the session."""
+        profile_id = self.request.get('profile_id')
+        if not profile_id:
+            logging.error('profile_id not provided.')
+            return self.redirect_to('home')
+        account_id = self.user_model.id
+        if accounts_service.is_profile_owner(account_id, profile_id):
+            self.session['selected_profile_id'] = profile_id
+        return self.redirect_to('home')

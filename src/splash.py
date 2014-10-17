@@ -6,7 +6,9 @@ Created on Apr 21, 2014
 import webapp2
 import jinja2
 from google.appengine.api import users
-from models.ndb.contacts import ContactUs
+
+from models.kinds.contacts import ContactUs
+
 
 # Configure the Jinja2 environment.
 JINJA_ENVIRONMENT = jinja2.Environment(

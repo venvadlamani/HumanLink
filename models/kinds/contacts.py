@@ -1,4 +1,4 @@
-from models.ndb import base
+from models.kinds import base
 
 from google.appengine.ext import ndb
 
