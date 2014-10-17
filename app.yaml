@@ -15,11 +15,11 @@ handlers:
 - url: /images
   static_dir: assets/images
 
-- url: /.*
-  script: main.application
-
 - url: /_ah/spi/.*
   script: main_api.application
+
+- url: /.*
+  script: main.application
 
 libraries:
 
