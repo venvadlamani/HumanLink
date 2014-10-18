@@ -5,40 +5,29 @@
     <link rel="stylesheet" href="/stylesheets/build/style.css"/>
 </head>
 <body>
-    [% include 'nav.html' %]
-
-    <form action="/submit_contact" role="form" method="post">
-      <div class="col-xs-4">
-            <div class="form-group">
-                <label for="Name">Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter name">
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" class="form-control" name="phone" placeholder="Enter phone number">
-            </div>
-            <div class="form-group">
-                <label for="comment">Comment</label>
-                <textarea class="form-control" name="comment" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-            [% if user %]
-                [= user.name =] <br/>
-                <a href="/logout">Logout</a>
-            [% else %]
-                <br/>
-                <a href="/signup">Login / Sign up </a>
-            [% endif %]
-      </div>
-    </form>
-
-    <div ui-view></div>
-
+[% include 'nav.html' %]
+<form action="/submit_contact" role="form" method="post">
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="form-control" name="phone" placeholder="Enter phone number">
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea class="form-control" name="comment" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Sign Up</button>
+    </div>
+</form>
+<div ui-view></div>
 <script src="/js/build/scripts.min.js"></script>
-
 </body>
 </html>

@@ -20,6 +20,9 @@ application = webapp2.WSGIApplication([
     webapp2.Route(r'/signup', name='signup', methods=['GET'],
                   handler='controllers.accounts.Accounts:signup'),
 
+    webapp2.Route(r'/signin', name='signin', methods=['GET'],
+                  handler='controllers.accounts.Accounts:signin'),
+
     webapp2.Route(r'/signup', name='signup_post', methods=['POST'],
                   handler='controllers.accounts.Accounts:signup_post'),
 

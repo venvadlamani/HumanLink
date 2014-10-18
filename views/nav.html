@@ -31,11 +31,20 @@
                 </li>
             </ul>
             <div class="navbar-form navbar-right">
-                <a href="#">Register</a>
-                <a href="#">
+                [% if user %]
+                <a href="#">[= user.name =]</a>
+                <a href="/logout">
+                    <button class="login">Logout</button>
+                </a>
+                [% else %]
+                <a href="/signup">Register</a>
+                <a href="/signin">
                     <button class="login">Sign In</button>
                 </a>
+                [% endif %]
             </div>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>
