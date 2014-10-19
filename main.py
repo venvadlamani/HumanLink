@@ -1,7 +1,6 @@
 import configs
 import webapp2
 
-from google.appengine.ext.webapp.util import run_wsgi_app
 from models.kinds import accounts
 
 # Configs for the WSGI application.
@@ -40,11 +39,3 @@ application = webapp2.WSGIApplication([
                   name='select_profile', methods='[GET]',
                   handler='controllers.accounts.Accounts:select_profile'),
 ], debug=True, config=config)
-
-
-def main():
-    run_wsgi_app(application)
-
-
-if __name__ == "__main__":
-    main()

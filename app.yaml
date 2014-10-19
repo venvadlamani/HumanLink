@@ -22,6 +22,10 @@ handlers:
 - url: /_ah/spi/.*
   script: main_api.application
 
+- url: /admin/.*
+  script: google.appengine.ext.admin.application
+  login: admin
+
 - url: /.*
   script: main.application
 
