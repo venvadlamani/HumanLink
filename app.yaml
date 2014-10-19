@@ -52,3 +52,6 @@ skip_files:
 - ^(.*/)?\..*$
 # Custom.
 - ^bin$
+- ^bower_components$
+- ^node_modules$
+- ^(.*/)?.*\.less$
