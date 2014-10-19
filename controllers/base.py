@@ -9,6 +9,13 @@ from webapp2_extras import (
 
 # Default jinja2 configs.
 jinja2.default_config['template_path'] = 'views'
+env_args = {
+    'block_start_string': '[%',
+    'block_end_string': '%]',
+    'variable_start_string': '[=',
+    'variable_end_string': '=]',
+}
+jinja2.default_config['environment_args'].update(env_args)
 
 
 def login_required(func):
