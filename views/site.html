@@ -7,7 +7,7 @@
 
     [% block styles %] [% endblock %]
 </head>
-<body ng-app="Accounts">
+<body>
     [% include "nav.html" %]
 
     <div class="container container-main">
@@ -20,8 +20,9 @@
         window.HumanLink = {};
     </script>
 
+    [% block scripts %][% endblock %]
     <script src="/js/build/scripts.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
 
-    [% block scripts %] [% endblock %]
 </body>
 </html>
