@@ -11,8 +11,12 @@ class Accounts(base.BaseHandler):
     """Accounts and profiles related controller."""
 
     def signup(self):
-        """Log-in or sign-up page."""
+        """Sign-up page."""
         self.render('accounts/signup.html', {})
+
+    def signin(self):
+        """Login page."""
+        self.render('accounts/login.html', {})
 
     def signup_post(self):
         """Sign-up POST request."""
@@ -30,10 +34,7 @@ class Accounts(base.BaseHandler):
             name=name)
         if success:
             logging.info('Signup success. email: %s' % email)
-            self.auth.get_user_by_password(auth_id=auth_id,
-                                           password=pass_raw,
-                                           remember=True)
-            return self.redirect_to('home')
+            return self.redirect_to('thank_you')
         else:
             logging.info('Signup failed. email: %s' % email)
             return self.redirect_to('signup')
