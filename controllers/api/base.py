@@ -7,10 +7,15 @@ import os
 import webapp2
 
 from controllers import base
+from google.appengine.ext.endpoints import api_config
+
+
+# Endpoints doesn't pass cookies by default on appspot.
+AUTH_CONFIG = api_config.ApiAuth(allow_cookie_auth=True)
 
 
 humanlink_api = endpoints.api(name='humanlink', version='v1',
-                              description='HumanLink API')
+                              description='HumanLink API', auth=AUTH_CONFIG)
 
 
 def user_required(func):
