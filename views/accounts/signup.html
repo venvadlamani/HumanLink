@@ -1,31 +1,33 @@
-<!DOCTYPE html>
-<html ng-app="Accounts">
-<head>
-    <title>Human Link</title>
-    <link rel="stylesheet" href="/stylesheets/build/style.css"/>
-</head>
-<body>
-[% include 'nav.html' %]
-<form action="/signup" role="form" method="POST">
-    <div class="col-xs-2">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter name">
+[% extends "site.html" %]
+
+[% block title %]
+Sign Up
+[% endblock %]
+
+[% block content %]
+
+<div>
+    <form action="/signup" role="form" method="POST">
+        <div class="col-xs-2">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="password_confirm">Confirm Password</label>
+                <input type="password" class="form-control" name="password_confirm" placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-default">Sign Up</button>
         </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <label for="password_confirm">Confirm Password</label>
-            <input type="password" class="form-control" name="password_confirm" placeholder="Confirm Password">
-        </div>
-        <button type="submit" class="btn btn-default">Sign Up</button>
-    </div>
-</form>
-</body>
-</html>
+    </form>
+</div>
+
+[% endblock %]

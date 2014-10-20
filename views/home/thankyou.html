@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Human Link</title>
-    <link rel="stylesheet" href="/stylesheets/build/style.css"/>
-</head>
-<body>
-    [% include 'nav.html' %]
+[% extends "site.html" %]
 
+[% block title %]
+Thank You
+[% endblock %]
 
-    Thank you for submitting your contact information. We will keep you updated on the progress we make
-
-
-    <script src="/js/build/scripts.min.js"></script>
-
-</body>
-</html>
+[% block content %]
+<div>
+    Thank you for submitting your contact information.
+    We will keep you updated on the progress we make.
+</div>
+[% endblock %]

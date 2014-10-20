@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html ng-app="Accounts">
-<head>
-    <title>Human Link</title>
-    <link rel="stylesheet" href="/stylesheets/build/style.css"/>
-</head>
+[% extends "site.html" %]
 
-<body>
-[% include 'nav.html' %]
-<form action="/login" role="form" method="POST">
-    <div class="col-xs-2">
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter email">
+[% block title %]
+Sign In
+[% endblock %]
+
+[% block content %]
+
+<div>
+    <form action="/login" role="form" method="POST">
+        <div class="col-xs-2">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">Sign In</button>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Sign In</button>
-    </div>
-</form>
-</body>
-</html>
+    </form>
+</div>
+
+[% endblock %]
