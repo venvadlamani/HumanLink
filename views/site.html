@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>[% block title %] HumanLink [% endblock %]</title>
+    <link rel="stylesheet" href="/stylesheets/build/style.css"/>
+
+    [% block styles %] [% endblock %]
+</head>
+<body ng-app="Accounts">
+    [% include "nav.html" %]
+
+    <div class="container container-main">
+        [% block content %] [% endblock %]
+    </div>
+
+    [% include "footer.html" %]
+
+    <script type="text/javascript">
+        window.HumanLink = {};
+    </script>
+
+    <script src="/js/build/scripts.min.js"></script>
+
+    [% block scripts %] [% endblock %]
+</body>
+</html>

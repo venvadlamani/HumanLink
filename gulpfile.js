@@ -19,7 +19,7 @@ gulp.task('move-less-dependencies', function () {
 
 gulp.task('compile-less', ['move-less-dependencies'], function () {
     return gulp.src([
-        'assets/stylesheets/less/nav.less',
+        'assets/stylesheets/less/humanlink.less',
     ])
         .pipe(sourcemaps.init())
         .pipe(less())
