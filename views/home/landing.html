@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>[% block title %] HumanLink [% endblock %]</title>
+    <link rel="stylesheet" href="/stylesheets/build/style.css"/>
+</head>
+<body>
+
+<div class="container-full full-screen">
+    <div class="banner1">
+        [% include "nav.html" %]
+        <h1 class="caption">Caregivers, we care for you.</h1>
+        <h4 class="text">Make a beautiful homepage and apply to eldercare jobs.</h4>
+        <div class="col-md-3 col-md-offset-1 banner-overlay">
+            <h3 data-sr="enter top and hustle 50px over 1.5s" class="page-title">Join for free.</h3>
+            <form action="/submit_contact" role="form" method="post">
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter email">
+                </div>
+                <button type="submit" class="btn btn-default">Join for Free</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="banner2">
+        <div class="col-md-4 col-md-offset-1 banner-overlay">
+            <h1 class="page-title">A Community of caring.</h1>
+            <p>Connect with other eldercare professionals and increase your chances of getting noticed by future employers.</p>
+        </div>
+    </div>
+
+    <div class="banner3">
+        <div class="col-md-4 col-md-offset-1 banner-overlay">
+            <h1 class="page-title">Taking care of you through technology</h1>
+            <p>Instantly receive job postings and showcase your certifications, licences and recommendations online or on your smartphone.</p>
+        </div>
+    </div>
+
+    <div class="banner4">
+        <div class="col-md-4 col-md-offset-1 banner-overlay">
+            <h1 class="page-title">Better Benefits</h1>
+            <p>Receive cash-back rewards, access to online training, workers compensation and more.</p>
+        </div>
+    </div>
+
+    <div class="contact row">
+        <h1 class="page-title">Get In Touch</h1>
+
+        <div class="col-md-6 contact-section">
+            <h2>Contact Us</h2>
+            <p>+773 844 7312</p>
+            <p><a href="mailto:support@humanlink.co">support@humanlink.co</a> </p>
+        </div>
+
+        <div class="col-md-6 contact-section">
+            <h2>Visit Us</h2>
+            <p>1 E. Center Street, Suite 270</p>
+            <p>Fayetteville, AR 72701</p>
+        </div>
+    </div>
+
+    <div class="landing-footer">
+    © 2014 HumanLink. · <a href="#">Privacy</a> · <a href="#">Terms</a>
+    </div>
+
+</div>
+
+
+    <script src="/js/build/scripts.min.js"></script>
+</body>
+</html>

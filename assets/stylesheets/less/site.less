@@ -1,14 +1,18 @@
-.container,
-.container-fluid {
-  background-color: @background;
-}
-
-.container-main,
-.container-footer {
-  padding: 15px;
-  border-radius: 6px;
+.container-main, .container-footer {
+    padding: 15px;
 }
 
 .container-footer {
-  margin-top: 15px;
+    margin-top: 15px;
+}
+
+// Requires all parent items to also have 100% height
+.full-screen {
+    height: 100%;
+    width: 100%;
+}
+
+// Overriding bootstrap
+.row {
+    margin: 0;
 }
