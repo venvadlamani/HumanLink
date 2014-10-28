@@ -4,11 +4,6 @@
 Home
 [% endblock %]
 
-[% block scripts %]
-<script type="text/javascript">
-    console.log('Template loaded.');
-</script>
-[% endblock %]
 
 [% block content %]
 
@@ -37,4 +32,11 @@ Home
 
     <div ui-view></div>
 </div>
+
+[% endblock %]
+
+[% block scripts %]
+<script type="text/javascript">
+window.HumanLink.modules = ['Accounts'];
+</script>
 [% endblock %]

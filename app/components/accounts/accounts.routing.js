@@ -1,7 +1,7 @@
 angular
-    .module('Accounts', ['ui.router'])
+    .module('Accounts', ['ui.router', 'Common'])
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         // Otherwise redirect to /
         $urlRouterProvider.otherwise('/');
 
@@ -10,5 +10,10 @@ angular
             .state('login', {
                 url: '/',
                 templateUrl: '/views/accounts/partials/login.html',
+            })
+
+            .state('profile', {
+                url: '/profile',
+                templateUrl: '/views/accounts/partials/profile.html',
             });
-    });
+    }]);

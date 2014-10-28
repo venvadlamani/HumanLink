@@ -34,7 +34,9 @@ gulp.task('compile-js', function() {
         'bower_components/bootstrap/dist/js/bootstrap.js',
         'bower_components/angular/angular.js',
         'bower_components/angular-ui-router/release/angular-ui-router.js',
-        'app/**/*.js',
+        'app/app.js',
+        'app/components/*/*.js',
+        'app/components/*/*/*.js',
     ])
         .pipe(sourcemaps.init())
             .pipe(concat('scripts.min.js'))
