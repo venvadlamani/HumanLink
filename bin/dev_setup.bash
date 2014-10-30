@@ -3,6 +3,21 @@
 echo -e "HumanLink dev environment auto-setup script.
 Not guaranteed to work. If something goes wrong, please install yourself manually.\n"
 
+
+echo "Current directory: $(pwd)"
+read -p "Is this project root? y/n: " choice
+case "$choice" in
+  y|Y )
+      echo "Starting..." ;;
+  n|N )
+      echo "Please run the script from project root." 
+      exit ;;
+esac
+
+
+# Project root.
+HL=$(dirname $0)/../
+
 function print_status {
   if [ $? -ne 0 ]; then
     echo -e "$(tput setaf 1)$1 installation failed.$(tput sgr 0)"
@@ -64,18 +79,21 @@ function ins_bower_deps {
   print_Status 'npm'
 }
 
-function jmake {
-  echo 'Building frontend components'
-  gulp
-  print_status 'gulp'
+function install_prompt {
+  echo
+  read -p "Install $1? y/n: " choice
+  case "$choice" in
+    y|Y ) $2 ;;
+    n|N ) echo "Skipping $1" ;;
+  esac
 }
 
-ins_brew
-ins_git
-ins_py
-ins_pip
-ins_flake8
-ins_node
-ins_bower
-ins_bower_deps
-jmake
+
+install_prompt 'homebrew' ins_brew
+install_prompt 'git' ins_git
+install_prompt 'python 2.7' ins_py
+install_prompt 'pip' ins_pip
+install_prompt 'flake8' ins_flake8
+install_prompt 'node' ins_node
+install_prompt 'bower' ins_bower
+install_prompt 'bower dependencies' ins_bower_deps
