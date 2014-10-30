@@ -1,4 +1,4 @@
-[% extends "accounts.html" %]
+[% extends "accounts/accounts.html" %]
 
 [% block title %]
 Sign Up
@@ -6,26 +6,45 @@ Sign Up
 
 [% block content %]
 
-<div>
-    <form action="/signup" role="form" method="POST">
-        <div class="col-xs-2">
+<div ng-controller="loginController">
+    <form name="signupform" action="/signup" class="form-horizontal" role="form" method="POST">
+        <div class="col-md-3 col-md-offset-4">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter name">
+                <input type="text" ng-model="name" class="form-control"
+					   name="name" placeholder="Enter name" required />
+
+                <div ng-show="signupform.name.$dirty && signupformp.name.$error.required">Name required</div>
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter email">
+                <input type="email" ng-model="email " class="form-control"
+					   name="email" placeholder="Enter email" required />
+
+                <div ng-show="signupform.email.$dirty && signupform.email.$invalid">This is not a valid email.
+                    <span ng-show="signupform.email.$error.required">Email required.</span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" ng-model="password"
+					   placeholder="Password" required />
+                <div ng-show="signupform.password.$dirty && signupform.password.$error.required">Password required</div>
             </div>
             <div class="form-group">
                 <label for="password_confirm">Confirm Password</label>
-                <input type="password" class="form-control" name="password_confirm" placeholder="Confirm Password">
+                <input type="password" class="form-control" name="password_confirm" password-confirm match-target = "password"
+					   ng-model="password_confirm" placeholder="Confirm Password" required />
+                <div ng-show="signupform.password_confirm.$dirty && signupform.password_confirm.$error.required">
+					Password confirmation required.
+                </div>
+                <span ng-show="signupform.password_confirm.$error.match">Password mismatch!</span>
             </div>
-            <button type="submit" class="btn btn-default">Sign Up</button>
+			<div class="form-group">
+				<div class="col-md-3 col-md-offset-4">
+                    <button type="submit" ng-disabled="signupform.$invalid" class="btn btn-primary">Sign Up</button>
+				</div>
+			</div>
         </div>
     </form>
 </div>
