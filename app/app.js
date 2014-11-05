@@ -1,4 +1,5 @@
 window.is_backend_ready = false;
+window.sr = new scrollReveal();
 
 var getApiUrl = function() {
     var host = window.location.host;
