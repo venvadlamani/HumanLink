@@ -10,13 +10,14 @@ class Home(base.BaseHandler):
 
     def submit_contact(self):
         """Contact info POST request."""
-        name = self.request.get('name')
+        first_name = self.request.get('fname')
+        last_name = self.request.get('lname')
         email = self.request.get('email')
         phone = self.request.get('phone')
         comment = self.request.get('comment')
 
-        signee = ContactUs(name=name, phone_number=phone,
-                           email=email, comment=comment)
+        signee = ContactUs(firstname=first_name, lastname=last_name,
+                           phone_number=phone, email=email, comment=comment)
         signee.put()
 
         return self.redirect_to('thank_you')
