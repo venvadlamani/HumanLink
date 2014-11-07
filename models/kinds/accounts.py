@@ -188,7 +188,7 @@ class Caregiver(ndb.Model):
     licenses = ndb.StructuredProperty(License, repeated=True)
     work_experience = ndb.StructuredProperty(WorkExperience, repeated=True)
     certifications = ndb.StructuredProperty(Certification, repeated=True)
-    careservices = ndb.StructuredProperty(CareService, repeated=True)
+    careservices = msgprop.EnumProperty(CareService, repeated=True)
 
 
 class Carerecipient(ndb.Model):
