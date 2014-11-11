@@ -12,18 +12,21 @@
         [% include "nav.html" %]
         <h1 class="caption">Caregivers, we care for you.</h1>
         <h4 class="text">Make a beautiful homepage and apply to eldercare jobs.</h4>
-        <div class="col-md-3 col-md-offset-1 banner-overlay">
-            <h3 data-sr="enter top and hustle 50px over 1.5s" class="page-title">Join for free.</h3>
+        <div class="col-md-5 banner-overlay">
             <form action="/submit_contact" role="form" method="post">
-                <div class="form-group">
-                    <label for="Name">Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter name">
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" name="first_name" placeholder="First Name"
+                               required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" name="last_name" placeholder="Last Name" required />
+                    </div>
+                <div class="col-md-12 form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" required />
                 </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" name="email" placeholder="Enter email">
+                <div class="col-md-12 form-group">
+                    <button type="submit" class="btn btn-primary">I am interested in learning more!</button>
                 </div>
-                <button type="submit" class="btn btn-default">Join for Free</button>
             </form>
         </div>
     </div>
@@ -44,7 +47,7 @@
 
     <div class="banner4">
         <div class="col-md-4 col-md-offset-1 banner-overlay">
-            <h1 class="page-title">Better Benefits</h1>
+            <h1 class="page-title">Better benefits</h1>
             <p>Receive cash-back rewards, access to online training, workers compensation and more.</p>
         </div>
     </div>
@@ -54,7 +57,7 @@
 
         <div class="col-md-6 contact-section">
             <h2>Contact Us</h2>
-            <p>+773 844 7312</p>
+            <p>773-844-7312</p>
             <p><a href="mailto:support@humanlink.co">support@humanlink.co</a> </p>
         </div>
 
