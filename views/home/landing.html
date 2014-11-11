@@ -7,7 +7,9 @@
 </head>
 <body>
 
-<div class="container-full full-screen">
+<div class="container-full full-screen">        
+    [% block content %]
+    
     <div class="banner1">
         [% include "nav.html" %]
         <h1 class="caption">Caregivers, we care for you.</h1>
@@ -25,7 +27,7 @@
                     <input type="email" class="form-control" name="email" placeholder="Email Address" required />
                 </div>
                 <div class="col-md-12 form-group">
-                    <button type="submit" class="btn btn-primary">I am interested in learning more!</button>
+                    <button type="submit" class="btn btn-danger">I am interested in learning more!</button>
                 </div>
             </form>
         </div>
@@ -51,7 +53,7 @@
             <p>Receive cash-back rewards, access to online training, workers compensation and more.</p>
         </div>
     </div>
-
+	
     <div class="contact row">
         <h1 class="page-title">Get In Touch</h1>
 
@@ -67,11 +69,12 @@
             <p>Fayetteville, AR 72701</p>
         </div>
     </div>
-
+	
     <div class="landing-footer">
     © 2014 HumanLink. · <a href="#">Privacy</a> · <a href="#">Terms</a>
     </div>
-
+    
+    [% endblock %]    
 </div>
 
 
