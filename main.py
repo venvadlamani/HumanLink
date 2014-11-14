@@ -14,14 +14,11 @@ config['webapp2_extras.auth'] = {
 }
 
 application = webapp2.WSGIApplication([
-    webapp2.Route(r'/', name='home',
+    webapp2.Route(r'/', name='home', methods=['GET'],
                   handler='controllers.home.Home:index'),
 
-    webapp2.Route(r'/signup', name='signup', methods=['GET'],
-                  handler='controllers.accounts.Accounts:signup'),
-
-    webapp2.Route(r'/signin', name='signin', methods=['GET'],
-                  handler='controllers.accounts.Accounts:signin'),
+    webapp2.Route(r'/accounts', name='accounts_index', methods=['GET'],
+                  handler='controllers.accounts.Accounts:index'),
 
     webapp2.Route(r'/signup', name='signup_post', methods=['POST'],
                   handler='controllers.accounts.Accounts:signup_post'),
@@ -38,7 +35,7 @@ application = webapp2.WSGIApplication([
     webapp2.Route(r'/thankyou', name='thank_you', methods=['GET'],
                   handler='controllers.home.Home:thankyou'),
 
-    webapp2.Route(r'/accounts/select_profile',
-                  name='select_profile', methods='[GET]',
-                  handler='controllers.accounts.Accounts:select_profile'),
+    webapp2.Route(r'/terms', name='terms', methods=['GET'],
+                  handler='controllers.pages.Pages:terms'),
+
 ], debug=True, config=config)
