@@ -1,0 +1,33 @@
+# Continuous integration and deployment with CircleCi.
+# More info: https://circleci.com/docs/configuration
+
+machine:
+  python:
+    version: 2.7.8
+
+dependencies:
+  pre:
+    - ./bin/circleci.bash dep_pre
+  post:
+    - ./bin/circleci.bash dep_post
+
+test:
+  override:
+   - ./bin/circleci.bash tests
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - ./bin/circleci.bash deploy care-tiger
+
+  staging:
+    branch: alpha-version
+    commands:
+      - ./bin/circleci.bash deploy care-tiger-staging
+
+  kanat-dev:
+    branch: kanat-dev
+    commands:
+      - ./bin/circleci.bash deploy kanat-dev
+

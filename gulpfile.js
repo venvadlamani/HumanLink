@@ -53,5 +53,9 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['watch', 'compile-less', 'compile-js'], function () {
+    // Do nothing.
+});
 
+gulp.task('compile', ['compile-less', 'compile-js'], function() {
+    // Do nothing.
 });
