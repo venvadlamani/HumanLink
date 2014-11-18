@@ -18,7 +18,7 @@ coverage.xml
 .project
 .pydevproject
 
-# Django stuff:
+# Django stuff
 *.log
 *.pot
 
@@ -36,3 +36,5 @@ assets/js/build/
 # Virtualenv
 venv/
 
+# Secret files
+configs.py
