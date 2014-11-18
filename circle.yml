@@ -6,6 +6,8 @@ machine:
     version: 2.7.8
 
 dependencies:
+  cache_directories:
+    - "venv"
   pre:
     - ./bin/circleci.bash dep_pre
   post:

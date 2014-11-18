@@ -4,6 +4,10 @@ import sys
 import os.path
 
 
-# add `lib` subdirectory to `sys.path`, so our `main` module can load
+# Add `lib` subdirectory to `sys.path`, so our `main` module can load
 # third-party libraries.
-sys.path.insert(1, os.path.join(os.path.dirname(__file__), 'lib'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'lib'))
+
+# Add libraries that were added by `pip` to `sys.path`.
+sys.path.append(os.path.join(os.path.dirname(__file__),
+                             'venv/lib/python2.7/site-packages'))

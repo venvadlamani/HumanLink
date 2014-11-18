@@ -32,3 +32,7 @@ bower_components/
 assets/stylesheets/build/
 assets/stylesheets/less/bootstrap/
 assets/js/build/
+
+# Virtualenv
+venv/
+
