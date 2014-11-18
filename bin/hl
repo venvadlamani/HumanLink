@@ -8,7 +8,7 @@ function deploy {
     echo $msg
   else
     case $1 in
-      'dev') dev_appserver.py $HL ;;
+      'dev') $HL/venv/bin/python $(which dev_appserver.py) $HL ;;
       'staging') appcfg.py -v --oauth2 --application=care-tiger-staging update $HL ;;
       'prod') appcfg.py -v --oauth2 update $HL ;;
       *) echo $msg ;;

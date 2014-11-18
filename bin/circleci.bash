@@ -18,6 +18,13 @@ function dep_post {
     # Front-end components
     bower install
     gulp compile
+
+    # pip dependencies
+    echo 'Creating a new virtualenv...'
+    virtualenv-2.7 venv
+    echo 'Installing venv libraries'
+    ./venv/bin/pip install requests
+    ./venv/bin/pip install mandrill
 }
 
 # Deployment.
