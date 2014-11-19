@@ -7,77 +7,99 @@
 </head>
 <body>
 
-<div class="container-full full-screen">        
+<div class="container-full full-screen">
+
+    <div id="pagepiling">
     [% block content %]
-    
-    <div class="banner1">
-        [% include "nav.html" %]
-        <h1 class="caption">Caregivers, we care for you.</h1>
-        <h4 class="text">Make a beautiful homepage and apply to eldercare jobs.</h4>
-        <div class="col-md-5 banner-overlay">
-            <form action="/submit_contact" role="form" method="post">
-                    <div class="col-md-6 form-group">
+
+        <div class="section banner1">
+            <div class="col-md-5 col-md-offset-1 banner-overlay">
+                <h1 class="page-title">Caregivers, we care for you.</h1>
+                <p>Make a beautiful homepage and apply to eldercare jobs.</p>
+
+                <form action="/submit_contact" role="form" method="post">
+                    <div class="form-group">
                         <input type="text" class="form-control" name="first_name" placeholder="First Name"
                                required />
                     </div>
-                    <div class="col-md-6 form-group">
-                        <input type="text" class="form-control" name="last_name" placeholder="Last Name" required />
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="last_name" placeholder="Last Name"
+                               required />
                     </div>
-                <div class="col-md-12 form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email Address" required />
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email Address"
+                               required />
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-lg">I am interested in learning more!</button>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="section banner2">
+            <div class="col-md-5 col-md-offset-1 banner-overlay">
+                <h1 class="page-title">A Community of caring.</h1>
+                <p>Connect with other eldercare
+                   professionals and increase your chances
+                   of getting noticed by future employers.</p>
+            </div>
+        </div>
+
+        <div class="section banner3">
+            <div class="col-md-5 col-md-offset-1 banner-overlay">
+                <h1 class="page-title">Taking care of you through technology</h1>
+                <p>Instantly receive job postings and
+                   showcase your certifications, licences
+                   and recommendations online or on your smartphone.</p>
+            </div>
+        </div>
+
+        <div class="section banner4">
+            <div class="col-md-5 col-md-offset-1 banner-overlay">
+                <h1 class="page-title">Better benefits</h1>
+                <p>Receive cash-back rewards,
+                   access to online training,
+                   workers compensation and more.</p>
+            </div>
+        </div>
+
+        <div class="section banner">
+
+            <div class="contact row">
+                <h1 class="contact-header">HumanLink</h1>
+
+                <div class="col-md-6">
+                    <h2>Contact Us</h2>
+                    <p>773-844-7312</p>
+                    <p><a href="mailto:support@humanlink.co">support@humanlink.co</a> </p>
                 </div>
-                <div class="col-md-12 form-group">
-                    <button type="submit" class="btn btn-danger">I am interested in learning more!</button>
+
+                <div class="col-md-6">
+                    <h2>Visit Us</h2>
+                    <p>1 E. Center Street, Suite 270</p>
+                    <p>Fayetteville, AR 72701</p>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="banner2">
-        <div class="col-md-4 col-md-offset-1 banner-overlay">
-            <h1 class="page-title">A Community of caring.</h1>
-            <p>Connect with other eldercare professionals and increase your chances of getting noticed by future employers.</p>
-        </div>
-    </div>
-
-    <div class="banner3">
-        <div class="col-md-4 col-md-offset-1 banner-overlay">
-            <h1 class="page-title">Taking care of you through technology</h1>
-            <p>Instantly receive job postings and showcase your certifications, licences and recommendations online or on your smartphone.</p>
-        </div>
-    </div>
-
-    <div class="banner4">
-        <div class="col-md-4 col-md-offset-1 banner-overlay">
-            <h1 class="page-title">Better benefits</h1>
-            <p>Receive cash-back rewards, access to online training, workers compensation and more.</p>
-        </div>
-    </div>
-	
-    <div class="contact row">
-        <h1 class="page-title">Get In Touch</h1>
-
-        <div class="col-md-6 contact-section">
-            <h2>Contact Us</h2>
-            <p>773-844-7312</p>
-            <p><a href="mailto:support@humanlink.co">support@humanlink.co</a> </p>
+            </div>
         </div>
 
-        <div class="col-md-6 contact-section">
-            <h2>Visit Us</h2>
-            <p>1 E. Center Street, Suite 270</p>
-            <p>Fayetteville, AR 72701</p>
-        </div>
+    [% endblock %]
     </div>
-	
-    <div class="landing-footer">
-    © 2014 HumanLink. · <a href="#">Privacy</a> · <a href="#">Terms</a>
-    </div>
-    
-    [% endblock %]    
 </div>
 
+<script src="/js/build/scripts.min.js"></script>
 
-    <script src="/js/build/scripts.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#pagepiling').pagepiling({
+            verticalCentered: false,
+            navigation: {
+                'bulletsColor': '#0093d0',
+                'position': 'right',
+                'tooltips': ['Caregivers', 'Community', 'Technology', 'Benefits', 'Contact Us']
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
