@@ -1,4 +1,4 @@
-<nav class="[% block class %]navigation-bar[% endblock %]" role="navigation">
+<nav class="navigation-bar" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -10,8 +10,41 @@
             <a class="navbar-brand" href="/">HumanLink</a>
         </div>
 
-        [% block content %]
-        [% endblock %]
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-content">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="search-bar">
+                    <input type="text" class="form-control" placeholder="Search for connections">
+                    <button type="submit" class="navigation-search">Search</button>
+                </div>
+            </form>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Go to<span class="caret"></span></a>
+                    <ul class="dropdown-menu nav-menu" role="menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Connections</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">Notifications</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="navbar-form navbar-right">
+                [% if user %]
+                <a href="#">[= user.name =]</a>
+                <a href="/logout">
+                    <button class="login">Logout</button>
+                </a>
+                [% else %]
+                <a href="/signup">Register</a>
+                <a href="/signin">
+                    <button class="login">Sign In</button>
+                </a>
+                [% endif %]
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
 
     </div>
     <!-- /.container-fluid -->

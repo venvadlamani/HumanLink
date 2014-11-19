@@ -12,6 +12,6 @@
     "angular-bootstrap": "latest",
     "angular-ui-router": "~0.2",
     "bootstrap": "~3",
-    "scroll-reveal": "~2"
+    "pagepiling.js": "latest"
   }
 }
