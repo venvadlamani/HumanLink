@@ -1,15 +1,53 @@
-window.is_backend_ready = false;
+window.HL = window.HL || {};
 
-var getApiUrl = function() {
-    var host = window.location.host;
-    var protocol = host.indexOf('localhost') === 0 ? 'http://' : 'https://';
-    return protocol + host + '/_ah/api';
-};
+/**
+ * Set HL.CtrlHelper.
+ *
+ * HL.CtrlHelper keeps track of the controller's current status
+ * as well as callbacks for talking to the server via apiService.
+ */
+(function (obj) {
+    var ctrlHelper = function () {
+        var self = this;
 
-function init() {
-    if(window.HumanLink.modules) {
-        gapi.client.load('humanlink', 'v1', function() {
-            angular.bootstrap(document.body, window.HumanLink.modules);
-        }, getApiUrl());
-    }
-}
+        // Default callback that is called regardless of $http response status.
+        self.always = null;
+
+        // Default callback that is called on $http success status.
+        self.success = function (data, status, headers, config) {
+            self.isLoading = false;
+        };
+
+        // Default callback that is called on $http error status.
+        self.failure = function (data, status, headers, config) {
+            self.isLoading = false;
+            self.isValid = false;
+            self.errors = [data.error_message];
+        };
+
+        self.reset = function () {
+            self.isLoading = false;
+            self.isValid = true;
+            self.errors = [];
+        };
+
+        // Initialize.
+        self.reset();
+
+        return self;
+    };
+    obj.CtrlHelper = ctrlHelper;
+}(window.HL));
+
+/**
+ * Set HL.baseUrl.
+ *
+ * HL.baseUrl is base URL of the website.
+ */
+(function (obj) {
+    // Simulates window.location.origin as it is not supported by all browsers.
+    var locationOrigin = function () {
+        return window.location.protocol + '//' + window.location.host;
+    };
+    obj.baseUrl = locationOrigin();
+}(window.HL));

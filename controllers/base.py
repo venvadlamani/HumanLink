@@ -1,3 +1,5 @@
+import json
+import logging
 import webapp2
 
 from webapp2_extras import (
@@ -85,3 +87,18 @@ class BaseHandler(webapp2.RequestHandler):
             self.user['user_id'],
             self.user['token']) if self.user else (None, None)
         return user_model
+
+    def handle_exception(self, exception, debug):
+        """Exception handler for a webapp2 request.
+
+        TODO(kanat): Implement this more robustly.
+        """
+        logging.exception(exception)
+        result = {
+            'status': 'error',
+            'status_code': 400,
+            'error_message': 'yo mama',
+        }
+        self.response.headers.add_header('Content-Type', 'application/json')
+        self.response.write(json.dumps(result))
+        self.response.set_status(result['status_code'])
