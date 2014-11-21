@@ -39,6 +39,10 @@ libraries:
 - name: jinja2
   version: latest
 
+# OpenSSL.
+- name: ssl
+  version: latest
+
 # Route handling.
 - name: webapp2
   version: latest
