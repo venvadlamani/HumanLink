@@ -2,23 +2,42 @@
 
 HL=$(dirname $0)/../
 
+function usage {
+  msg="Usage: hl deploy"
+  echo $msg
+}
+
 function deploy {
-  msg="Usage: deploy dev|staging|prod"
+  msg="Usage: deploy dev|staging|prod|app-id"
   if [ -z "$1" ]; then
     echo $msg
   else
     case $1 in
-      'dev') $HL/venv/bin/python $(which dev_appserver.py) $HL ;;
+      'dev') deploy_dev ;;
       'staging') appcfg.py -v --oauth2 --application=care-tiger-staging update $HL ;;
       'prod') appcfg.py -v --oauth2 update $HL ;;
-      *) echo $msg ;;
+      *) appcfg.py -v --oauth2 --application=$1 update $HL ;;
     esac
   fi
 }
 
-function usage {
-  msg="Usage: hl deploy"
-  echo $msg
+function deploy_dev {
+  # Make sure virtualenv exists.
+  if [ ! -d "$HL/venv" ]; then
+    echo "Virtualenv doesn't exist."
+    echo "Please run ./bin/dev_setup.bash and choose (y) for 'virtualenv' and 'virtualenv libraries'"
+    exit 1
+  fi
+
+  # Prepare.
+  echo '>>> Preparing frontend components.'
+  rm -rf bower_components
+  bower install
+  gulp compile
+
+  # Start the dev server.
+  echo '>>> Starting the dev server.'
+  dev_appserver.py $HL
 }
 
 if [ -z "$1" ]; then
