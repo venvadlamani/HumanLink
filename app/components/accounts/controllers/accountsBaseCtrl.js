@@ -12,6 +12,7 @@ angular
 
         /**
          * Go back to the previous page/view.
+         * @return void
          */
         $scope.previous = function () {
             $window.history.back();

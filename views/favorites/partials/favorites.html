@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>Favorites</h1>
+        <button>Add Favorite</button>
+        <div class="favorite" ng-repeat="favorite in favorites">
+            <h2>{{favorite.name}}</h2>
+            <button>Send beacon to favorite.</button>
+
+            <div class="favorite-connection" ng-repeat="connection in favorite.connections">
+                <h4>{{connection.name}}</h4>
+                <button>Remove from favorite</button>
+            </div>
+
+        </div>
+    </div>
+</div>

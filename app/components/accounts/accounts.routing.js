@@ -2,7 +2,8 @@
 
 angular
     .module('Accounts', ['ui.router', 'Common'])
-    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider',
+            function ($stateProvider, $urlRouterProvider) {
 
         // Otherwise redirect to /
         $urlRouterProvider.otherwise('/');
@@ -18,8 +19,9 @@ angular
                 templateUrl: '/views/accounts/partials/join.html',
                 controller: 'joinCtrl'
             })
-            .state('profile', {
-                url: '/profile',
-                templateUrl: '/views/accounts/partials/profile.html'
+            .state('edit_profile', {
+                url: '/edit',
+                templateUrl: '/views/accounts/partials/manage_profile.html',
+                controller: 'manageProfileCtrl'
             });
     }]);
