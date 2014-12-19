@@ -34,3 +34,7 @@ deployment:
     commands:
       - ./bin/circleci.bash deploy kanat-dev
 
+  nithin-dev:
+    branch: nithin-dev
+    commands:
+      - ./bin/circleci.bash deploy human-link-dev
