@@ -11,6 +11,7 @@ function dep_pre {
     echo ">>> bower and gulp install"
     npm install -g bower
     npm install -g gulp
+    pip install flake8
 }
 
 # Dependencies post.
@@ -18,7 +19,6 @@ function dep_post {
     # Front-end components
     bower install
     gulp compile
-
 }
 
 function gae_deps {
@@ -57,12 +57,29 @@ function deploy {
         -v --application=$app_id \
         --oauth2_refresh_token=$GAE_OAUTH_TOKEN \
         update .
-    echo ">>> Deployed to $app_id"
+    ST=$?
     rm -f configs.py
+    # Fail build if deployment failed.
+    if [ $ST -eq 0 ]; then
+      echo ">>> Deployed to $app_id"
+    else
+      echo ">>> Deployment failed. app-id: $app_id"
+      exit $ST
+    fi
+}
+
+# Link checks.
+# Consider using: https://pypi.python.org/pypi/git-lint
+function lints {
+    echo ">>> Running flake8."
+    FILES=$(git diff --name-only --diff-filter=ACM HEAD^ HEAD | grep -e '\.py$')
+    if [ -n "$FILES" ]; then
+      flake8 --exit-zero $FILES
+    fi
 }
 
 function tests {
-    echo ">>> No tests at the moment."
+  lints
 }
 
 function usage {
