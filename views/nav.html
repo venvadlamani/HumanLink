@@ -7,7 +7,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">HumanLink</a>
+            <a class="navbar-brand" href="/">
+                <img class="nav-logo" src="images/hl.logo.horiz.blue.png" alt=""/>
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,20 +20,6 @@
                     <button type="submit" class="navigation-search">Search</button>
                 </div>
             </form>
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Go to<span class="caret"></span></a>
-                    <ul class="dropdown-menu nav-menu" role="menu">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/accounts#/edit">Profile</a></li>
-                        <li><a href="/connections">Connections</a></li>
-                        <li><a href="/favorites">Favorites</a></li>
-                        <li><a href="/messages">Messages</a></li>
-                        <li><a href="/invoice">Invoice</a></li>
-                        <li><a href="/jobs">Jobs</a></li>
-                    </ul>
-                </li>
-            </ul>
             <div class="navbar-form navbar-right">
                 [% if user %]
                 <a href="#">[= user.name =]</a>
@@ -51,3 +39,16 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
+<div class="container-fluid sub-navbar">
+    <div class="container">
+        <ul class="sub-navbar-list">
+            <li><a href="/">Dashboad</a></li>
+            <li><a href="/messages">Inbox</a></li>
+            <li><a href="/jobs">My Jobs</a></li>
+            <li><a href="/connections">Connections</a></li>
+            <li><a href="/favorites">Favorites</a></li>
+            <li><a href="/accounts">Profile</a></li>
+            <li><a href="/accounts#/edit">Settings</a></li>
+        </ul>
+    </div>
+</div>
