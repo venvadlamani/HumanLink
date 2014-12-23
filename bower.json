@@ -9,8 +9,12 @@
   "private": true,
   "dependencies": {
     "angular": "~1.3",
+    "angular-bootstrap": "latest",
     "angular-ui-router": "~0.2",
     "bootstrap": "~3",
     "pagepiling.js": "latest"
+  },
+  "resolutions": {
+    "angular": "~1.3"
   }
 }
