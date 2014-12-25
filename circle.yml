@@ -38,3 +38,8 @@ deployment:
     branch: nithin-dev
     commands:
       - ./bin/circleci.bash deploy human-link-dev
+
+  hl-muj:
+    branch: hl-muj
+    commands:
+      - ./bin/circleci.bash deploy hl-muj

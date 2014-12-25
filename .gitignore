@@ -26,6 +26,9 @@ coverage.xml
 .settings/
 .idea/
 
+#swap files
+*.swp
+
 # FE Build Directories
 node_modules/
 bower_components/
