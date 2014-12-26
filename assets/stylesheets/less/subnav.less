@@ -1,0 +1,27 @@
+.sub-navbar {
+    background-color: @type;
+}
+
+.sub-navbar-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            &:hover {
+                background-color: @secondary;
+                cursor: pointer;
+            }
+
+            display: inline-block;
+            padding: 15px;
+
+            a {
+                &:hover {
+                    text-decoration: none;
+                }
+                color: @background;
+                font-weight: 300;
+            }
+        }
+}
