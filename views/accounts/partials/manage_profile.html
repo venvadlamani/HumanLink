@@ -2,7 +2,7 @@
 </div>
 <div class="row header info">
     <div class="col-md-12">
-        <button class="btn edit-profile">Edit Info</button>
+        <button class="btn pull-right edit-profile">Edit Info</button>
         <div class="profile-image"></div>
         <div class="profile-info">
             <h2 class="profile-name">First Last</h2>
@@ -15,38 +15,11 @@
     <div class="col-md-12">
         <h1 class="patient-header">Patients</h1>
         <button class="btn add-patient">Add Patient</button>
-        <div class="patient" ng-repeat="patient in patients">
-            <h2>{{patient.name}}</h2>
-            <p>TODO: Other patient info</p>
-        </div>
-
-        <!-- TODO: Remove for angular powered template -->
-        <div class="row patient">
+        <div class="row patient" ng-repeat="patient in patients">
             <div class="patient-image"></div>
             <div class="patient-info">
-                <h2 class="patient-name">Patient Name</h2>
-                <h4 class="patient-phone">(555)555-5555</h4>
-            </div>
-        </div>
-        <div class="row patient">
-            <div class="patient-image"></div>
-            <div class="patient-info">
-                <h2 class="patient-name">Patient Name</h2>
-                <h4 class="patient-phone">(555)555-5555</h4>
-            </div>
-        </div>
-        <div class="row patient">
-            <div class="patient-image"></div>
-            <div class="patient-info">
-                <h2 class="patient-name">Patient Name</h2>
-                <h4 class="patient-phone">(555)555-5555</h4>
-            </div>
-        </div>
-        <div class="row patient">
-            <div class="patient-image"></div>
-            <div class="patient-info">
-                <h2 class="patient-name">Patient Name</h2>
-                <h4 class="patient-phone">(555)555-5555</h4>
+                <h2 class="patient-name">{{patient.name}}</h2>
+                <h4 class="patient-phone">{{patient.phone}}</h4>
             </div>
         </div>
     </div>
