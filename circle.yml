@@ -38,3 +38,8 @@ deployment:
     branch: nithin-dev
     commands:
       - ./bin/circleci.bash deploy human-link-dev
+
+  nolan-dev:
+    branch: nolan-dev
+    commands:
+      - ./bin/circleci.bash deploy care-tiger-mike-staging
