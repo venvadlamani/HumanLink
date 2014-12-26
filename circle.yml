@@ -43,3 +43,8 @@ deployment:
     branch: nolan-dev
     commands:
       - ./bin/circleci.bash deploy care-tiger-mike-staging
+
+  ven-dev:
+    branch: ven-dev
+    commands:
+      - ./bin/circleci.bash deploy deep-chimera-732
