@@ -1,0 +1,20 @@
+<div class="jumbotron">
+    <h2 ng-if="responses.length">{{ responses.length }} caregivers have responded.</h2>
+    <h2 ng-if="!responses.length">No caregiver responses pending.</h2>
+</div>
+
+<div ng-repeat="response in responses">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+
+            <form ng-submit="selectCaregiver(response.id)">
+                <p>First Name: {{ response.first }} </p>
+                <p>Last Name: {{ response.last }} </p>
+                <p>Role: {{ response.account_type }} </p>
+                <button class="btn btn-default">Select caregiver</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+

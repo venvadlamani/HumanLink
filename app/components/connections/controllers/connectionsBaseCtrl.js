@@ -18,8 +18,8 @@ angular
             connectionsHelper.success = function (data, status, headers, config) {
                 $scope.connections = data.items;
             };
-        apiService.Connections.my({}, connectionsHelper);
-        }
+            apiService.Connections.my({}, connectionsHelper);
+        };
         getConnectionsInfo();
 
     }]);

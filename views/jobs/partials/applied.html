@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <h2 ng-if="appliedJobs.length" class="text-center">You have {{ appliedJobs.length }} jobs pending review.</h2>
+    <h2 ng-if="!appliedJobs.length" class="text-center">No jobs pending review.</h2>
+</div>
+
+<div class="row">
+    <div ng-repeat="applied in appliedJobs | orderBy: '+start_date' ">
+        <form ng-submit="releaseJob(applied.id)">
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <p>Start day: <b class="pull-right"> {{ applied.start_date | date:'longDate' }}</b></p>
+                        <p>Start time: <b class="pull-right"> {{ applied.start_date | date:'shortTime' }}</b></p>
+                        <p>End day: <b class="pull-right"> {{ applied.start_date | date:'longDate' }}</b></p>
+                        <p>End time: <b class="pull-right"> {{ applied.start_date | date:'shortTime' }}</b></p>
+                        <p ng-init="getHours(applied.start_date, applied.end_date)">
+                            Hours: <b class="pull-right"> {{ hours }}</b>
+                        </p>
+                        <p>Wage: <b class="pull-right"> {{ applied.wage | currency }}</b></p>
+                        <p>Estimated value: <b class="pull-right"> {{ applied.wage * hours | currency}}</b></p>
+                        <p>
+                            <button class="btn btn-danger" role="button">Cancel application</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

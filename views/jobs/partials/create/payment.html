@@ -1,0 +1,20 @@
+<div class="panel">
+    <div class="panel-body">
+
+        <div class="form-group">
+            <label for="Amount">How much are you willing to pay?</label>
+            <div class="input-group">
+                <div class="input-group-addon">$ per hour</div>
+                <input type="text" class="form-control" ng-model="job.wage"
+                       id="Amount" name="wage" placeholder="Amount" required>
+            </div>
+            <span class="error" ng-show="createJob.wage.$error.required">Required!</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <button type="button" ui-sref="create.audience"
+            class="btn btn-primary">Next section</button>
+</div>

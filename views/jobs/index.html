@@ -1,13 +1,35 @@
 [% extends "site.html" %]
 
 [% block title %]
-Invoice
+Jobs
 [% endblock %]
 
 [% block content %]
 
 <div ng-app="Jobs" ng-controller="jobsBaseCtrl">
-    <div ui-view></div>
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><b>CARE-SEEKER</b></li>
+                <li><a href="/jobs#/create/create/who">Individual - Post Job</a></li>
+                <li><a href="/jobs#/jobco">Company - Post job</a></li>
+                <li><a href="/jobs#/upcoming">Upcoming Jobs</a></li>
+                <li><a href="/jobs#/pending">Pending Review</a></li>
+                <li><a href="/jobs#/previous">Previous Jobs</a></li>
+            </ul>
+            <br>
+            <ul class="nav nav-sidebar">
+                <li><b>CARE-GIVER</b></li>
+                <li><a href="/jobs#/nearby">Jobs Nearby</a></li>
+                <li><a href="/jobs#/selected">Upcoming Jobs</a></li>
+                <li><a href="/jobs#/applied">Pending Review</a></li>
+                <li><a href="/jobs#/completed">Previous Jobs</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div ui-view></div>
+        </div>
+    </div>
 </div>
 
 [% endblock %]

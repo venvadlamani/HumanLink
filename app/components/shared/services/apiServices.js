@@ -97,7 +97,42 @@ angular
             apiRequest('GET', 'connections/my', data, ctrlHelper, true);
         };
 
-        
+        Jobs.get = function(id, ctrlHelper){
+            apiRequest('GET', 'jobs/' + id, {}, ctrlHelper, true);
+        };
+
+        Jobs.cancel = function(data, ctrlHelper){
+            apiRequest('POST', 'jobs/cancel', data, ctrlHelper, true);
+        };
+
+        Jobs.update = function(data, ctrlHelper){
+            apiRequest('POST', 'jobs/update', data, ctrlHelper, true);
+        };
+
+        Jobs.select_applicant = function(data, ctrlHelper){
+            apiRequest('POST', 'jobs/select_applicant', data, ctrlHelper, true);
+        };
+
+        Jobs.posted = function(data, ctrlHelper){
+            apiRequest('GET', 'jobs/posted', data, ctrlHelper, true);
+        };
+
+        Jobs.selected = function(data, ctrlHelper){
+            apiRequest('GET', 'jobs/selected', data, ctrlHelper, true);
+        };
+
+        Jobs.applied = function(data, ctrlHelper){
+            apiRequest('GET', 'jobs/applied', data, ctrlHelper, true);
+        };
+
+        Jobs.nearby = function(data, ctrlHelper){
+            apiRequest('GET', 'jobs/nearby', data, ctrlHelper, true);
+        };
+
+        Jobs.apply = function(data, ctrlHelper){
+            apiRequest('POST', 'jobs/apply', data, ctrlHelper, true);
+        };
+
         // Public methods.
         return {
             Accounts: Accounts,

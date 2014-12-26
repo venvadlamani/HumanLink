@@ -1,0 +1,55 @@
+<div ng-switch="viewMode">
+
+<div ng-switch-when="post_job">
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-primary">
+                    <div class="panel-title">
+                        <h2 class="text-center">Post Job</h2>
+                        <div class="row">
+                            <div id="jobs-status-buttons" class="text-center">
+                                <a ui-sref-active="active" ui-sref=".who"><span>1</span> Recipient</a>
+                                <a ui-sref-active="active" ui-sref=".when"><span>2</span> Care date</a>
+                                <a ui-sref-active="active" ui-sref=".payment"><span>3</span> Wage</a>
+                                <a ui-sref-active="active" ui-sref=".audience"><span>4</span> Audience</a>
+                                <a ui-sref-active="active" ui-sref=".confirm"><span>5</span> Confirm</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form name="createJob" ng-submit="submitJob(job, createJob.$valid)" ng-model="job" novalidate>
+                            <div ui-view></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <h2>Estimate</h2>
+                            <h4> {{ job.hours }} Hours @ {{ job.wage | currency }} :
+                                <div class="pull-right"> {{ (job.hours * job.wage | currency) }} </div>
+                            </h4>
+                            <h4>Service Fees (7.5%) :
+                                <div class="pull-right">{{ (0.075 * job.hours*job.wage) | currency }}</div>
+                            </h4>
+                            <h3>Total:
+                            <div class="pull-right">{{ (job.hours * job.wage) + (0.075 * job.hours * job.wage) | currency }}</div>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+<div ng-switch-when="post_job_success">
+    <p>Your Job was posted successfully.</p>
+</div>
+
+</div>
+

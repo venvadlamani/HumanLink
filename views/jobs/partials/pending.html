@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <h2 ng-if="pendingJobs" class="text-center">You have {{ pendingJobs.length }} jobs pending review.</h2>
+    <h2 ng-if="!pendingJobs" class="text-center">There are no jobs pending review.</h2>
+</div>
+
+<div class="row">
+    <div ng-repeat="pendingJob in pendingJobs | orderBy: '+start_date' ">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <p>care-recipient id: <b class="pull-right"> {{ pendingJob.patient_id }}</b></p>
+                    <p>Start day: <b class="pull-right"> {{ pendingJob.start_date | date:'longDate' }}</b></p>
+                    <p>Start time: <b class="pull-right"> {{ pendingJob.start_date | date:'shortTime' }}</b></p>
+                    <p>End day: <b class="pull-right"> {{ pendingJob.end_date | date:'longDate' }}</b></p>
+                    <p>End time: <b class="pull-right"> {{ pendingJob.end_date | date:'shortTime' }}</b></p>
+                    <p>Wage: <b class="pull-right"> {{ pendingJob.wage | currency}}</b></p>
+                    <p>Audience: <b class="pull-right"> {{ pendingJob.audience.category }}</b></p>
+                    <p>Status: <b class="pull-right"> {{ pendingJob.status }}</b></p>
+                    <p>Views: <b class="pull-right"> {{ pendingJob.views }}</b></p>
+                    <p>
+                        <a href="jobs#/responses/{{ pendingJob.id }}" >
+                            <button class="btn btn-primary">View responses</button>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div ng-switch="viewMode">
+
+<div ng-switch-when="upcoming_job">
+    <div class="jumbotron">
+        <h2 ng-if="selectedJobs.length" class="text-center">You have {{ selectedJobs.length }} upcoming caregiver jobs.</h2>
+        <h2 ng-if="!selectedJobs.length" class="text-center">No caregiver jobs upcoming.</h2>
+    </div>
+
+    <div class="row">
+        <div ng-repeat="selected in selectedJobs | orderBy: '+start_date' ">
+            <div class="col-md-4">
+                <form ng-submit="cancelJob(selected.id)">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <p>Start day: <b class="pull-right"> {{ selected.start_date | date:'longDate' }}</b></p>
+                            <p>Start time: <b class="pull-right"> {{ selected.start_date | date:'shortTime' }}</b></p>
+                            <p>End day: <b class="pull-right"> {{ selected.end_date | date: 'longDate' }}</b></p>
+                            <p>End time: <b class="pull-right"> {{ selected.end_date | date: 'shortTime' }}</b></p>
+                            <p ng-init="getHours(selected.start_date, selected.end_date)">
+                                Hours: <b class="pull-right"> {{ hours }}</b>
+                            </p>
+                            <p>Wage: <b class="pull-right"> {{ selected.wage | currency}}</b></p>
+                            <p>Estimated value: <b class="pull-right"> {{ selected.wage * hours | currency}}</b></p>
+                            <p><button class="btn btn-danger">Release Job</button></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-switch-when="cancel_job_success">
+    <h2>Your Job was cancelled successfully.</h2>
+</div>
+
+</div>

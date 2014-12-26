@@ -1,0 +1,103 @@
+<div ng-switch="viewMode">
+
+<div ng-switch-when="post_job">
+
+    <form ng-submit="updateJob(job)" ng-model="job">
+
+        <div class="panel panel-primary">
+            <div class="panel-body">
+
+                <p>Care-recipient: </p>
+                <div class="form-group">
+                    <label class="control-label">Who needs needs the care?</label>
+                    <select class="form-control ng-valid ng-dirty" name="carerecipient" id="carerecipient"
+                            ng-model="job.patient_id"
+                            ng-options="careRecipient.careRecipientId as careRecipient.firstName
+                                        for careRecipient in initData.careRecipients"
+                            required>
+                    </select>
+                </div>
+
+                <hr>
+
+                <p>Hours: </p>
+
+                <div class="form-group">
+                    <label id="time">Number of hours caregiver is needed</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control col-md-6" ng-model="job.hours"
+                                   placeholder="Enter # of hours" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="time">What time is the caregiver expected?</label>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <select class="form-control" ng-model="job.startHour"
+                                    ng-options="hour for hour in initData.hours">
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-control" ng-model="job.startMinute"
+                                    ng-options="minutes for minutes in initData.minutes">
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-control" ng-model="job.ampm"
+                                    ng-options="ampm for ampm in initData.ampm">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="when">What day is the caregiver needed?</label>
+                    <div class="table-responsive">
+                        <datepicker ng-model="job.caredate"
+                                    min-date="minDate"
+                                    show-weeks="false">
+                        </datepicker>
+                    </div>
+                </div>
+
+                <hr>
+
+                <p>Audience: </p>
+                <div class="form-group">
+                    <label for="audience">Who can see the job post?</label>
+                    <select name="audience" id="audience" class="form-control"
+                            ng-model="job.audience.category"
+                            ng-options="target for target in initData.audienceOptions" required>
+                    </select>
+                </div>
+
+                <hr>
+
+                <p>Wage: </p>
+                <div class="form-group">
+                    <label for="Amount">How much are you willing to pay?</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$ per hour</div>
+                        <input type="text" class="form-control" ng-model="job.wage"
+                               id="Amount" name="Amount" placeholder="Amount" required>
+                    </div>
+                </div>
+
+                <hr>
+
+                <button class="btn btn-primary">Update and post job</button>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div ng-switch-when="post_job_success">
+    <p>Your Job was updated successfully.</p>
+</div>
+
+</div>

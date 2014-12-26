@@ -1,0 +1,18 @@
+<div class="panel">
+    <div class="panel-body">
+
+        <div class="form-group">
+            <label for="audience">Who can see the job post?</label>
+            <select name="audience" id="audience" class="form-control"
+                    ng-model="job.audience.category"
+                    ng-options="target for target in initData.audienceOptions" required>
+            </select>
+            <span class="error" ng-show="createJob.audience.$error.required">Required!</span>
+        </div>
+
+    </div>
+</div>
+<div class="form-group">
+    <button type="button" ui-sref="create.confirm"
+            class="btn btn-primary">Next section</button>
+</div>

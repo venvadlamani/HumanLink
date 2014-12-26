@@ -1,0 +1,53 @@
+<div class="panel">
+    <div class="panel-body">
+
+            <div class="form-group">
+                <label id="time">Number of hours caregiver is needed</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control col-md-6" ng-model="job.hours"
+                               placeholder="Enter # of hours" name="hours" required>
+                        <span class="error" ng-show="createJob.hours.$error.required">Required!</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="time">What time is the caregiver expected?</label>
+                <div class="row">
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="job.startHour"
+                                ng-options="hour for hour in initData.hours">
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="job.startMinute"
+                                ng-options="minutes for minutes in initData.minutes">
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="job.ampm"
+                                ng-options="ampm for ampm in initData.ampm">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="when">What day is the caregiver needed?</label>
+                <div class="table-responsive">
+                    <datepicker ng-model="job.caredate"
+                                min-date="minDate"
+                                show-weeks="false">
+                    </datepicker>
+                </div>
+                <span class="error" ng-show="!job.caredate">Required!</span>
+            </div>
+
+    </div>
+</div>
+<div class="form-group">
+    <button type="button" ng-click="startEndDates()" ui-sref="create.payment"
+            class="btn btn-primary">Next section</button>
+</div>

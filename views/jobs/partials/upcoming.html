@@ -1,0 +1,40 @@
+<div ng-switch="viewMode">
+
+<div ng-switch-when="upcoming_job">
+    <div class="jumbotron">
+        <h2 ng-if="postedJobs" class="text-center">You have {{ postedJobs.length }} upcoming jobs.</h2><p/>
+        <h2 ng-if="!postedJobs" class="text-center">There are no upcoming jobs.</h2><p/>
+    </div>
+
+    <div class="row">
+        <div ng-repeat="postedJob in postedJobs | orderBy: '+start_date' ">
+            <form ng-submit="cancelJob(postedJob.id)">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <p>care-recipient id: <b class="pull-right"> {{ postedJob.patient_id }}</b></p>
+                            <p>Start day: <b class="pull-right"> {{ postedJob.start_date | date:'longDate' }}</b></p>
+                            <p>Start time: <b class="pull-right"> {{ postedJob.start_date | date:'shortTime' }}</b></p>
+                            <p>End day: <b class="pull-right"> {{ postedJob.end_date | date:'longDate' }}</b></p>
+                            <p>End time: <b class="pull-right"> {{ postedJob.end_date | date:'shortTime' }}</b></p>
+                            <p>Wage: <b class="pull-right"> {{ postedJob.wage | currency}}</b></p>
+                            <p>Audience: <b class="pull-right"> {{ postedJob.audience.category }}</b></p>
+                            <p>
+                                <a href="jobs#/update/{{ postedJob.id }}">
+                                    <button class="btn btn-default">Update</button>
+                                </a>
+                                <button class="btn btn-default">Cancel</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-switch-when="cancel_job_success">
+    <h2>Your Job was cancelled successfully.</h2>
+</div>
+
+</div>

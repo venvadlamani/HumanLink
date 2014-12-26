@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <h2 ng-if="completedJobs.length" class="text-center">You have {{ completedJobs.length }} completed jobs.</h2>
+    <h2 ng-if="!completedJobs.length" class="text-center">No completed jobs.</h2>
+</div>
+
+<div class="row">
+    <div ng-repeat="completed in completedJobs | orderBy: '+start_date' ">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <p>Start day: <b class="pull-right"> {{ completed.start_date | date:'longDate' }}</b></p>
+                    <p>Start time: <b class="pull-right"> {{ completed.start_date | date:'shortTime' }}</b></p>
+                    <p>End day: <b class="pull-right"> {{ completed.end_date | date: 'longDate' }}</b></p>
+                    <p>End time: <b class="pull-right"> {{ completed.end_date | date: 'shortTime' }}</b></p>
+                    <p ng-init="getHours(completed.start_date, completed.end_date)">
+                        Hours: <b class="pull-right"> {{ hours }}</b>
+                    </p>
+                    <p>Wage: <b class="pull-right"> {{ completed.wage | currency}}</b></p>
+                    <p>Estimated value: <b class="pull-right"> {{ completed.wage * hours | currency}}</b></p>
+                    <p>
+                        <a href="/invoice#/detail/{{ completed.id }}">
+                            <button class="btn btn-primary">View Invoice</button>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

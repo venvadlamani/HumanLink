@@ -1,0 +1,34 @@
+<div class="panel">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="form-group">
+                <span popover="Caregiver or CNA or LPN, et cetera" popover-trigger="mouseenter"
+                      class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                <label> I need a </label>
+                <input type="text" ng-model="job.certificate" class="form-control"
+                       typeahead="certificate for certificate in initData.certificates | filter:$viewValue | limitTo:2">
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group">
+                <label class="control-label">For: </label>
+                <select class="form-control ng-valid ng-dirty" name="carerecipient" id="carerecipient"
+                        ng-model="job.patient_id"
+                        ng-options="careRecipient.careRecipientId as careRecipient.firstName
+                                    for careRecipient in initData.careRecipients"
+                        ng-change="updateJobFields()"
+                        required>
+                    <option>-- who is the care for --</option>
+                </select>
+                <span class="error" ng-show="createJob.carerecipient.$error.required">Required!</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button type="button" ui-sref="create.when" class="btn btn-primary">Next section</button>
+</div>

@@ -1,9 +1,11 @@
-'use strict';
+    'use strict';
 
 /**
  * Base controller for the Jobs module.
  */
 angular
     .module('Jobs')
-    .controller('jobsBaseCtrl', ['$scope', function ($scope) {
+    .controller('jobsBaseCtrl', ['$scope', '$window', 
+    function ($scope, $window) {
+
     }]);

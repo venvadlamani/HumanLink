@@ -1,0 +1,23 @@
+<div ng-repeat="careRecipient in initData.careRecipients | filter:{careRecipientId:job.patient_id}">
+    <div class="row">
+        <h3>Summary</h3>
+        <h5>I need a: <b>{{ job.certificate }}</b></h5>
+        <h5>for (care recipient): <b>{{ careRecipient.firstName }} {{ careRecipient.lastName }}</b></h5>
+        <h5>on (care date): <b>{{ job.start_date | date: 'longDate' }}</b></h5>
+        <h5>Start time: <b>{{ job.start_date | date: 'shortTime' }}</b></h5>
+        <h5>Total hours: <b>{{ job.hours }}</b></h5>
+        <h5>I am willing to pay ($ per hour): <b>{{ job.wage | currency}}</b></h5>
+        <h5>I want to post the job to (Audience): <b>{{ job.audience.category }}</b></h5>
+        <h5><input type="checkbox" ng-model="checkedNotes"> I would like to add additional information</h5>
+        <div ng-show="checkedNotes">
+            <div class="form-group">
+                <textarea ng-model="job.additional_info" class="form-control" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" ng-disabled="createJob.$invalid"> Confirm and Post Job</button>
+    </div>
+</div>
+
+

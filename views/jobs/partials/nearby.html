@@ -1,0 +1,43 @@
+<div ng-switch="viewMode">
+
+<div ng-switch-when="job_nearby_form">
+    <div class="jumbotron">
+        <h2 ng-if="nearbyJobs.length" class="text-center">You have {{ nearbyJobs.length }} jobs near you.</h2><p/>
+        <h2 ng-if="!nearbyJobs.length" class="text-center">No jobs nearby.</h2><p/>
+    </div>
+    <div class="row">
+        <div ng-repeat="nearbyJob in nearbyJobs | orderBy: '+start_date' ">
+            <form ng-submit="applyJob(nearbyJob.id)">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <p>Start day: <b class="pull-right"> {{ nearbyJob.start_date | date: 'longDate' }}</b></p>
+                            <p>Start time: <b class="pull-right"> {{ nearbyJob.start_date | date: 'shortTime' }}</b></p>
+                            <p>End day: <b class="pull-right"> {{ nearbyJob.end_date | date: 'longDate' }}</b></p>
+                            <p>End time: <b class="pull-right"> {{ nearbyJob.end_date | date: 'shortTime' }}</b></p>
+                            <p ng-init="getHours(nearbyJob.start_date, nearbyJob.end_date)">
+                                Hours: <b class="pull-right"> {{ hours }}</b>
+                            </p>
+                            <p>Wage: <b class="pull-right"> {{ nearbyJob.wage | currency}}</b></p>
+                            <p>Estimated value: <b class="pull-right"> {{ nearbyJob.wage * hours | currency}}</b></p>
+                            <p>Views: <b class="pull-right"> {{ nearbyJob.views }}</b></p>
+                            <p>
+                                <button class="btn btn-primary" role="button">Apply</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-switch-when="job_apply_success">
+    <h2>You have successfully applied for the job.</h2>
+</div>
+
+<div ng-switch-when="job_apply_error">
+    {{ applyJobs.message }}
+</div>
+
+</div>

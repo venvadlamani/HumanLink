@@ -5,7 +5,7 @@
  */
 angular
     .module('Invoice')
-    .controller('invoiceBaseCtrl', ['$scope', 'apiService', 'userSession', '$stateParams',
+    .controller('invoiceDetailCtrl', ['$scope', 'apiService', 'userSession', '$stateParams',
     function ($scope, apiService, userSession, $stateParams) {
 
         /**
