@@ -58,15 +58,15 @@ function ins_flake8 {
 }
 
 function ins_virtualenv {
-  echo 'Installing virtualenv...'
-  pip install virtualenv
+  echo 'Installing virtualenv with sudo...'
+  echo 'Please enter your password'
+  sudo pip install virtualenv
   print_status 'virtualenv'
-}
 
-function ins_venv_libs {
   echo 'Creating a new virtualenv...'
-  virtualenv-2.7 $HL/venv
+  virtualenv --python=python2.7 $HL/venv
   print_status 'new venv'
+
   echo 'Installing venv libraries'
   $HL/venv/bin/pip install requests
   print_status 'requests'
@@ -112,7 +112,6 @@ install_prompt 'python 2.7' ins_py
 install_prompt 'pip' ins_pip
 install_prompt 'flake8' ins_flake8
 install_prompt 'virtualenv' ins_virtualenv
-install_prompt 'virtualenv libraries' ins_venv_libs
 install_prompt 'node' ins_node
 install_prompt 'bower' ins_bower
 install_prompt 'bower dependencies' ins_bower_deps
