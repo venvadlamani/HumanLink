@@ -2,22 +2,23 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     sourcemaps = require('gulp-sourcemaps'),
     uglify = require('gulp-uglify'),
-    concat = require('gulp-concat');
+    concat = require('gulp-concat'),
+    merge = require('merge-stream');
 
 var paths = {
     js: 'app/**/*.js',
     less: 'assets/stylesheets/less/*.less'
 };
 
-gulp.task('move-less-dependencies', function () {
-
-    return gulp.src([
-        'bower_components/bootstrap/less/**/*.less',
-    ])
+gulp.task('move-bootstrap-dependencies', function () {
+    var less = gulp.src('bower_components/bootstrap/less/**/*.less')
         .pipe(gulp.dest('./assets/stylesheets/less/bootstrap/'));
+    var fonts = gulp.src('bower_components/bootstrap/fonts/*')
+        .pipe(gulp.dest('./assets/stylesheets/fonts/'));
+    return merge(less, fonts);
 });
 
-gulp.task('compile-less', ['move-less-dependencies'], function () {
+gulp.task('compile-less', ['move-bootstrap-dependencies'], function () {
     return gulp.src([
         'assets/stylesheets/less/humanlink.less',
         'bower_components/pagepiling.js/jquery.pagepiling.css',

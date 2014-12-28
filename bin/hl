@@ -30,6 +30,8 @@ function deploy_dev {
   fi
 
   # Prepare.
+  echo '>>> npm modules'
+  npm install
   echo '>>> Preparing frontend components.'
   rm -rf bower_components
   bower install

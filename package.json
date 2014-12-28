@@ -18,9 +18,10 @@
   "homepage": "https://github.com/CareTiger/HumanLink",
   "dependencies": {
     "gulp": "~3",
+    "gulp-concat": "~2",
     "gulp-less": "~1",
     "gulp-sourcemaps": "~1",
     "gulp-uglify": "~1",
-    "gulp-concat": "~2"
+    "merge-stream": "latest"
   }
 }
