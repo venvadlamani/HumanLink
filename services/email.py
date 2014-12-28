@@ -1,9 +1,10 @@
+import services.accounts
+import services.asserts as asserts
+
 import configs
 import logging
 import mandrill
 import re
-
-from services import accounts
 
 
 # Basic email sanity check.
@@ -12,13 +13,12 @@ EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
 def is_valid_email(email):
     """Performs a basic email sanity check."""
-    assert(type(email) == basestring)
+    asserts.type_of(email, basestring)
     return EMAIL_REGEX.match(email) is not None
 
 
 class EmailService(object):
     """Email service wrapper around Mandrill API.
-
     Docs: https://mandrillapp.com/api/docs/index.python.html
     """
 
@@ -30,29 +30,27 @@ class EmailService(object):
 
     @property
     def md(self):
-        """Singleton Mandrill instance."""
+        """Mandrill instance."""
         self._md = self._md or mandrill.Mandrill(configs.MANDRILL_API_KEY)
         return self._md
 
     def send_email_verification(self, account_id):
-        """Sends an email to the specified account with verification URL.
+        """Sends an email to the specified account with email verification URL.
 
-        :param (int) account_id:
-            id of the Account entity.
-        :return
-            None
+        :param account_id: (int)
+            ID of the Account entity.
+        :return: (None)
         """
-        account = accounts.account_by_id(account_id)
+        account = services.accounts.account_by_id(account_id)
 
         verif_url = ('http://humanlink.co/accounts#/verify/'
                      + account.verification_token)
         message = {
             'global_merge_vars': [
-                {'name': 'NAME', 'content': account.full_name},
                 {'name': 'VERIFICATION_URL', 'content': verif_url},
             ],
             'to': [
-                {'name': account.full_name, 'email': account.email},
+                {'email': account.email},
             ],
         }
         self._send_from_us(self.md.messages.send_template,
