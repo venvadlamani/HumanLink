@@ -10,6 +10,10 @@ angular
         // Google Cloud Endpoints URL.
         var getGceBase = function() {
             var host = window.location.host;
+            // GCE doesn't work with custom domains.
+            if (host.indexOf('humanlink.co') === 0) {
+                host = 'care-tiger.appspot.com';
+            }
             var protocol = host.indexOf('localhost') === 0 ? 'http://' : 'https://';
             return protocol + host + '/_ah/api/humanlink/v1/';
         };
