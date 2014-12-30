@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp'),
     less = require('gulp-less'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -7,7 +9,7 @@ var gulp = require('gulp'),
 
 var paths = {
     js: 'app/**/*.js',
-    less: 'assets/stylesheets/less/*.less'
+    less: 'assets/stylesheets/less/**/*.less'
 };
 
 gulp.task('move-bootstrap-dependencies', function () {
