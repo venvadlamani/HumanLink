@@ -28,5 +28,28 @@ angular
                 url: '/caregiver',
                 templateUrl: '/views/accounts/partials/caregiver_profile.html',
                 controller: 'caregiverProfileCtrl'
+            })
+            .state('settings', {
+                templateUrl: '/views/accounts/partials/settings/base_settings.html',
+            })
+            .state('settings.media', {
+                url: '/settings/media',
+                templateUrl: '/views/accounts/partials/settings/media.html',
+                controller: 'settingsMediaCtrl'
+            })
+            .state('settings.verification', {
+                url: '/settings/verification',
+                templateUrl: '/views/accounts/partials/settings/verification.html',
+                controller: 'settingsVerificationCtrl'
+            })
+            .state('settings.references', {
+                url: '/settings/references',
+                templateUrl: '/views/accounts/partials/settings/references.html',
+                controller: 'settingsReferencesCtrl'
+            })
+            .state('settings.reviews', {
+                url: '/settings/reviews',
+                templateUrl: '/views/accounts/partials/settings/reviews.html',
+                controller: 'settingsReviewsCtrl'
             });
     }]);
