@@ -23,5 +23,10 @@ angular
                 url: '/edit',
                 templateUrl: '/views/accounts/partials/manage_profile.html',
                 controller: 'manageProfileCtrl'
+            })
+            .state('caregiver_profile', {
+                url: '/caregiver',
+                templateUrl: '/views/accounts/partials/caregiver_profile.html',
+                controller: 'caregiverProfileCtrl'
             });
     }]);

@@ -93,7 +93,7 @@ function ins_bower_deps {
   bower install
   print_status 'bower'
   npm install
-  print_Status 'npm'
+  print_status 'npm'
 }
 
 function install_prompt {
