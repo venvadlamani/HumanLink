@@ -1,0 +1,66 @@
+// Import sub-pages
+@import "settings/media.less";
+
+.settings-side-nav {
+    margin-top: 20px;
+    border: solid 1px darken(@backgroundFaded, 10);
+
+    h2 {
+        font-size: 25px;
+        padding: 5px;
+        margin: 0;
+        background: @backgroundFaded;
+        border-bottom: solid 1px darken(@backgroundFaded, 10);
+        color: @type;
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+            margin: 0;
+            padding: 5px 20px;
+            font-weight: bold;
+            display: block;
+            color: @type;
+
+            &:hover {
+                background-color: fade(@primary, 70);
+                color: @background;
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.preview-profile {
+    margin-top: 20px;
+    border-radius: 0;
+    background-color: @secondary;
+    font-weight: bold;
+    color: @background;
+
+    &:hover {
+        color: @background;
+        background-color: darken(@secondary, 5);
+    }
+}
+
+
+.settings-block {
+    border: solid 1px darken(@backgroundFaded, 10);
+    background-color: @background;
+    margin-top: 20px;
+
+    h1 {
+        margin: 0;
+        padding: 5px 10px;
+        font-size: 35px;
+        background-color: @backgroundFaded;
+        border-bottom: solid 1px darken(@backgroundFaded, 10);
+    }
+}
