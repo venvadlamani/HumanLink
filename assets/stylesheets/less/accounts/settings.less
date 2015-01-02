@@ -1,24 +1,23 @@
 // Import sub-pages
 @import "settings/media.less";
+@import "settings/verification.less";
 
 .settings-side-nav {
-    margin-top: 20px;
-    border: solid 1px darken(@backgroundFaded, 10);
+    margin-top: 0;
+    border: solid 1px @border;
 
     h2 {
         font-size: 25px;
         padding: 5px;
         margin: 0;
         background: @backgroundFaded;
-        border-bottom: solid 1px darken(@backgroundFaded, 10);
+        border-bottom: solid 1px @border;
         color: @type;
         text-align: center;
     }
 
     ul {
-        list-style: none;
         margin: 0;
-        padding: 0;
 
         a {
             margin: 0;
@@ -39,9 +38,7 @@
 
 .preview-profile {
     margin-top: 20px;
-    border-radius: 0;
     background-color: @secondary;
-    font-weight: bold;
     color: @background;
 
     &:hover {
@@ -52,15 +49,17 @@
 
 
 .settings-block {
-    border: solid 1px darken(@backgroundFaded, 10);
-    background-color: @background;
+    border: solid 1px @border;
     margin-top: 20px;
 
-    h1 {
+    &:first-of-type {
+        margin-top: 0;
+    }
+
+    h2 {
         margin: 0;
         padding: 5px 10px;
-        font-size: 35px;
         background-color: @backgroundFaded;
-        border-bottom: solid 1px darken(@backgroundFaded, 10);
+        border-bottom: solid 1px @border;
     }
 }

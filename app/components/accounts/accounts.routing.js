@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('Accounts', ['ui.router', 'Common'])
+    .module('Accounts', ['ui.router', 'ui.bootstrap', 'Common'])
     .config(['$stateProvider', '$urlRouterProvider',
             function ($stateProvider, $urlRouterProvider) {
 
