@@ -1,5 +1,5 @@
 import services.asserts as asserts
-import services.email
+#import services.email
 import services.exp as exp
 from models.kinds.accounts import (
     Account,
@@ -167,6 +167,34 @@ def patient_remove(actor_id, patient_id):
         account.patient_ids.remove(patient_id)
         patient.soft_delete = True
         ndb.put_multi([account, patient])
+
+
+def patient_update(actor_id, patient_dto, _dto=True):
+    """Create or update a single patient from the given account.
+
+    :param actor_id: (int) ID of the account performing the action.
+    :param patient_dto: (dto.accounts.PatientDto) patient DTO from request.
+    :return: (None)
+    """
+    asserts.valid_id_type(actor_id)
+    asserts.type_of(patient_dto, PatientDto)
+
+    account = account_by_id(actor_id)
+    patient = patient_by_id(actor_id, patient_dto.id)
+    if patient is None:
+        patient = PatientDto.to_patient_ndb(patient_dto)
+        patient.put()
+
+        account.patient_ids.append(patient.id)
+        account.put()
+    else:
+        if patient_id not in account.patient_ids:
+            raise exp.PermissionExp()
+        patient.put()
+
+    if not _dto:
+        return patient
+    return PatientDto.from_patient_ndb(patient)
 
 
 def _create_new_account(email, password_raw, auth_id):
