@@ -105,7 +105,8 @@ class PatientApiModel(BaseApiModel):
     relationship = Patient.relationship,
     dob = Patient.dob,
     gender = Patient.gender,
-    pets = Patient.care_type,
+    care_type = Patient.care_type,
+    pets = Patient.pets,
     caregiver_pref_gender = Patient.caregiver_pref_gender,
     additional_info = Patient.additional_info
     address = Patient.address
