@@ -4,86 +4,210 @@
     <meta charset="utf-8"/>
     <title>[% block title %] HumanLink [% endblock %]</title>
     <link rel="stylesheet" href="/stylesheets/build/style.css"/>
+    <link rel="stylesheet" href="/stylesheets/less/freelancer.css"/>    
 </head>
 <body>
 
 <div class="container-full full-screen">
 
-    <div id="pagepiling">
     [% block content %]
+	<!-- Navigation -->
+    <nav class="navigation-bar-landing">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-content">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand-landing" href="/"><img class="nav-logo-landing" src="images/hl.logo.vert.white.png" alt></a>
+            </div>
 
-        <div class="section banner1">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">Caregivers, we care for you.</h1>
-                <p>Make a beautiful homepage and apply to eldercare jobs.</p>
-
-                <form action="/submit_contact" role="form" method="post">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="first_name" placeholder="First Name"
-                               required />
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#benefits"><h4>Benefits</h4></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about"><h4>About</h4></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact"><h4>Contact</h4></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    
+    
+	<!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive img-circle" height=400 width=400 src="images/caregiver_heart.jpg" alt="">
+                    <div class="intro-text">
+                        <span class="name">The future of caregiving</span>
+                        <hr class="star-light">
+                        <span class="skills">We connect older adults with quality caregivers</span>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="last_name" placeholder="Last Name"
-                               required />
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Email Address"
-                               required />
-                    </div>
-                    <button type="submit" class="btn btn-danger btn-lg">I am interested in learning more!</button>
-                </form>
-
-            </div>
-        </div>
-
-        <div class="section banner2">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">A Community of caring.</h1>
-                <p>Connect with other eldercare
-                   professionals and increase your chances
-                   of getting noticed by future employers.</p>
-            </div>
-        </div>
-
-        <div class="section banner3">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">Taking care of you through technology</h1>
-                <p>Instantly receive job postings and
-                   showcase your certifications, licences
-                   and recommendations online or on your smartphone.</p>
-            </div>
-        </div>
-
-        <div class="section banner4">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">Better benefits</h1>
-                <p>Receive cash-back rewards,
-                   access to online training,
-                   workers compensation and more.</p>
-            </div>
-        </div>
-
-        <div class="section banner">
-
-            <div class="contact row">
-                <h1 class="contact-header">HumanLink</h1>
-
-                <div class="col-md-6">
-                    <h2>Contact Us</h2>
-                    <p>773-844-7312</p>
-                    <p><a href="mailto:support@humanlink.co">support@humanlink.co</a> </p>
-                </div>
-
-                <div class="col-md-6">
-                    <h2>Visit Us</h2>
-                    <p>1 E. Center Street, Suite 270</p>
-                    <p>Fayetteville, AR 72701</p>
                 </div>
             </div>
         </div>
+    </header>
+    <p/>
 
+    <!-- Portfolio Grid Section -->
+    <section id="benefits">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Benefits</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="images/map.png" height=240 width=240 class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="images/satellite.png" height=240 width=240  class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="images/wallet.png" height=240 width=240 class="img-responsive" alt="">
+                    </a>
+                </div>
+			</div>
+			<p/>
+			<div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="images/coins.png" height=240 width=240  class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="images/clock.png" height=240 width=240  class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="images/cabin2.png" height=240 width=240 class="img-responsive" alt="">
+                    </a>
+                </div>
+			</div>
+		</div>
+	</section>	
+	<!-- End Benefits  -->
+	
+	
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+					<p>Lorem ipsum dolor sit amet, ne alia inimicus salutandi mel, est tota viderer eu, sea assum facilisis no. Eum quot impetus id, duo ut maiorum oporteat expetendis. Vim mandamus appellantur te, iuvaret meliore dolorem per an. Eu quando vidisse maiestatis eum, ex sit inermis propriae instructior. Assum indoctum ei quo. Atqui paulo te nam. Qui vidit augue probatus te, eam facete eruditi ea, tation labitur virtute nec te</p>
+                </div>
+                <div class="col-lg-4">
+					<p>Lorem ipsum dolor sit amet, ne alia inimicus salutandi mel, est tota viderer eu, sea assum facilisis no. Eum quot impetus id, duo ut maiorum oporteat expetendis. Vim mandamus appellantur te, iuvaret meliore dolorem per an. Eu quando vidisse maiestatis eum, ex sit inermis propriae instructior. Assum indoctum ei quo. Atqui paulo te nam. Qui vidit augue probatus te, eam facete eruditi ea, tation labitur virtute nec te</p>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="#contact" class="btn btn-lg btn-outline">
+                        <i class="fa fa-download"></i> Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>				                   
+                 
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Contact us</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <form action="/submit_contact" role="form" method="post">
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+						    <label>First Name</label>
+						    <input type="text" class="form-control" placeholder="First name" name="first_name" required>
+						    <p class="help-block text-danger"></p>
+						</div>
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+						    <label>Last Name</label>
+						    <input type="text" class="form-control" placeholder="Last Name" name="last_name" required>
+						    <p class="help-block text-danger"></p>
+						</div>
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+						    <label>Email Address</label>
+						    <input type="email" class="form-control" placeholder="Email Address" name="email" required>
+						    <p class="help-block text-danger"></p>
+						</div>
+						<div class="row">
+							<div class="col-lg-8 col-lg-offset-2 text-center">
+							    <button class="btn btn-lg btn-outline">I am interested in learning more</button>
+							</div>
+						</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
     [% endblock %]
-    </div>
+
 </div>
 
 <script src="/js/build/scripts.min.js"></script>

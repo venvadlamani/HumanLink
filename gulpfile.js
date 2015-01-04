@@ -23,6 +23,7 @@ gulp.task('move-bootstrap-dependencies', function () {
 gulp.task('compile-less', ['move-bootstrap-dependencies'], function () {
     return gulp.src([
         'assets/stylesheets/less/humanlink.less',
+        'assets/stylesheets/less/freelancer.less',
         'bower_components/pagepiling.js/jquery.pagepiling.css',
     ])
         .pipe(sourcemaps.init())
