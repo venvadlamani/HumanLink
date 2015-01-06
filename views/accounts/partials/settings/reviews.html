@@ -1,1 +1,30 @@
-<h1>Reviews</h1>
+<div class="settings-block">
+    <h2>Reviews</h2>
+    <div class="settings-block-body">
+        <accordion close-others="true" class="settings-reviews">
+            <accordion-group ng-repeat="review in reviews">
+                <accordion-heading>
+                    {{review.title}}
+                    <ul class="rating pull-right">
+                        <li ng-class="(1<=review.rating) ? 'active-star': 'inactive-star'">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </li>
+                        <li ng-class="(2<=review.rating) ? 'active-star': 'inactive-star'">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </li>
+                        <li ng-class="(3<=review.rating) ? 'active-star': 'inactive-star'">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </li>
+                        <li ng-class="(4<=review.rating) ? 'active-star': 'inactive-star'">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </li>
+                        <li ng-class="(5<=review.rating) ? 'active-star': 'inactive-star'">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </li>
+                    </ul>
+                </accordion-heading>
+                <p>{{review.body}}</p>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>
