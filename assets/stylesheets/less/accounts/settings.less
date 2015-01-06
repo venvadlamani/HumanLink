@@ -1,0 +1,67 @@
+// Import sub-pages
+@import "settings/media.less";
+@import "settings/verification.less";
+@import "settings/references.less";
+@import "settings/reviews.less";
+
+.settings-side-nav {
+    margin-top: 0;
+    border: solid 1px @border;
+
+    h2 {
+        font-size: 25px;
+        padding: 5px;
+        margin: 0;
+        background: @backgroundFaded;
+        border-bottom: solid 1px @border;
+        color: @type;
+        text-align: center;
+    }
+
+    ul {
+        margin: 0;
+
+        a {
+            margin: 0;
+            padding: 5px 20px;
+            font-weight: bold;
+            display: block;
+            color: @type;
+
+            &:hover {
+                background-color: fade(@primary, 70);
+                color: @background;
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.preview-profile {
+    margin-top: 20px;
+    background-color: @secondary;
+    color: @background;
+
+    &:hover {
+        color: @background;
+        background-color: darken(@secondary, 5);
+    }
+}
+
+
+.settings-block {
+    border: solid 1px @border;
+    margin-top: 20px;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 5px 10px;
+        background-color: @backgroundFaded;
+        border-bottom: solid 1px @border;
+    }
+}
