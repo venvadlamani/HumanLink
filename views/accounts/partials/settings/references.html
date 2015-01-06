@@ -1,1 +1,30 @@
-<h1>References</h1>
+<div class="settings-block">
+    <h2>References</h2>
+    <div class="settings-block-body">
+        <form class="add-reference">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="ref-name">Reference Name: </label>
+                    <input ng-model="refName" id="ref-name" class="form-control" type="text" placeholder="John Doe" />
+                </div>
+                <div class="form-group">
+                    <label for="ref-email">Reference Email: </label>
+                    <input ng-model="refEmail" id="ref-email" class="form-control" type="text" placeholder="jdoe@example.com" />
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" ng-click="addReference(refName, refEmail)">Add Reference</button>
+            </div>
+        </form>
+
+        <ul class="settings-references list-unstyled">
+            <li ng-repeat="reference in account.references">
+                {{reference.name}}
+                <div class="pull-right reference-mail">
+                    <span class="pull-left glyphicon glyphicon-envelope"></span>
+                    <span class="pull-right">&lt;<a href="mailto:{{reference.email}}">{{reference.email}}</a>&gt;</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
