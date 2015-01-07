@@ -72,11 +72,15 @@ angular
         };
 
         Accounts.login = function (data, ctrlHelper) {
-            apiRequest('POST', 'login', data, ctrlHelper, false);
+            apiRequest('POST', 'login.json', data, ctrlHelper, false);
         };
 
         Accounts.signup = function (data, ctrlHelper) {
-            apiRequest('POST', 'signup', data, ctrlHelper, false);
+            apiRequest('POST', 'signup.json', data, ctrlHelper, false);
+        };
+
+        Accounts.userdata = function (data, ctrlHelper) {
+            apiRequest('GET', 'accounts/userdata.json', data, ctrlHelper, false);
         };
 
         // Public methods.

@@ -5,25 +5,32 @@
  */
 angular
     .module('Common')
-    .factory('userSession', [function () {
+    .factory('userSession', ['apiService', function (apiService) {
 
         var self = this;
-        self.account = null;
+        self.userdata = null;
+        self.ctrlHelper = new HL.CtrlHelper();
 
         self.setAccount = function(account) {
-            self.account = account;
+            self.userdata = account;
         };
 
         self.unsetAccount = function() {
-            self.account = null;
+            self.userdata = null;
         };
 
         self.isAuthorized = function() {
-            return self.account !== null;
+            return self.userdata !== null;
         };
 
         self.update = function() {
-            // Get profile metadata and then call setAccount.
+            self.ctrlHelper.success = function (data, status, headers, config) {
+                self.userdata = data;
+            };
+            self.ctrlHelper.error = function (data, status, headers, config) {
+                self.unsetAccount();
+            };
+            apiService.Accounts.userdata({}, self.ctrlHelper);
         };
 
         return self;
