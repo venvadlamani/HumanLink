@@ -1,11 +1,10 @@
-<div class="row profile-banner">
-</div>
+<img src="/images/{{caregiver.bannerUrl}}" class="row profile-banner">
 <div class="row header info">
     <div class="col-md-12">
-        <div class="col-md-2 profile-image"></div>
+        <img src="/images/{{caregiver.pictureUrl}}" class="col-md-2 profile-image"/>
         <div class="col-md-3 profile-info">
-            <h2 class="profile-name">First Last</h2>
-            <h4 class="profile-phone">(555)555-5555</h4>
+            <h2 class="profile-name">{{caregiver.first}} {{caregiver.last}}</h2>
+            <h4 class="profile-phone">{{caregiver.email}}</h4>
             <ul class="rating">
                 <li ng-class="(1<=caregiver.rating) ? 'active-star': 'inactive-star'">
                     <span class="glyphicon glyphicon-star"></span>
@@ -54,6 +53,24 @@
     <div class="col-md-8">
         <h1 class="caregiver-description-title">Mother of two. Awesome Caregivers.</h1>
         <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+
+        <div class="reviews">
+            <h3>Reviews ({{caregiver.complements.length}})</h3>
+            <ul>
+                <li ng-repeat="complement in caregiver.complements track by $index">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="http://placehold.it/90x90" alt=""/>
+                        </div>
+                        <div class="media-body thumbnail-description">
+                            <h4 class="media-heading">{{complement.name}}</h4>
+                            <p>{{complement.description}}</p>
+                            <a>Read More</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="col-md-4">
 
@@ -73,25 +90,7 @@
                             <img src="http://placehold.it/90x90" alt=""/>
                         </div>
                         <div class="media-body thumbnail-description">
-                            <h4 class="media-heading">{{connection}}</h4>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="caregiver-section">
-            <h3 class="caregiver-section-header">Reviews</h3>
-            <ul class="caregiver-section-list">
-                <li class="thumbnail-section" ng-repeat="complement in caregiver.complements track by compliment.name">
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="http://placehold.it/90x90" alt=""/>
-                        </div>
-                        <div class="media-body thumbnail-description">
-                            <h4 class="media-heading">{{complement.name}}</h4>
-                            <p>{{complement.description}}</p>
-                            <a>Read More</a>
+                            <h4 class="media-heading">{{connection.first}} {{connection.last}}</h4>
                         </div>
                     </div>
                 </li>

@@ -83,6 +83,14 @@ angular
             apiRequest('GET', 'accounts/userdata.json', data, ctrlHelper, false);
         };
 
+        Accounts.get = function (id, ctrlHelper) {
+            apiRequest('GET', 'accounts/' + id, {}, ctrlHelper, true);
+        };
+
+        Connections.my = function (data, ctrlHelper) {
+            apiRequest('GET', 'connections/my', data, ctrlHelper, true);
+        };
+
         // Public methods.
         return {
             Accounts: Accounts,
