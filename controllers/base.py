@@ -32,7 +32,10 @@ def login_required(func):
     """
     def check_login(self, *args, **kwargs):
         if not self.user:
-            return self.redirect_to('signup')
+            if self._is_json_request():
+                raise webapp2.HTTPException(code=401)
+            else:
+                return self.redirect_to('accounts_index')
         else:
             return func(self, *args, **kwargs)
     return check_login
@@ -40,6 +43,9 @@ def login_required(func):
 
 class BaseHandler(webapp2.RequestHandler):
     """Base handler for all controllers."""
+
+    # This property will be populated if the request is /json.
+    request_json = None
 
     @webapp2.cached_property
     def jinja2(self):
@@ -53,6 +59,13 @@ class BaseHandler(webapp2.RequestHandler):
         rv = self.jinja2.render_template(template, **context)
         self.response.write(rv)
 
+    def write_json(self, response):
+        """Writes a JSON response.
+
+        This should be used with a JSON API method."""
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.out.write(json.dumps(response))
+
     @webapp2.cached_property
     def session_store(self):
         return sessions.get_store(request=self.request)
@@ -63,8 +76,15 @@ class BaseHandler(webapp2.RequestHandler):
         return self.session_store.get_session(backend="datastore")
 
     def dispatch(self):
-        """Persist changes made to the session object."""
+        """Dispatch an incoming request.
+        This method also persists session object after the request.
+        """
         try:
+            # Handle JSON requests slightly differently.
+            if self._is_json_request():
+                self.request_json = (self.request.GET
+                                     if self.request.method == 'GET' else
+                                     json.loads(self.request.body))
             webapp2.RequestHandler.dispatch(self)
         finally:
             self.session_store.save_sessions(self.response)
@@ -91,7 +111,7 @@ class BaseHandler(webapp2.RequestHandler):
     def handle_exception(self, exception, debug):
         """Exception handler for a webapp2 request.
 
-        TODO(kanat): Implement this more robustly.
+        TODO(kanat): Implement this similar to api.base.handle_exception.
         """
         logging.exception(exception)
         result = {
@@ -102,3 +122,6 @@ class BaseHandler(webapp2.RequestHandler):
         self.response.headers.add_header('Content-Type', 'application/json')
         self.response.write(json.dumps(result))
         self.response.set_status(result['status_code'])
+
+    def _is_json_request(self):
+        return self.request.path.endswith('.json')
