@@ -91,7 +91,7 @@ class CaregiverApiModel(BaseApiModel):
         """
         asserts.type_of(caregiver_dto, CaregiverDto)
 
-        caregiver_api = AccountApiModel()
+        caregiver_api = CaregiverApiModel()
         map_props(caregiver_api, caregiver_dto, CaregiverDto._props)
         return caregiver_api.ToMessage()
 
@@ -99,14 +99,15 @@ class CaregiverApiModel(BaseApiModel):
 class PatientApiModel(BaseApiModel):
     """Represents a patient's information."""
     id = ndb.IntegerProperty()
-    first = Patient.first,
-    last = Patient.last,
+    first = Patient.first
+    last = Patient.last
     phone_number = Patient.phone_number
-    relationship = Patient.relationship,
-    dob = Patient.dob,
-    gender = Patient.gender,
-    pets = Patient.care_type,
-    caregiver_pref_gender = Patient.caregiver_pref_gender,
+    relationship = Patient.relationship
+    dob = Patient.dob
+    gender = Patient.gender
+    care_type = Patient.care_type
+    pets = Patient.pets
+    caregiver_pref_gender = Patient.caregiver_pref_gender
     additional_info = Patient.additional_info
     address = Patient.address
 
@@ -119,7 +120,7 @@ class PatientApiModel(BaseApiModel):
         """
         asserts.type_of(patient_api, PatientApiModel)
 
-        patient_dto = CaregiverDto()
+        patient_dto = PatientDto()
         map_props(patient_dto, patient_api, PatientDto._props)
         return patient_dto
 
@@ -130,8 +131,8 @@ class PatientApiModel(BaseApiModel):
         :param patient_dto: (dto.accounts.PatientDto)
         :return: (api.accounts.PatientApiModel)
         """
-        asserts.type_of(patient_dto, CaregiverDto)
+        asserts.type_of(patient_dto, PatientDto)
 
-        patient_api = AccountApiModel()
+        patient_api = PatientApiModel()
         map_props(patient_api, patient_dto, PatientDto._props)
         return patient_api.ToMessage()
