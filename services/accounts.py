@@ -141,7 +141,7 @@ def patient_by_id(actor_id, patient_id, _dto=True):
     asserts.valid_id_type(actor_id)
     asserts.valid_id_type(patient_id)
 
-    account = account_by_id(actor_id)
+    account = account_by_id(actor_id, _dto=False)
     if account is not None:
         if patient_id not in account.patient_ids:
             raise exp.PermissionExp()
@@ -167,6 +167,54 @@ def patient_remove(actor_id, patient_id):
         account.patient_ids.remove(patient_id)
         patient.soft_delete = True
         ndb.put_multi([account, patient])
+
+
+def patient_update(actor_id, patient_dto, _dto=True):
+    """Create or update a single patient from the given account.
+
+    :param actor_id: (int) ID of the account performing the action.
+    :param patient_dto: (dto.accounts.PatientDto) patient DTO from request.
+    :return: (dto.accounts.PatientDto) if _dto is True
+             (kinds.accounts.Patient) if _dto is False
+    """
+    account_ndb = account_by_id(actor_id, _dto=False)
+
+    if asserts.is_valid_id_type(patient_dto.id):
+        patient_ndb = patient_by_id(actor_id, patient_dto.id, _dto=False)
+    else:
+        patient_ndb = Patient(account_id=actor_id)
+
+    if patient_dto.first is not None:
+        patient_ndb.first = patient_dto.first
+    if patient_dto.last is not None:
+        patient_ndb.last = patient_dto.last
+    if patient_dto.phone_number is not None:
+        patient_ndb.phone_number = patient_dto.phone_number
+    if patient_dto.relationship is not None:
+        patient_ndb.relationship = patient_dto.relationship
+    if patient_dto.dob is not None:
+        patient_ndb.dob = patient_dto.dob
+    if patient_dto.gender is not None:
+        patient_ndb.gender = patient_dto.gender
+    if patient_dto.care_type is not None:
+        patient_ndb.care_type = patient_dto.care_type
+    if patient_dto.pets is not None:
+        patient_ndb.pets = patient_dto.pets
+    if patient_dto.caregiver_pref_gender is not None:
+        patient_ndb.caregiver_pref_gender = patient_dto.caregiver_pref_gender
+    if patient_dto.additional_info is not None:
+        patient_ndb.additional_info = patient_dto.additional_info
+    if patient_dto.address is not None:
+        patient_ndb.address = patient_dto.address
+
+    patient_ndb.put()
+    if patient_ndb.id not in account_ndb.patient_ids:
+        account_ndb.patient_ids.append(patient_ndb.id)
+        account_ndb.put()
+
+    if not _dto:
+        return patient_ndb
+    return PatientDto.from_patient_ndb(patient_ndb)
 
 
 def _create_new_account(email, password_raw, auth_id):

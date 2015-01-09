@@ -92,7 +92,8 @@ class AccountsApi(remote.Service):
         patient_id = req.patient_id
         try:
             account = get_current_user()
-            patient_dto = services.accounts.patient_by_id(account.id, patient_id)
+            patient_dto = services.accounts.patient_by_id(account.id,
+                                                          patient_id)
             api_model = PatientApiModel.from_patient_dto(patient_dto)
             return api_model
         except exp.ServiceExp as e:
@@ -104,7 +105,15 @@ class AccountsApi(remote.Service):
     @user_required
     def patients_update(self, req):
         """Create or update a single patient."""
-        raise NotImplementedError('patients.update: not implemented')
+        try:
+            account = get_current_user()
+            patient_dto = PatientApiModel.to_patient_dto(req)
+            patient_dto = services.accounts.patient_update(account.id,
+                                                           patient_dto)
+            api_model = PatientApiModel.from_patient_dto(patient_dto)
+            return api_model
+        except exp.ServiceExp as e:
+            handle_exception(e)
 
     @SimpleRequest.method(name='patients.remove', path='patients/remove',
                           http_method='POST', request_fields=('patient_id',),
