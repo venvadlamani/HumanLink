@@ -16,5 +16,7 @@ def map_props(target, source, properties):
     :return: (None)
     """
     for k in properties:
-        v = source.__getattribute__(k)
-        target.__setattr__(k, v)
+        if not hasattr(source, k):
+            continue
+        v = getattr(source, k)
+        setattr(target, k, v)
