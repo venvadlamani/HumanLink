@@ -1,16 +1,48 @@
+<div class="jumbotron">
+    <h2 ng-if="filtered.length" class="text-center">You have {{ filtered.length }} favorites.</h2>
+    <h2 ng-if="!filtered.length" class="text-center">You have no favorites at this time.</h2>
+</div>
 <div class="row">
-    <div class="col-md-12">
-        <h1>Favorites</h1>
-        <button>Add Favorite</button>
-        <div class="favorite" ng-repeat="favorite in favorites">
-            <h2>{{favorite.name}}</h2>
-            <button>Send beacon to favorite.</button>
-
-            <div class="favorite-connection" ng-repeat="connection in favorite.connections">
-                <h4>{{connection.name}}</h4>
-                <button>Remove from favorite</button>
+    <div ng-repeat="favorite in filtered = (connections | filter:{is_favorite : false})">
+        <div class="col-md-4">
+            <div class="panel-connections panel-profile-connections">
+                <div class="panel-heading-connections text-center bg-connections">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="https://placehold.it/100x100" class="img-circle">
+                        </div>
+                        <div class="col-md-8">
+                            <h4>{{ favorite.first }} {{ favorite.last }}</h4>
+                            <h6>{{ favorite.account_type }}</h6>
+                            <button class="btn btn-sm btn-default" href="#">
+                                <span class="glyphicon glyphicon-envelope"> Message</span>
+                            </button>
+                            <button class="btn btn-sm btn-default" href="#">
+                                <span class="glyphicon glyphicon-user"> Details</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-justified-container">
+                    <ul class="list-justified text-center">
+                        <li>
+                            <h5>
+                                <rating ng-model="favorite.rating" max="5" readonly="true">
+                                </rating>
+                            </h5>
+                            <p>Rating</p>
+                        </li>
+                        <li>
+                            <h5><span class="badge">24</span></h5>
+                            <p>Connections</p>
+                        </li>
+                        <li>
+                            <h5><span class="badge">10</span></h5>
+                            <p>Beacons</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
-
         </div>
     </div>
 </div>

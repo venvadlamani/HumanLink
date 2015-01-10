@@ -1,68 +1,29 @@
-<h3 class="text-center">Search for: <input type="text" ng-model="search" focus:box-shadow></h3>
-<h4 class="text-center">You have {{ connections.length }} connections.</h4>
-<p/>
-<div ng-repeat="connection in connections | filter:search">
-<div class="col-md-4">
-<div class="panel panel-profile">
-	<div class="panel-heading text-center bg-info">
-		<img alt height=75 width=75 ng-src="{{ connection.imageURL }}" class="img-circle img80_80">
-		<h4>{{ connection.firstName }} {{ connection.lastName }}</h4>
-		<h6>{{ connection.role }} ( {{ connection.connectionId }} )</h6>
-		<a class="btn btn-sm btn-default" href="#" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> Message</span></a>
-		<a class="btn btn-sm btn-default" href="#" role="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"> Add to favorites</span></a>
-	</div>
-	<div class="list-justified-container">
-		<ul class="list-justified text-center">
-			<li>
-				<h6><rating ng-model="connection.caregiverRating" max="5" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'"></rating></h6>
-				<p class="text-muted">Rating</p>
-			</li>
-			<li>
-				<h6>23</h6>
-				<p class="text-muted">Followers</p>
-			</li>
-			<li>
-				<h6>10</h6>
-				<p class="text-muted">Beacons</p>
-			</li>
-		</ul>
-	</div>
+<div class="jumbotron">
+    <h2 ng-if="connections.length" class="text-center">You have {{ connections.length }} connections.</h2>
+    <h2 ng-if="!connections.length" class="text-center">You have no connections at this time.</h2>
 </div>
-</div>
-</div>
-
-<!-- 
 <div class="row">
-<div ng-repeat="connection in connections">
-<div class="col-md-6">
-<div class="panel panel-profile">
-	<div class="panel-heading bg-info clearfix">
-		<a href="#" class="pull-left profile">
-		<img alt height=150 width=150 ng-src="{{ connection.imageURL }}" class="img-circle img80_80">
-		</a>
-		<h3>{{ connection.firstName }} {{ connection.lastName }}</h3>
-		<p>{{ connection.role }} ( {{ connection.connectionId }} ) </p>			
-	</div>
-	<ul class="list-group">
-		<li class="list-group-item">
-			<span class="badge">14</span>
-			<i class="glyphicon glyphicon-bell"></i>
-			"THis is just stuff"
-		</li>
-		<li class="list-group-item">
-			<span class="badge">14</span>
-			<i class="glyphicon glyphicon-bell"></i>
-			"THis is just stuff"
-		</li>
-		<li class="list-group-item">
-			<span class="badge">14</span>
-			<i class="glyphicon glyphicon-bell"></i>
-			"THis is just stuff"
-		</li>
-	</ul>
+    <div ng-repeat="connection in connections">
+        <div class="col-md-4">
+            <div class="panel-connections">
+                <div class="panel-heading-connections text-center bg-connections">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="https://placehold.it/100x100" class="img-circle-connections">
+                        </div>
+                        <div class="col-md-8">
+                            <h4>{{ connection.first }} {{ connection.last }}</h4>
+                            <h6>{{ connection.account_type }}</h6>
+                            <button class="btn btn-sm btn-default" href="#">
+                                <span class="glyphicon glyphicon-envelope"> Message</span>
+                            </button>
+                            <button class="btn btn-sm btn-default" href="#/details/{{ connection.account_id }}">
+                                <span class="glyphicon glyphicon-user"> Details</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
- -->
- 
