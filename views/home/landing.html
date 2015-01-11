@@ -2,113 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>[% block title %] HumanLink [% endblock %]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HumanLink </title>
     <link rel="stylesheet" href="/stylesheets/build/style.css"/>
 </head>
 <body>
 
-<div class="container-full full-screen">
+    <nav class="navigation-bar">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="/">
+                  <img class="nav-logo" src="images/hl.logo.horiz.blue.png">
+              </a>
+          </div>
+      </div>
+    </nav>
 
-    <div id="pagepiling">
+    <div class="container container-main">
+
     [% block content %]
-
-        <div class="section banner1">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">Caregivers, we care for you.</h1>
-                <p>Make a beautiful homepage and apply to eldercare jobs.</p>
-
-                <form action="/submit_contact" role="form" method="post">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="first_name" placeholder="First Name"
-                               required />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="last_name" placeholder="Last Name"
-                               required />
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Email Address"
-                               required />
-                    </div>
-                    <button type="submit" class="btn btn-danger btn-lg">I am interested in learning more!</button>
-                </form>
-
+        <h1 class="contact-header text-center">Caregivers, we care for you.</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-7">
+              <h2>The future of caregiving is coming in Spring 2015 to Arkansas</h2>
+              <p class="lead">
+                <strong>human</strong>link is an innovative, new online and mobile community 
+                to connect caregivers with clients.  We’ll help you build a personal online profile and find jobs. 
+                To receive updates and learn more, please sign-up.
+              </p>
             </div>
-        </div>
 
-        <div class="section banner2">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">A Community of caring.</h1>
-                <p>Connect with other eldercare
-                   professionals and increase your chances
-                   of getting noticed by future employers.</p>
-            </div>
-        </div>
-
-        <div class="section banner3">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">Taking care of you through technology</h1>
-                <p>Instantly receive job postings and
-                   showcase your certifications, licences
-                   and recommendations online or on your smartphone.</p>
-            </div>
-        </div>
-
-        <div class="section banner4">
-            <div class="col-md-5 col-md-offset-1 banner-overlay">
-                <h1 class="page-title">Better benefits</h1>
-                <p>Receive cash-back rewards,
-                   access to online training,
-                   workers compensation and more.</p>
-            </div>
-        </div>
-
-        <div class="section banner">
-
-            <div class="contact row">
-                <h1 class="contact-header">HumanLink</h1>
-
-                <div class="col-md-6">
-                    <h2>Contact Us</h2>
-                    <p>773-844-7312</p>
-                    <p><a href="mailto:support@humanlink.co">support@humanlink.co</a> </p>
-                </div>
-
-                <div class="col-md-6">
-                    <h2>Visit Us</h2>
-                    <p>1 E. Center Street, Suite 270</p>
-                    <p>Fayetteville, AR 72701</p>
+            <div class="col-md-5">
+                <div class="well well-lg">
+                    <form action="/submit_contact" role="form" method="post">
+                      <div class="form-inline form-group">
+                          <input type="text" class="form-control" name="first_name" placeholder="First Name" required />
+                          <input type="text" class="form-control" name="last_name" placeholder="Last Name" required />
+                      </div>
+                      <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email Address" required />
+                      </div>
+                      <div class="form-group">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="interest" value="1" checked>
+                            I am interested in being a caregiver
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="interest" value="2">
+                            I am interested in receiving care
+                          </label>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-lg btn-danger">
+                        I am interested in learning more
+                      </button>
+                    </form>
                 </div>
             </div>
         </div>
-
+        <hr>
+        <div class="row">
+            <div class="col-md-5">
+              <img class="img-responsive" src="images/caregiver_grey_right.jpg">
+            </div>
+            <div class="col-md-7">
+              <h2>A Community of caring</h2>
+              <p class="lead">
+                Connect with clients, other caregiving professionals and build your personal reputation.
+              </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-7">
+              <h2>Taking care of you through technology</h2>
+              <p class="lead">
+                Instantly receive job postings and showcase your certifications, licenses and recommendations.
+                Online or on your smartphone!
+              </p>
+            </div>
+            <div class="col-md-5">
+              <img class="img-responsive" src="images/caregiver_heart.jpg">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-5">
+              <img class="img-responsive" src="images/caregiver_young_grey_right.jpg">
+            </div>
+            <div class="col-md-7">
+              <h2>Better benefits</h2>
+              <p class="lead">
+                Keep more what you earn, choose your clients, cash-back rewards and more.  All with no subscription fee!
+              </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row text-center">
+            <div class="col-md-6">
+                <h2>Contact Us</h2>
+                <p>(479) 466-4214</p>
+                <p>
+                  <a href="mailto:support@humanlink.co">support@humanlink.co</a>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h2>Visit Us</h2>
+                <p>1 E. Center Street, Suite 270</p>
+                <p>Fayetteville, AR 72701</p>
+            </div>
+        </div>
     [% endblock %]
     </div>
-</div>
 
-<script src="/js/build/scripts.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#pagepiling').pagepiling({
-            verticalCentered: false,
-            navigation: {
-                'bulletsColor': '#0093d0',
-                'position': 'right',
-                'tooltips': ['Caregivers', 'Community', 'Technology', 'Benefits', 'Contact Us']
-            }
-        });
-    });
-
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-56916313-1', 'auto');
-    ga('require', 'displayfeatures');
-    ga('send', 'pageview');
-</script>
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-56916313-1', 'auto');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+    </script>
 
 </body>
 </html>
