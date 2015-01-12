@@ -5,7 +5,6 @@ from controllers.base import login_required
 from models.kinds.structs import AccountType
 
 import logging
-from google.appengine.api import memcache
 from webapp2_extras import auth
 
 
@@ -63,42 +62,4 @@ class Accounts(base.BaseHandler):
 
         :return: a dictionary of small subset of account information.
         """
-        userdata = self._retrieve_userdata(self.user['user_id'])
-        self.write_json(userdata)
-
-    def _store_userdata(self, account_id, time=3600):
-        """Stores user-data in memcache.
-
-        This method should be called manually if account information is updated.
-
-        :param account_id: ID of the account.
-        :return: see self.userdata() return value.
-        """
-        account = services.accounts.account_by_id(account_id)
-        userdata = {
-            'account_id': account.id,
-            'account_type': account.account_type.name,
-            'first': account.first,
-            'last': account.last,
-            'email': account.email,
-            'email_verified': account.email_verified,
-            'picture_url': '',
-        }
-        memcache.set('userdata:{}'.format(account_id), userdata, time=time)
-        return userdata
-
-    def _retrieve_userdata(self, account_id):
-        """Retrieves user-data from memcache if available.
-
-        If not in memcache, retrieve the data from datastore and store in
-        memcache.
-
-        :param account_id: ID of the account.
-        :return: see self.userdata() return value.
-        """
-        userdata = memcache.get('userdata:{}'.format(account_id))
-        if userdata:
-            logging.info('Memcache hit.')
-            return userdata
-        logging.info('Memcache miss.')
-        return self._store_userdata(account_id)
+        self.write_json(self.user_data)

@@ -21,14 +21,14 @@
                 </div>
             </form>
             <div class="navbar-form navbar-right">
-                [% if user %]
-                <a href="#">[= user.name =]</a>
+                [% if userdata %]
+                <a href="#">[= userdata.name =]</a>
                 <a href="/logout">
                     <button class="login">Logout</button>
                 </a>
                 [% else %]
                 <a href="/accounts#/join">Join</a>
-                <a href="/accounts#">
+                <a href="/accounts#/">
                     <button class="login">Sign In</button>
                 </a>
                 [% endif %]
