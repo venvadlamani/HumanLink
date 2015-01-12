@@ -33,6 +33,11 @@ angular
             apiService.Accounts.userdata({}, self.ctrlHelper);
         };
 
+        // Initial page load.
+        if (window.HL.userdata) {
+            self.userdata = window.HL.userdata;
+        }
+
         return self;
 
     }]);

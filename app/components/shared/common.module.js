@@ -9,7 +9,10 @@ angular
 
         // Listener that gets called when the state of the module changes.
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-            userSession.update();
+            // No need to update userSession on page load.
+            if (!fromState.abstract) {
+                userSession.update();
+            }
         });
 
     }]);
