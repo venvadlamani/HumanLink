@@ -102,7 +102,7 @@ def caregiver_by_account(account_id, _dto=True):
     """
     asserts.valid_id_type(account_id)
 
-    account = account_by_id(account_id)
+    account = account_by_id(account_id, _dto=False)
     if account is not None:
         # What to do if account_type is not caregiver?
         caregiver = Caregiver.get_by_id(account.caregiver_id)
