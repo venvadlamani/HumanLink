@@ -19,6 +19,7 @@ class SimpleRequest(BaseApiModel):
     """
     account_id = ndb.IntegerProperty()
     patient_id = ndb.IntegerProperty()
+    job_id = ndb.IntegerProperty()
 
 
 class SimpleResponse(EndpointsModel):
