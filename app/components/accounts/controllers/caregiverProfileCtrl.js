@@ -5,10 +5,16 @@
  */
 angular
     .module('Accounts')
-    .controller('caregiverProfileCtrl', ['$scope', function ($scope) {
+    .controller('caregiverProfileCtrl', ['$scope', 'apiService', 'userSession',
+                function ($scope, apiService, userSession) {
+
+        var caregiverHelper = new HL.CtrlHelper(),
+            connectionsHelper = new HL.CtrlHelper();
+
+        caregiverHelper.reset();
+
+        // TODO: Get this from API
         $scope.caregiver = {
-            name: 'First Last',
-            phone: '(555)555-5555',
             rating: 4,
             background_verified: true,
             community_verified: true,
@@ -21,18 +27,41 @@ angular
                 'CNA (Schmeiding Center)',
                 'Bentonville High School'
             ],
-            connections: [
-                'Si Robertson',
-                'Wayne Hoyt',
-                'Reynold Grover'
-            ],
             complements: [
                 {
                     name: 'Si Robertson',
                     description: 'Ariana is a wonderful...'
+                },
+                {
+                    name: 'Peter B',
+                    description: 'Ariana has been a fantastic help to me and my...'
+                },
+                {
+                    name: 'Jackie C',
+                    description: 'Ariana is a lovely caregiver and great at her job!'
                 }
             ]
         };
 
+        getInfo();
         $scope.owner = false;
+
+        function getInfo () {
+            caregiverHelper.success = function (data, status, headers, config) {
+                angular.extend($scope.caregiver, data);
+                $scope.caregiver.pictureUrl = 'profile_' + data.first +
+                    data.last + '.png';
+                $scope.caregiver.bannerUrl = 'banner_' + data.first +
+                    data.last + '.png';
+            };
+
+            connectionsHelper.success = function (data, status, headers,
+                                                  config) {
+                $scope.caregiver.connections = data.items;
+            };
+
+            apiService.Accounts.get(userSession.userdata.account_id,
+                                    caregiverHelper);
+            apiService.Connections.my({}, connectionsHelper);
+        }
     }]);
