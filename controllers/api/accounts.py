@@ -57,13 +57,21 @@ class AccountsApi(remote.Service):
         except exp.ServiceExp as e:
             handle_exception(e)
 
-    @SimpleRequest.method(name='caregiver.update', path='caregiver/update',
-                          http_method='POST',
-                          response_message=CaregiverApiModel.ProtoModel())
+    @CaregiverApiModel.method(name='caregiver.update', path='caregiver/update',
+                              http_method='POST',
+                              response_message=CaregiverApiModel.ProtoModel())
     @user_required
     def caregiver_update(self, req):
         """Update the account's caregiver details."""
-        raise NotImplementedError('caregiver.update: not implemented')
+        try:
+            account = get_current_user()
+            caregiver_dto = CaregiverApiModel.to_caregiver_dto(req)
+            caregiver_dto = services.accounts.caregiver_update(account.id,
+                                                               caregiver_dto)
+            api_model = CaregiverApiModel.from_caregiver_dto(caregiver_dto)
+            return api_model
+        except exp.ServiceExp as e:
+            handle_exception(e)
 
     @SimpleRequest.method(name='patients.list', path='patients/list',
                           http_method='GET', request_fields=(),

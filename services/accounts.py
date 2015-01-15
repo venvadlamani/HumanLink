@@ -104,11 +104,36 @@ def caregiver_by_account(account_id, _dto=True):
 
     account = account_by_id(account_id, _dto=False)
     if account is not None:
-        # What to do if account_type is not caregiver?
+        if not asserts.is_valid_id_type(account.caregiver_id):
+            raise exp.BadRequestExp()
         caregiver = Caregiver.get_by_id(account.caregiver_id)
         if not _dto:
             return caregiver
         return CaregiverDto.from_caregiver_ndb(caregiver)
+
+
+def caregiver_update(actor_id, caregiver_dto, _dto=True):
+    """Updates the caregiver associated to the given account.
+
+    :param actor_id: (int) ID of the account performing the action.
+    :param caregiver_dto: (dto.accounts.CaregiverDto) caregiver DTO from
+                          request.
+    :return: (dto.accounts.CaregiverDto) if _dto is True
+             (kinds.accounts.Caregiver) if _dto is False
+    """
+    caregiver_ndb = caregiver_by_account(actor_id, _dto=False)
+
+    for k in caregiver_dto._props:
+        if not hasattr(caregiver_dto, k):
+            continue
+        v = getattr(caregiver_dto, k)
+        if v is not None:
+            setattr(caregiver_ndb, k, v)
+
+    caregiver_ndb.put()
+    if not _dto:
+        return caregiver_ndb
+    return CaregiverDto.from_caregiver_ndb(caregiver_ndb)
 
 
 def patients_by_account(account_id, _dto=True):
