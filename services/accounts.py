@@ -146,8 +146,8 @@ def patients_by_account(account_id, _dto=True):
     """
     asserts.valid_id_type(account_id)
 
-    account = account_by_id(account_id)
-    if account is not None and account.patient_ids:
+    account = account_by_id(account_id, _dto=False)
+    if account is not None and account.patient_ids is not None:
         keys = Patient.ids_to_keys(account.patient_ids)
         patients = ndb.get_multi(keys)
         if not _dto:
