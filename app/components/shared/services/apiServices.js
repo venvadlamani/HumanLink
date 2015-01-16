@@ -8,7 +8,7 @@ angular
     .factory('apiService', ['$http', function ($http) {
 
         // Google Cloud Endpoints URL.
-        var getGceBase = function() {
+        var getGceBase = function () {
             var host = window.location.host;
             // GCE doesn't work with custom domains.
             if (host.indexOf('humanlink.co') === 0) {
@@ -20,7 +20,9 @@ angular
 
         var GCE_BASE = getGceBase();
 
-        var Accounts = {};
+        var Accounts = {
+            patients: {}
+        };
         var Billing = {};
         var Connections = {};
         var Jobs = {};
@@ -85,6 +87,10 @@ angular
 
         Accounts.get = function (id, ctrlHelper) {
             apiRequest('GET', 'accounts/' + id, {}, ctrlHelper, true);
+        };
+
+        Accounts.patients.list = function (ctrlHelper) {
+            apiRequest('GET', 'accounts/patients/list', {}, ctrlHelper, true);
         };
 
         Connections.my = function (data, ctrlHelper) {

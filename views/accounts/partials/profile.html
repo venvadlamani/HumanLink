@@ -1,5 +1,29 @@
-<div ng-show="$scope.is_backend_ready = true;" ng-controller="profileController">
-    <h1>Profile</h1>
-    <h1>{{profile.first | uppercase}} {{profile.last | uppercase}}</h1>
-    <sub>{{ profile.phone_number }}</sub>
+<img src="/images/{{profile.bannerUrl}}" class="row profile-banner" alt=""/>
+<div class="row header info">
+    <div class="col-md-12">
+        <button class="btn pull-right edit-profile">Edit Info</button>
+        <h4 class="money-saved">You have saved {{profile.money_saved | currency}} so far!</h4>
+        <img src="/images/{{profile.pictureUrl}}" class="col-md-2 profile-image" alt=""/>
+        <div class="profile-info">
+            <h2 class="profile-name">{{profile.first}} {{profile.last}}</h2>
+            <h4 class="profile-phone">{{profile.email}}</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="care-recipient-header">Care Recipients</h1>
+        <button class="btn add-care-recipient">Add Care Recipient</button>
+        <div class="row care-recipient media" ng-repeat="care_recipient in care_recipients">
+            <div class="media-left">
+                <img src="https://placehold.it/100x100" alt=""/>
+            </div>
+            <div class="media-body thumbnail-description">
+                <h2 class="care-recipient-name media-heading">{{care_recipient.name}}</h2>
+                <h4 class="care-recipient-phone">{{care_recipient.phone}}</h4>
+                <a href="#">Edit/View Care Recipient Info</a>
+            </div>
+        </div>
+    </div>
 </div>

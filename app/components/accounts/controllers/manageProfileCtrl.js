@@ -5,26 +5,34 @@
  */
 angular
     .module('Accounts')
-    .controller('manageProfileCtrl', ['$scope', function ($scope) {
+    .controller('manageProfileCtrl', ['$scope', 'apiService', 'userSession',
+                function ($scope, apiService, userSession) {
+        var profileHelper = new HL.CtrlHelper(),
+            patientsHelper = new HL.CtrlHelper();
+
         $scope.profile = {
-            name: 'First Last',
-            phone: '(555)555-5555',
             money_saved: 150,
         };
 
-        /**
-         * Retrieves all care_recipients under account and assigns them into $scope.
-         *
-         * @return void
-         */
-        $scope.getCareRecipients = function () {
-            $scope.care_recipients = [
-                {name: 'Care Recipient Name', phone: '(555)555-5555'},
-                {name: 'Care Recipient Name', phone: '(555)555-5555'},
-                {name: 'Care Recipient Name', phone: '(555)555-5555'},
-                {name: 'Care Recipient Name', phone: '(555)555-5555'}
-            ];
-        };
+        getInfo();
+
+        function getInfo () {
+            profileHelper.success = function (data, status, headers, config) {
+                angular.extend($scope.profile, data);
+                $scope.profile.pictureUrl = 'profile_' + data.first +
+                    data.last + '.png';
+                $scope.profile.bannerUrl = 'banner_' + data.first +
+                    data.last + '.png';
+            };
+
+            patientsHelper.success = function (data, status, headers, config) {
+                $scope.careRecipients = data;
+            };
+
+            apiService.Accounts.get(userSession.userdata.account_id,
+                                    profileHelper);
+            apiService.Accounts.patients.list(patientsHelper);
+        }
 
         /**
          * Add's care_recipient under current account.
@@ -34,6 +42,4 @@ angular
         $scope.addCareRecipient = function () {
             console.log('addCareRecipient');
         };
-
-        $scope.getCareRecipients();
     }]);
