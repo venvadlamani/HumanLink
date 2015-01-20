@@ -12,6 +12,7 @@ from models.dto.accounts import (
     AccountDto,
     CaregiverDto,
     PatientDto,
+    UserDto,
 )
 
 import logging
@@ -90,6 +91,19 @@ def accounts_by_ids(account_ids):
     """
     keys = Account.ids_to_keys(account_ids)
     return ndb.get_multi(keys)
+
+
+def account_meta(account_id):
+    """This is similar to `account_by_id`, except the returned value is UserDto.
+
+    UserDto contains a small subset of basic account information that can be
+    used for any general-purpose account related information.
+
+    :param account_id: (int) ID of the account to retrieve.
+    :return: (dto.accounts.UserDto)
+    """
+    account = account_by_id(account_id, _dto=False)
+    return UserDto.from_account_ndb(account)
 
 
 def caregiver_by_account(account_id, _dto=True):
