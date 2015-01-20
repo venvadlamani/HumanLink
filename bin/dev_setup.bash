@@ -81,11 +81,13 @@ function ins_node {
 }
 
 function ins_bower {
-  echo 'Installing bower/gulp...'
+  echo 'Installing bower/gulp/jshint...'
   npm install -g gulp
   print_status 'gulp'
   npm install -g bower
   print_status 'bower'
+  npm install -g jshint
+  print_status 'jshint'
 }
 
 function ins_bower_deps {
@@ -113,5 +115,5 @@ install_prompt 'pip' ins_pip
 install_prompt 'flake8' ins_flake8
 install_prompt 'virtualenv' ins_virtualenv
 install_prompt 'node' ins_node
-install_prompt 'bower' ins_bower
+install_prompt 'bower/gulp/jshint' ins_bower
 install_prompt 'bower dependencies' ins_bower_deps
