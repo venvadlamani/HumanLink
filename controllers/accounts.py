@@ -48,13 +48,13 @@ class Accounts(base.BaseHandler):
             self.write_json({'status': 'success'})
         except (auth.InvalidAuthIdError, auth.InvalidPasswordError) as e:
             logging.info('Invalid auth. email: %s' % email)
-            raise exp.BadRequestExp()
+            raise exp.BadRequestExp(e)
 
     @login_required
     def logout(self):
         """Log-out the current user and redirect to home page."""
         self.auth.unset_session()
-        return self.redirect_to('home')
+        return self.redirect_to('accounts_index')
 
     @login_required
     def userdata(self):
