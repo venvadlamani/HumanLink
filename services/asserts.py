@@ -12,6 +12,11 @@ def type_of(ins, cls):
         raise exp.UnexpectedTypeExp(cls, type(ins))
 
 
+def not_empty(itr):
+    if not len(itr):
+        raise exp.ValueExp('Value cannot be empty.')
+
+
 def is_valid_id_type(obj):
     return isinstance(obj, (int, long))
 
