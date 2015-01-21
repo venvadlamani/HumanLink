@@ -153,6 +153,8 @@ def messages(actor_id, thread_id, limit=25):
 def leave_thread(actor_id, thread_id):
     """Unsubscribes the account from the thread.
 
+    TODO(kanat): Send a system message since the thread has been updated.
+
     :param actor_id: (int) ID of the account acting.
     :param thread_id: (int) ID of the thread to leave.
     :return: (None)

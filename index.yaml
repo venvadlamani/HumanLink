@@ -15,3 +15,16 @@ indexes:
   - name: status
   - name: updated
     direction: desc
+
+- kind: Message
+  properties:
+  - name: thread_id
+  - name: created
+    direction: desc
+
+- kind: Thread
+  properties:
+  - name: members.account_id
+  - name: members.hidden
+  - name: updated
+    direction: desc
