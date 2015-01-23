@@ -16,13 +16,19 @@
             display: inline-block;
 
             a {
-                &:hover {
-                    text-decoration: none;
-                }
                 color: @background;
                 font-weight: 300;
                 padding: 15px;
                 display: block;
+
+                &:focus {
+                    text-decoration: none;
+                    outline: none;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                }
             }
         }
 }
