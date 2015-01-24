@@ -19,9 +19,9 @@ angular
                 templateUrl: '/views/accounts/partials/join.html',
                 controller: 'joinCtrl'
             })
-            .state('edit_profile', {
-                url: '/edit',
-                templateUrl: '/views/accounts/partials/manage_profile.html',
+            .state('profile', {
+                url: '/profile',
+                templateUrl: '/views/accounts/partials/profile.html',
                 controller: 'manageProfileCtrl'
             })
             .state('caregiver_profile', {

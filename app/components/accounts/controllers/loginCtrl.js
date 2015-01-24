@@ -14,7 +14,7 @@ angular
         ctrlHelper.reset();
 
         if (userSession.isAuthorized()) {
-            $location.path('/edit');
+            $location.path('/profile');
         }
 
         $scope.loginModel = {
@@ -25,7 +25,7 @@ angular
         $scope.login = function (model) {
             ctrlHelper.success = function (data, status, headers, config) {
                 // Redirect to profile page.
-                $window.location.href = HL.baseUrl + '/accounts#/edit';
+                $window.location.href = HL.baseUrl + '/accounts#/profile';
             };
             apiService.Accounts.login(model, ctrlHelper);
         };
