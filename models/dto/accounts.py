@@ -43,6 +43,30 @@ class AccountDto(object):
         return account_dto
 
 
+class UserDto(object):
+    """UserDto: account metadata.
+
+    UserDto is a general-purpose account related information that is better to
+    use when all the information in AccountDto is not necessary.
+    """
+
+    _props = ['account_id', 'account_type', 'first', 'last', 'picture_url']
+
+    @classmethod
+    def from_account_ndb(cls, account_ndb):
+        """Builds a UserDto from the given Account NDB model.
+
+        :param account_ndb:
+        :return:
+        """
+        asserts.type_of(account_ndb, Account)
+
+        user_dto = UserDto()
+        map_props(user_dto, account_ndb, cls._props)
+        user_dto.account_id = account_ndb.id
+        return user_dto
+
+
 class CaregiverDto(object):
 
     _props = [

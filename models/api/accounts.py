@@ -9,6 +9,7 @@ from models.dto.accounts import (
     AccountDto,
     CaregiverDto,
     PatientDto,
+    UserDto,
 )
 from models.api.base import BaseApiModel
 
@@ -56,6 +57,28 @@ class AccountApiModel(BaseApiModel):
         account_api = AccountApiModel()
         map_props(account_api, account_dto, AccountDto._props)
         return account_api.ToMessage()
+
+
+class UserApiModel(BaseApiModel):
+    """Represents a minimal account profile information."""
+    account_id = ndb.IntegerProperty()
+    first = Account.first
+    last = Account.last
+    account_type = Account.account_type
+    picture_url = ndb.StringProperty()
+
+    @classmethod
+    def from_user_dto(cls, user_dto):
+        """Translates the given UserDto to a UserApiModel.
+
+        :param user_dto: (dto.accounts.UserDto)
+        :return: (api.accounts.UserApiModel)
+        """
+        asserts.type_of(user_dto, UserDto)
+
+        user_api = UserApiModel()
+        map_props(user_api, user_dto, UserDto._props)
+        return user_api
 
 
 class CaregiverApiModel(BaseApiModel):
