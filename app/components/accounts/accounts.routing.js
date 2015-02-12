@@ -32,11 +32,6 @@ angular
             .state('settings', {
                 templateUrl: '/views/accounts/partials/settings/base_settings.html',
             })
-            .state('settings.profile', {
-                url: '/settings/profile',
-                templateUrl: '/views/accounts/partials/settings/profile.html',
-                controller: 'settingsProfileCtrl'
-            })
             .state('settings.media', {
                 url: '/settings/media',
                 templateUrl: '/views/accounts/partials/settings/media.html',
