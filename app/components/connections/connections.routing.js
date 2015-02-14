@@ -13,9 +13,4 @@ angular
                 url: '/',
                 templateUrl: '/views/connections/partials/connections.html',
             })
-			.state('details', {
-			    url: '/details/{ connectionId }',
-			    templateUrl: '/views/connections/partials/details.html',
-			    controller: 'connectionsDetailsCtrl'
-			});
     }]);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('Favorites', ['ui.router', 'Common'])
+    .module('Favorites', ['ui.router','ui.bootstrap', 'Common'])
     .config(['$stateProvider', '$urlRouterProvider',
             function ($stateProvider, $urlRouterProvider) {
 
