@@ -97,6 +97,7 @@ angular
             apiRequest('GET', 'connections/my', data, ctrlHelper, true);
         };
 
+        
         // Public methods.
         return {
             Accounts: Accounts,
