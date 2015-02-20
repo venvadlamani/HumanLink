@@ -97,7 +97,30 @@ angular
             apiRequest('GET', 'connections/my', data, ctrlHelper, true);
         };
 
-        
+        Messages.inbox = function (data, ctrlHelper) {
+            apiRequest('GET', 'messages/inbox', data, ctrlHelper, true);
+        };
+
+        Messages.thread = function (id, ctrlHelper) {
+            apiRequest('GET', 'messages/thread/' + id, {}, ctrlHelper, true);
+        };
+
+        Messages.new = function (data, ctrlHelper) {
+            apiRequest('POST', 'messages/new', data, ctrlHelper, true);
+        };
+
+        Messages.send = function (data, ctrlHelper) {
+            apiRequest('POST', 'messages/send', data, ctrlHelper, true);
+        };
+
+        Messages.leave = function (data, ctrlHelper) {
+            apiRequest('POST', 'messages/leave', data, ctrlHelper, true);
+        };
+
+        Messages.hide = function (data, ctrlHelper) {
+            apiRequest('POST', 'messages/hide', data, ctrlHelper, false);
+        };
+
         // Public methods.
         return {
             Accounts: Accounts,

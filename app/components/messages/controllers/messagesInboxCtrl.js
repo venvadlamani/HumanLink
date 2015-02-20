@@ -5,40 +5,21 @@
  */
 angular
     .module('Messages')
-    .controller('messagesInboxCtrl', ['$scope', function ($scope) {
+    .controller('messagesInboxCtrl', ['$scope', 'apiService', 'userSession',
+    function ($scope, apiService, userSession) {
 
-        $scope.inboxModel = [
-            {
-                "name":"kashi",
-                "date":"Tue",
-                "messageID":"1234",
-                "lastMessage": "this is really great. so good to hear."
-            },
-            {
-                "name":"susie q.",
-                "date":"Feb 6",
-                "messageID":"3456",
-                "lastMessage": "this is really great. so good to hear."
-            },
-            {
-                "name":"susie q.",
-                "date":"Feb 6",
-                "messageID":"3456",
-                "lastMessage": "this is really great. so good to hear."
-            },
-            {
-                "name":"susie q.",
-                "date":"Feb 6",
-                "messageID":"3456",
-                "lastMessage": "this is really great. so good to hear."
-            },
-            {
-                "name":"sri",
-                "date":"Feb 6",
-                "messageID":"6556",
-                "lastMessage": "this is really great. so good to hear."
-            },
-
-        ];
+        /**
+         * Populates $scope with messages.
+         *
+         * @returns void
+         */
+        var inboxHelper = new HL.CtrlHelper();
+        function getMessages() {
+            inboxHelper.success = function (data, status, headers, config) {
+                $scope.messages = data.items;
+            };
+        apiService.Messages.inbox({}, inboxHelper);
+        }
+        getMessages();
 
     }]);

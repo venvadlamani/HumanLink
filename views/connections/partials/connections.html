@@ -14,12 +14,12 @@
                         <div class="col-md-8">
                             <h4>{{ connection.first }} {{ connection.last }}</h4>
                             <h6>{{ connection.account_type }}</h6>
-                            <button class="btn btn-sm btn-default" href="#">
+                            <a class="btn btn-sm btn-default" href="/messages#/compose/{{ connection.account_id }}">
                                 <span class="glyphicon glyphicon-envelope"> Message</span>
-                            </button>
-                            <button class="btn btn-sm btn-default" href="#/details/{{ connection.account_id }}">
-                                <span class="glyphicon glyphicon-user"> Details</span>
-                            </button>
+                            </a>
+                            <a class="btn btn-sm btn-default" href="#">
+                                <span class="glyphicon glyphicon-user">Detail</span>
+                            </a>
                         </div>
                     </div>
                 </div>

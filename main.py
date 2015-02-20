@@ -53,4 +53,7 @@ application = webapp2.WSGIApplication([
     webapp2.Route(r'/messages', name='messages', methods=['GET'],
                   handler='controllers.messages.Messages:index'),
 
+    webapp2.Route(r'/dashboard', name='dashboard', methods=['GET'],
+                  handler='controllers.dashboard.Dashboard:index'),
+
 ], debug=True, config=config)

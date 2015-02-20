@@ -1,27 +1,25 @@
-<div class="col-md-8">
-    <h2>Sender</h2>
-    <div class="messages-wrapper">
-        <div ng-repeat="msg in messageDetails">
-                <div ng-if="msg.name!='me'">
-                    <div class="message from">
-                        {{ msg.message }}
-                    </div>
+<h2>To : Sender</h2>
+<div class="messages-wrapper">
+    <div ng-repeat="msg in messageDetails">
+            <div ng-if="msg.name!='me'">
+                <div class="message from">
+                    {{ msg.message }}
                 </div>
-                <div ng-if="msg.name=='me'">
-                    <div class="message to">
-                        {{ msg.message }}
-                    </div>
+            </div>
+            <div ng-if="msg.name=='me'">
+                <div class="message to">
+                    {{ msg.message }}
                 </div>
-        </div>
+            </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-md-10">
-                <input ng-model="newMessage" placeholder="Enter message..." class="form-control">
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-default" ng-click="sendMessage(newMessage)">Send</button>
-            </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-10">
+            <input ng-model="newMessage" placeholder="Enter message..." class="form-control">
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-default" ng-click="sendMessage(newMessage)">Send</button>
         </div>
     </div>
 </div>

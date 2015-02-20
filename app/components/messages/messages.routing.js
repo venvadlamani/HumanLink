@@ -3,33 +3,30 @@
 angular
     .module('Messages', ['ui.router', 'Common'])
     .config(['$stateProvider', '$urlRouterProvider',
-            function ($stateProvider, $urlRouterProvider) {
+    function ($stateProvider, $urlRouterProvider) {
 
         // Otherwise redirect to /
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('messages', {
-                templateUrl: '/views/messages/partials/messages.html'
-            })
-            .state('messages.inbox', {
+            .state('inbox', {
                 url: '/inbox',
                 templateUrl: '/views/messages/partials/inbox.html',
                 controller: 'messagesInboxCtrl'
             })
-            .state('messages.detail', {
+            .state('new', {
+                url: '/new/{account_id}',
+                templateUrl: '/views/messages/partials/new.html',
+                controller: 'messagesNewCtrl'
+            })
+            .state('tmpnew', {
+                url: '/new',
+                templateUrl: '/views/messages/partials/new.html',
+                controller: 'messagesNewCtrl'
+            })
+            .state('detail', {
                 url: '/detail',
                 templateUrl: '/views/messages/partials/detail.html',
                 controller: 'messagesDetailCtrl'
-            })
-            .state('messages.notifications', {
-                url: '/notifications',
-                templateUrl: '/views/messages/partials/notifications.html',
-                controller: 'messagesNotificationsCtrl'
-            })
-            .state('messages.connections', {
-                url: '/connections',
-                templateUrl: '/views/messages/partials/connections.html',
-                controller: 'messagesConnectionsCtrl'
             });
     }]);

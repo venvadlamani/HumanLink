@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Connection Requests</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover">
+                <tr ng-repeat="request in requests">
+                    <td class="col-md-1">
+                        <a href="#"><img src="https://placehold.it/25x25" class="img-rounded"></a>
+                    </td>
+                    <td class="col-md-2">
+                        {{ request.name }}
+                    </td>
+                    <td class="col-md-4">
+                        {{ request.message }}
+                    </td>
+                    <td class="col-md-2">
+                        <a href="#" class="btn btn-sm btn-primary" role="button">Confirm</a>
+                        <a href="#" class="btn btn-sm btn-default" role="button">Ignore</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Notifications</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover">
+                <tr ng-repeat="notification in notifications">
+                    <td class="col-md-1">
+                        <a href="#"><img src="https://placehold.it/25x25" class="img-rounded"></a>
+                    </td>
+                    <td class="col-md-2">
+                        {{ notification.name }}
+                    </td>
+                    <td class="col-md-4">
+                        {{ notification.message }}
+                    </td>
+                    <td class="col-md-2">
+                        <button type="button" class="btn btn-primary btn-sm">Mark as read</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

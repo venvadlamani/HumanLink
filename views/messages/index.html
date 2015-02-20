@@ -5,9 +5,17 @@ Messages
 [% endblock %]
 
 [% block content %]
-
-<div ng-app="Messages" ng-controller="messagesBaseCtrl">
-    <div ui-view></div>
+<div class="row">
+    <div ng-app="Messages">
+        <div class="col-md-2">
+            <div class="settings-side-nav">
+                <ul class="list-unstyled">
+                    <li><a href="#/new">New Message</a></li>
+                    <li><a href="#/inbox">Inbox</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10" ui-view></div>
+    </div>
 </div>
-
 [% endblock %]

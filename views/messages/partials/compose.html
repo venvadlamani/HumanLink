@@ -1,0 +1,38 @@
+<form ng-submit="sendMessage(message)" ng-model="message">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Send to:
+            <select ng-options="sendto.first for sendto in sendtolist" ng-model="message.sender">
+                <option value="">-- choose person --</option>
+            </select>
+        </div>
+
+        <ul class="list-group messages-ul">
+            <div ng-repeat="msg in messageDetails">
+                    <div ng-if="msg.name!='me'">
+                        <li class="list-group-item">
+                            <b>Sender: </b>{{ msg.message }}
+                        </li>
+                    </div>
+                    <div ng-if="msg.name=='me'">
+                        <li class="list-group-item">
+                            <b>Me: </b>{{ msg.message }}
+                        </li>
+                    </div>
+            </div>
+        </ul>
+
+        <hr  class="messages-hr"/>
+
+        <div class="panel-body">
+                <div class="col-md-9">
+                    <input ng-model="message.text" placeholder="Enter message..." class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-block btn-primary">Send</button>
+                </div>
+        </div>
+    </div>
+</form>
+
+{{ message }}

@@ -1,20 +1,30 @@
-<div class="panel panel-default">
-    <table class="table table-striped">
-        <tbody>
-            <tr ng-repeat="msg in inboxModel">
-                <td class="col-md-1">
-                    <img src="https://placehold.it/35x35" class="img-rounded">
-                </td>
-                <td class="col-md-2">
-                    {{ msg.name }}
-                </td>
-                <td class="col-md-6">
-                    <a href="#/detail" >{{ msg.lastMessage }} </a>
-                </td>
-                <td class="col-md-3">
-                    {{ msg.date }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<table class="table table-striped">
+    <tbody>
+
+        <tr>
+            <th class="col-md-3">
+                From
+            </th>
+            <th class="col-md-6">
+                Preview
+            </th>
+            <th class="col-md-3">
+                Date
+            </th>
+        </tr>
+
+        <tr ng-repeat="msg in messages">
+            <td class="col-md-3">
+                {{ msg.members[0].first }} {{ msg.members[0].last}}
+            </td>
+            <td class="col-md-6">
+                <a href="#/detail" >{{ msg.preview }} </a>
+            </td>
+            <td class="col-md-3">
+                {{ msg.updated | date: 'shortDate'}}
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+{{ messages }}

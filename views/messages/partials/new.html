@@ -1,0 +1,36 @@
+<div ng-switch="viewMode">
+
+<div ng-switch-when="message_form">
+    <form ng-submit="sendMessage(message)" ng-model="message" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                <select ng-options="sendto.first for sendto in sendtolist" ng-model="message.sender">
+                    <option value="">-- choose recipient --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input ng-model="message.subject" placeholder="Subject..." class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <textarea ng-model="message.text" placeholder="Message..."
+                          class="form-control" rows="5">
+                </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <button class="btn btn-default">Send</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div ng-switch-when="message_success">
+Your message was sent successfully.
+</div>
+
+</div>
