@@ -1,8 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
-# C extensions
 *.so
 
 # Unit test / coverage reports
@@ -17,10 +15,6 @@ coverage.xml
 .mr.developer.cfg
 .project
 .pydevproject
-
-# Django stuff
-*.log
-*.pot
 
 # IDEs
 .settings/
@@ -40,3 +34,6 @@ venv/
 
 # Secret files
 configs.py
+
+# OS specific
+.DS_Store
