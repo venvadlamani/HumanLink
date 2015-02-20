@@ -25,7 +25,7 @@ function gae_deps {
     # GAE
     if [ ! -d "$GAE" ]; then
       echo ">>> Downloading App Engine SDK..."
-      curl -o $HOME/gae.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.17.zip
+      curl -o $HOME/gae.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.18.zip
       unzip -q -d $HOME $HOME/gae.zip
     fi
 
