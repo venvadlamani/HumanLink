@@ -1,5 +1,10 @@
 from endpoints_proto_datastore.ndb import EndpointsModel
+from endpoints_proto_datastore import utils
 from google.appengine.ext import ndb
+
+# Hack. See:
+#   https://github.com/GoogleCloudPlatform/endpoints-proto-datastore/issues/83
+utils.DATETIME_STRING_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
 
 class BaseApiModel(EndpointsModel):
