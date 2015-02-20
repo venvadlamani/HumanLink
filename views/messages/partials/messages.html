@@ -1,9 +1,13 @@
 <div class="row">
-    <div class="col-md-12">
-        <button>New Message</button>
-        <div class="message" ng-repeat="message in messages">
-            <h2>{{message.title}}</h2>
-            <p>{{message.preview}}</p>
+    <div class="col-md-3">
+        <div class="settings-side-nav">
+            <ul class="list-unstyled">
+                <li><a href="#/inbox">Inbox</a></li>
+                <li><a href="#/notifications">Notifications</a></li>
+                <li><a href="#/connections">Connection requests</a></li>
+            </ul>
         </div>
+    </div>
+    <div class="col-md-9" ui-view>
     </div>
 </div>
