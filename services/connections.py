@@ -35,7 +35,7 @@ def pending_requests(actor_id):
     """
     asserts.valid_id_type(actor_id)
 
-    reqs = _conn_requests(from_id=actor_id, status=ConnStatus.Pending)
+    reqs = _conn_requests(to_id=actor_id, status=ConnStatus.Pending)
     account_ids = [r.from_id for r in reqs]
     accounts = services.accounts.accounts_by_ids(account_ids)
 
