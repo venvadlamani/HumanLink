@@ -97,7 +97,26 @@ angular
             apiRequest('GET', 'connections/my', data, ctrlHelper, true);
         };
 
-        
+        Connections.pending = function (data, ctrlHelper) {
+            apiRequest('GET', 'connections/pending', data, ctrlHelper, true);
+        };
+
+        Connections.request = function (data, ctrlHelper) {
+            apiRequest('POST', 'connections/request', data, ctrlHelper, true);
+        };
+
+        Connections.accept = function (data, ctrlHelper) {
+            apiRequest('POST', 'connections/accept', data, ctrlHelper, true);
+        };
+
+        Connections.decline = function (data, ctrlHelper) {
+            apiRequest('POST', 'connections/decline', data, ctrlHelper, true);
+        };
+
+        Connections.remove = function (data, ctrlHelper) {
+            apiRequest('POST', 'connections/remove', data, ctrlHelper, true);
+        };
+
         // Public methods.
         return {
             Accounts: Accounts,
