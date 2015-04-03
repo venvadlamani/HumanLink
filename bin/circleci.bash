@@ -8,17 +8,15 @@ GSUTIL=$HOME/gsutil/
 
 # Dependencies pre.
 function dep_pre {
-    echo ">>> bower and gulp install"
-    npm install -g bower
-    npm install -g gulp
+    npm install
     pip install flake8
 }
 
 # Dependencies post.
 function dep_post {
     # Front-end components
-    bower install
-    gulp compile
+    npm run bower install
+    npm run gulp compile
 }
 
 function gae_deps {
@@ -42,11 +40,8 @@ function gae_deps {
     $GSUTIL/gsutil cp gs://humanlink-private/configs.py .
 
     # pip dependencies
-    echo '>>> Creating a new virtualenv...'
-    virtualenv-2.7 venv
-    echo '>>> Installing venv libraries'
-    ./venv/bin/pip install requests
-    ./venv/bin/pip install mandrill
+    echo '>>> Installing pip libraries'
+    pip install -t lib/pip requests mandrill
 }
 
 # Deployment.

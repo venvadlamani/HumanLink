@@ -31,6 +31,7 @@ assets/js/build/
 
 # Virtualenv
 venv/
+lib/pip/
 
 # Secret files
 configs.py

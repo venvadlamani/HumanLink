@@ -60,13 +60,4 @@ skip_files:
 - ^bower_components$
 - ^node_modules$
 - ^(.*/)?.*\.less$
-# Virtualenv.
-- ^venv/bin$
-- ^venv/include$
-- ^venv/lib/python2\.7/[A-Za-z0-9_-]*\.[A-Za-z0-9]*$
-- ^venv/lib/python2\.7/config$
-- ^venv/lib/python2\.7/distutils$
-- ^venv/lib/python2\.7/encodings$
-- ^venv/lib/python2\.7/lib-dynload$
-- ^venv/lib/python2\.7/site-packages/pip.*$
-- ^venv/lib/python2\.7/site-packages/setuptools.*$
+- ^venv$
