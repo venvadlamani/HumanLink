@@ -9,5 +9,4 @@ import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'lib'))
 
 # Add libraries that were added by `pip` to `sys.path`.
-sys.path.append(os.path.join(os.path.dirname(__file__),
-                             'venv/lib/python2.7/site-packages'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'lib/pip'))

@@ -8,15 +8,17 @@
 echo 'Running pre-commit...'
 
 FLAKE_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -e '\.py$')
-FLAKE_ST=$?
+FLAKE_ST=0
 if [ -n "$FILES" ]; then
   flake8 $FILES
+  FLAKE_ST=$?
 fi
 
 JSFILES=$(git diff --cached --name-only --diff-filter=ACM | grep -e '\.js$')
-JSHINT_ST=$?
+JSHINT_ST=0
 if [ -n "$JSFILES" ]; then
-    jshint $JSFILES
+    npm run -s jshint $JSFILES
+    JSHINT_ST=$?
 fi
 
 if [[ $FLAKE_ST -ne 0 || $JSHINT_ST -ne 0 ]]; then

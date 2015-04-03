@@ -12,34 +12,42 @@ function deploy {
   if [ -z "$1" ]; then
     echo $msg
   else
+    activate_venv
     case $1 in
       'dev') deploy_dev ;;
       'staging') appcfg.py -v --oauth2 --application=care-tiger-staging update $HL ;;
       'prod') appcfg.py -v --oauth2 update $HL ;;
       *) appcfg.py -v --oauth2 --application=$1 update $HL ;;
     esac
+    deactivate_venv
   fi
 }
 
 function deploy_dev {
-  # Make sure virtualenv exists.
-  if [ ! -d "$HL/venv" ]; then
-    echo "Virtualenv doesn't exist."
-    echo "Please run ./bin/dev_setup.bash and choose (y) for 'virtualenv' and 'virtualenv libraries'"
-    exit 1
-  fi
-
   # Prepare.
   echo '>>> npm modules'
   npm install
   echo '>>> Preparing frontend components.'
-  rm -rf bower_components
-  bower install
-  gulp compile
+  npm run bower install
+  npm run gulp compile
 
   # Start the dev server.
   echo '>>> Starting the dev server.'
   dev_appserver.py $HL
+}
+
+function activate_venv {
+    venv=$HL/venv
+    if [ ! -d "$venv" ]; then
+      echo '>>> Creating a virtualenv...'
+      virtualenv --python=python2.7 --no-site-packages $venv
+    fi
+    source $venv/bin/activate
+    pip install -t lib/pip requests mandrill
+}
+
+function deactivate_venv {
+    deactivate
 }
 
 if [ -z "$1" ]; then
@@ -47,7 +55,6 @@ if [ -z "$1" ]; then
 else
   case $1 in
     'deploy') deploy $2 ;;
-    'update') echo 'updating...' ;;
 
     'help') usage ;;
     '-h') usage ;;
