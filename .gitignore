@@ -10,6 +10,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+*.log
 
 # Mr Developer
 .mr.developer.cfg
