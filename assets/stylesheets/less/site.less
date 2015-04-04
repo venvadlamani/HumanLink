@@ -4,6 +4,10 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: @serif-font;
+}
+
 .container-main,
 .container-footer {
     background-color: @background;
@@ -13,17 +17,29 @@ body {
     border-radius: 6px;
 }
 
-// Requires all parent items to also have 100% height
-.full-screen {
-    height: 100%;
-    width: 100%;
-}
-
-// Overriding bootstrap
-.row {
+.container-footer ul {
     margin: 0;
 }
 
-.form-block {
-    margin: 10px;
+// Extra buttons.
+.btn-transparent {
+    .button-variant(@btn-info-border; @background; @btn-info-border);
+}
+.btn-secondary {
+    .button-variant(@btn-primary-color; @secondary; darken(@secondary, 5%));
+}
+
+
+// Zero margins.
+.no-top-margin {
+    margin-top: 0;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0;
+}
+
+.no-side-margin {
+    margin-right: 0;
+    margin-left: 0;
 }

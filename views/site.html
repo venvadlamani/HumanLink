@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>[% block title %] HumanLink [% endblock %]</title>
     <link rel="stylesheet" href="/stylesheets/build/style.css"/>
 
@@ -12,7 +13,11 @@
     [% include "nav.html" %]
 
     <div class="container container-main">
-        [% block content %] [% endblock %]
+        <div class="row">
+            <div class="col-md-12">
+            [% block content %] [% endblock %]
+            </div>
+        </div>
     </div>
 
     [% include "footer.html" %]

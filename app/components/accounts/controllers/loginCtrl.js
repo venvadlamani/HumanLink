@@ -25,7 +25,7 @@ angular
         $scope.login = function (model) {
             ctrlHelper.success = function (data, status, headers, config) {
                 // Redirect to profile page.
-                $window.location.href = HL.baseUrl + '/accounts#/profile';
+                $window.location.href = HL.baseUrl + '/accounts';
             };
             apiService.Accounts.login(model, ctrlHelper);
         };
