@@ -1,6 +1,10 @@
-<div class="settings-block">
-   <h2>Current Verifications</h2> 
-    <div class="settings-block-body">
+<div class="settings-verification">
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Verifications</h2>
+    </div>
+    <div class="panel-body">
         <div class="alert verification" ng-class="account.emailVerified ? 'alert-success' : 'alert-danger'" role="alert">
             <div ng-if="!account.emailVerified">
                 <span  class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -40,20 +44,24 @@
     </div>
 </div>
 
-<div class="settings-block">
-    <h2>Background Check</h2>
-    <h4 class="background-check-title">Please fill out the form below to get started.</h4>
-    <p class="background-check-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget orci ut lectus sollicitudin ultrices sed ut lorem. Donec eu tellus interdum, cursus neque nec, porttitor sapien. Praesent placerat rutrum eros, non placerat turpis. Fusce semper elit a facilisis cursus. Suspendisse hendrerit erat mi, non condimentum lectus aliquet nec. Nullam in dui sed libero porta pretium. Sed ultricies nulla id dolor hendrerit, at elementum augue sollicitudin. Suspendisse congue, felis ac molestie venenatis, ante lacus hendrerit ipsum, ut lacinia ante lectus non ex.</p>
-    <div class="settings-block-body">
-        <form class="background-check-form">
-            <div class="form-block">
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <br/>
-                    <input id="address"class="form-control" placeholder="123 Example St." />
-                </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Background Check</h2>
+    </div>
+    <div class="panel-body">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            In eget orci ut lectus sollicitudin ultrices sed ut lorem.
+            Donec eu tellus interdum, cursus neque nec, porttitor sapien.
+            Praesent placerat rutrum eros, non placerat turpis.
+        </p>
+        <form>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <br/>
+                <input id="address"class="form-control" placeholder="123 Example St." />
             </div>
-            <div class="form-inline">
+            <div class="form-inline form-group">
                 <div class="form-group">
                     <label for="city">City</label>
                     <br/>
@@ -71,20 +79,20 @@
                     <input id="zip" class="form-control" placeholder="11111" />
                 </div>
             </div>
-            <div class="form-inline">
+            <div class="form-inline form-group">
                 <div class="form-group">
                     <label for="dl-num">Drivers License #</label>
                     <br/>
-                    <input id="dl-num" class="form-control" placeholder="000 000 000">
+                    <input id="dl-num" class="form-control" placeholder="000-000-000"/>
                 </div>
                 <div class="form-group">
-                    <label for="dl-state">Drivers License State</label>
+                    <label for="dl-state">State</label>
                     <br/>
                     <select id="dl-state" name="state" class="form-control" ng-model="chosenDLState" ng-options="state for state in states">
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dl-exp-date">Drivers License Expire Date</label>
+                    <label for="dl-exp-date">Expiration Date</label>
                     <br/>
                     <input class="form-control" placeholder="01/01/1911">
                 </div>
@@ -93,25 +101,25 @@
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
                     <br/>
-                    <div id="dob" class="input-group">
-                        <input class="form-control" placeholder="01/01/1911" />
-                    </div>
+                    <input class="form-control" placeholder="01/01/1911" />
                 </div>
             </div>
-            <div class="form-block">
-                <div class="form-group">
-                    <label for="ssn">Social Security #</label>
-                    <br/>
-                    <input class="form-control" placeholder="000-00-0000"/>
-                </div>
+            <div class="form-group">
+                <label for="ssn">Social Security #</label>
+                <br/>
+                <input class="form-control" placeholder="000-00-0000"/>
             </div>
-            <div class="checkbox form-inline">
+            <div class="checkbox form-inline form-group">
                 <label>
                     <input type="checkbox" value="">
                     By checking this box, I agree to hand over all provided information and have HumanLink do a background check.
                 </label>
             </div>
-            <input class="btn btn-default" type="submit" value="Submit Background Check"/>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Submit Background Check"/>
+            </div>
         </form>
     </div>
+</div>
+
 </div>

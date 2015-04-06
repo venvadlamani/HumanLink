@@ -1,54 +1,53 @@
-<nav class="navigation-bar" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+<header>
+    <div class="navigation-bar">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-content">
+            <!-- Brand and toggle get grouped for better mobile display. -->
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar-content">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
+             </button>
             <a class="navbar-brand" href="/">
-                <img class="nav-logo" src="images/hl.logo.horiz.blue.png" alt=""/>
+                <img class="nav-logo" src="/images/hl.logo.horiz.blue.png" alt="HumanLink logo"/>
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-content">
             <form class="navbar-form navbar-left" role="search">
-                <div class="search-bar">
-                    <input type="text" class="form-control" placeholder="Search for connections">
-                    <button type="submit" class="navigation-search">Search</button>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for connections">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-secondary">Search</button>
+                        </span>
+                    </div>
                 </div>
             </form>
             <div class="navbar-form navbar-right">
                 [% if userdata %]
-                <a href="#">[= userdata.name =]</a>
-                <a href="/logout">
-                    <button class="login">Logout</button>
-                </a>
+                <a href="/accounts#/profile">[= userdata.name =]</a>
+                <a href="/logout" class="btn btn-transparent">Logout</a>
                 [% else %]
                 <a href="/accounts#/join">Join</a>
-                <a href="/accounts#/">
-                    <button class="login">Sign In</button>
-                </a>
+                <a href="/accounts#/" class="btn btn-transparent">Sign In</a>
                 [% endif %]
             </div>
         </div>
-        <!-- /.navbar-collapse -->
+    </div>
 
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-<div class="container-fluid sub-navbar">
-    <div class="container">
-        <ul class="sub-navbar-list">
-            <li><a href="/">Dashboad</a></li>
-            <li><a href="/messages#/inbox">Inbox</a></li>
-            <li><a href="/jobs">My Jobs</a></li>
-            <li><a href="/connections">Connections</a></li>
-            <li><a href="/favorites">Favorites</a></li>
-            <li><a href="/accounts#/profile">Profile</a></li>
-            <li><a href="/accounts#/settings">Settings</a></li>
-        </ul>
-    </div>
-</div>
+    <nav class="sub-navbar">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Dashboad</a></li>
+                <li><a href="/messages#/inbox">Inbox</a></li>
+                <li><a href="/jobs">My Jobs</a></li>
+                <li><a href="/connections">Connections</a></li>
+                <li><a href="/accounts#/settings/profile">Settings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</header>
+

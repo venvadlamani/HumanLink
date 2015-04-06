@@ -1,90 +1,21 @@
-body {
-    overflow: auto!important;
-}
+.accounts-profile {
 
-.phone {
-    font-weight: 200;
-    margin: 0;
-}
+    .profile-banner {
+        width: 100%;
+        height: 300px;
+    }
 
-.name {
-    margin-bottom: 2px;
-}
+    .profile-image {
+        .square(250px);
+        .img-circle();
+        display: inline-block;
+        border: 2px solid @border;
+        margin-top: -120px;
+    }
 
-.profile-banner {
-    height: 300px;
-    background-color: @accent;
-}
+    .profile-info {
+        display: inline-block;
+        margin-left: 20px;
+    }
 
-.edit-profile {
-    border-radius: 0;
-    color: @background;
-    margin-top: 10px
-}
-
-.profile-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 125px;
-    margin-top: -120px;
-    padding: 0;
-    float: left;
-    background-color: @primary;
-}
-
-.profile-info {
-    float: left;
-    margin-left: 20px;
-}
-
-.profile-name {
-    .name();
-
-    font-size: 43px;
-    margin-top: 10px;
-    margin-bottom: 2px;
-}
-
-.profile-phone {
-    .phone();
-}
-
-.care-recipient-header {
-    border-bottom: solid 1px;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-}
-
-.care-recipient {
-    margin: 10px 0;
-}
-
-.add-care-recipient {
-    float: right;
-}
-
-.care-recipient-image {
-    float: left;
-    width: 100px;
-    height: 100px;
-    background-color: @primary;
-}
-
-.care-recipient-info {
-    float: left;
-    margin-left: 10px;
-}
-
-.care-recipient-name {
-    .name();
-    margin-top: 5px;
-}
-
-.care-recipient-phone {
-    .phone();
-}
-
-.money-saved {
-    float: right;
-    margin: 25px 50px 0 0;
 }

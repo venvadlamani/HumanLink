@@ -58,7 +58,7 @@ class BaseHandler(webapp2.RequestHandler):
         See jinja2.default_config for default jinja2 configs."""
         return jinja2.get_jinja2(app=self.app)
 
-    def render(self, template, context):
+    def render(self, template, context={}):
         """Renders a template and writes the result to the response."""
         context['userdata'] = self.user_data
         rv = self.jinja2.render_template(template, **context)
@@ -171,4 +171,5 @@ class BaseHandler(webapp2.RequestHandler):
         self.response.set_status(result['status_code'])
 
     def _is_json_request(self):
-        return self.request.path.endswith('.json')
+        return (self.request.path.endswith('.json')
+                or self.request.content_type == 'application/json')

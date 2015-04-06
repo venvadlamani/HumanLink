@@ -1,64 +1,14 @@
-body, html {
-    height: 100%;
-}
+.landing {
+    h1, h2, h3 {
+        font-family: @serif-font;
+    }
 
-h1, h2, h3, h4, h5, h6, p {
-    font-family: @serif-font;
-}
+    h1 {
+        color: @primary;
+        font-size: floor(@font-size-h1 * 1.1);
+    }
 
-h1 {
-    font-size: 50px;
-}
-
-p {
-    font-size: 20px;
-}
-
-.page-title {
-    color: @background;
-    margin-top: 5px;
-}
-
-.banner {
-    .row();
-
-    background-color: @background;
-    background-position: center top;
-    background-size: cover;
-}
-
-.banner-overlay {
-    padding: 30px;
-    border-radius: 5px;
-    color: #FFF;
-}
-
-.banner1 {
-    .banner();
-    background-image: url('/images/caregiver_grey_right.jpg');
-}
-
-.banner2 {
-    .banner();
-    background-image: url('/images/caregiver_young_grey_right.jpg');
-}
-
-.banner3 {
-    .banner();
-    background-image: url('/images/caregiver_heart.jpg');
-}
-
-.banner4 {
-    .banner();
-    background-image: url('/images/young_lady.jpg');
-}
-
-.contact {
-    text-align: center;
-    padding-top: 50px;
-}
-
-.contact-header {
-    color: @primary;
-    font-size: 70px;
+    p {
+        font-size: floor(@font-size-base * 1.4);
+    }
 }

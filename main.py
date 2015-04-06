@@ -35,9 +35,6 @@ application = webapp2.WSGIApplication([
     webapp2.Route(r'/submit_contact', name='submit_contact', methods=['POST'],
                   handler='controllers.home.Home:submit_contact'),
 
-    webapp2.Route(r'/thankyou', name='thank_you', methods=['GET'],
-                  handler='controllers.home.Home:thankyou'),
-
     webapp2.Route(r'/terms', name='terms', methods=['GET'],
                   handler='controllers.pages.Pages:terms'),
 
