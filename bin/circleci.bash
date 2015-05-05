@@ -6,6 +6,12 @@
 GAE=$HOME/google_appengine/
 GSUTIL=$HOME/gsutil/
 
+# GAE SDK.
+API_CHECK=https://appengine.google.com/api/updatecheck
+SDK_VERSION=$(curl -s $API_CHECK | awk -F '\"' '/release/ {print $2}')
+SDK_URL=https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$SDK_VERSION.zip
+
+
 # Dependencies pre.
 function dep_pre {
     npm install
@@ -23,7 +29,7 @@ function gae_deps {
     # GAE
     if [ ! -d "$GAE" ]; then
       echo ">>> Downloading App Engine SDK..."
-      curl -o $HOME/gae.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.18.zip
+      curl -o $HOME/gae.zip $SDK_URL
       unzip -q -d $HOME $HOME/gae.zip
     fi
 
