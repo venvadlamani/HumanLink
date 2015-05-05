@@ -27,7 +27,7 @@ deployment:
       - ./bin/circleci.bash deploy care-tiger
 
   staging:
-    branch: alpha-version
+    branch: alpha
     commands:
       - ./bin/circleci.bash deploy care-tiger-staging
 
