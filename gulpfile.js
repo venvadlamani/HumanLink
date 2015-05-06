@@ -39,6 +39,7 @@ gulp.task('compile-js', function() {
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         'bower_components/angular-ui-router/release/angular-ui-router.js',
         'app/app.js',
+        'app/*.js',
         'app/components/*/*.js',
         'app/components/*/*/*.js',
     ])
