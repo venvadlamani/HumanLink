@@ -21,7 +21,7 @@ env_args = {
 }
 jinja2.default_config['environment_args'].update(env_args)
 jinja2.default_config['filters'] = {
-    'tojson': json.dumps,
+    'tojson': lambda obj: json.dumps(_json_encode(obj)),
 }
 
 
@@ -38,7 +38,7 @@ def login_required(func):
     def check_login(self, *args, **kwargs):
         if not self.user:
             if self._is_json_request():
-                raise webapp2.HTTPException(code=401)
+                self.abort(401, detail='Authorization required.')
             else:
                 return self.redirect_to('accounts_index')
         else:
@@ -69,7 +69,7 @@ class BaseHandler(webapp2.RequestHandler):
 
         This should be used with a JSON API method."""
         self.response.headers['Content-Type'] = 'application/json'
-        self.response.out.write(json.dumps(response))
+        self.response.out.write(json.dumps(_json_encode(response)))
 
     @webapp2.cached_property
     def session_store(self):
@@ -147,7 +147,6 @@ class BaseHandler(webapp2.RequestHandler):
             'account_type': account.account_type.name,
             'first': account.first,
             'last': account.last,
-            'name': account.first + ' ' + account.last,
             'email': account.email,
             'email_verified': account.email_verified,
             'picture_url': '',
@@ -163,13 +162,34 @@ class BaseHandler(webapp2.RequestHandler):
         logging.exception(exception)
         result = {
             'status': 'error',
-            'status_code': 400,
-            'error_message': 'yo mama',
+            'status_code': getattr(exception, 'code', 400),
+            'error_message': getattr(exception, 'message', 'Unexpected error.'),
         }
         self.response.headers.add_header('Content-Type', 'application/json')
-        self.response.write(json.dumps(result))
+        self.response.write(json.dumps(_json_encode(result)))
         self.response.set_status(result['status_code'])
 
     def _is_json_request(self):
         return (self.request.path.endswith('.json')
                 or self.request.content_type == 'application/json')
+
+
+def _json_encode(obj):
+    """Custom JSON encoder for types that aren't handled by default."""
+    from datetime import datetime
+    from protorpc import messages
+    from google.appengine.ext import ndb
+
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+    if isinstance(obj, messages.Enum):
+        return obj.name
+    if isinstance(obj, (int, long)) and obj >= (1 << 31):
+        return str(obj)
+    if isinstance(obj, ndb.Key):
+        return str(obj.id())
+    if isinstance(obj, dict):
+        return {k: _json_encode(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return map(_json_encode, obj)
+    return obj
