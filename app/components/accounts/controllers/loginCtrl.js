@@ -23,6 +23,10 @@ angular
         };
 
         $scope.login = function (model) {
+            ctrlHelper.reset();
+            if (!model.email || !model.password) {
+                return;
+            }
             ctrlHelper.success = function (data, status, headers, config) {
                 // Redirect to profile page.
                 $window.location.href = HL.baseUrl + '/accounts';

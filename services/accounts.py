@@ -266,7 +266,7 @@ def _create_new_account(email, password_raw, auth_id):
     if not services.email.is_valid_email(email):
         raise exp.ValueExp('Invalid email.')
     if password_raw[0] == ' ' or password_raw[-1] == ' ':
-        raise exp.ValueExp('Password must not start or end white a space.')
+        raise exp.ValueExp('Password must not start or end with white a space.')
     if len(password_raw) < pass_min_len:
         raise exp.ValueExp('Password must be at least {} characters.'
                            .format(pass_min_len))
@@ -277,7 +277,7 @@ def _create_new_account(email, password_raw, auth_id):
         password_raw=password_raw)
     if not success:
         logging.info('Signup failed. email: %s' % email)
-        raise exp.BadRequestExp('Signed failed.')
+        raise exp.BadRequestExp('The email you entered is already registered.')
     return account
 
 
