@@ -43,7 +43,7 @@ function activate_venv {
       virtualenv --python=python2.7 --no-site-packages $venv
     fi
     source $venv/bin/activate
-    pip install -t lib/pip requests mandrill
+    pip install -t lib/pip -r requirements.txt
 }
 
 function deactivate_venv {

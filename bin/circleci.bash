@@ -47,7 +47,7 @@ function gae_deps {
 
     # pip dependencies
     echo '>>> Installing pip libraries'
-    pip install -t lib/pip requests mandrill
+    pip install -t lib/pip -r requirements.txt
 }
 
 # Deployment.
