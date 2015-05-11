@@ -60,7 +60,9 @@ class BaseHandler(webapp2.RequestHandler):
 
     def render(self, template, context={}):
         """Renders a template and writes the result to the response."""
+        flashes = self.session.get_flashes()
         context['userdata'] = self.user_data
+        context['flashes'] = {k: v for k, v in flashes}
         rv = self.jinja2.render_template(template, **context)
         self.response.write(rv)
 
@@ -166,9 +168,14 @@ class BaseHandler(webapp2.RequestHandler):
             'status_code': getattr(exception, 'code', 400),
             'error_message': getattr(exception, 'message', 'Unexpected error.'),
         }
-        self.response.headers.add_header('Content-Type', 'application/json')
-        self.response.write(json.dumps(_json_encode(result)))
-        self.response.set_status(result['status_code'])
+        if self._is_json_request():
+            self.response.headers.add_header('Content-Type', 'application/json')
+            self.response.write(json.dumps(_json_encode(result)))
+            self.response.set_status(result['status_code'])
+        else:
+            alert = {'type': 'danger', 'message': result['error_message']}
+            self.session.add_flash('alert', alert)
+            return self.redirect_to('accounts_index')
 
     def _is_json_request(self):
         return (self.request.path.endswith('.json')

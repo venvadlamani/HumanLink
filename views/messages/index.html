@@ -1,12 +1,13 @@
 [% extends "site.html" %]
 
-[% block title %]
-Messages
-[% endblock %]
+[% block title %] Messages [% endblock %]
+
+[% block ng_app -%] Messages [%- endblock %]
+[% block ng_controller -%] messagesBaseCtrl [%- endblock %]
 
 [% block content %]
 
-<div ng-app="Messages" ng-controller="messagesBaseCtrl">
+<div>
     <div ui-view></div>
 </div>
 

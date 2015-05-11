@@ -9,8 +9,12 @@
     [% block styles %]
     [% endblock %]
 </head>
-<body>
+<body
+    ng-app="[% block ng_app -%] Common [%- endblock %]"
+    ng-controller="[% block ng_controller -%] commonCtrl [%- endblock %]">
+
     [% include "nav.html" %]
+    [% include "site-alert.html" %]
 
     <div class="container container-main">
         <div class="row">

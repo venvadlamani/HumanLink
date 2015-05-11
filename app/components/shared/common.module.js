@@ -14,10 +14,12 @@ angular
                 userSession.update();
             }
         });
-
     }])
     .config(['$compileProvider', function ($compileProvider) {
         if (HL.helpers.isProd()) {
             $compileProvider.debugInfoEnabled(false);
         }
+    }])
+    .controller('commonCtrl', ['$scope', function ($scope) {
+        // Empty.
     }]);
