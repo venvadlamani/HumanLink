@@ -16,16 +16,19 @@ class Accounts(base.BaseHandler):
         self.render('accounts/index.html', {})
 
     def signup_post(self):
-        """Sign-up POST request.
-
-        TODO(kanat): Handle errors properly.
-        """
+        """Sign-up POST request."""
         email = self.request_json['email']
         pass_raw = self.request_json['password']
         pass_raw_conf = self.request_json['password_confirm']
-        logging.info('use me: %s' % pass_raw_conf)
+        account_type = int(self.request_json['account_type'])
+
+        if pass_raw != pass_raw_conf:
+            raise exp.ValueExp('Password does not match confirmation.')
+        if not 0 <= account_type <= 2:
+            raise exp.ValueExp('Invalid account type.')
+
         account = services.accounts.create_account(
-            email, pass_raw, AccountType.Caregiver)
+            email, pass_raw, AccountType(account_type))
         if account:
             logging.info('Signup success. email: %s' % email)
             self.write_json({'status': 'success'})
@@ -46,9 +49,12 @@ class Accounts(base.BaseHandler):
                                            password=pass_raw,
                                            remember=True)
             self.write_json({'status': 'success'})
-        except (auth.InvalidAuthIdError, auth.InvalidPasswordError) as e:
-            logging.info('Invalid auth. email: %s' % email)
-            raise exp.BadRequestExp(e)
+        except auth.InvalidAuthIdError:
+            logging.info('Invalid email: %s' % email)
+            raise exp.BadRequestExp('We do not recognize that email.')
+        except auth.InvalidPasswordError:
+            logging.info('Invalid password. email: %s' % email)
+            raise exp.BadRequestExp('You entered a wrong password.')
 
     @login_required
     def logout(self):

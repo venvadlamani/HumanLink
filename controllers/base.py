@@ -147,6 +147,7 @@ class BaseHandler(webapp2.RequestHandler):
             'account_type': account.account_type.name,
             'first': account.first,
             'last': account.last,
+            'name': (account.first or '') + ' ' + (account.last or ''),
             'email': account.email,
             'email_verified': account.email_verified,
             'picture_url': '',

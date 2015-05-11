@@ -3,7 +3,7 @@
 <div ng-switch-when="join_form">
     <div class="col-md-6 col-md-offset-3 well">
 
-        <h3 class="text-center">Sign up.</h3>
+        <h3 class="text-center">Join HumanLink.</h3>
 
         <form class="form-horizontal" role="form">
 
@@ -11,7 +11,7 @@
             <label for="email" class="col-md-4 control-label">Email</label>
             <div class="col-md-8">
               <input type="email" class="form-control" id="email" placeholder="Email address"
-                     ng-model="signupModel.email">
+                     ng-model="signupModel.email" hl-focus>
             </div>
           </div>
 
@@ -32,13 +32,33 @@
           </div>
 
           <div class="form-group">
+            <label for="password_confirm" class="col-md-4 control-label">Primary use</label>
+            <div class="col-md-8">
+                <div class="radio">
+                  <label>
+                    <input type="radio" ng-model="signupModel.account_type" value="0">
+                    Caregiver
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" ng-model="signupModel.account_type" value="1">
+                    Care seeker
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" ng-model="signupModel.account_type" value="2">
+                    Business or organization
+                  </label>
+                </div>
+            </div>
+          </div>
+
+          <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" ng-model="signupModel.agreed">
-                    I agree to the <a href="/terms" target="_blank">Terms and Conditions</a>.
-                </label>
-              </div>
+              By clicking on "Join for free" below, you are agreeing to the
+              <a href="/terms" target="_blank">Terms and Conditions</a>.
             </div>
           </div>
 
@@ -56,7 +76,8 @@
 </div>
 
 <div ng-switch-when="join_success">
-    <div>Thanks! An email has been sent to <strong>{{ signupModel.email }}</strong> with further instructions.</div>
+    <h3>You're awesome.</h3>
+    <div>An email has been sent to <strong>{{ signupModel.email }}</strong> with further instructions.</div>
 </div>
 
 </div> <!-- ng-switch -->
