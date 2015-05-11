@@ -1,0 +1,39 @@
+<div class="connections-media">
+
+    <div class="jumbotron">
+        <h2 ng-if="connections.length" class="text-center">You have {{ connections.length }} connections.</h2>
+        <h2 ng-if="!connections.length" class="text-center">You have no connections at this time.</h2>
+    </div>
+
+    <div ng-repeat="connection in connections">
+        <div class="col-md-6">
+            <div class="panel panel-connections">
+                <div class="panel-heading-connections text-center">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="//placehold.it/100x100" class="img-circle-connections">
+                        </div>
+                        <div class="col-md-8">
+                            <h2>{{ connection.first }} {{ connection.last }}</h2>
+                            <h5>{{ connection.account_type }}</h5>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+                        <button class="btn btn-sm btn-default" ng-click="messageConnection(connection.account_id)">
+                            <span class="glyphicon glyphicon-envelope"> Message</span>
+                        </button>
+                        <button class="btn btn-sm btn-default" ng-click="removeConnection(connection.account_id)">
+                            <span class="glyphicon glyphicon-remove"> Remove</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -7,7 +7,18 @@ Connections
 [% block content %]
 
 <div ng-app="Connections" ng-controller="connectionsBaseCtrl">
-    <div ui-view></div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="settings-side-nav">
+                <ul class="list-unstyled">
+                    <li><a href="#/all">All</a></li>
+                    <li><a href="#/favorites">Favorites</a></li>
+                    <li><a href="#/pending">Pending</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10" ui-view></div>
+    </div>
 </div>
 
 [% endblock %]
