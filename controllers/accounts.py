@@ -69,3 +69,16 @@ class Accounts(base.BaseHandler):
         :return: a dictionary of small subset of account information.
         """
         self.write_json(self.user_data)
+
+    def verify_email(self):
+        """Verify an account's email."""
+        email = self.request.get('email', '')
+        token = self.request.get('token', '')
+        try:
+            account = services.accounts.verify_email(email, token)
+            msg = '{} has been confirmed.'.format(account.email)
+            alert = {'type': 'success', 'message': msg}
+        except exp.BadRequestExp as e:
+            alert = {'type': 'danger', 'message': e.message}
+        self.session.add_flash('alert', alert)
+        return self.redirect('/accounts#/settings/profile')

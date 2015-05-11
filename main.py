@@ -29,6 +29,9 @@ application = webapp2.WSGIApplication([
     webapp2.Route(r'/signup.json', name='signup_post', methods=['POST'],
                   handler='controllers.accounts.Accounts:signup_post'),
 
+    webapp2.Route(r'/verify', name='verify_email', methods=['GET'],
+                  handler='controllers.accounts.Accounts:verify_email'),
+
     webapp2.Route(r'/accounts/userdata.json', name='userdata', methods=['GET'],
                   handler='controllers.accounts.Accounts:userdata'),
 

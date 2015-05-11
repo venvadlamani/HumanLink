@@ -41,8 +41,7 @@ def create_account(email, password_raw, account_type, auth_id_pre='local:',
     _account_setup(account_type, account)
 
     # Async email.
-    # Uncomment once the SSL issue is fixed.
-    # services.email.send_email_verification(account.id)
+    services.email.send_email_verification(account.id)
     if not _dto:
         return account
     return AccountDto.from_account_ndb(account)
@@ -69,8 +68,8 @@ def account_by_id(account_id, _dto=True):
     """Returns the account associated with the given account_id.
 
     :param account_id: (int) ID of the account.
-    :return: (dto.accounts.AccountDto) if _dto is True
-             (kinds.accounts.Account) if _dto is False
+    :return: (dto.accounts.AccountDto) if _dto is True.
+             (kinds.accounts.Account) if _dto is False.
              (None) if account does not exist.
     """
     asserts.valid_id_type(account_id)
@@ -78,6 +77,24 @@ def account_by_id(account_id, _dto=True):
     account = Account.get_by_id(account_id)
     if account is None:
         logging.warning('account not found. id={}'.format(account_id))
+    if not _dto:
+        return account
+    return AccountDto.from_account_ndb(account)
+
+
+def account_by_email(email, _dto=True):
+    """Returns the account associated with the given email address.
+
+    :param email: (int) ID of the account.
+    :return: (dto.accounts.AccountDto) if _dto is True.
+             (kinds.accounts.Account) if _dto is False.
+             (None) if account does not exist.
+    """
+    asserts.type_of(email, basestring)
+
+    account = Account.query(Account.email == email.lower()).get()
+    if account is None:
+        logging.warning('account not found. email={}'.format(email))
     if not _dto:
         return account
     return AccountDto.from_account_ndb(account)
@@ -104,6 +121,29 @@ def account_meta(account_id):
     """
     account = account_by_id(account_id, _dto=False)
     return UserDto.from_account_ndb(account)
+
+
+def verify_email(email, token, _dto=True):
+    """Verifies the given email verification token.
+
+    :param email: (str) Email address.
+    :param token: (str) Verification token.
+    :return: Updated account.
+    """
+    asserts.type_of(email, basestring)
+    asserts.type_of(token, basestring)
+
+    account = account_by_email(email, _dto=False)
+    if account is None:
+        raise exp.NotFoundExp('Email address not found.')
+    if account.verification_token != token:
+        raise exp.BadRequestExp('Invalid verification token.')
+    if not account.email_verified:
+        account.email_verified = True
+        account.put()
+    if _dto:
+        return AccountDto.from_account_ndb(account)
+    return account
 
 
 def caregiver_by_account(account_id, _dto=True):

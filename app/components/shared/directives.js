@@ -16,7 +16,7 @@ angular
     });
 
 /**
- * A directive that attaches some data to the current scope.
+ * Attaches some data to the current scope.
  * Example:
  *   <hl-preload hl-key="foo" hl-value='{"a": "z", "b": [1, 2]}'></<hl-preload>
  *   will result in the current $scope to have a "foo" property with the
