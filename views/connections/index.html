@@ -1,12 +1,13 @@
 [% extends "site.html" %]
 
-[% block title %]
-Connections
-[% endblock %]
+[% block title %] Connections [% endblock %]
+
+[% block ng_app -%] Connections [%- endblock %]
+[% block ng_controller -%] connectionsBaseCtrl [%- endblock %]
 
 [% block content %]
 
-<div ng-app="Connections" ng-controller="connectionsBaseCtrl">
+<div>
     <div ui-view></div>
 </div>
 
