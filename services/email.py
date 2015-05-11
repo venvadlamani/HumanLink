@@ -5,6 +5,7 @@ import configs
 import logging
 import mandrill
 import re
+import urllib
 
 
 # Basic email sanity check.
@@ -41,10 +42,10 @@ class EmailService(object):
             ID of the Account entity.
         :return: (None)
         """
-        account = services.accounts.account_by_id(account_id)
+        account = services.accounts.account_by_id(account_id, _dto=False)
 
-        verif_url = ('http://humanlink.co/accounts#/verify/'
-                     + account.verification_token)
+        qs = {'email': account.email, 'token': account.verification_token}
+        verif_url = ('https://www.humanlink.co/verify?' + urllib.urlencode(qs))
         message = {
             'global_merge_vars': [
                 {'name': 'VERIFICATION_URL', 'content': verif_url},
