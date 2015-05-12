@@ -55,6 +55,13 @@
             </div>
           </div>
 
+          <!-- Recaptcha. -->
+          <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+              <div id="grecaptcha"></div>
+            </div>
+          </div>
+
           <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
               By clicking on "Join for free" below, you are agreeing to the
@@ -81,3 +88,10 @@
 </div>
 
 </div> <!-- ng-switch -->
+
+<script type="text/javascript">
+    var grecaptchaInit = function () {
+        grecaptcha.render('grecaptcha', {'sitekey': '6LcsugYTAAAAACEkYJaoM5YNYIZZPisE8mLhKHIR'});
+    };
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=grecaptchaInit&render=explicit" async defer></script>
