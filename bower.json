@@ -11,7 +11,8 @@
     "angular": "~1.3",
     "angular-bootstrap": "latest",
     "angular-ui-router": "~0.2",
-    "bootstrap": "~3"
+    "bootstrap": "~3",
+    "checklist-model": "~0.2"
   },
   "resolutions": {
     "angular": "~1.3"

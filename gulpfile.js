@@ -38,8 +38,10 @@ gulp.task('compile-js', function() {
         'bower_components/angular/angular.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         'bower_components/angular-ui-router/release/angular-ui-router.js',
+        'bower_components/checklist-model/checklist-model.js',
         'app/app.js',
         'app/*.js',
+        'app/components/*/*module.js',
         'app/components/*/*.js',
         'app/components/*/*/*.js',
     ])
