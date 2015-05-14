@@ -3,9 +3,9 @@
             hl-value='[= flashes.alert | tojson | safe =]'></hl-preload>
 [% endif %]
 
-<div id="site-alert" ng-if="siteAlert" ng-cloak>
+<div id="site-alert" ng-if="siteAlert.message" ng-cloak>
     <span id="site-alert-box" ng-class="'alert alert-dismissible alert-' + siteAlert.type">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          {{ ::siteAlert.message }}
+          <button type="button" class="close" ng-click="siteAlert.message = null">&times;</button>
+          {{ siteAlert.message }}
     </span>
 </div>

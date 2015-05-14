@@ -14,6 +14,9 @@ angular
                 userSession.update();
             }
         });
+
+        // siteAlert is global.
+        $rootScope.siteAlert = {};
     }])
     .config(['$compileProvider', function ($compileProvider) {
         if (HL.helpers.isProd()) {
