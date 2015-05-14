@@ -43,7 +43,7 @@ class Accounts(base.BaseHandler):
         """
         email = self.request_json['email']
         pass_raw = self.request_json['password']
-        auth_id = 'local:' + email
+        auth_id = 'local:' + email.lower()
         try:
             self.auth.get_user_by_password(auth_id=auth_id,
                                            password=pass_raw,
