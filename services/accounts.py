@@ -64,19 +64,21 @@ def login(email, password_raw, auth_id_pre='local:'):
     return AccountDto.from_account_ndb(account)
 
 
-def account_by_id(account_id, _dto=True):
+def account_by_id(account_id, _dto=True, _throw=True):
     """Returns the account associated with the given account_id.
 
     :param account_id: (int) ID of the account.
     :return: (dto.accounts.AccountDto) if _dto is True.
              (kinds.accounts.Account) if _dto is False.
              (None) if account does not exist.
+    :raise: (exp.NotFoundExp) if `_throw` is True and account is not found.
     """
     asserts.valid_id_type(account_id)
 
     account = Account.get_by_id(account_id)
-    if account is None:
+    if account is None and _throw:
         logging.warning('account not found. id={}'.format(account_id))
+        raise exp.NotFoundExp('Account not found.')
     if not _dto:
         return account
     return AccountDto.from_account_ndb(account)
@@ -123,6 +125,43 @@ def account_meta(account_id):
     return UserDto.from_account_ndb(account)
 
 
+def account_update(actor_id, account_dto, _dto=True):
+    """Updates account information.
+
+    :param actor_id: (int) ID of the account.
+    :param account_dto: (dto.accounts.AccountDto) DTO with updated information.
+    :return: (dto.accounts.AccountDto) if _dto is True.
+             (kinds.accounts.Account) if _dto is False.
+    """
+    asserts.type_of(account_dto, AccountDto)
+
+    ac = account_by_id(actor_id, _dto=False)
+    acd = account_dto
+
+    def has_changed(pdto, pndb):
+        return pdto is not None and pdto != pndb
+
+    if ac.id != acd.id:
+        raise exp.PermissionExp()
+    if has_changed(acd.first, ac.first):
+        ac.first = acd.first
+    if has_changed(acd.last, ac.last):
+        ac.last = acd.last
+    if has_changed(acd.phone_number, ac.phone_number):
+        ac.phone_number = acd.phone_number
+    if has_changed(acd.account_type, ac.account_type):
+        ac.account_type = acd.account_type
+        # First-time caregiver.
+        if ac.account_type == AccountType.Caregiver and ac.caregiver_id is None:
+            caregiver = Caregiver(account_id=ac.id)
+            caregiver.put()
+            ac.caregiver_id = caregiver.id
+    ac.put()
+    if _dto:
+        return AccountDto.from_account_ndb(ac)
+    return ac
+
+
 def verify_email(email, token, _dto=True):
     """Verifies the given email verification token.
 
@@ -134,8 +173,6 @@ def verify_email(email, token, _dto=True):
     asserts.type_of(token, basestring)
 
     account = account_by_email(email, _dto=False)
-    if account is None:
-        raise exp.NotFoundExp('Email address not found.')
     if account.verification_token != token:
         raise exp.BadRequestExp('Invalid verification token.')
     if not account.email_verified:
@@ -157,17 +194,16 @@ def caregiver_by_account(account_id, _dto=True):
     asserts.valid_id_type(account_id)
 
     account = account_by_id(account_id, _dto=False)
-    if account is not None:
-        if not asserts.is_valid_id_type(account.caregiver_id):
-            raise exp.BadRequestExp()
-        caregiver = Caregiver.get_by_id(account.caregiver_id)
-        if not _dto:
-            return caregiver
-        return CaregiverDto.from_caregiver_ndb(caregiver)
+    if not asserts.is_valid_id_type(account.caregiver_id):
+        raise exp.BadRequestExp()
+    caregiver = Caregiver.get_by_id(account.caregiver_id)
+    if not _dto:
+        return caregiver
+    return CaregiverDto.from_caregiver_ndb(caregiver)
 
 
 def caregiver_update(actor_id, caregiver_dto, _dto=True):
-    """Updates the caregiver associated to the given account.
+    """Updates the caregiver information associated with the given account.
 
     :param actor_id: (int) ID of the account performing the action.
     :param caregiver_dto: (dto.accounts.CaregiverDto) caregiver DTO from
@@ -175,19 +211,52 @@ def caregiver_update(actor_id, caregiver_dto, _dto=True):
     :return: (dto.accounts.CaregiverDto) if _dto is True
              (kinds.accounts.Caregiver) if _dto is False
     """
-    caregiver_ndb = caregiver_by_account(actor_id, _dto=False)
+    asserts.type_of(caregiver_dto, CaregiverDto)
 
-    for k in caregiver_dto._props:
-        if not hasattr(caregiver_dto, k):
-            continue
-        v = getattr(caregiver_dto, k)
-        if v is not None:
-            setattr(caregiver_ndb, k, v)
+    cg = caregiver_by_account(actor_id, _dto=False)
+    cgd = caregiver_dto
 
-    caregiver_ndb.put()
+    def has_changed(pdto, pndb):
+        return pdto is not None and pdto != pndb
+
+    if has_changed(cgd.zipcode, cg.zipcode):
+        cg.zipcode = cgd.zipcode
+    if has_changed(cgd.gender, cg.gender):
+        cg.gender = cgd.gender
+    if has_changed(cgd.dob, cg.dob):
+        cg.dob = cgd.dob
+    if has_changed(cgd.headline, cg.headline):
+        if len(cgd.headline) > 100:
+            cgd.headline = cgd.headline[:100]
+        cg.headline = cgd.headline
+    if has_changed(cgd.bio, cg.bio):
+        if len(cgd.bio) > 5000:
+            cgd.bio = cgd.bio[:5000]
+        cg.bio = cgd.bio
+
+    if has_changed(cgd.care_services, cg.care_services):
+        cg.care_services = cgd.care_services
+    if has_changed(cgd.gender_preference, cg.gender_preference):
+        cg.gender_preference = cgd.gender_preference
+    if has_changed(cgd.expertise, cg.expertise):
+        cg.expertise = cgd.expertise
+    if has_changed(cgd.licenses, cg.licenses):
+        cg.licenses = cgd.licenses
+    if has_changed(cgd.certifications, cg.certifications):
+        cg.certifications = cgd.certifications
+    if has_changed(cgd.transportation, cg.transportation):
+        cg.transportation = cgd.transportation
+    if has_changed(cgd.languages, cg.languages):
+        cg.languages = cgd.languages
+    if has_changed(cgd.allergies, cg.allergies):
+        cg.allergies = cgd.allergies
+    if has_changed(cgd.live_in, cg.live_in):
+        cg.live_in = cgd.live_in
+
+    cg.put()
     if not _dto:
-        return caregiver_ndb
-    return CaregiverDto.from_caregiver_ndb(caregiver_ndb)
+        return cg
+    return CaregiverDto.from_caregiver_ndb(cg)
 
 
 def patients_by_account(account_id, _dto=True):
@@ -196,12 +265,12 @@ def patients_by_account(account_id, _dto=True):
     :param account_id: (int) ID of the account.
     :return: (list<dto.accounts.PatientDto>) if _dto is True
              (list<kinds.accounts.Patient>) if _dto is False
-             (None) if account or patients don't exist.
+             (None) if patients don't exist.
     """
     asserts.valid_id_type(account_id)
 
     account = account_by_id(account_id, _dto=False)
-    if account is not None and account.patient_ids is not None:
+    if account.patient_ids is not None:
         keys = Patient.ids_to_keys(account.patient_ids)
         patients = ndb.get_multi(keys)
         if not _dto:
@@ -221,13 +290,12 @@ def patient_by_id(actor_id, patient_id, _dto=True):
     asserts.valid_id_type(patient_id)
 
     account = account_by_id(actor_id, _dto=False)
-    if account is not None:
-        if patient_id not in account.patient_ids:
-            raise exp.PermissionExp()
-        patient = Patient.get_by_id(patient_id)
-        if not _dto:
-            return patient
-        return PatientDto.from_patient_ndb(patient)
+    if patient_id not in account.patient_ids:
+        raise exp.PermissionExp()
+    patient = Patient.get_by_id(patient_id)
+    if not _dto:
+        return patient
+    return PatientDto.from_patient_ndb(patient)
 
 
 def patient_remove(actor_id, patient_id):
@@ -249,7 +317,7 @@ def patient_remove(actor_id, patient_id):
 
 
 def patient_update(actor_id, patient_dto, _dto=True):
-    """Create or update a single patient from the given account.
+    """Creates or updates a single patient for the given account.
 
     :param actor_id: (int) ID of the account performing the action.
     :param patient_dto: (dto.accounts.PatientDto) patient DTO from request.

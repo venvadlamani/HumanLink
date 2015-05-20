@@ -73,8 +73,9 @@ class State(messages.Enum):
 
 
 class Gender(messages.Enum):
-    Male = 0
+    Other = 0
     Female = 1
+    Male = 2
 
 
 class Language(messages.Enum):
@@ -112,16 +113,9 @@ class Expertise(messages.Enum):
 
 
 class CareService(messages.Enum):
-    BathingDressingGrooming = 0
-    Companionship = 1
-    EatingAssistance = 2
-    GastrointestinalCare = 3
-    LightHousekeeping = 4
-    MealPreparation = 5
-    MedicationManagement = 6
-    MobilityAssistance = 7
-    ToiletingAndIncontinence = 8
-    Transportation = 9
+    Companion = 0
+    Personal = 1
+    AlzheimerDimentia = 2
 
 
 class Address(EndpointsModel):
@@ -138,14 +132,15 @@ class License(EndpointsModel):
     """A license that a caregiver has."""
     name = ndb.StringProperty(required=True)
     state = msgprop.EnumProperty(State)
-    date = ndb.DateProperty()
+    number = ndb.StringProperty()
+    date = ndb.DateProperty(indexed=False)
 
 
 class Certification(EndpointsModel):
     """A certification that a caregiver has."""
     name = ndb.StringProperty(required=True)
     state = msgprop.EnumProperty(State)
-    date = ndb.DateProperty()
+    date = ndb.DateProperty(indexed=False)
 
 
 class WorkExperience(EndpointsModel):
@@ -155,3 +150,17 @@ class WorkExperience(EndpointsModel):
     job_description = ndb.TextProperty()
     start_date = ndb.DateProperty()
     end_date = ndb.DateProperty()
+
+
+class Allergy(messages.Enum):
+    """Allergies."""
+    Cats = 0
+    Dogs = 1
+    Smoking = 2
+
+
+class Transportation(messages.Enum):
+    """Transportation options."""
+    CanProvide = 0
+    CanDrive = 1
+    NotDrive = 2

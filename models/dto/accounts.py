@@ -70,8 +70,10 @@ class UserDto(object):
 class CaregiverDto(object):
 
     _props = [
-        'gender', 'dob', 'bio', 'languages', 'licenses', 'work_experience',
-        'work_experience', 'certifications', 'careservices',
+        'gender', 'care_services', 'zipcode', 'gender', 'dob',
+        'headline', 'bio', 'languages', 'licenses',
+        'certifications', 'expertise', 'gender_preference', 'allergies',
+        'transportation', 'live_in'
     ]
 
     @classmethod

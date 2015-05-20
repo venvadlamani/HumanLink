@@ -3,12 +3,14 @@ from models.kinds import base
 from models.kinds.structs import (
     AccountType,
     Address,
+    Allergy,
+    CareService,
+    Certification,
+    Expertise,
     Gender,
     Language,
     License,
-    CareService,
-    Certification,
-    WorkExperience,
+    Transportation,
 )
 
 import hashlib
@@ -26,8 +28,10 @@ class Account(base.Base, auth_models.User):
     email = ndb.StringProperty(required=True)
     # Primary account type.
     account_type = msgprop.EnumProperty(AccountType)
-    first = ndb.StringProperty()
-    last = ndb.StringProperty()
+    first = ndb.StringProperty(indexed=False)
+    last = ndb.StringProperty(indexed=False)
+    names = ndb.ComputedProperty(
+        lambda self: [self.first.lower(), self.last.lower()], repeated=True)
     # Facebook ID associated with the account.
     fbid = ndb.StringProperty(indexed=False)
     # Whether the email has been verified or not.
@@ -38,7 +42,6 @@ class Account(base.Base, auth_models.User):
     #   https://github.com/daviddrysdale/python-phonenumbers
     phone_number = ndb.IntegerProperty()
     phone_number_verified = ndb.IntegerProperty(indexed=False)
-    address = ndb.StructuredProperty(Address)
     # accounts.Caregiver ID.
     caregiver_id = ndb.IntegerProperty()
     # accounts.Patient IDs.
@@ -57,15 +60,24 @@ class Account(base.Base, auth_models.User):
 
 class Caregiver(base.Base):
     """Caregiver specific details."""
-    account_id = ndb.IntegerProperty(required=True)
-    gender = msgprop.EnumProperty(Gender)
-    dob = ndb.DateProperty()
-    bio = ndb.TextProperty()
-    languages = msgprop.EnumProperty(Language, repeated=True)
+    account_id = ndb.IntegerProperty(required=True, indexed=False)
+    care_services = msgprop.EnumProperty(CareService, repeated=True)
+    zipcode = ndb.IntegerProperty()
+    gender = msgprop.EnumProperty(Gender, indexed=True)
+    dob = ndb.DateTimeProperty()
+    headline = ndb.StringProperty(indexed=False)
+    bio = ndb.TextProperty(indexed=False)
+    languages = msgprop.EnumProperty(Language, repeated=True, indexed=True)
     licenses = ndb.StructuredProperty(License, repeated=True)
-    work_experience = ndb.StructuredProperty(WorkExperience, repeated=True)
     certifications = ndb.StructuredProperty(Certification, repeated=True)
-    careservices = msgprop.EnumProperty(CareService, repeated=True)
+    expertise = msgprop.EnumProperty(Expertise, repeated=True, indexed=True)
+    gender_preference = msgprop.EnumProperty(Gender, indexed=True)
+    allergies = msgprop.EnumProperty(Allergy, repeated=True, indexed=True)
+    transportation = msgprop.EnumProperty(
+        Transportation, repeated=True, indexed=True)
+    live_in = ndb.BooleanProperty(default=False)
+    # TODO: Find out if work experience is actually needed.
+    #work_experience = ndb.StructuredProperty(WorkExperience, repeated=True)
 
 
 class Patient(base.Base):

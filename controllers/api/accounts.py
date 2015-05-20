@@ -4,7 +4,8 @@ from controllers.api.base import (
     handle_exception,
     humanlink_api,
     get_current_user,
-    user_required
+    user_required,
+    refresh_userdata,
 )
 from models.api.accounts import (
     AccountApiModel,
@@ -41,10 +42,19 @@ class AccountsApi(remote.Service):
     @user_required
     def account_update(self, req):
         """Update account information."""
-        raise NotImplementedError('account.update: not implemented')
+        try:
+            actor = get_current_user()
+            account_dto = AccountApiModel.to_account_dto(req)
+            account_dto = services.accounts.account_update(actor.id,
+                                                           account_dto)
+            api_model = AccountApiModel.from_account_dto(account_dto)
+            refresh_userdata()
+            return api_model
+        except exp.ServiceExp as e:
+            handle_exception(e)
 
     @SimpleRequest.method(name='caregiver', path='caregiver', http_method='GET',
-                          request_fields=(),
+                          request_fields=('account_id',),
                           response_message=CaregiverApiModel.ProtoModel())
     @user_required
     def caregiver(self, req):
