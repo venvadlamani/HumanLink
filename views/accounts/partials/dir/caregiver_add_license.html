@@ -1,0 +1,31 @@
+<form class="form-horizontal small">
+    <div class="form-group">
+        <label for="license-state" class="col-md-4 control-label">
+            <small>State Issued</small></label>
+        <div class="col-md-8">
+            <select id="license-state" class="form-control input-sm"
+                    ng-model="license" ng-options="s.name for s in states"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="license-name" class="col-md-4 control-label">
+            <small>License Name</small></label>
+        <div class="col-md-8">
+            <input type="text" id="license-name" class="form-control input-sm"
+                   placeholder="Certified Nursing Assistant" maxlength="100" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="license-number" class="col-md-4 control-label">
+            <small>License Number</small></label>
+        <div class="col-md-8">
+            <input type="text" id="license-number" class="form-control input-sm"
+                   maxlength="25" />
+        </div>
+    </div>
+    <div class="text-center small">
+        <button type="button" class="btn btn-sm btn-primary">Add License</button>
+        <button type="button" class="btn btn-sm btn-link"
+                ng-click="showLicenseForm = false">Close</button>
+    </div>
+</form>

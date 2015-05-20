@@ -30,7 +30,6 @@ class AccountApiModel(BaseApiModel):
     fbid = Account.fbid
     phone_number = Account.phone_number
     phone_number_verified = Account.phone_number_verified
-    address = Account.address
 
     @classmethod
     def to_account_dto(cls, account_api):
@@ -83,14 +82,20 @@ class UserApiModel(BaseApiModel):
 
 class CaregiverApiModel(BaseApiModel):
     """Represents an account's caregiver details."""
+    care_services = Caregiver.care_services
+    zipcode = Caregiver.zipcode
     gender = Caregiver.gender
     dob = Caregiver.dob
+    headline = Caregiver.headline
     bio = Caregiver.bio
     languages = Caregiver.languages
     licenses = Caregiver.licenses
-    work_experience = Caregiver.work_experience
     certifications = Caregiver.certifications
-    careservices = Caregiver.careservices
+    expertise = Caregiver.expertise
+    gender_preference = Caregiver.gender_preference
+    allergies = Caregiver.allergies
+    transportation = Caregiver.transportation
+    live_in = Caregiver.live_in
 
     @classmethod
     def to_caregiver_dto(cls, caregiver_api):

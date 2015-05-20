@@ -28,19 +28,6 @@ def user_required(func):
     return check_login
 
 
-def get_current_user():
-    """Returns the user who is currently logged in on the website.
-
-    Since GAE allows authentication with Google Accounts only, this is a
-    very hacky way to check if a user is authenticated on the website.
-    """
-    req = webapp2.Request(dict(os.environ))
-    req.app = webapp2.WSGIApplication(config=main.config)
-
-    fake_handler = base.BaseHandler(request=req)
-    return fake_handler.user_model
-
-
 def handle_exception(e):
     """Raises an exception with appropriate HTTP status code."""
     maps = {
@@ -51,3 +38,32 @@ def handle_exception(e):
         exp.BadRequestExp: api_exceptions.BadRequestException,
     }
     raise maps[e.__class__](e.message)
+
+
+class FakeRequest(object):
+    """Simulates a webapp2 request.
+
+    Since authentication is handled using cookies on the webapp2 side,
+    this class simulates a webapp2 request.
+    """
+
+    @property
+    def handler(self):
+        if not getattr(self, '_handler', None):
+            req = webapp2.Request(dict(os.environ))
+            req.app = webapp2.WSGIApplication(config=main.config)
+            self._handler = base.BaseHandler(request=req)
+        return self._handler
+
+    def get_current_user(self):
+        """Returns the user who is currently logged in on the website."""
+        return self.handler.user_model
+
+    def refresh_userdata(self):
+        """Refreshes userdata that is in the memcache."""
+        self.handler._store_userdata()
+
+
+fake_request = FakeRequest()
+get_current_user = fake_request.get_current_user
+refresh_userdata = fake_request.refresh_userdata

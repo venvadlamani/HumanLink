@@ -21,6 +21,7 @@ angular
         var GCE_BASE = getGceBase();
 
         var Accounts = {
+            caregiver: {},
             patients: {}
         };
         var Billing = {};
@@ -87,6 +88,18 @@ angular
 
         Accounts.get = function (id, ctrlHelper) {
             apiRequest('GET', 'accounts/' + id, {}, ctrlHelper, true);
+        };
+
+        Accounts.update = function (data, ctrlHelper) {
+            apiRequest('POST', 'accounts/update', data, ctrlHelper, true);
+        };
+
+        Accounts.caregiver.get = function (accountId, ctrlHelper) {
+            apiRequest('GET', 'accounts/caregiver', {}, ctrlHelper, true);
+        };
+
+        Accounts.caregiver.update = function (data, ctrlHelper) {
+            apiRequest('POST', 'accounts/caregiver/update', data, ctrlHelper, true);
         };
 
         Accounts.patients.list = function (ctrlHelper) {
