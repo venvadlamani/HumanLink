@@ -2,34 +2,67 @@
 
 angular
     .module('Accounts')
-    .controller('settingsProfileCtrl', ['$scope', function ($scope) {
+    .controller('settingsProfileCtrl',
+    ['$scope', '$window', 'Constants', 'userSession', 'apiService',
+    function ($scope, $window, Constants, userSession, apiService) {
 
-        $scope.account = {
-            careReceivers: [
-                {
-                    name: 'John Doe',
-                    email: 'john@gmail.com',
-                    allergies: []
-                },
-                {
-                    name: 'Jane Doe',
-                    allergies: ['Peanuts', 'Dogs']
+        var userdata = userSession.userdata;
+        var templBase = '/views/accounts/partials/settings/';
+        var updateReq = new HL.CtrlHelper();
+
+        // Placeholder until initial data is loaded.
+        $scope.account = userdata;
+        $scope.accountForm = angular.copy($scope.account);
+
+        $scope.secondaryTemplate = {
+            "Caregiver": templBase + 'profile_caregiver.html',
+            "Careseeker": templBase + 'profile_careseeker.html'
+        };
+
+        $scope.accountTypes = Constants.accountTypes;
+
+        $scope.update = function (model) {
+            if (!validate(model)) {
+                return;
+            }
+            updateReq.success = function (data, status) {
+                fetch(data, status);
+                $scope.siteAlert.type = "success";
+                $scope.siteAlert.message = "Changes have been saved.";
+            };
+            updateReq.failure = function (data, status) {
+                $scope.siteAlert.type = "danger";
+                $scope.siteAlert.message = "Uh-oh, there was a problem.";
+            };
+            apiService.Accounts.update(model, updateReq);
+        };
+
+        var fetch = function (data, status) {
+            // Full-refresh on name change since it is on the navbar.
+            if (userdata.first != data.first ||
+                userdata.last != data.last) {
+                $window.location.reload();
+            }
+            $scope.account = data;
+            $scope.accountForm = angular.copy(data);
+        };
+
+        var validate = function (model) {
+            if (model.phone_number) {
+                if (!HL.helpers.isValidPhone(model.phone_number)) {
+                    return false;
                 }
-            ]
+                // Endpoint expects an integer.
+                model.phone_number = model.phone_number.replace(/\D/g,'');
+            }
+            return true;
         };
 
-        $scope.states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC',
-        'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME',
-        'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
-        'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD',
-        'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
-
-        $scope.addAllergy = function (careReceiver) {
-            careReceiver.allergies.push('');
+        var init = function() {
+            updateReq.success = function (data, status) {
+                fetch(data, status);
+            };
+            apiService.Accounts.get(userdata.account_id, updateReq);
         };
-
-        $scope.addCareReceiver = function () {
-            $scope.account.careReceivers.push({ name: 'New Care Receiver' });
-        };
-
+        init();
     }]);

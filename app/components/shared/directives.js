@@ -33,3 +33,31 @@ angular
             }
         };
     });
+
+
+/**
+ * Selects a boolean in <select> options.
+ * This is to fix an AngularJS problem:
+ *     https://github.com/angular/angular.js/issues/6297
+ */
+angular
+    .module('Common')
+    .directive('hlSelectBoolean', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModel) {
+                ngModel.$parsers.push(function (value) {
+                    if (value === 'true' || value === 'false') {
+                        return value === 'true';
+                    }
+                    return null;
+                });
+                ngModel.$formatters.push(function (value) {
+                    if (typeof(value) === 'boolean') {
+                        return value ? 'true' : 'false';
+                    }
+                    return '';
+                });
+            }
+        };
+    });

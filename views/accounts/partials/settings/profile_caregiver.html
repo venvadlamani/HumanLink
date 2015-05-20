@@ -1,0 +1,276 @@
+<div ng-controller="settingsProfileCaregiverCtrl">
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Tell Us About Yourself</h2>
+    </div>
+    <form class="form-horizontal" ng-submit="caregiverUpdate(caregiverForm)">
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="caregiver-zipcode" class="col-md-3 control-label">
+                    Where do you live?</label>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="text" id="caregiver-zipcode" class="form-control"
+                                   ng-model="caregiverForm.zipcode" placeholder="72701"
+                                   pattern="\d{5}(-\d{4})?" maxlength="10"/>
+                        </div>
+                    </div>
+                    <p class="help-block">Enter your zip code - we will match you with jobs in your area.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="caregiver-year" class="col-md-3 control-label">
+                    What is your birth year?</label>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="text" id="caregiver-year" class="form-control"
+                                   ng-model="caregiverForm.year" placeholder="1980"
+                                   pattern="\d{4}" maxlength="4"/>
+                        </div>
+                    </div>
+                    <p class="help-block">Blob text.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="caregiver-gender" class="col-md-3 control-label">
+                    What is your gender?</label>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <select id="caregiver-gender" class="form-control"
+                                    ng-model="caregiverForm.gender">
+                                <option value="Other">Prefer not to share</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="help-block">Blob text.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="caregiver-headline" class="col-md-3 control-label">
+                    Your Headline</label>
+                <div class="col-md-7">
+                    <input type="text" id="caregiver-headline" class="form-control"
+                            ng-model="caregiverForm.headline" maxlength="100"/>
+                    <span class="help-block">
+                        Your headline is a one sentence description of you that is shown along with your name.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="caregiver-bio" class="col-md-3 control-label">
+                    Describe Yourself</label>
+                <div class="col-md-7">
+                    <textarea id="caregiver-bio" class="form-control"
+                              ng-model="caregiverForm.bio" rows="8" maxlength="5000"></textarea>
+                    <div class="help-block">
+                        <p>HumanLink is built on trust.
+                        Our care seekers want to know that you are compassionate and caring.
+                        This is your opportunity to let them know about your compassion.
+                        Taking a few minutes to build a great online profile can increase your chances of getting noticed.</p>
+
+                        <p>Tell our users what makes you an awesome caregiver: why should they hire you?
+                        If you are a volunteer at an organization that helps your community or
+                        if you are religious or spiritual share why it is important to you.</p>
+
+                        <p>Tell our users about things you like: what are 5 things you can't live without?
+                        Share your favorite travel destinations, books, movies, shows, music, food.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="panel-footer text-center">
+             <button type="submit" class="btn btn-primary"
+                     ng-disabled="updateReq.isLoading">Save</button>
+         </div>
+    </form>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Help Care Seekers Discover You</h2>
+    </div>
+    <form class="form-horizontal" ng-submit="caregiverUpdate(caregiverDetails)">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Care Services</label>
+                <div class="col-md-9">
+                    <div class="checkbox" ng-repeat="care in ::careServices">
+                        <label>
+                            <input type="checkbox"
+                                   checklist-model="caregiverDetails.care_services"
+                                   checklist-value="care.name">
+                                   {{ care.description }} <small class="text-muted">({{ care.skills }})</small>
+                        </label>
+                    </div>
+                    <p class="help-block">
+                        Select types of care services you are willing to provide</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="caregiver-gender-pref">
+                    Gender Preference</label>
+                <div class="col-md-9">
+                    <select id="caregiver-gender-pref" class="form-control"
+                            ng-model="caregiverDetails.gender_preference">
+                        <option value="Other">No preference</option>
+                        <option value="Female">Women only</option>
+                        <option value="Male">Men only</option>
+                    </select>
+                    <p class="help-block">
+                        Do you prefer to provide care for only a certain gender?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Expertise</label>
+                <div class="col-md-9">
+                    <div class="form-control-static" ng-if="caregiver.expertise">
+                        <span class="label label-default" ng-repeat="exp in caregiver.expertise">
+                            {{ exp }}</span>
+                    </div>
+                    <p class="form-control-static">
+                        <a href="" ng-click="showExpertiseForm = !showExpertiseForm">
+                            <span class="glyphicon glyphicon-plus" ng-hide="showExpertiseForm"></span>
+                            <span class="glyphicon glyphicon-minus" ng-show="showExpertiseForm"></span>
+                            Add Expertise
+                        </a>
+                    </p>
+                    <div ng-show="showExpertiseForm">
+                        <div class="checkbox" ng-repeat="exp in ::expertise">
+                            <label>
+                                <input type="checkbox"
+                                       checklist-model="caregiverDetails.expertise"
+                                       checklist-value="exp.name"> {{ exp.description }}
+                            </label>
+                        </div>
+                        <a href="" ng-click="showExpertiseForm = false">Close</a>
+                    </div>
+                    <p class="help-block">
+                        Do you have expertise in certain areas?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Licenses</label>
+                <div class="col-md-9">
+                    <p class="form-control-static">
+                        <a href="" ng-click="showLicenseForm = !showLicenseForm">
+                            <span class="glyphicon glyphicon-plus" ng-hide="showLicenseForm"></span>
+                            <span class="glyphicon glyphicon-minus" ng-show="showLicenseForm"></span>
+                            Add License
+                        </a>
+                    </p>
+                    <div ng-show="showLicenseForm">
+                        <hl-add-license></hl-add-license>
+                    </div>
+                    <p class="help-block">
+                        Do you have any licenses?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Certifications</label>
+                <div class="col-md-9">
+                    <p class="form-control-static">
+                        <a href="" ng-click="showCertificationForm = !showCertificationForm">
+                            <span class="glyphicon glyphicon-plus" ng-hide="showCertificationForm"></span>
+                            <span class="glyphicon glyphicon-minus" ng-show="showCertificationForm"></span>
+                            Add Certification
+                        </a>
+                    </p>
+                    <div ng-show="showCertificationForm">
+                        <hl-add-certification></hl-add-certification>
+                    </div>
+                    <p class="help-block">
+                        Do you have any certifications?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Transportation</label>
+                <div class="col-md-9">
+                    <div class="checkbox" ng-repeat="trans in ::transportation">
+                        <label>
+                            <input type="checkbox"
+                                   checklist-model="caregiverDetails.transportation"
+                                   checklist-value="trans.name">
+                                    {{ trans.description }}
+                        </label>
+                    </div>
+                    <p class="help-block">
+                        Are you willing to provide a transportation?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Languages</label>
+                <div class="col-md-9">
+                    <div class="form-control-static" ng-if="caregiver.languages">
+                        <span class="label label-default" ng-repeat="lang in caregiver.languages">
+                            {{ lang }}</span>
+                    </div>
+                    <p class="form-control-static">
+                        <a href="" ng-click="showLanguageForm = !showLanguageForm">
+                            <span class="glyphicon glyphicon-plus" ng-hide="showLanguageForm"></span>
+                            <span class="glyphicon glyphicon-minus" ng-show="showLanguageForm"></span>
+                            Add Language
+                        </a>
+                    </p>
+                    <div ng-show="showLanguageForm">
+                        <div class="checkbox" ng-repeat="lang in ::languages">
+                            <label>
+                                <input type="checkbox"
+                                       checklist-model="caregiverDetails.languages"
+                                       checklist-value="lang.name">
+                                       {{ lang.name }}
+                            </label>
+                        </div>
+                    </div>
+                    <p class="help-block">
+                        What languages can you speak fluently?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Allergies</label>
+                <div class="col-md-9">
+                    <label class="checkbox-inline" ng-repeat="allergy in ::allergies">
+                        <input type="checkbox"
+                               checklist-model="caregiverDetails.allergies"
+                               checklist-value="allergy.name">
+                                {{ allergy.name }}
+                    </label>
+                    <p class="help-block">
+                        Do you have any allergies that care seekers should be aware of?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="caregiver-liveout">
+                    Living In</label>
+                <div class="col-md-9">
+                    <select id="caregiver-liveout" class="form-control"
+                            ng-model="caregiverDetails.live_in" hl-select-boolean>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                    <p class="help-block">
+                        Would you consider living in with a patient?</p>
+                </div>
+            </div>
+
+        </div>
+         <div class="panel-footer text-center">
+             <button type="submit" class="btn btn-primary"
+                     ng-disabled="updateReq.isLoading">Save</button>
+         </div>
+    </form>
+</div>
+
+</div>

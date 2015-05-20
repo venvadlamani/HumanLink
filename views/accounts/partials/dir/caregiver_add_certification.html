@@ -1,0 +1,32 @@
+<form class="form-horizontal small">
+    <div class="form-group">
+        <label for="cert-state" class="col-md-4 control-label">
+            <small>State Issued</small></label>
+        <div class="col-md-8">
+            <select id="cert-state" class="form-control input-sm"
+                    ng-model="cert" ng-options="s.name for s in states"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cert-name" class="col-md-4 control-label">
+            <small>Certification Name</small></label>
+        <div class="col-md-8">
+            <input type="text" id="cert-name" class="form-control input-sm"
+                   placeholder="The Schmieding Center" maxlength="100" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cert-date" class="col-md-4 control-label">
+            <small>Date Issued</small></label>
+        <div class="col-md-8">
+            <input type="text" id="cert-date" class="form-control input-sm"
+                   maxlength="25" />
+        </div>
+    </div>
+    <div class="text-center small">
+        <button type="button" class="btn btn-sm btn-primary">Add Certification</button>
+        <button type="button" class="btn btn-sm btn-link"
+                ng-click="showCertificationForm = false">Close</button>
+    </div>
+
+</form>
