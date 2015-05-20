@@ -1,0 +1,283 @@
+<form class="form-horizontal" ng-submit="save(recipient)">
+
+<h3 class="text-center">Care Recipient</h3>
+
+<p class="lead">
+    Care recipient blob text.
+</p>
+
+<div class="form-group">
+    <label class="col-md-3 control-label">
+        Who is in need of care?</label>
+    <div class="col-md-9">
+        <div class="btn-group btn-group-lg">
+          <button type="button" class="btn btn-default"
+                  ng-click="chooseMyself(true)"
+                  ng-class="{'active': myself}">Myself</button>
+          <button type="button" class="btn btn-default"
+                  ng-click="chooseMyself(false)"
+                  ng-class="{'active': !myself}">Somebody else</button>
+        </div>
+        <p class="help-block">Text blob.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label">
+        Care Needs</label>
+    <div class="col-md-9">
+        <div class="checkbox" ng-repeat="care in ::careServices">
+            <label>
+                <input type="checkbox"
+                       checklist-model="recipient.care_type"
+                       checklist-value="care.name">
+                       {{ care.description }} <small class="text-muted">({{ care.skills }})</small>
+            </label>
+        </div>
+        <p class="help-block">
+            Select types of care the recipient needs</p>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-first">
+        Name</label>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-2">
+                <select class="form-control" ng-model="recipient.prefix">
+                    <option></option>
+                    <option value="Dr">Dr.</option>
+                    <option value="Ms">Ms.</option>
+                    <option value="Mr">Mr.</option>
+                    <option value="Mrs">Mrs.</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input id="recipient-first" class="form-control"
+                       ng-model="recipient.first" placeholder="Jane" hl-focus />
+                <p class="help-block">First</p>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control"
+                       ng-model="recipient.last" placeholder="Doe"/>
+                <p class="help-block">Last</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-street">
+        Address</label>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-7">
+                <input id="recipient-street" class="form-control"
+                       ng-model="recipient.address.street" placeholder="1234 Center Street"/>
+                <p class="help-block">Street address</p>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" ng-model="recipient.address.apt"
+                       placeholder="#3" maxlength="6"/>
+                <p class="help-block">Apartment number</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <input class="form-control" ng-model="recipient.address.city"
+                       placeholder="Fayetteville"/>
+                <p class="help-block">City</p>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control"
+                        ng-model="recipient.address.state"
+                        ng-options="s.name as s.name for s in states"></select>
+                <p class="help-block">State</p>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control"
+                       ng-model="recipient.address.zipcode"
+                       placeholder="72701" maxlength="10"/>
+                <p class="help-block">Zip code</p>
+            </div>
+        </div>
+        <p class="help-block">This information will be shared once the caregiver
+            accepts a job you post.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-phone">
+        Phone Number</label>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="tel" id="recipient-phone" class="form-control"
+                       ng-model="recipient.phone_number" placeholder="555-555-5555"
+                       maxlength="12"/>
+            </div>
+        </div>
+        <p class="help-block">Blob text.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-notes">
+        General Notes</label>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-10">
+                <textarea id="recipient-ntoes" class="form-control"
+                          ng-model="recipient.notes" rows="6"></textarea>
+            </div>
+        </div>
+        <p class="help-block">Tell caregiver about the care recipient. Blob blob blob</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+        <p class="form-control-static">
+            <button type="button" class="btn btn-link"
+                    ng-click="forms.showMore = !forms.showMore">
+                <span ng-hide="forms.showMore">
+                    <span class="glyphicon glyphicon-plus"></span>
+                Show More</span>
+                <span ng-show="forms.showMore">
+                    <span class="glyphicon glyphicon-minus"></span>
+                Show Less</span>
+            </button>
+        </p>
+    </div>
+</div>
+
+<div ng-show="forms.showMore">
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="recipient-nickname">
+            Nickname</label>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <input id="recipient-nickname" class="form-control col-md-6"
+                           ng-model="recipient.nickname" />
+                </div>
+            </div>
+            <p class="help-block">How should the caregiver address the care recipient?</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="recipient-relationship">
+            Relationship</label>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-4">
+                    <select id="recipient-relationship" class="form-control"
+                            ng-model="recipient.relationship"
+                            ng-options="rel for rel in relationships"></select>
+                </div>
+            </div>
+            <p class="help-block">How is this person related to you?</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="recipient-age">
+            Age</label>
+        <div class="col-md-9">
+            <input id="recipient-age" class="form-control" ng-model="recipient.age"
+                   placeholder="80" maxlength="3" max="150"/>
+            <p class="help-block">Text blob.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="recipient-pets">
+            Pets</label>
+        <div class="col-md-9">
+            <input id="recipient-pets" class="form-control"
+                   ng-model="recipient.pets" placeholder="Two cats"/>
+            <p class="help-block">Text blob.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="recipient-allergies">
+            Allergies</label>
+        <div class="col-md-9">
+            <input id="recipient-allergies" class="form-control"
+                   ng-model="recipient.allergies" placeholder="Pollen"/>
+            <p class="help-block">Text blob.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="recipient-hobbies">
+            Hobbies</label>
+        <div class="col-md-9">
+            <input id="recipient-hobbies" class="form-control"
+                   ng-model="recipient.hobbies" placeholder="Playing cards"/>
+            <p class="help-block">
+                Tell the caregiver about the care recipient's hobbies and favorite activities.
+            </p>
+        </div>
+    </div>
+</div>
+
+<h3 class="text-center">Caregiver Preferences</h3>
+
+<p class="lead">
+    Caregiver prefernce blob text.
+</p>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-exp">
+        Expertise</label>
+    <div class="col-md-9">
+        <p class="form-control-static">
+            <button type="button" class="btn btn-link"
+                    ng-click="forms.showShowExpertise = !forms.showShowExpertise">
+                <span class="glyphicon glyphicon-pushpin"></span>
+                Select expertise</button></p>
+        <div ng-show="forms.showShowExpertise">
+            <div class="checkbox" ng-repeat="exp in ::expertise">
+                <label>
+                    <input type="checkbox"
+                           checklist-model="recipient.caregiver_expertise"
+                           checklist-value="exp.name"> {{ exp.description }}
+                </label>
+            </div>
+        </div>
+        <p class="help-block">Text blob.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label">
+        Gender Preference</label>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4">
+                <select class="form-control" ng-model="recipient.caregiver_gender">
+                    <option value="Other" ng-selected="!recipient.caregiver_gender">No preference</option>
+                    <option value="Female">Women only</option>
+                    <option value="Male">Men only</option>
+                </select>
+            </div>
+        </div>
+        <p class="help-block">Text blob.</p>
+    </div>
+</div>
+
+<div class="text-center">
+    <button type="submit" class="btn btn-primary"
+            ng-disabled="saveReq.isLoading">Save care recipient</button>
+    <button type="button" class="btn btn-link"
+            ng-click="toggleForm()">Cancel</button>
+</div>
+
+</form>

@@ -28,7 +28,7 @@ window.HL = window.HL || {};
         {
             "value": 0,
             "name": "Companion",
-            "description": "Companion",
+            "description": "Companionship",
             "skills": "Errands, Housekeeping, Transportation"
         },
         {

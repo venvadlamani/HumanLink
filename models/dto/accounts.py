@@ -106,9 +106,9 @@ class CaregiverDto(object):
 class PatientDto(object):
 
     _props = [
-        'id', 'first', 'last', 'phone_number', 'relationship',
-        'dob', 'gender', 'pets', 'care_type', 'caregiver_pref_gender',
-        'additional_info', 'address',
+        'id', 'care_type', 'prefix', 'first', 'last', 'nickname', 'relationship',
+        'address',  'phone_number', 'notes', 'age', 'pets', 'allergies',
+        'hobbies', 'caregiver_gender', 'caregiver_expertise',
     ]
 
     @classmethod

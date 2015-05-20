@@ -1,4 +1,5 @@
 import services.accounts
+from models.dto.accounts import AccountDto
 
 import json
 import logging
@@ -113,7 +114,8 @@ class BaseHandler(webapp2.RequestHandler):
         user_model, timestamp = self.auth.store.user_model.get_by_auth_token(
             self.user['user_id'],
             self.user['token']) if self.user else (None, None)
-        return user_model
+        if user_model:
+            return AccountDto.from_account_ndb(user_model)
 
     @webapp2.cached_property
     def user_data(self):

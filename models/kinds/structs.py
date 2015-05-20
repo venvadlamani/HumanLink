@@ -120,8 +120,8 @@ class CareService(messages.Enum):
 
 class Address(EndpointsModel):
     type = ndb.StringProperty()
-    street1 = ndb.StringProperty()
-    street2 = ndb.StringProperty()
+    street = ndb.StringProperty()
+    apt = ndb.StringProperty()
     city = ndb.StringProperty()
     state = msgprop.EnumProperty(State)
     zipcode = ndb.IntegerProperty()

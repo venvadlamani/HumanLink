@@ -125,19 +125,23 @@ class CaregiverApiModel(BaseApiModel):
 
 
 class PatientApiModel(BaseApiModel):
-    """Represents a patient's information."""
+    """Represents a care recipient information."""
     id = ndb.IntegerProperty()
+    care_type = Patient.care_type
+    prefix = Patient.prefix
     first = Patient.first
     last = Patient.last
-    phone_number = Patient.phone_number
+    nickname = Patient.nickname
     relationship = Patient.relationship
-    dob = Patient.dob
-    gender = Patient.gender
-    care_type = Patient.care_type
-    pets = Patient.pets
-    caregiver_pref_gender = Patient.caregiver_pref_gender
-    additional_info = Patient.additional_info
     address = Patient.address
+    phone_number = Patient.phone_number
+    notes = Patient.notes
+    age = Patient.age
+    pets = Patient.pets
+    allergies = Patient.allergies
+    hobbies = Patient.hobbies
+    caregiver_gender = Patient.caregiver_gender
+    caregiver_expertise = Patient.caregiver_expertise
 
     @classmethod
     def to_patient_dto(cls, patient_api):
