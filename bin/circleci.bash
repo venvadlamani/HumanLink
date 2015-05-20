@@ -9,8 +9,12 @@ GSUTIL=$HOME/gsutil/
 # GAE SDK.
 API_CHECK=https://appengine.google.com/api/updatecheck
 SDK_VERSION=$(curl -s $API_CHECK | awk -F '\"' '/release/ {print $2}')
-SDK_URL=https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$SDK_VERSION.zip
+# Remove dots.
+SDK_VERSION_B=${SDK_VERSION//./}
 
+SDK_URL=https://storage.googleapis.com/appengine-sdks/
+SDK_URL_A="${SDK_URL}featured/google_appengine_${SDK_VERSION}.zip"
+SDK_URL_B="${SDK_URL}deprecated/$SDK_VERSION_B/google_appengine_${SDK_VERSION}.zip"
 
 # Dependencies pre.
 function dep_pre {
@@ -29,14 +33,14 @@ function gae_deps {
     # GAE
     if [ ! -d "$GAE" ]; then
       echo ">>> Downloading App Engine SDK..."
-      curl -o $HOME/gae.zip $SDK_URL
+      curl -fo $HOME/gae.zip $SDK_URL_A || curl -fo $HOME/gae.zip $SDK_URL_B || exit 1
       unzip -q -d $HOME $HOME/gae.zip
     fi
 
     # Google Cloud Storage
     if [ ! -d "$GSUTIL" ]; then
       echo ">>> Downloading gsutil..."
-      curl -o $HOME/gsutil.zip https://storage.googleapis.com/pub/gsutil.zip
+      curl -fo $HOME/gsutil.zip https://storage.googleapis.com/pub/gsutil.zip || exit 1
       unzip -q -d $HOME $HOME/gsutil.zip
     fi
     # Replacing the oauth token like this because there is
