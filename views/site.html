@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>[% block title %] HumanLink [% endblock %]</title>
-    <link rel="stylesheet" href="/stylesheets/build/style.css"/>
+    <link rel="stylesheet" href="/stylesheets/build/humanlink.css"/>
 
     [% block styles %]
     [% endblock %]
@@ -31,7 +31,8 @@
         window.HL.userdata = [= userdata | tojson | safe  =];
     </script>
 
-    <script src="/js/build/scripts.min.js"></script>
+    <script src="/js/build/vendor.js"></script>
+    <script src="/js/build/humanlink.js"></script>
 
     [% block scripts %]
     [% endblock %]
