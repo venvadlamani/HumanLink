@@ -40,6 +40,18 @@ def handle_exception(e):
     raise maps[e.__class__](e.message)
 
 
+def get_current_user():
+    """Returns the user who is currently logged in on the website."""
+    handler = FakeRequest()
+    return handler.get_current_user()
+
+
+def refresh_userdata():
+    """Refreshes userdata that is in the memcache."""
+    handler = FakeRequest()
+    return handler.refresh_userdata()
+
+
 class FakeRequest(object):
     """Simulates a webapp2 request.
 
@@ -56,14 +68,7 @@ class FakeRequest(object):
         return self._handler
 
     def get_current_user(self):
-        """Returns the user who is currently logged in on the website."""
         return self.handler.user_model
 
     def refresh_userdata(self):
-        """Refreshes userdata that is in the memcache."""
         self.handler._store_userdata()
-
-
-fake_request = FakeRequest()
-get_current_user = fake_request.get_current_user
-refresh_userdata = fake_request.refresh_userdata
