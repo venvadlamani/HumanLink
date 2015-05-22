@@ -60,7 +60,7 @@ class Account(base.Base, auth_models.User):
 
 class Caregiver(base.Base):
     """Caregiver specific details."""
-    account_id = ndb.IntegerProperty(required=True, indexed=False)
+    account_id = ndb.IntegerProperty(required=True)
     care_services = msgprop.EnumProperty(CareService, repeated=True)
     zipcode = ndb.IntegerProperty()
     gender = msgprop.EnumProperty(Gender, indexed=True)
@@ -83,20 +83,25 @@ class Caregiver(base.Base):
 class Patient(base.Base):
     """Patient specific details."""
     account_id = ndb.IntegerProperty(required=True)
-    first = ndb.StringProperty(indexed=False)
-    last = ndb.StringProperty(indexed=False)
-    phone_number = ndb.IntegerProperty(indexed=False)
-    relationship = ndb.StringProperty(indexed=False)
-    dob = ndb.DateProperty(indexed=False)
-    gender = msgprop.EnumProperty(Gender, indexed=False)
-    pets = ndb.StringProperty(repeated=True, indexed=False)
     care_type = msgprop.EnumProperty(CareService, repeated=True, indexed=False)
-    caregiver_pref_gender = msgprop.EnumProperty(Gender, indexed=False)
-    additional_info = ndb.TextProperty(indexed=False)
+    prefix = ndb.StringProperty(indexed=False)
+    first = ndb.StringProperty(required=True, indexed=False)
+    last = ndb.StringProperty(required=True, indexed=False)
+    names = ndb.ComputedProperty(
+        lambda self: [self.first.lower(), self.last.lower()], repeated=True)
+    nickname = ndb.StringProperty(indexed=False)
+    relationship = ndb.StringProperty(indexed=False)
     address = ndb.StructuredProperty(Address, indexed=False)
+    phone_number = ndb.IntegerProperty(indexed=False)
+    notes = ndb.TextProperty()
+    age = ndb.IntegerProperty(indexed=False)
+    pets = ndb.StringProperty(indexed=False)
+    allergies = ndb.StringProperty(indexed=False)
+    hobbies = ndb.StringProperty(indexed=False)
+    caregiver_expertise = msgprop.EnumProperty(Expertise,
+                                               repeated=True, indexed=False)
+    caregiver_gender = msgprop.EnumProperty(Gender, indexed=False)
     soft_delete = ndb.BooleanProperty(default=False, indexed=False)
-    # accounts.Payment ID.
-    payment_id = ndb.IntegerProperty(indexed=False)
 
 
 class Payment(base.Base):

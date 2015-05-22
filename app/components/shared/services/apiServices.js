@@ -106,11 +106,19 @@ angular
             apiRequest('GET', 'accounts/patients/list', {}, ctrlHelper, true);
         };
 
+        Accounts.patients.update = function (data, ctrlHelper) {
+            apiRequest('POST', 'accounts/patients/update', data, ctrlHelper, true);
+        };
+
+        Accounts.patients.remove = function (patient_id, ctrlHelper) {
+            var data = {patient_id: patient_id};
+            apiRequest('POST', 'accounts/patients/remove' ,data, ctrlHelper, true);
+        };
+
         Connections.my = function (data, ctrlHelper) {
             apiRequest('GET', 'connections/my', data, ctrlHelper, true);
         };
 
-        
         // Public methods.
         return {
             Accounts: Accounts,
