@@ -75,10 +75,12 @@ class Accounts(base.BaseHandler):
         email = self.request.get('email', '')
         token = self.request.get('token', '')
         try:
+            if not email or not token:
+                raise exp.ServiceExp('Invalid email or verification token.')
             account = services.accounts.verify_email(email, token)
             msg = '{} has been confirmed.'.format(account.email)
             alert = {'type': 'success', 'message': msg}
-        except exp.BadRequestExp as e:
+        except exp.ServiceExp as e:
             alert = {'type': 'danger', 'message': e.message}
         self.session.add_flash('alert', alert)
         return self.redirect('/accounts#/settings/profile')

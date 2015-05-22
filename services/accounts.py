@@ -84,7 +84,7 @@ def account_by_id(account_id, _dto=True, _throw=True):
     return AccountDto.from_account_ndb(account)
 
 
-def account_by_email(email, _dto=True):
+def account_by_email(email, _dto=True, _throw=True):
     """Returns the account associated with the given email address.
 
     :param email: (int) ID of the account.
@@ -95,8 +95,9 @@ def account_by_email(email, _dto=True):
     asserts.type_of(email, basestring)
 
     account = Account.query(Account.email == email.lower()).get()
-    if account is None:
+    if account is None and _throw:
         logging.warning('account not found. email={}'.format(email))
+        raise exp.NotFoundExp('Account not found.')
     if not _dto:
         return account
     return AccountDto.from_account_ndb(account)
