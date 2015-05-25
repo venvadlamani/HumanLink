@@ -15,7 +15,7 @@ class Accounts(base.BaseHandler):
         """Index page."""
         self.render('accounts/index.html', {})
 
-    def signup_post(self):
+    def POST_signup(self):
         """Sign-up POST request."""
         email = self.request_json['email']
         pass_raw = self.request_json['password']
@@ -36,7 +36,7 @@ class Accounts(base.BaseHandler):
             logging.info('Signup failed. email: %s' % email)
             raise exp.ServiceExp()
 
-    def login_post(self):
+    def POST_login(self):
         """Log-in POST request.
 
         TODO(kanat): Handle errors properly.
