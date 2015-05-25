@@ -8,7 +8,7 @@ class Home(base.BaseHandler):
     def index(self):
         self.render('home/landing.html')
 
-    def submit_contact(self):
+    def POST_submit_contact(self):
         """Contact info POST request."""
 
         name = self.request_json.get('name', '(not provided)')

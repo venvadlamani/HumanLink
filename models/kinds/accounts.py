@@ -19,6 +19,18 @@ from google.appengine.ext import ndb
 from google.appengine.ext.ndb import msgprop
 
 
+def lower_names(model):
+    """Lower-cases first and last name properties.
+    Used with a ComputedProperty.
+    """
+    names = []
+    for p in ['first', 'last']:
+        v = getattr(model, p, None)
+        if v:
+            names.append(v.lower())
+    return names
+
+
 class Account(base.Base, auth_models.User):
     """Account associated with an email address.
 
@@ -30,8 +42,7 @@ class Account(base.Base, auth_models.User):
     account_type = msgprop.EnumProperty(AccountType)
     first = ndb.StringProperty(indexed=False)
     last = ndb.StringProperty(indexed=False)
-    names = ndb.ComputedProperty(
-        lambda self: [self.first.lower(), self.last.lower()], repeated=True)
+    names = ndb.ComputedProperty(lower_names, repeated=True)
     # Facebook ID associated with the account.
     fbid = ndb.StringProperty(indexed=False)
     # Whether the email has been verified or not.
@@ -87,8 +98,7 @@ class Patient(base.Base):
     prefix = ndb.StringProperty(indexed=False)
     first = ndb.StringProperty(required=True, indexed=False)
     last = ndb.StringProperty(required=True, indexed=False)
-    names = ndb.ComputedProperty(
-        lambda self: [self.first.lower(), self.last.lower()], repeated=True)
+    names = ndb.ComputedProperty(lower_names, repeated=True)
     nickname = ndb.StringProperty(indexed=False)
     relationship = ndb.StringProperty(indexed=False)
     address = ndb.StructuredProperty(Address, indexed=False)
