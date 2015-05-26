@@ -5,18 +5,22 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    merge = require('merge-stream');
+    merge = require('merge-stream'),
+    ngAnnotate = require('gulp-ng-annotate');
 
 var paths = {
     js: 'app/**/*.js',
     less: 'assets/stylesheets/less/**/*.less'
 };
 
-var bundleJs = function (files, filename) {
-    return gulp.src(files)
-            .pipe(concat(filename))
-            .pipe(uglify())
-            .pipe(gulp.dest('assets/js/build/'));
+var bundleJs = function (files, filename, annotate) {
+    var g = gulp.src(files);
+    g = g.pipe(concat(filename));
+    if (annotate) {
+        g = g.pipe(ngAnnotate({add: true}));
+    }
+    g = g.pipe(uglify());
+    return g.pipe(gulp.dest('assets/js/build/'));
 };
 
 gulp.task('move-bootstrap', function () {
@@ -47,7 +51,7 @@ gulp.task('compile-vendor', function() {
         bower + '/angular-bootstrap/ui-bootstrap-tpls.js',
         bower + '/angular-ui-router/release/angular-ui-router.js',
         bower + '/checklist-model/checklist-model.js'
-    ], 'vendor.js');
+    ], 'vendor.js', false);
 });
 
 gulp.task('compile-js', function () {
@@ -57,7 +61,7 @@ gulp.task('compile-js', function () {
         'app/components/*/*module.js',
         'app/components/*/*.js',
         'app/components/*/*/*.js'
-    ], 'humanlink.js');
+    ], 'humanlink.js', true);
 });
 
 gulp.task('compile', ['compile-less', 'compile-vendor', 'compile-js'],
