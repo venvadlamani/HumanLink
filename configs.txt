@@ -1,0 +1,25 @@
+"""This file stores secret keys and tokens related to the application.
+
+NOTE: The real configs file must be stored in Google Cloud Storage 
+and be used for production deployment.
+Do not deploy this dummy file to production!
+(https://console.developers.google.com/project/care-tiger/storage/humanlink-private/)
+"""
+
+import common
+
+
+# For cookie serialization/desrialization.
+SESSION_SECRET = 'humanlink'
+
+# Used to hash an account's email verification token:
+#   token = md5(VERIFY_SECRET + email).hexdigest()
+VERIF_SECRET = 'humanlink'
+
+# Mandrill API key.
+MANDRILL_API_KEY = 'DiYzRtiGNDU5D01TyjJhSA'
+
+
+# Override localhost configs.
+if common.is_localhost():
+    MANDRILL_API_KEY = '7xr9BTwfVKkIsaDeWFfh6A'
