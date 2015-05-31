@@ -1,0 +1,16 @@
+[% extends "site.html" %]
+
+[% block title %] Search for Caregivers [% endblock %]
+
+[% block ng_app -%] Search [%- endblock %]
+[% block ng_controller -%] SearchBaseCtrl [%- endblock %]
+
+[% block content %]
+
+<div>
+    [% include "shared/error_box.html" %]
+
+    <div ui-view></div>
+</div>
+
+[% endblock %]
