@@ -1,5 +1,109 @@
-<div class="search-main">
-  Search view.
-  <br/>
-  {{ title }}
+<div class="search-main fluid-container">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                Category Type
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-3" ng-repeat="category_type in category_types">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="{{category_type}}"> {{category_type}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                Address
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-5">
+                    <input class="form-control" type="text" ng-model="address">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                Care Date
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-3">
+                    <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="care_date" is-open="opened"  date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-more-filters" ng-show="hide_filter">
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    Gender
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-3">
+                        <div class="btn-group gender_panel" dropdown>
+                            <button type="button" class="btn btn-default btn-combo">{{selected_gender}}</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                <span class="caret"></span>
+                                <span class="sr-only">Split button!</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Male</a></li>
+                                <li><a href="#">Female</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    Languages
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    Special Skills
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-3" ng-repeat="special_skill in special_skills">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="{{special_skill}}"> {{special_skill}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    Live In
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <button class="btn btn-default" type="button" ng-click="toggleFilter()">{{filter_val}}</button>
+                <button class="btn btn-default" type="button">Search</button>
+            </div>
+        </div>
+    </div>
 </div>
