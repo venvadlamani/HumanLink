@@ -3,11 +3,11 @@
 (function () {
     angular
         .module('Search')
-        .controller('SearchBaseCtrl', ['$scope','$window','$location',function($scope,$window,$location){
-            // call SearchMain partials
-            $location.path('/search');
-        }]);
+        .controller('SearchBaseCtrl', Ctrl);
 
     /** ngInject */
-    function Ctrl($scope) { /* Empty. */ }
+    function Ctrl($scope,$window,$location){
+        // call SearchMain partials
+        $location.path('/search');
+    }
 })();

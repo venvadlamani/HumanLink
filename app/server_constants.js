@@ -89,6 +89,88 @@ window.HL = window.HL || {};
         }
     ];
 
+    var specialSkillServices = [
+        {
+            "value": 0,
+            "name": "Hoyer Lift",
+            "description": "Hoyer Lift"
+        },
+        {
+            "value": 1,
+            "name": "Ambulation",
+            "description": "Ambulation"
+        },
+        {
+            "value": 2,
+            "name": "Seizures",
+            "description": "Seizures"
+        },
+        {
+            "value": 3,
+            "name": "Catheter",
+            "description": "Catheter"
+        },
+        {
+            "value": 4,
+            "name": "Hospice",
+            "description": "Hospice"
+        },
+        {
+            "value": 5,
+            "name": "COPD",
+            "description": "COPD"
+        },
+        {
+            "value": 6,
+            "name": "Skin/wounds",
+            "description": "Skin/wounds"
+        },
+        {
+            "value": 7,
+            "name": "Physical therapy",
+            "description": "Physical therapy"
+        },
+        {
+            "value": 8,
+            "name": "Wheelchair accessible car",
+            "description": "Wheelchair accessible car"
+        },
+        {
+            "value": 9,
+            "name": "Prosthetics",
+            "description": "Prosthetics"
+        },
+        {
+            "value": 10,
+            "name": "Trachea",
+            "description": "Trachea"
+        },
+        {
+            "value": 11,
+            "name": "Transferring",
+            "description": "Transferring"
+        }
+    ];
+
+    var caregiversSearchRes = [
+        {
+            "name": "Ganesh Sundarapu",
+            "description": "I am an awesome caregiver located at AKP",
+            "hoursServiceCount": 30,
+            "hoursAvgResTime": 1,
+            "references": 8,
+            "image": "/images/profile_ArianaA.png"
+        },
+        {
+            "name": "Suresh S",
+            "description": "I am an awesome caregiver located at VSKP",
+            "hoursServiceCount": 20,
+            "hoursAvgResTime": 2,
+            "references": 20,
+            "image": "/images/profile_ArianaA.png"
+        }
+    ];
+
     obj.constants = {
         accountTypes: accountTypes,
         states: states,
@@ -96,6 +178,8 @@ window.HL = window.HL || {};
         careServices: careServices,
         allergies: allergies,
         transportation: transportation,
-        expertise: expertise
+        expertise: expertise,
+        specialSkillServices: specialSkillServices,
+        caregiversSearchRes: caregiversSearchRes
     };
 }(window.HL));

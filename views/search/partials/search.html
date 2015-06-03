@@ -5,9 +5,9 @@
                 Category Type
             </div>
             <div class="col-md-10">
-                <div class="col-md-3" ng-repeat="category_type in category_types">
+                <div class="col-md-3" ng-repeat="cs in careServices">
                     <label class="checkbox-inline">
-                        <input type="checkbox" value="{{category_type}}"> {{category_type}}
+                        <input type="checkbox" ng-value="cs.value"> {{cs.description}}
                     </label>
                 </div>
             </div>
@@ -29,9 +29,9 @@
                 Care Date
             </div>
             <div class="col-md-10">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <p class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="care_date" is-open="opened"  date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="careDate" is-open="opened" ng-required="true" close-text="Close" />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -40,15 +40,15 @@
             </div>
         </div>
 
-        <div class="search-more-filters" ng-show="hide_filter">
+        <div ng-show="hideFilter">
             <div class="form-group">
                 <div class="col-md-2 control-label">
                     Gender
                 </div>
                 <div class="col-md-10">
                     <div class="col-md-3">
-                        <div class="btn-group gender_panel" dropdown>
-                            <button type="button" class="btn btn-default btn-combo">{{selected_gender}}</button>
+                        <div class="btn-group gender-panel" dropdown>
+                            <button type="button" class="btn btn-default btn-combo">{{selectedGender}}</button>
                             <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
                                 <span class="caret"></span>
                                 <span class="sr-only">Split button!</span>
@@ -67,8 +67,20 @@
                     Languages
                 </div>
                 <div class="col-md-10">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <div class="btn-group languages-panel" dropdown>
+                            <button type="button" class="btn btn-default btn-combo">{{selectedLang}}</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                <span class="caret"></span>
+                                <span class="sr-only">Split button!</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="lang in languages">
+                                    <a href="#" ng-value="lang.value">{{lang.name}}</a>
+                                </li>
 
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,9 +90,9 @@
                     Special Skills
                 </div>
                 <div class="col-md-10">
-                    <div class="col-md-3" ng-repeat="special_skill in special_skills">
+                    <div class="col-md-3" ng-repeat="speSkill in specialSkillServices">
                         <label class="checkbox-inline">
-                            <input type="checkbox" value="{{special_skill}}"> {{special_skill}}
+                            <input type="checkbox" ng-value="speSkill.value"> {{speSkill.name}}
                         </label>
                     </div>
                 </div>
@@ -91,8 +103,18 @@
                     Live In
                 </div>
                 <div class="col-md-10">
-                    <div class="col-md-4">
-
+                    <div class="col-md-3">
+                        <div class="btn-group live-in-panel" dropdown>
+                            <button type="button" class="btn btn-default btn-combo">{{selectedLiveIn}}</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                <span class="caret"></span>
+                                <span class="sr-only">Split button!</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">No</a></li>
+                                <li><a href="#">Yes</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,8 +124,64 @@
         <div class="form-group">
             <div class="col-md-12">
                 <button class="btn btn-default" type="button" ng-click="toggleFilter()">{{filter_val}}</button>
-                <button class="btn btn-default" type="button">Search</button>
+                <button class="btn btn-default" type="button" ng-click="searchFilter()">Search</button>
+                <label class="pull-right" ng-show="showCaregiversCount">{{caregiversSearchRes.length}} caregivers</label>
             </div>
+        </div>
+
+        <div class="col-md-12" ng-repeat="searchRes in caregiversSearchRes">
+        <div class="form-group">
+            <div class="col-md-2 text-center">
+                <img ng-src="{{searchRes.image}}" class="img-responsive img-rounded" />
+                <a href="#" class="m-md">View Profile</a>
+            </div>
+
+            <div class="col-md-7">
+                <h4>{{searchRes.name}} <span class="glyphicon glyphicon-ok alert-success m-md" /> <small>{{searchRes.description}}</small></h4>
+                <div class="panel panel-block panel-default col-md-4">
+                    <div class="panel-head">
+                        <div class="circle-block">
+                            {{searchRes.hoursServiceCount}}
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        hours service
+                    </div>
+
+                </div>
+
+                <div class="panel panel-default panel-block col-md-4">
+                    <div class="panel-head">
+                        <div class="circle-block">
+                            {{searchRes.hoursAvgResTime}}
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        hours average response time
+                    </div>
+
+                </div>
+
+                <div class="panel panel-default col-md-4 panel-block">
+                    <div class="panel-head">
+                        <div class="circle-block">
+                            {{searchRes.references}}
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        references
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <button class="btn btn-default common-button" type="button" >Request Booking</button> <br /><br />
+                <button class="btn btn-default common-button" type="button">Add to Favorites</button>
+            </div>
+
+        </div>
+        <hr />
         </div>
     </div>
 </div>
