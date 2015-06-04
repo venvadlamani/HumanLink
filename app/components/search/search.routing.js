@@ -15,6 +15,7 @@ angular
                 .state('search', {
                     url: '/',
                     templateUrl: '/views/search/partials/search.html',
-                    controller: 'SearchMainCtrl'
+                    controller: 'SearchMainCtrl',
+                    controllerAs: 'smCtrl'
                 });
         }]);

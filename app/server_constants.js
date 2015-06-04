@@ -152,24 +152,6 @@ window.HL = window.HL || {};
         }
     ];
 
-    var caregiversSearchRes = [
-        {
-            "name": "Ganesh Sundarapu",
-            "description": "I am an awesome caregiver located at AKP",
-            "hoursServiceCount": 30,
-            "hoursAvgResTime": 1,
-            "references": 8,
-            "image": "/images/profile_ArianaA.png"
-        },
-        {
-            "name": "Suresh S",
-            "description": "I am an awesome caregiver located at VSKP",
-            "hoursServiceCount": 20,
-            "hoursAvgResTime": 2,
-            "references": 20,
-            "image": "/images/profile_ArianaA.png"
-        }
-    ];
 
     obj.constants = {
         accountTypes: accountTypes,
@@ -179,7 +161,6 @@ window.HL = window.HL || {};
         allergies: allergies,
         transportation: transportation,
         expertise: expertise,
-        specialSkillServices: specialSkillServices,
-        caregiversSearchRes: caregiversSearchRes
+        specialSkillServices: specialSkillServices
     };
 }(window.HL));

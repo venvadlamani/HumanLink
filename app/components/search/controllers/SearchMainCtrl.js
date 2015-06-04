@@ -1,69 +1,146 @@
 'use strict';
 
+/**
+ * SearchMainCtrl
+ * @namespace Controllers
+ */
+
 (function () {
     angular
         .module('Search')
         .controller('SearchMainCtrl',Ctrl);
+    /**
+     * @namespace SearchMainCtrl
+     * @desc Search caregivers
+     * @memberOf Controllers
+     */
 
     /** @ngInject */
     function Ctrl($scope,Constants, $state, $stateParams) {
+
+        /* jshint validthis: true */
+        var vm = this;
         /** toggle search filter block */
-        $scope.hideFilter = false;
+        vm.showFilterBlock = false;
         /** category types */
-        $scope.careServices = Constants.careServices;
+        vm.careServices = Constants.careServices;
         /** Special skills */
-        $scope.specialSkillServices = Constants.specialSkillServices;
+        vm.specialSkillServices = Constants.specialSkillServices;
         /** Languages */
-        $scope.languages = Constants.languages;
-        /** Set first position lang */
-        $scope.selectedLang = $scope.languages[0].name;
+        vm.languages = Constants.languages;
         /** Search Result */
-        $scope.caregiversSearchRes = [];
-        /** Hide Caregivers count */
-        $scope.showCaregiversCount = false;
+        vm.caregiversSearchResult = [];
+
+        /** Set default values
+         * */
+        vm.gender = 'Male';
+        vm.liveIn = 'No';
+        vm.language = vm.languages[0].name;
+
+        vm.filterVal = 'More Filters';
+        vm.showCaregiversCount = false;
+        vm.showCaregiverHelp = false;
+        vm.showCaregiverBlock = false;
+        vm.showSkills = true;
 
         /** Calender Settings */
-        $scope.today = function() {
-            $scope.careDate = new Date();
-        };
-        $scope.today();
+        vm.dateFormat = 'MM/dd/yyyy'; // set this format for the care date
+        vm.gotoToday = gotoToday;
+        gotoToday(); // set today date as default
+        vm.toggleDatePicker = toggleDatePicker;
 
-        $scope.clear = function () {
-            $scope.careDate = null;
-        };
+        //  buttons click functions
+        vm.toggleFilterBlock = toggleFilterBlock;
+        vm.getSearchResult = getSearchResult;
 
-        $scope.open = function($event) {
+        vm.toggleSkillsBlock = toggleSkillsBlock;
+
+            /**
+         * @name gotoToday
+         * @desc set current date
+         * @returns {Void}
+         */
+        function gotoToday() {
+            vm.careDate = new Date();
+        }
+        /**
+         * @name toggleDatePicker
+         * @desc toggle picker when click on the calender icon
+         * @param {Object}
+         * @returns {Void}
+         */
+        function toggleDatePicker($event) {
             $event.preventDefault();
             $event.stopPropagation();
+            vm.opened = !vm.opened;
+        }
+        /**
+         * @name toggleFilterBlock
+         * @desc toggle filter button block when click on the filter button
+         * @returns {Void}
+         */
+        function toggleFilterBlock() {
+            if(vm.showFilterBlock)
+               vm.filterVal = "More Filters";
+            else
+               vm.filterVal = "Hide Filters";
 
-            $scope.opened = true;
-        };
-        /** set calender date format */
-        $scope.format = 'MM/dd/yyyy';
+            vm.showFilterBlock = !vm.showFilterBlock;
+        }
+        /**
+         * @name getSearchResult
+         * @desc Get search static results array from global constants
+         * @returns {Void}
+         */
+        function getSearchResult() {
 
-        /** Gender settings */
-        $scope.selectedGender = 'Male';
-        $scope.selectedLiveIn = 'No';
+            // API call goes here, using dummy data for now
 
-        /** Filter button */
-        $scope.filter_val = 'More Filters';
-        $scope.toggleFilter = function() {
-            if($scope.filter_val == "More Filters"){
-                $scope.filter_val = "Hide Filters";
-                $scope.hideFilter = true;
-            }else{
-                $scope.filter_val = "More Filters";
-                $scope.hideFilter = false;
+            var data = tempCaregiversSearchResults;
+           // var data = []; //uncomment this line to view no search results
+
+            if(data.length){
+                vm.caregiversSearchResult = tempCaregiversSearchResults;
+                vm.showCaregiverHelp = false;
+                vm.showCaregiverBlock = true;
             }
+            else{
+                vm.showCaregiverHelp = true;
+                vm.showCaregiverBlock = false;
+            }
+            vm.showCaregiversCount = true;
+
         }
 
-        /** search page response */
-       $scope.searchFilter = function(){
-           $scope.showCaregiversCount = true;
-           $scope.caregiversSearchRes = Constants.caregiversSearchRes;
-       };
+        function toggleSkillsBlock(){
 
+            if(vm.showSkills)
+                vm.toggleSkillsIcon = 'glyphicon-plus';
+            else
+                vm.toggleSkillsIcon = 'glyphicon-minus';
 
+            vm.showSkills = !vm.showSkills;
+        }
+
+        // caregivers search temp results
+        var tempCaregiversSearchResults = [
+            {
+                "name": "Ganesh Sundarapu",
+                "description": "I am an awesome caregiver located at AKP",
+                "hoursServiceCount": 30,
+                "hoursAvgResTime": 1,
+                "references": 8,
+                "image": "/images/profile_ArianaA.png"
+            },
+            {
+                "name": "Chalapathi Raju",
+                "description": "I am an awesome caregiver located at VSKP",
+                "hoursServiceCount": 20,
+                "hoursAvgResTime": 2,
+                "references": 20,
+                "image": "/images/profile_ArianaA.png"
+            }
+        ];
 
     }
 })();

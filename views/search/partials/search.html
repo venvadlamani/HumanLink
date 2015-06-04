@@ -5,7 +5,7 @@
                 Category Type
             </div>
             <div class="col-md-10">
-                <div class="col-md-3" ng-repeat="cs in careServices">
+                <div class="col-md-3" ng-repeat="cs in smCtrl.careServices">
                     <label class="checkbox-inline">
                         <input type="checkbox" ng-value="cs.value"> {{cs.description}}
                     </label>
@@ -31,16 +31,16 @@
             <div class="col-md-10">
                 <div class="col-md-4">
                     <p class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="careDate" is-open="opened" ng-required="true" close-text="Close" />
+                    <input type="text" class="form-control" datepicker-popup="{{smCtrl.dateFormat}}" ng-model="smCtrl.careDate" is-open="smCtrl.opened" ng-required="true" close-text="Close" />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="smCtrl.toggleDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                     </p>
                 </div>
             </div>
         </div>
 
-        <div ng-show="hideFilter">
+        <div ng-show="smCtrl.showFilterBlock">
             <div class="form-group">
                 <div class="col-md-2 control-label">
                     Gender
@@ -48,7 +48,7 @@
                 <div class="col-md-10">
                     <div class="col-md-3">
                         <div class="btn-group gender-panel" dropdown>
-                            <button type="button" class="btn btn-default btn-combo">{{selectedGender}}</button>
+                            <button type="button" class="btn btn-default btn-combo" ng-model="smCtrl.gender">{{smCtrl.gender}}</button>
                             <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
                                 <span class="caret"></span>
                                 <span class="sr-only">Split button!</span>
@@ -69,13 +69,13 @@
                 <div class="col-md-10">
                     <div class="col-md-3">
                         <div class="btn-group languages-panel" dropdown>
-                            <button type="button" class="btn btn-default btn-combo">{{selectedLang}}</button>
+                            <button type="button" class="btn btn-default btn-combo" ng-model="smCtrl.language">{{smCtrl.language}}</button>
                             <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
                                 <span class="caret"></span>
                                 <span class="sr-only">Split button!</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li ng-repeat="lang in languages">
+                                <li ng-repeat="lang in smCtrl.languages">
                                     <a href="#" ng-value="lang.value">{{lang.name}}</a>
                                 </li>
 
@@ -90,7 +90,10 @@
                     Special Skills
                 </div>
                 <div class="col-md-10">
-                    <div class="col-md-3" ng-repeat="speSkill in specialSkillServices">
+                    <div class="col-md-12">
+                        <a href="#" ng-click="smCtrl.toggleSkillsBlock()"><span ng-class="smCtrl.toggleSkillsIcon || 'glyphicon-minus'" class="glyphicon"/></a>
+                    </div>
+                    <div ng-show="smCtrl.showSkills" class="col-md-3" ng-repeat="speSkill in smCtrl.specialSkillServices">
                         <label class="checkbox-inline">
                             <input type="checkbox" ng-value="speSkill.value"> {{speSkill.name}}
                         </label>
@@ -105,7 +108,7 @@
                 <div class="col-md-10">
                     <div class="col-md-3">
                         <div class="btn-group live-in-panel" dropdown>
-                            <button type="button" class="btn btn-default btn-combo">{{selectedLiveIn}}</button>
+                            <button type="button" class="btn btn-default btn-combo" ng-model="smCtrl.liveIn">{{smCtrl.liveIn}}</button>
                             <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
                                 <span class="caret"></span>
                                 <span class="sr-only">Split button!</span>
@@ -123,65 +126,78 @@
 
         <div class="form-group">
             <div class="col-md-12">
-                <button class="btn btn-default" type="button" ng-click="toggleFilter()">{{filter_val}}</button>
-                <button class="btn btn-default" type="button" ng-click="searchFilter()">Search</button>
-                <label class="pull-right" ng-show="showCaregiversCount">{{caregiversSearchRes.length}} caregivers</label>
+                <button class="btn btn-default" type="button" ng-click="smCtrl.toggleFilterBlock()">{{smCtrl.filterVal}}</button>
+                <button class="btn btn-default" type="button" ng-click="smCtrl.getSearchResult()">Search</button>
+                <label class="pull-right" ng-show="smCtrl.showCaregiversCount">{{smCtrl.caregiversSearchResult.length || 0}} caregivers</label>
             </div>
         </div>
 
-        <div class="col-md-12" ng-repeat="searchRes in caregiversSearchRes">
-        <div class="form-group">
-            <div class="col-md-2 text-center">
-                <img ng-src="{{searchRes.image}}" class="img-responsive img-rounded" />
-                <a href="#" class="m-md">View Profile</a>
-            </div>
-
-            <div class="col-md-7">
-                <h4>{{searchRes.name}} <span class="glyphicon glyphicon-ok alert-success m-md" /> <small>{{searchRes.description}}</small></h4>
-                <div class="panel panel-block panel-default col-md-4">
-                    <div class="panel-head">
-                        <div class="circle-block">
-                            {{searchRes.hoursServiceCount}}
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        hours service
-                    </div>
-
+        <div class="col-md-12" ng-repeat="searchRes in smCtrl.caregiversSearchResult" ng-show="smCtrl.showCaregiverBlock">
+            <div class="form-group">
+                <div class="col-md-2 text-center">
+                    <img ng-src="{{searchRes.image}}" class="img-responsive img-rounded" />
+                    <a href="#" class="m-md">View Profile</a>
                 </div>
 
-                <div class="panel panel-default panel-block col-md-4">
-                    <div class="panel-head">
-                        <div class="circle-block">
-                            {{searchRes.hoursAvgResTime}}
+                <div class="col-md-7">
+                    <h4>{{searchRes.name}} <span class="glyphicon glyphicon-ok alert-success m-md" /> <small>{{searchRes.description}}</small></h4>
+                    <div class="panel panel-block panel-default col-md-4">
+                        <div class="panel-head">
+                            <div class="circle-block">
+                                {{searchRes.hoursServiceCount || 0}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel-body">
-                        hours average response time
+                        <div class="panel-body">
+                            hours service
+                        </div>
+
                     </div>
 
+                    <div class="panel panel-default panel-block col-md-4">
+                        <div class="panel-head">
+                            <div class="circle-block">
+                                {{searchRes.hoursAvgResTime || 0}}
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            hours average response time
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default col-md-4 panel-block">
+                        <div class="panel-head">
+                            <div class="circle-block">
+                                {{searchRes.references || 0}}
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            references
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="panel panel-default col-md-4 panel-block">
-                    <div class="panel-head">
-                        <div class="circle-block">
-                            {{searchRes.references}}
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        references
-                    </div>
-
+                <div class="col-md-3">
+                    <button class="btn btn-default common-button" type="button" >Request Booking</button> <br /><br />
+                    <button class="btn btn-default common-button" type="button">Add to Favorites</button>
                 </div>
-            </div>
 
-            <div class="col-md-3">
-                <button class="btn btn-default common-button" type="button" >Request Booking</button> <br /><br />
-                <button class="btn btn-default common-button" type="button">Add to Favorites</button>
             </div>
-
+            <hr />
         </div>
-        <hr />
+
+        <div class="col-md-12" ng-show="smCtrl.showCaregiverHelp">
+            <h4>Sorry !</h4>
+            <p>We could not find any caregivers that match your criteria.Refining your search criteria might help.</p>
+            <h5>Here are some tips :</h5>
+            <ul>
+                <li>blob blob</li>
+                <li>blob blob</li>
+                <li>blob blob</li>
+            </ul>
+        </div>
+        <div>
         </div>
     </div>
 </div>
