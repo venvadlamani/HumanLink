@@ -31,17 +31,23 @@
         /** Search Result */
         vm.caregiversSearchResult = [];
 
-        /** Set default values
-         * */
-        vm.gender = 'Male';
-        vm.liveIn = 'No';
-        vm.language = vm.languages[0].name;
+        // search form object
+        vm.search = {
+            languages: [],
+            careServices: [],
+            skillsServices: [],
+            gender: 'Male',
+            liveIn: 'No'
+        }
+        // submit the search form
+        vm.searchCaregivers = searchCaregivers;
 
         vm.filterVal = 'More Filters';
         vm.showCaregiversCount = false;
         vm.showCaregiverHelp = false;
         vm.showCaregiverBlock = false;
         vm.showSkills = true;
+        vm.showLanguage = true;
 
         /** Calender Settings */
         vm.dateFormat = 'MM/dd/yyyy'; // set this format for the care date
@@ -49,19 +55,41 @@
         gotoToday(); // set today date as default
         vm.toggleDatePicker = toggleDatePicker;
 
-        //  buttons click functions
+
         vm.toggleFilterBlock = toggleFilterBlock;
-        vm.getSearchResult = getSearchResult;
-
         vm.toggleSkillsBlock = toggleSkillsBlock;
+        vm.toggleLanguageBlock = toggleLanguageBlock;
 
-            /**
+        // setters
+        vm.setGender = setGender;
+        vm.setLiveIn = setLiveIn;
+
+        //  selected skills names string
+        vm.selectedSkills = "";
+        vm.getSelectedSkills = getSelectedSkills;
+
+        // selected languages names string
+        vm.selectedLanguages = "";
+        vm.getSelectedLanguages = getSelectedLanguages;
+
+        /**
+         * @name searchCaregivers
+         * @desc get caregivers for the input search  object
+         * @returns {Void}
+         */
+        function searchCaregivers(search){
+            // see log report in browser console for form search object we are not perform form validation now
+            console.log('form submit =  '+JSON.stringify(search));
+            // get temp response object
+            getSearchResult();
+        }
+        /**
          * @name gotoToday
          * @desc set current date
          * @returns {Void}
          */
         function gotoToday() {
-            vm.careDate = new Date();
+            vm.search.careDate = new Date();
         }
         /**
          * @name toggleDatePicker
@@ -112,6 +140,10 @@
 
         }
 
+        /**
+         * @name toggleSkillsBlock
+         * @desc toggle the skills block
+         * @returns {Void} */
         function toggleSkillsBlock(){
 
             if(vm.showSkills)
@@ -120,6 +152,54 @@
                 vm.toggleSkillsIcon = 'glyphicon-minus';
 
             vm.showSkills = !vm.showSkills;
+
+        }
+
+        /**
+         * @name toggleLanguageBlock
+         * @desc toggle the language block
+         * @returns {Void} */
+        function toggleLanguageBlock(){
+
+            if(vm.showLanguage)
+                vm.toggleLanguageIcon = 'glyphicon-plus';
+            else
+                vm.toggleLanguageIcon = 'glyphicon-minus';
+
+            vm.showLanguage = !vm.showLanguage;
+
+        }
+
+        /**
+         * @name getSelectedSkills
+         * @desc get selected skill names string
+         * @returns {Void} */
+        function getSelectedSkills() {
+            vm.selectedSkills = vm.search.skillsServices.map(function(skill) { return skill.name; });
+        }
+
+        /**
+         * @name getSelectedSkills
+         * @desc get selected skill names string
+         * @returns {Void} */
+        function getSelectedLanguages() {
+            vm.selectedLanguages = vm.search.languages.map(function(lang) { return lang.name; });
+        }
+
+        /**
+         * @name setGender
+         * @desc set gender for gender dropdown
+         * @returns {Void} */
+        function setGender(name){
+            vm.search.gender = name;
+        }
+
+        /**
+         * @name setLiveIn
+         * @desc set live for live in dropdown
+         * @returns {Void} */
+        function setLiveIn(name){
+            vm.search.liveIn = name;
         }
 
         // caregivers search temp results

@@ -4,7 +4,7 @@
  * Search module.
  */
 angular
-    .module('Search', ['ui.router', 'ui.bootstrap', 'Common'])
+    .module('Search', ['ui.router', 'ui.bootstrap', 'Common','checklist-model'])
     .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
 
