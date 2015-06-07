@@ -24,11 +24,10 @@ coverage.xml
 # FE Build Directories
 node_modules/
 bower_components/
+assets/js/build/
 assets/stylesheets/build/
 assets/stylesheets/fonts/
 assets/stylesheets/less/bootstrap/
-assets/stylesheets/fonts/
-assets/js/build/
 
 # Virtualenv
 venv/

@@ -5,10 +5,10 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    merge = require('merge-stream'),
     ngAnnotate = require('gulp-ng-annotate');
 
 var paths = {
+    bower: 'bower_components',
     js: 'app/**/*.js',
     less: 'assets/stylesheets/less/**/*.less'
 };
@@ -24,26 +24,31 @@ var bundleJs = function (files, filename, annotate) {
 };
 
 gulp.task('move-bootstrap', function () {
-    var bower = 'bower_components';
-    var less = gulp.src(bower + '/bootstrap/less/**/*.less')
-                .pipe(gulp.dest('assets/stylesheets/less/bootstrap/'));
-    var fonts = gulp.src(bower + '/bootstrap/fonts/*')
-                .pipe(gulp.dest('assets/stylesheets/fonts/'));
-    return merge(less, fonts);
+    return gulp.src(paths.bower + '/bootstrap/less/**/*.less')
+        .pipe(gulp.dest('assets/stylesheets/less/bootstrap/'));
 });
 
-gulp.task('compile-less', ['move-bootstrap'], function () {
+gulp.task('move-fonts', function () {
     return gulp.src([
-        'assets/stylesheets/less/humanlink.less'
+        paths.bower + '/bootstrap/fonts/*',
+        paths.bower + '/fontawesome/fonts/*'
     ])
-        .pipe(concat('humanlink.css'))
+        .pipe(gulp.dest('assets/stylesheets/fonts/'));
+});
+
+gulp.task('compile-less', ['move-bootstrap', 'move-fonts'], function () {
+    return gulp.src([
+        'assets/stylesheets/less/humanlink.less',
+        paths.bower + '/fontawesome/css/font-awesome.min.css'
+    ])
         .pipe(less())
+        .pipe(concat('humanlink.css'))
         .pipe(minifyCss({processImport: false}))
         .pipe(gulp.dest('assets/stylesheets/build/'));
 });
 
 gulp.task('compile-vendor', function() {
-    var bower = 'bower_components';
+    var bower = paths.bower;
     return bundleJs([
         bower + '/jquery/dist/jquery.js',
         bower + '/bootstrap/dist/js/bootstrap.js',
