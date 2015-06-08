@@ -16,7 +16,7 @@
      */
 
     /** @ngInject */
-    function Ctrl($scope,Constants, $state, $stateParams) {
+    function Ctrl($scope,Constants) {
 
         /* jshint validthis: true */
         var vm = this;
@@ -38,7 +38,7 @@
             skillsServices: [],
             gender: 'Male',
             liveIn: 'No'
-        }
+        };
         // submit the search form
         vm.searchCaregivers = searchCaregivers;
 
@@ -78,7 +78,8 @@
          * @returns {Void}
          */
         function searchCaregivers(search){
-            // see log report in browser console for form search object we are not perform form validation now
+            // see log report in browser console for form search object
+            // we are not perform form validation now
             console.log('form submit =  '+JSON.stringify(search));
             // get temp response object
             getSearchResult();
@@ -108,10 +109,12 @@
          * @returns {Void}
          */
         function toggleFilterBlock() {
-            if(vm.showFilterBlock)
-               vm.filterVal = "More Filters";
-            else
-               vm.filterVal = "Hide Filters";
+            if (vm.showFilterBlock) {
+                vm.filterVal = "More Filters";
+            }
+            else {
+                vm.filterVal = "Hide Filters";
+            }
 
             vm.showFilterBlock = !vm.showFilterBlock;
         }
@@ -146,10 +149,12 @@
          * @returns {Void} */
         function toggleSkillsBlock(){
 
-            if(vm.showSkills)
+            if(vm.showSkills) {
                 vm.toggleSkillsIcon = 'glyphicon-plus';
-            else
+            }
+            else {
                 vm.toggleSkillsIcon = 'glyphicon-minus';
+            }
 
             vm.showSkills = !vm.showSkills;
 
@@ -161,10 +166,12 @@
          * @returns {Void} */
         function toggleLanguageBlock(){
 
-            if(vm.showLanguage)
+            if(vm.showLanguage) {
                 vm.toggleLanguageIcon = 'glyphicon-plus';
-            else
+            }
+            else {
                 vm.toggleLanguageIcon = 'glyphicon-minus';
+            }
 
             vm.showLanguage = !vm.showLanguage;
 
@@ -175,7 +182,9 @@
          * @desc get selected skill names string
          * @returns {Void} */
         function getSelectedSkills() {
-            vm.selectedSkills = vm.search.skillsServices.map(function(skill) { return skill.name; });
+            vm.selectedSkills = vm.search.skillsServices.map(
+                function(skill) { return skill.name; }
+            );
         }
 
         /**
@@ -183,7 +192,9 @@
          * @desc get selected skill names string
          * @returns {Void} */
         function getSelectedLanguages() {
-            vm.selectedLanguages = vm.search.languages.map(function(lang) { return lang.name; });
+            vm.selectedLanguages = vm.search.languages.map(
+                function(lang) { return lang.name; }
+            );
         }
 
         /**
