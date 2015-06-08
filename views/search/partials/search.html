@@ -1,0 +1,202 @@
+<div class="search-main fluid-container">
+    <div class="form-horizontal">
+        <form ng-submit="smCtrl.searchCaregivers(smCtrl.search)" name="searchForm">
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    Category Type
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-3" ng-repeat="cs in smCtrl.careServices">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" checklist-model="smCtrl.search.careServices" checklist-value="cs"> {{cs.description}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    Address
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-5">
+                        <input class="form-control" type="text" ng-model="smCtrl.search.address">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    Care Date
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-4">
+                        <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{smCtrl.dateFormat}}" ng-model="smCtrl.search.careDate" is-open="smCtrl.opened" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="smCtrl.toggleDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="smCtrl.showFilterBlock">
+                <div class="form-group">
+                    <div class="col-md-2 control-label">
+                        Gender
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-md-3">
+                            <div class="btn-group gender-panel" dropdown>
+                                <button type="button" class="btn btn-default btn-combo" ng-model="smCtrl.search.gender">{{smCtrl.search.gender}}</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Split button!</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-click="smCtrl.setGender('Male')"><a href="#">Male</a></li>
+                                    <li ng-click="smCtrl.setGender('Female')"><a href="#">Female</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2 control-label">
+                        Languages
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-md-12">
+                            <label class="search-rounded-label" ng-repeat="language in smCtrl.selectedLanguages">{{language}}</label>
+                            <a href="#"  ng-click="smCtrl.toggleLanguageBlock()"><span ng-class="smCtrl.toggleLanguageIcon || 'glyphicon-minus'" class="glyphicon btn-lg"/></a>
+                        </div>
+                        <div ng-show="smCtrl.showLanguage" ng-repeat="lang in smCtrl.languages" class="col-md-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" checklist-model="smCtrl.search.languages" checklist-value="lang" ng-click="smCtrl.getSelectedLanguages()"> {{lang.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2 control-label">
+                        Special Skills
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-md-12">
+                            <label class="search-rounded-label" ng-repeat="skill in smCtrl.selectedSkills">{{skill}}</label>
+                            <a href="#" ng-click="smCtrl.toggleSkillsBlock()"><span ng-class="smCtrl.toggleSkillsIcon || 'glyphicon-minus'" class="glyphicon btn-lg"/></a>
+                        </div>
+                        <div ng-show="smCtrl.showSkills" class="col-md-3" ng-repeat="speSkill in smCtrl.specialSkillServices">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" checklist-model="smCtrl.search.skillsServices" checklist-value="speSkill" ng-click="smCtrl.getSelectedSkills()"> {{speSkill.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2 control-label">
+                        Live In
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-md-3">
+                            <div class="btn-group live-in-panel" dropdown>
+                                <button type="button" class="btn btn-default btn-combo" ng-model="smCtrl.search.liveIn" >{{smCtrl.search.liveIn}}</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Split button!</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-click="smCtrl.setLiveIn('No')"><a href="#">No</a></li>
+                                    <li ng-click="smCtrl.setLiveIn('Yes')"><a href="#">Yes</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="form-group col-md-12">
+                <div class="col-md-12">
+                    <button class="btn btn-default" type="button" ng-click="smCtrl.toggleFilterBlock()">{{smCtrl.filterVal}}</button>
+                    <button class="btn btn-default" type="submit" >Search</button>
+                    <label class="pull-right" ng-show="smCtrl.showCaregiversCount">{{smCtrl.caregiversSearchResult.length || 0}} caregivers</label>
+                </div>
+            </div>
+        </form>
+
+        <div class="col-md-12 m-lg-top"  ng-repeat="searchRes in smCtrl.caregiversSearchResult" ng-show="smCtrl.showCaregiverBlock">
+            <div class="form-group">
+                <div class="col-md-2 text-center">
+                    <img ng-src="{{searchRes.image}}" class="img-responsive img-rounded" />
+                    <label class="m-md"><a href="#">View Profile</a></label>
+                </div>
+
+                <div class="col-md-7">
+                    <h4>{{searchRes.name}} <span class="glyphicon glyphicon-ok alert-success m-md" /> <small>{{searchRes.description}}</small></h4>
+                    <div class="panel panel-block panel-default col-md-4">
+                        <div class="panel-head">
+                            <div class="circle-block">
+                                {{searchRes.hoursServiceCount || 0}}
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            hours service
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default panel-block col-md-4">
+                        <div class="panel-head">
+                            <div class="circle-block">
+                                {{searchRes.hoursAvgResTime || 0}}
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            hours average response time
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default col-md-4 panel-block">
+                        <div class="panel-head">
+                            <div class="circle-block">
+                                {{searchRes.references || 0}}
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            references
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-default common-button" type="button" >Request Booking</button> <br /><br />
+                    <button class="btn btn-default common-button" type="button">Add to Favorites</button>
+                </div>
+
+            </div>
+            <hr />
+        </div>
+
+        <div class="col-md-12 m-lg-top" ng-show="smCtrl.showCaregiverHelp">
+            <h4>Sorry !</h4>
+            <p>We could not find any caregivers that match your criteria.Refining your search criteria might help.</p>
+            <h5>Here are some tips :</h5>
+            <ul>
+                <li>blob blob</li>
+                <li>blob blob</li>
+                <li>blob blob</li>
+            </ul>
+        </div>
+        <div>
+        </div>
+
+    </div>
+</div>

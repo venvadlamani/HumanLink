@@ -43,4 +43,7 @@ routes = [
 
     webapp2.Route(r'/messages', name='messages', methods=['GET'],
                   handler='controllers.messages.Messages:index'),
+
+    webapp2.Route(r'/search', name='search', methods=['GET'],
+                  handler='controllers.search.Search:index')
 ]
