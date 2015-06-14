@@ -1,0 +1,61 @@
+.blanket {
+
+  font-size: 17px;
+
+  .section {
+    .bg-default();
+    padding: 60px 0;
+
+    h1 {
+      font-size: @font-size-h1 * 1.2;
+      .no-top-margin();
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: @font-size-h2 * 1.2;
+    }
+  }
+
+  .section-press {
+    padding-bottom: 0;
+  }
+
+  .press {
+    background: url("/images/landing/press_logos.png") no-repeat;
+    margin: 0 auto;
+
+    &.press-cw {
+      background-position: 0 0;
+      height: 50px;
+      width: 70px;
+    }
+    &.press-techco {
+      background-position: -80px 0;
+      height: 50px;
+      width: 150px;
+    }
+    &.press-tc {
+      background-position: -250px 0;
+      height: 50px;
+      width: 130px;
+    }
+    &.press-nwa {
+      background-position: -380px 0;
+      height: 50px;
+      width: 90px;
+    }
+    &.press-ark {
+      background-position: -470px 0;
+      height: 50px;
+      width: 90px;
+    }
+
+  }
+
+  footer {
+    .bg-type();
+    padding: 20px 0;
+  }
+
+}

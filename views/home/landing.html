@@ -1,184 +1,199 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HumanLink | Affordable, high-quality caregivers.</title>
-    <link rel="stylesheet" href="/stylesheets/build/humanlink.css"/>
-</head>
-<body class="landing" ng-app="HumanLink" ng-controller="LandingCtrl">
+[% extends "layouts/blanket.html" %]
 
-    <nav class="navigation-bar">
-      <div class="container-fluid">
-          <div class="navbar-header">
-              <a class="navbar-brand" href="/">
-                  <img class="nav-logo" src="/images/hl.logo.horiz.blue.png" alt="HumanLink Logo"/>
-              </a>
-          </div>
-      </div>
-    </nav>
+[% block title %] HumanLink | Affordable, high-quality caregivers. [% endblock %]
 
-    <div class="container container-main">
+[% block body %]
+<div class="landing" ng-app="Home" ng-controller="LandingCtrl">
+
+<nav class="navigation-bar" role="navigation">
+  <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse" data-target="#navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img class="nav-logo" src="/images/hl.logo.horiz.blue.png" alt="HumanLink Logo"/>
+            </a>
+        </div>
+        <div id="navbar-toggle" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="/caregivers" title="HumanLink for caregivers">I am a caregiver</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="section section-welcome">
+    <div class="container ">
         <div class="row">
-            <div class="col-md-12">
-
-                <h1 class="text-center">Caregivers, we care for you.</h1>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div>
-                          <h2>The future of caregiving is coming to Arkansas in 2015</h2>
-                          <p>
-                            <strong>human</strong>link is an innovative, new online and mobile community
-                            to connect caregivers with clients.  We’ll help you build a personal online profile and find jobs.
-                            To receive updates and learn more, please sign-up.
-                          </p>
-                        </div>
-                        <div class="well col-md-6 col-lg-offset-3">
-                            <h3 class="text-center">Interest Form</h3>
-                            <form class="form-horizontal" ng-model="contact" ng-show="showForm" ng-submit="stayTuned(contact)">
-                              <div class="form-group">
-                                  <label for="contact-name" class="col-md-2 control-label">Name</label>
-                                  <div class="col-md-10">
-                                      <input type="text" ng-model="contact.name" id="contact-name" class="form-control input-lg"
-                                             placeholder="Jane Doe" required />
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label for="contact-email" class="col-md-2 control-label">Email</label>
-                                  <div class="col-md-10">
-                                      <input type="email" ng-model="contact.email" id="contact-email" class="form-control input-lg"
-                                             placeholder="name@example.com" required />
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <div class="col-md-offset-2 col-md-8">
-                                    I am interested in ...
-                                    <div class="radio">
-                                      <label>
-                                        <input type="radio" ng-model="contact.interest" ng-init="contact.interest = 1" value="1">
-                                        being a caregiver
-                                      </label>
-                                    </div>
-                                    <div class="radio">
-                                      <label>
-                                        <input type="radio" ng-model="contact.interest" value="2">
-                                        arranging care for myself or someone else
-                                      </label>
-                                    </div>
-                                   </div>
-                              </div>
-                              <div class="text-center">
-                                  <button type="submit" class="btn btn-lg btn-danger">Stay Tuned</button>
-                              </div>
-                            </form>
-                            <div ng-hide="showForm" class="text-center">
-                                <h4>Thank you for signing up. You will hear from us soon.</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr>
-                <div class="row">
-                    <div class="col-md-5">
-                      <img class="img-responsive img-thumbnail" src="/images/caregiver_grey_right.jpg"/>
-                    </div>
-                    <div class="col-md-7">
-                      <h2>A community of caring</h2>
-                      <p>
-                        Connect with clients, other caregiving professionals and build your personal reputation.
-                      </p>
-                    </div>
-                </div>
-
-                <hr>
-                <div class="row">
-                    <div class="col-md-7">
-                      <h2>Taking care of you through technology</h2>
-                      <p>
-                        Instantly receive job postings and showcase your certifications, licenses and recommendations.
-                        Online or on your smartphone.
-                      </p>
-                    </div>
-                    <div class="col-md-5">
-                      <img class="img-responsive img-thumbnail" src="/images/caregiver_heart.jpg">
-                    </div>
-                </div>
-
-                <hr>
-                <div class="row">
-                    <div class="col-md-5">
-                      <img class="img-responsive img-thumbnail" src="/images/caregiver_young_grey_right.jpg">
-                    </div>
-                    <div class="col-md-7">
-                      <h2>Better benefits</h2>
-                      <p>
-                        Keep more of what you earn, choose your clients, cash-back rewards and more.  All with no subscription fee.
-                      </p>
-                    </div>
-                </div>
-
-                <hr>
-                <div class="row text-center">
-                    <div class="col-md-offset-2 col-md-8">
-                        <h2>See our video to learn more... </h2>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item"
-                                    src="//www.youtube.com/embed/X8lgnsIBPcQ?vq=large&amp;rel=0&amp;modestbranding=1&amp;theme=light">
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <hr>
-                <div class="row text-center">
-                    <div class="col-md-6">
-                        <h2>Contact Us</h2>
-                        <p><a href="tel:+14794664214">(479) 466-4214</a></p>
-                        <p>
-                          <a href="mailto:support@humanlink.co">support@humanlink.co</a>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <h2>Visit Us</h2>
-                        <p>1 E. Center Street, Suite 270</p>
-                        <p>Fayetteville, AR 72701</p>
-                    </div>
-                </div>
+            <div class="col-sm-6">
+                <h1>A community of caring for your parents, and you.</h1>
+                <p class="lead">HumanLink is currently by invitation only.</p>
+                <p>
+                    <button class="btn btn-lg btn-default" ng-click="gotoInvite()">
+                        Request Invite <i class="fa fa-angle-right"></i>
+                    </button>
+                </p>
             </div>
         </div>
     </div>
+</div>
 
-    <script type="application/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script type="text/javascript">
-        angular.module('HumanLink', [])
-                .controller('LandingCtrl', ['$scope', '$http', function ($scope, $http) {
-                    $scope.showForm = true;
+<div class="section section-overview">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">How HumanLink Works</h1>
+            <div class="col-sm-offset-1 col-sm-5 steps">
+                <p>Our desktop and mobile platforms make it
+                    easy for you to request amazing care.</p>
+                <h3><span class="text-muted">1.</span>
+                    Search</h3>
+                <p>Search for caregivers based on your needs.</p>
+                <h3><span class="text-muted">2.</span>
+                    Request</h3>
+                <p>Book a caregiver best suited to your needs and schedule a visit.
+                    No phone calls necessary.</p>
+                <h3><span class="text-muted">3.</span>
+                    Review</h3>
+                <p>Review the caregiver based on response and care provided.</p>
+            </div>
+             <div class="col-sm-6">
+                <img src="/images/landing/humanlink_solutions.png" class="img-responsive" alt="HumanLink desktop and mobile solutions.">
+            </div>
+       </div>
+    </div>
+</div>
 
-                    $scope.stayTuned = function (contact) {
-                        if (!contact.name || !contact.email || !contact.interest) {
-                            return;
-                        }
-                        $http.post('/submit_contact', contact)
-                                .success(function (data, status) {
-                                    $scope.showForm = false;
-                                })
-                                .error(function () {
-                                    // Dang.
-                                });
-                    };
+<div class="section section-benefits">
+    <div class="container text-center">
+        <h1>Why HumanLink?</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <i class="material-icons">event_available</i>
+                <h2>Short Care Visits</h2>
+                <p>Do you just need someone to check-in on your loved ones every
+                    now and then? Some of our caregivers are happy to help.
+                    Our matching algorithms will find the best
+                    caregiver for your situation.</p>
+            </div>
+            <div class="col-sm-6">
+                <i class="material-icons">card_membership</i>
+                <h2>Vetted and Verified</h2>
+                <p>We are very selective about who we invite to provide care
+                    in our community. 
+                    Less than 50% of caregivers who apply are invited to be on
+                    our platform.
+                    Our caregivers are personally vetted by HumanLink personell 
+                    and background checked.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-                }]);
+<div class="section section-benefits">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-6">
+                <i class="material-icons">videocam</i>
+                <h2>Profile Videos</h2>
+                <p>Finding a good caregiver is hard.
+                    We know that you are pressed for time.
+                    Our caregiver profiles include video interviews you
+                    can watch from any device. We want to make your
+                    hiring decision easier.</p>
+            </div>
+            <div class="col-sm-6">
+                <i class="material-icons">speaker_phone</i>
+                <h2>Dealing With a No-Show?</h2>
+                <p>Are you stressed out over a last minute caregiver cancellation?
+                    Our one-click booking tool enables you to broadcast your
+                    care needs to caregivers in our network.
+                    This will ensure a timely response so you are assured
+                    the care your loved one needs.</p>
+            </div>
+        </div>
+        <div class="col-sm-offset-4 col-sm-4">
+            <p><button type="button" class="btn btn-lg btn-block btn-default btn-transparent"
+                    ng-click="gotoInvite()">
+                Request Invite</button></p>
+        </div>
+    </div>
+</div>
 
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-56916313-1', 'auto');
-        ga('require', 'displayfeatures');
-        ga('send', 'pageview');
-    </script>
+<div class="section section-pricing">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Pricing</h1>
+            <div class="col-sm-8">
 
-</body>
-</html>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group col-sm-12">
+                        <label>What type of care is needed?</label>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" checklist-model="pricing.services" checklist-value="0">
+                            Companionship
+                            <span class="text-muted" tooltip="Errands, housekeeping, transportation">
+                                (?)</span>
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox"checklist-model="pricing.services" checklist-value="1">
+                            Personal
+                            <span class="text-muted" tooltip="Bathing and dressing, exercise and mobility, medication reminders">
+                                (?)</span>
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox"checklist-model="pricing.services" checklist-value="2">
+                            Alzheimer's and Dementia
+                            <span class="text-muted" tooltip="Companionship, mental simulation">
+                                (?)</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            Three hours or less?</label>
+                        <div class="col-sm-4">
+                             <select class="form-control input-lg" ng-model="pricing.shortHours">
+                                 <option value="" selected>No</option>
+                                 <option value="Yes">Yes</option>
+                             </select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-sm-4">
+                <p>Estimated care cost:</p>
+                <h2>{{ price | currency : '$' : 0 }} <small>per hour</small></h2>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+[% include "home/_interest-form.html" %]
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <p><strong>Social</strong></p>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.facebook.com/pages/humanlink/557636144373592">Facebook</a></li>
+                    <li><a href="https://twitter.com/humanlinkcares">Twitter</a></li>
+                    <li><a href="https://plus.google.com/+HumanlinkCares">Google+</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-center">&copy; HumanLink 2015.</p>
+    </div>
+</footer>
+
+</div>
+[% endblock %] <!-- block -->
