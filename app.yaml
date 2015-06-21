@@ -26,6 +26,10 @@ handlers:
   script: google.appengine.ext.admin.application
   login: admin
 
+- url: /queue/.*
+  script: main.application
+  login: admin
+
 - url: /.*
   script: main.application
   secure: always
