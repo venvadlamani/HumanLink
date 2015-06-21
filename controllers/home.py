@@ -1,5 +1,7 @@
+from google.appengine.api import taskqueue
 from controllers import base
 
+from models.kinds.structs import AccountType
 from models.kinds.contacts import ContactUs
 
 
@@ -21,5 +23,10 @@ class Home(base.BaseHandler):
         signee = ContactUs(name=name, email=email,
                            zipcode=zipcode, interest=interest)
         signee.put()
+
+        taskqueue.add(url='/queue/slack', params={
+            'text': 'New intererst! *{}* ({}) from *{}*.'
+                    .format(name, AccountType(interest-1), zipcode)
+        })
 
         self.write_json({'message': 'Thank you.'})

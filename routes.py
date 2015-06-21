@@ -46,4 +46,7 @@ routes = [
 
     webapp2.Route(r'/caregivers', name='caregivers', methods=['GET'],
                   handler='controllers.home.Home:caregivers'),
+
+    webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
+                  handler='controllers.tqueue.QueueHandler:slack'),
 ]
