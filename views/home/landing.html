@@ -128,50 +128,36 @@
     <div class="container">
         <div class="row">
             <h1 class="text-center">Pricing</h1>
-            <div class="col-sm-8">
-
-                <form class="form-horizontal" role="form">
-                    <div class="form-group col-sm-12">
-                        <label>What type of care is needed?</label>
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" checklist-model="pricing.services" checklist-value="0">
-                            Companionship
-                            <span class="text-muted" tooltip="Errands, housekeeping, transportation">
-                                (?)</span>
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox"checklist-model="pricing.services" checklist-value="1">
-                            Personal
-                            <span class="text-muted" tooltip="Bathing and dressing, exercise and mobility, medication reminders">
-                                (?)</span>
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox"checklist-model="pricing.services" checklist-value="2">
-                            Alzheimer's and Dementia
-                            <span class="text-muted" tooltip="Companionship, mental simulation">
-                                (?)</span>
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">
-                            Three hours or less?</label>
-                        <div class="col-sm-4">
-                             <select class="form-control input-lg" ng-model="pricing.shortHours">
-                                 <option value="" selected>No</option>
-                                 <option value="Yes">Yes</option>
-                             </select>
-                        </div>
-                    </div>
-                </form>
-
+            <div class="col-sm-offset-2 col-sm-8">
+              <ul class="list-unstyled">
+                <li><i class="fa fa-check-circle-o"></i>
+                    Companionship
+                    <span class="text-muted" tooltip="Errands, housekeeping, transportation">
+                        (?)</span>
+                   , personal
+                   <span class="text-muted" tooltip="Bathing and dressing, exercise and mobility, medication reminders">
+                        (?)</span>
+                   , Alzheimer&rsquo;s and dementia care
+                   <span class="text-muted" tooltip="Companionship, mental simulation">
+                      (?)</span>
+                   , and more</li>
+                <li><i class="fa fa-check-circle-o"></i>
+                Vetted and verified caregiving professionals
+                </li>
+                <li><i class="fa fa-check-circle-o"></i>
+                No contracts, 1-hour minimum</li>
+                <li><i class="fa fa-check-circle-o"></i>
+                Desktop and mobile apps to stay in touch with loved ones</li>
+                <li><i class="fa fa-check-circle-o"></i>
+                Online and phone support</li>
+              </ul>
+              <h2 class="text-center">Average hourly rate of <strong>$18</strong> per hour.</h2>
+              <p>
+                By establishing a close relationship with a HumanLink caregiver, care seekers
+                stay close to the loved ones as well as save over $400 per month compared to 
+                traditional home care agencies.
+              </p>
             </div>
-            <div class="col-sm-4">
-                <p>Estimated care cost:</p>
-                <h2>{{ price | currency : '$' : 0 }} <small>per hour</small></h2>
-            </div>
-
         </div>
     </div>
 </div>
@@ -185,7 +171,7 @@
             <div class="col-sm-4">
                 <p><strong>Social</strong></p>
                 <ul class="list-unstyled">
-                    <li><a href="https://www.facebook.com/pages/humanlink/557636144373592">Facebook</a></li>
+                    <li><a href="https://www.facebook.com/humanlink">Facebook</a></li>
                     <li><a href="https://twitter.com/humanlinkcares">Twitter</a></li>
                     <li><a href="https://plus.google.com/+HumanlinkCares">Google+</a></li>
                 </ul>
