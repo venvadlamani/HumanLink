@@ -20,8 +20,10 @@ class Home(base.BaseHandler):
         email = self.request_json.get('email', '(not provided)')
         interest = int(self.request_json.get('interest', 0))
         zipcode = self.request_json.get('zipcode', '(not provided)')
-        signee = ContactUs(name=name, email=email,
-                           zipcode=zipcode, interest=interest)
+        referrer = self.request_json.get('referrer', '')
+
+        signee = ContactUs(name=name, email=email, zipcode=zipcode,
+                           interest=interest, referrer=referrer)
         signee.put()
 
         taskqueue.add(url='/queue/slack', params={
