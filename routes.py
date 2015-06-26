@@ -26,21 +26,6 @@ routes = [
     webapp2.Route(r'/submit_contact', name='submit_contact', methods=['POST'],
                   handler='controllers.home.Home:POST_submit_contact'),
 
-    webapp2.Route(r'/connections', name='connections', methods=['GET'],
-                  handler='controllers.connections.Connections:index'),
-
-    webapp2.Route(r'/favorites', name='favorites', methods=['GET'],
-                  handler='controllers.favorites.Favorites:index'),
-
-    webapp2.Route(r'/invoice', name='invoice', methods=['GET'],
-                  handler='controllers.invoice.Invoice:index'),
-
-    webapp2.Route(r'/jobs', name='jobs', methods=['GET'],
-                  handler='controllers.jobs.Jobs:index'),
-
-    webapp2.Route(r'/messages', name='messages', methods=['GET'],
-                  handler='controllers.messages.Messages:index'),
-
     webapp2.Route(r'/terms', name='terms', methods=['GET'],
                   handler='controllers.pages.Pages:terms'),
 

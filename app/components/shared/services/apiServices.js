@@ -24,11 +24,7 @@ angular
             caregiver: {},
             patients: {}
         };
-        var Billing = {};
         var Connections = {};
-        var Jobs = {};
-        var Messages = {};
-        var Notifications = {};
 
         /**
          * Base method to communicate with the APIs.
@@ -122,11 +118,7 @@ angular
         // Public methods.
         return {
             Accounts: Accounts,
-            Billing: Billing,
-            Connections: Connections,
-            Jobs: Jobs,
-            Messages: Messages,
-            Notifications: Notifications
+            Connections: Connections
         };
 
     }]);
