@@ -24,11 +24,6 @@ angular
                 templateUrl: '/views/accounts/partials/profile.html',
                 controller: 'manageProfileCtrl'
             })
-            .state('caregiver_profile', {
-                url: '/caregiver',
-                templateUrl: '/views/accounts/partials/caregiver_profile.html',
-                controller: 'caregiverProfileCtrl'
-            })
             .state('settings', {
                 templateUrl: '/views/accounts/partials/settings/base_settings.html',
             })
