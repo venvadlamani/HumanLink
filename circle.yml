@@ -40,8 +40,8 @@ deployment:
     branch: ven-dev
     commands:
       - ./bin/circleci.bash deploy deep-chimera-732
- 
- may-dev:
+
+  may-dev:
     branch: may-dev
     commands:
       - ./bin/circleci.bash deploy hiding-place-99904

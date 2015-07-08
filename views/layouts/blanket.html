@@ -25,6 +25,29 @@
     [% block body %]
     [% endblock %]
 
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <p><strong>Company</strong></p>
+                    <ul class="list-unstyled">
+                        <li><a href="http://blog.humanlink.co">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <p><strong>Social</strong></p>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.facebook.com/humanlink">Facebook</a></li>
+                        <li><a href="https://twitter.com/humanlinkcares">Twitter</a></li>
+                        <li><a href="https://plus.google.com/+HumanlinkCares">Google+</a></li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+            <p class="text-center">&copy; HumanLink 2015.</p>
+        </div>
+    </footer>
+
     <script type="text/javascript">
         window.HL = {};
         window.HL.userdata = [= userdata | tojson | safe  =];
