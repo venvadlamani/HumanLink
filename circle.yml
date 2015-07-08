@@ -44,4 +44,4 @@ deployment:
   may-dev:
     branch: may-dev
     commands:
-      - ./bin/circleci.bash deploy hiding-place-99904
+      - ./bin/circleci.bash deploy hiding-place-99904 
