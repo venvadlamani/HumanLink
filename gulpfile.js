@@ -50,6 +50,8 @@ gulp.task('compile-less', ['move-bootstrap', 'move-fonts'], function () {
 gulp.task('compile-vendor', function() {
     var bower = paths.bower;
     return bundleJs([
+        bower + '/jquery/dist/jquery.js',
+        bower + '/bootstrap/dist/js/bootstrap.js',
         bower + '/angular/angular.js',
         bower + '/angular-bootstrap/ui-bootstrap-tpls.js',
         bower + '/angular-ui-router/release/angular-ui-router.js',
