@@ -14,5 +14,8 @@
     "bootstrap": "~3",
     "checklist-model": "~0.2",
     "fontawesome": "~4.3"
+  },
+  "resolutions": {
+    "angular": "~1.3"
   }
 }
