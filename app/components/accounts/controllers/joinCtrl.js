@@ -18,6 +18,7 @@ angular
             email: '',
             password: '',
             password_confirm: '',
+            invite: '',
             account_type: 0
         };
 
@@ -42,7 +43,7 @@ angular
 
         var validate = function (model, ctrlHelper) {
             var errors = [];
-            if (!model.email || !model.password || !model.password_confirm) {
+            if (!model.email || !model.password || !model.password_confirm || !model.invite) {
                 errors.push('All fields are required.');
             }
             if (model.password !== model.password_confirm) {
