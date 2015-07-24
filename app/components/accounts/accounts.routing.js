@@ -37,6 +37,11 @@ angular
                 templateUrl: '/views/accounts/partials/settings/profile_careseeker.html',
                 controller: 'settingsProfileCareseekerCtrl'
             })
+            .state('settings.favorites', {
+                url: '/settings/favorites',
+                templateUrl: '/views/accounts/partials/settings/favorites.html',
+                controller: 'settingsFavoritesCtrl'
+            })
             .state('settings.caregiver', {
                 url: '/settings/caregiver',
                 templateUrl: '/views/accounts/partials/settings/caregiver.html',
