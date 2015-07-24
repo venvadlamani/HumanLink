@@ -32,6 +32,11 @@ angular
                 templateUrl: '/views/accounts/partials/settings/profile.html',
                 controller: 'settingsProfileCtrl'
             })
+            .state('settings.recipients', {
+                url: '/settings/recipients',
+                templateUrl: '/views/accounts/partials/settings/profile_careseeker.html',
+                controller: 'settingsProfileCareseekerCtrl'
+            })
             .state('settings.caregiver', {
                 url: '/settings/caregiver',
                 templateUrl: '/views/accounts/partials/settings/caregiver.html',
