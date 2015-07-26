@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Favorite Caregivers</h2>
+    </div>
+    <div class="panel-body">
+        <p>Creating a list of favorite caregivers will significantly increase your
+            chances of finding an awesome caregiver when you are in a pinch.</p>
+        <button type="button" id="new-caregiver" class="btn btn-secondary">
+            + Add to favorites
+        </button>
+
+        <div ng-if="favorites.length">
+            <hr/>
+            <div class="row" ng-repeat="fav in favorites">
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="https://placehold.it/80x80"/>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="">{{fav.name}}</a></h4>
+
+                            <p>{{fav.status}}</p>
+                            <button type="button" class="btn btn-sm btn-default">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                Request booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="favorites.length"> Adding to your Favorites is easy and it
+            increases your chances of find great care when you need it most.
+        </div>
+    </div>
+</div>
