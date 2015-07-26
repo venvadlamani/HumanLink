@@ -3,41 +3,72 @@
 /**
  * Keeps track of the current logged in user.
  */
-angular
-    .module('Common')
-    .factory('userSession', ['apiService', function (apiService) {
+(function () {
+    angular
+        .module('Common')
+        .provider('userSession', function () {
 
-        var self = this;
-        self.userdata = null;
-        self.ctrlHelper = new HL.CtrlHelper();
-
-        self.setAccount = function(account) {
-            self.userdata = account;
-        };
-
-        self.unsetAccount = function() {
-            self.userdata = null;
-        };
-
-        self.isAuthorized = function() {
-            return self.userdata !== null;
-        };
-
-        self.update = function() {
-            self.ctrlHelper.success = function (data, status, headers, config) {
-                self.userdata = data;
+            var roles = {
+                GUEST: 0,
+                AUTHORIZED: 1
             };
-            self.ctrlHelper.error = function (data, status, headers, config) {
-                self.unsetAccount();
+
+            return {
+                // This is here because it us used in `angular.config()`.
+                roles: roles,
+                $get: getUserSession
             };
-            apiService.Accounts.userdata({}, self.ctrlHelper);
-        };
 
-        // Initial page load.
-        if (window.HL.userdata) {
-            self.userdata = window.HL.userdata;
-        }
+            /** ngInject */
+            function getUserSession(apiService) {
+                var userdata = null;
+                var ctrlHelper = new HL.CtrlHelper();
 
-        return self;
+                // Initial page load.
+                if (window.HL.userdata) {
+                    userdata = window.HL.userdata;
+                }
 
-    }]);
+                return {
+                    roles: roles,
+                    userdata: userdata,
+                    setAccount: setAccount,
+                    unsetAccount: unsetAccount,
+                    isAuthorized: isAuthorized,
+                    update: update,
+                    getRole: getRole
+                };
+
+                function setAccount(account) {
+                    userdata = account;
+                }
+
+                function unsetAccount() {
+                    userdata = null;
+                }
+
+                function isAuthorized() {
+                    return userdata !== null;
+                }
+
+                function update() {
+                    ctrlHelper.success = function (data, status, headers, config) {
+                        userdata = data;
+                    };
+                    ctrlHelper.error = function () {
+                        unsetAccount();
+                    };
+                    apiService.Accounts.userdata({}, ctrlHelper);
+                }
+
+                /**
+                 * Returns roles.GUEST or roles.AUTHORIZED.
+                 * In the future, this should be used for checking account type as well.
+                 */
+                function getRole() {
+                    return isAuthorized() ? roles.AUTHORIZED : roles.GUEST;
+                }
+            }
+        });
+
+})();

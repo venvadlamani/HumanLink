@@ -1,31 +1,53 @@
 'use strict';
 
-angular
-    .module('Accounts', ['ui.router', 'ui.bootstrap', 'checklist-model', 'Common'])
-    .config(['$stateProvider', '$urlRouterProvider',
-            function ($stateProvider, $urlRouterProvider) {
+/**
+ * Accounts module.
+ */
+(function () {
+    angular
+        .module('Accounts', [
+            'ui.bootstrap',
+            'checklist-model',
+            'Common'
+        ])
+        .config(Config);
 
-        // Otherwise redirect to /
+    /** ngInject */
+    function Config($stateProvider, $urlRouterProvider, userSessionProvider) {
+
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
             .state('login', {
-                url: '/',
+                url: '/?next',
                 templateUrl: '/views/accounts/partials/login.html',
-                controller: 'loginCtrl'
+                controller: 'loginCtrl',
+                data: {
+                    role: userSessionProvider.roles.GUEST
+                }
             })
             .state('join', {
                 url: '/join',
                 templateUrl: '/views/accounts/partials/join.html',
-                controller: 'joinCtrl'
+                controller: 'joinCtrl',
+                data: {
+                    role: userSessionProvider.roles.GUEST
+                }
             })
             .state('profile', {
                 url: '/profile',
                 templateUrl: '/views/accounts/partials/profile.html',
-                controller: 'manageProfileCtrl'
+                controller: 'manageProfileCtrl',
+                data: {
+                    role: userSessionProvider.roles.AUTHORIZED
+                }
             })
             .state('settings', {
+                abstract: true,
                 templateUrl: '/views/accounts/partials/settings/base_settings.html',
+                data: {
+                    role: userSessionProvider.roles.AUTHORIZED
+                }
             })
             .state('settings.profile', {
                 url: '/settings/profile',
@@ -57,4 +79,6 @@ angular
                 templateUrl: '/views/accounts/partials/settings/reviews.html',
                 controller: 'settingsReviewsCtrl'
             });
-    }]);
+    }
+
+})();
