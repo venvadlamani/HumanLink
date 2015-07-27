@@ -1,0 +1,57 @@
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-interests">
+        Interests</label>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-10">
+                <textarea id="recipient-interests" class="form-control"
+                          ng-model="recipient.interests" rows="4"></textarea>
+            </div>
+        </div>
+        <p class="help-block">Does the recipient have any special interests?
+            Hobbies, sports, TV shows, etc. This information helps our care
+            professionals provide excellent service.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-profession">
+        Last profession</label>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-10">
+                <input id="recipient-profession" class="form-control"
+                       ng-model="recipient.profession"/>
+            </div>
+        </div>
+        <p class="help-block">What was the recipients last profession?</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-notes">
+        General Notes</label>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-10">
+                <textarea id="recipient-ntoes" class="form-control"
+                          ng-model="recipient.notes" rows="4"></textarea>
+            </div>
+        </div>
+        <p class="help-block">Any other information that will help our care professional</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+        <a ui-sref="settings.new_recipients.needs" class="btn btn-block btn-default">Previous Section
+        </a>
+    </div>
+    <div class="col-sm-4">
+        <button type="submit" class="btn btn-block btn-secondary">Add new recipient
+        </button>
+    </div>
+</div>

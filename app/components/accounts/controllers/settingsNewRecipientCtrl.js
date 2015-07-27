@@ -1,15 +1,18 @@
 'use strict';
 
-angular
-    .module('Accounts')
-    .controller('settingsProfileCareseekerCtrl',
-    ['$scope', '$anchorScroll', '$location', '$filter',
-        'Constants', 'apiService', 'siteAlert',
-    function ($scope, $anchorScroll, $location, $filter,
-              Constants, apiService, siteAlert) {
+/**
+ * Controller for the new recipient sub-page of settings
+ */
+(function () {
+    angular
+        .module('Accounts')
+        .controller('settingsNewRecipientCtrl', Ctrl);
+
+    /** @ngInject */
+    function Ctrl($scope, $anchorScroll, $location, $filter,
+                  Constants, apiService, siteAlert) {
 
         $scope.recipient = {};
-        $scope.recipients = null;
         $scope.myself = false;
         $scope.forms = null;
 
@@ -49,7 +52,7 @@ angular
             apiService.Accounts.patients.list(initReq);
         }
 
-       function chooseMyself(yes) {
+        function chooseMyself(yes) {
             if (yes == $scope.myself) {
                 return;
             }
@@ -109,6 +112,11 @@ angular
             goToEdit();
         }
 
+        function goToEdit() {
+            $location.hash('new-care');
+            $anchorScroll();
+        }
+
         function archive(model) {
             siteAlert.clear();
             if (!window.confirm("Are you sure?")) {
@@ -136,6 +144,17 @@ angular
             }
         }
 
+        function reset() {
+            $scope.recipient = {};
+            $scope.myself = false;
+
+            $scope.forms = {
+                showNewCare: false,
+                showShowExpertise: false,
+                showMore: false
+            };
+        }
+
         var validate = function (model) {
             if (!model.care_type) {
                 siteAlert.error("Please select the recipient's care needs.");
@@ -155,7 +174,7 @@ angular
                     return false;
                 }
                 // Endpoint expects an integer.
-                model.phone_number = model.phone_number.replace(/\D/g,'');
+                model.phone_number = model.phone_number.replace(/\D/g, '');
             } else {
                 delete model.phone_number;
             }
@@ -166,20 +185,7 @@ angular
             return true;
         };
 
-        function goToEdit () {
-            $location.hash('new-care');
-            $anchorScroll();
-        }
 
-        function reset() {
-            $scope.recipient = {};
-            $scope.myself = false;
-
-            $scope.forms = {
-                showNewCare: false,
-                showShowExpertise: false,
-                showMore: false
-            };
-        }
     }
-    ]);
+
+})();

@@ -29,19 +29,49 @@ window.HL = window.HL || {};
             "value": 0,
             "name": "Companion",
             "description": "Companionship",
-            "skills": "Errands, Housekeeping, Transportation"
+            "skills": "All things companions do"
         },
         {
             "value": 1,
-            "name": "Personal",
-            "description": "Personal",
-            "skills": "Bathing and dressing, Exercise and Mobility, Medication reminders"
+            "name": "Grooming",
+            "description": "Personal Grooming",
+            "skills": "Bathing and dressing"
         },
         {
             "value": 2,
-            "name": "AlzheimerDimentia",
-            "description": "Alzheimer's and Dimentia",
+            "name": "Meals",
+            "description": "Meal Preparations",
+            "skills": "Hot/cold meal preparations"
+        },
+        {
+            "value": 3,
+            "name": "Housekeeping",
+            "description": "Housekeeping",
+            "skills": "Housekeeping - Laundry and cleaning"
+        },
+        {
+            "value": 4,
+            "name": "Medication",
+            "description": "Medication reminders",
+            "skills": "Medication reminders"
+        },
+        {
+            "value": 5,
+            "name": "Transportation",
+            "description": "Transportation",
+            "skills": "Transportation from home to clinic and back"
+        },
+        {
+            "value": 6,
+            "name": "Alzheimers",
+            "description": "Alzheimer's and Dementia",
             "skills": "Companionship, Mental simulation, 24-hour care"
+        },
+        {
+            "value": 7,
+            "name": "Mobility",
+            "description": "Mobility assistance",
+            "skills": "Mobility assistance"
         }
     ];
     var allergies = [
