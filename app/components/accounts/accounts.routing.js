@@ -56,8 +56,25 @@
             })
             .state('settings.recipients', {
                 url: '/settings/recipients',
-                templateUrl: '/views/accounts/partials/settings/profile_careseeker.html',
-                controller: 'settingsProfileCareseekerCtrl'
+                templateUrl: '/views/accounts/partials/settings/recipients.html',
+                controller: 'settingsRecipientsCtrl'
+            })
+            .state('settings.new_recipient', {
+                abstract: true,
+                params: {model: null},
+                templateUrl: '/views/accounts/partials/settings/new_recipient/new.html',
+                controller: 'settingsNewRecipientCtrl'
+            })
+            .state('settings.new_recipient.who', {
+                url: '/settings/recipients/new/',
+                params: {model: null},
+                templateUrl: '/views/accounts/partials/settings/new_recipient/who.html',
+            })
+            .state('settings.new_recipient.needs', {
+                templateUrl: '/views/accounts/partials/settings/new_recipient/needs.html',
+            })
+            .state('settings.new_recipient.otherdata', {
+                templateUrl: '/views/accounts/partials/settings/new_recipient/otherdata.html',
             })
             .state('settings.favorites', {
                 url: '/settings/favorites',
