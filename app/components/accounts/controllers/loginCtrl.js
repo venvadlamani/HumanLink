@@ -3,19 +3,16 @@
 /**
  * Controller for the login view.
  */
-angular
-    .module('Accounts')
-    .controller('loginCtrl', ['$scope', '$window', '$location', 'apiService',
-                'userSession',
-     function ($scope, $window, $location, apiService, userSession) {
+(function () {
+    angular
+        .module('Accounts')
+        .controller('loginCtrl', Ctrl);
 
+    /** @ngInject */
+    function Ctrl($scope, $window, $stateParams, apiService) {
         // Reference to the base ctrlHelper.
         var ctrlHelper = $scope.$parent.ctrlHelper;
         ctrlHelper.reset();
-
-        if (userSession.isAuthorized()) {
-            $location.path('/profile');
-        }
 
         $scope.loginModel = {
             email: '',
@@ -28,10 +25,13 @@ angular
                 return;
             }
             ctrlHelper.success = function (data, status, headers, config) {
-                // Redirect to profile page.
-                $window.location.href = HL.baseUrl + '/accounts';
+                console.log('HEY! Remove the /r absolute URL once migrated to the new backend.');
+                var redirector = 'http://eb.humanlink.co/r?url=';
+                var next = $stateParams.next || HL.baseUrl + '/accounts#/settings/profile';
+                $window.location.href = redirector + decodeURIComponent(next);
             };
             apiService.Accounts.login(model, ctrlHelper);
         };
+    }
 
-    }]);
+})();
