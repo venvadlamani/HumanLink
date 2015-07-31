@@ -53,6 +53,7 @@ gulp.task('compile-vendor', function() {
         bower + '/jquery/dist/jquery.js',
         bower + '/bootstrap/dist/js/bootstrap.js',
         bower + '/angular/angular.js',
+        bower + '/angular-animate/angular-animate.min.js',
         bower + '/angular-bootstrap/ui-bootstrap-tpls.js',
         bower + '/angular-ui-router/release/angular-ui-router.js',
         bower + '/checklist-model/checklist-model.js'
@@ -65,7 +66,9 @@ gulp.task('compile-js', function () {
         'app/*.js',
         'app/components/*/*module.js',
         'app/components/*/*.js',
-        'app/components/*/*/*.js'
+        'app/components/*/*/*.js',
+        'app1/**/*module.js',
+        'app1/**/*.js'
     ], 'humanlink.js', true);
 });
 
