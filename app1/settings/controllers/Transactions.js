@@ -3,11 +3,11 @@
 
     angular
         .module('app.settings')
-        .controller('Notifications', Notifications);
+        .controller('Transactions', Transactions);
 
     /* @ngInject */
-    function Notifications($scope, $timeout, SettingsRepo,
-                           CommonService, CommonEvents) {
+    function Transactions($scope, $timeout, SettingsRepo,
+                      CommonService, CommonEvents) {
         var vm = this;
         vm.settings = null;
 

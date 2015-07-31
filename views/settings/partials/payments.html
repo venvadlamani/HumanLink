@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Payment details</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <select id="card_type" name="card_type" class="form-control"
+                            ng-model="vm.settings.payment.card_type"
+                            ng-options="type for type in card_types"></select>
+
+                    <p class="help-block">Card type</p>
+                </div>
+                <div class="col-sm-3">
+                    <input id="card_number" class="form-control"
+                           ng-model="vm.settings.payment.card_number" placeholder="5555 5555 5555 5555" hl-focus/>
+
+                    <p class="help-block">Card Number</p>
+                </div>
+                <div class="col-sm-2">
+                    <input id="security_code" class="form-control"
+                           ng-model="vm.settings.payment.security" placeholder="1234" hl-focus/>
+
+                    <p class="help-block">Security code</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <select class="form-control"></select>
+
+                    <p class="help-block">Expiry month</p>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control"></select>
+
+                    <p class="help-block">Expiry year</p>
+                </div>
+                <div class="col-sm-3">
+                    <input ng-model="vm.settings.payment.zipcode" class="form-control"/>
+
+                    <p class="help-block">zipcode</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <button class="btn btn-secondary btn-block">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>

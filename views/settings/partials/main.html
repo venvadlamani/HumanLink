@@ -1,11 +1,13 @@
 <div class="col-md-3">
     <div class="list-group">
         <a href class="list-group-item" ui-sref-active-eq="active"
-                ui-sref="settings.notifications">Notifications</a>
+           ui-sref="settings.notifications">Notifications</a>
         <a href class="list-group-item" ui-sref-active-eq="active"
-                ui-sref="settings.payments">Payments</a>
+           ui-sref="settings.payments">Payment Methods</a>
         <a href class="list-group-item" ui-sref-active-eq="active"
-                ui-sref="settings.security">Security</a>
+           ui-sref="settings.transactions">Transaction History</a>
+        <a href class="list-group-item" ui-sref-active-eq="active"
+           ui-sref="settings.security">Security</a>
     </div>
 </div>
 
@@ -14,4 +16,3 @@
 
     <div ui-view ng-show="base.viewReady"></div>
 </div>
-

@@ -8,6 +8,9 @@ routes = [
     webapp2.Route(r'/accounts', name='accounts_index', methods=['GET'],
                   handler='controllers.accounts.Accounts:index'),
 
+    webapp2.Route(r'/settings', name='settings_index', methods=['GET'],
+                  handler='controllers.settings.Settings:index'),
+
     webapp2.Route(r'/login.json', name='login_post', methods=['POST'],
                   handler='controllers.accounts.Accounts:POST_login'),
 

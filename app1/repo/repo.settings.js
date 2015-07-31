@@ -63,7 +63,16 @@
                 },
                 payment: {
                     card_type: 'visa',
-                    last_four: '4242'
+                    card_number: '2323232323232323',
+                    expires_month: '07',
+                    year: '16',
+                    security: '163',
+                    zipcode: '72758'
+                },
+                transactions: {},
+                security: {},
+                close: {
+                    reason: '2'
                 }
             };
             return settings;

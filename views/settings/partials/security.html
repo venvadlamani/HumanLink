@@ -1,0 +1,126 @@
+<form class="form-horizontal" role="form">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Change your password </h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="old_password"
+                           placeholder="Please enter your old password"
+                           ng-model="vm.settings.password">
+
+                    <p for="old_password" class="help-block">Old Password</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="new_password" placeholder="New Password"
+                           ng-model="vm.settings.new_password">
+
+                    <p for="new_password" class="help-block">New Password</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="new_password_confirm"
+                           placeholder="Confirm New Password"
+                           ng-model="vm.settings.new_password_confirm">
+                    <p for="new_password_confirm" class="help-block">Confirm New Password</p>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-block btn-secondary">Save New Password
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Login notifications </h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="vm.settings.security.login"> Enable login notifications
+                        </label>
+                    </div>
+                    <small>When you turn on login notifications, we'll let you know whenever your account is
+                        accessed from a browser you haven't marked as trusted.You can mark a browser as
+                        trusted the next time you use it to log in. We won't notify you when your account
+                        is accessed from a trusted browser.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-block btn-secondary">Enable Login Notifications
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Close Account Reason </h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label">
+                        Why would you like to close your humanlink account?</label>
+                </div>
+                <div class="col-sm-12">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="vm.settings.close.reason" value="0">
+                            I have a duplicate account
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="vm.settings.close.reason" value="1">
+                            I don't need the services anymore
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="vm.settings.close.reason" value="2">
+                            I am using a different professional service
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="vm.settings.close.reason" value="3">
+                            Other
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-block btn-secondary">Close Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
