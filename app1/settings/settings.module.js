@@ -38,19 +38,21 @@
             })
             .state('settings.payments', {
                 url: '/payments',
-                template: 'payments'
+                templateUrl: '/views/settings/partials/payments.html',
+                controller: 'Payments',
+                controllerAs: 'vm'
             })
             .state('settings.transactions', {
                 url: '/transactions',
-                template: 'transactions'
+                templateUrl: '/views/settings/partials/transactions.html',
+                controller: 'Transactions',
+                controllerAs: 'vm'
             })
             .state('settings.security', {
                 url: '/security',
-                template: 'security'
-            })
-            .state('settings.close', {
-                url: '/close',
-                template: 'close account'
+                templateUrl: '/views/settings/partials/security.html',
+                controller: 'Security',
+                controllerAs: 'vm'
             });
     }
 
