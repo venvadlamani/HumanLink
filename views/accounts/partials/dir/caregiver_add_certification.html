@@ -1,32 +1,48 @@
-<form class="form-horizontal small">
-    <div class="form-group">
-        <label for="cert-state" class="col-md-4 control-label">
-            <small>State Issued</small></label>
-        <div class="col-md-8">
-            <select id="cert-state" class="form-control input-sm"
-                    ng-model="cert" ng-options="s.name for s in states"></select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="cert-name" class="col-md-4 control-label">
-            <small>Certification Name</small></label>
-        <div class="col-md-8">
-            <input type="text" id="cert-name" class="form-control input-sm"
-                   placeholder="The Schmieding Center" maxlength="100" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="cert-date" class="col-md-4 control-label">
-            <small>Date Issued</small></label>
-        <div class="col-md-8">
-            <input type="text" id="cert-date" class="form-control input-sm"
-                   maxlength="25" />
-        </div>
-    </div>
-    <div class="text-center small">
-        <button type="button" class="btn btn-sm btn-primary">Add Certification</button>
-        <button type="button" class="btn btn-sm btn-link"
-                ng-click="showCertificationForm = false">Close</button>
-    </div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group">
+            <input ng-model="certification.name" placeholder="CNA / PCA / HHA"
+                   id="care-training-name" class="form-control"/>
 
-</form>
+            <p class="help-block">Name of the certification or degree received.</p>
+        </div>
+
+        <div class=" form-group">
+            <input ng-model="aboutMe.trainingHours" placeholder="Hours of training"
+                   id="care-training-hours" class="form-control"/>
+
+            <p class="help-block">Hours formal training received at this facility.</p>
+        </div>
+
+        <div class=" form-group">
+            <input type="text" ng-model="certification.school" class="form-control">
+
+            <p class="help-block">Please enter the name of the School / Facility where you
+                received your formal training as a Care Professional.</p>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="text" ng-model="certification.month" class="form-control">
+
+                <p class="help-block">Month of graduation.</p>
+            </div>
+
+            <div class="form-group">
+                <input type="text" ng-model="certification.year" class="form-control">
+
+                <p class="help-block">Year of graduation.</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-sm btn-default"
+                    ng-click="addCertification(certification)">
+                Add certification
+            </button>
+            <button type="button" class="btn btn-sm btn-danger"
+                    ng-click="addCert=true">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>

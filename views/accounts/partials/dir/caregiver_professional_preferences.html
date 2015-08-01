@@ -1,0 +1,74 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Professional Preferences</h2>
+    </div>
+    <div class="panel-body">
+        <div class="row form-group">
+            <label class="col-md-3 control-label">
+                Transportation</label>
+
+            <div class="col-md-9">
+                <div class="checkbox" ng-repeat="trans in ::transportation">
+                    <label>
+                        <input type="checkbox"
+                               checklist-model="caregiverDetails.transportation"
+                               checklist-value="trans.name">{{ trans.description }}
+                    </label>
+                </div>
+                <p class="help-block">Are you willing to provide a transportation?</p>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <label for="caregiver-liveout" class="col-sm-3 control-label">
+                Live-in / Live-out
+            </label>
+
+            <div class="col-sm-9">
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="aboutMe.live_in" value="true" id="caregiver-liveout">
+                        I am open to occasional Live-In arrangements.
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="aboutMe.live_in" value="false" id="caregiver-liveout">
+                        I prefer Live-Out arrangements only.
+                    </label>
+                </div>
+                <p class="help-block">Would you consider living-in arrangements?</p>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <label for="care-services" class="col-sm-3 control-label">
+                Care services
+            </label>
+
+            <div class="col-sm-9">
+
+                <div class="checkbox" ng-repeat="care in ::careServices">
+                    <label>
+                        <input type="checkbox"
+                               checklist-model="aboutMe.care_services"
+                               checklist-value="care.name">{{ care.description }}
+                        <small class="text-muted">({{ care.skills }})</small>
+                    </label>
+                </div>
+                <p class="help-block">Select care services you are willing to provide</p>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row form-group">
+            <div class="col-sm-3">
+                <button class="btn btn-secondary"
+                        ng-click="caregiverUpdate(aboutMe)"
+                        ng-disabled="ctrlHelper.isLoading">Save Professional Preferences
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

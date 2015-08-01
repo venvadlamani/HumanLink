@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class=" form-group">
+            <input type="text" ng-model="experience.name" class="form-control">
+
+            <p class="help-block">Please enter the name of Employer.</p>
+        </div>
+
+        <div class="form-group">
+            <input ng-model="experience.title" placeholder="Nursing Aide"
+                   id="care-training-name" class="form-control"/>
+
+            <p class="help-block">Title.</p>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="text" ng-model="experience.starting_month" class="form-control">
+
+                <p class="help-block">Starting month.</p>
+            </div>
+
+            <div class="form-group">
+                <input type="text" ng-model="experience.starting_year" class="form-control">
+
+                <p class="help-block">Starting year.</p>
+            </div>
+        </div>
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="text" ng-model="experience.ending_month" class="form-control">
+
+                <p class="help-block">Ending month.</p>
+            </div>
+
+            <div class="form-group">
+                <input type="text" ng-model="experience.ending_year" class="form-control">
+
+                <p class="help-block">Ending year.</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-sm btn-default"
+                    ng-click="addExperience(experience)">
+                Add Experience
+            </button>
+            <button type="button" class="btn btn-sm btn-danger"
+                    ng-click="addExper=true">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>

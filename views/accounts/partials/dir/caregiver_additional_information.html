@@ -1,0 +1,115 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Additional information</h2>
+    </div>
+    <div class="panel-body">
+        <div class="row form-group">
+            <label for="vaccines" class="col-sm-3 control-label">Vaccines
+            </label>
+
+            <div class="col-sm-9">
+                <div class="checkbox" ng-repeat="vaccine in ::vaccines">
+                    <label>
+                        <input type="checkbox"
+                               checklist-model="aboutMe.vaccines"
+                               checklist-value="vaccine.name"> {{ vaccine.description }}
+                    </label>
+                </div>
+                <p class="help-block">
+                    In the past 12 months did you get any shots or get tested?</p>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <label for="allergies" class="col-sm-3 control-label">Allergies
+            </label>
+
+            <div class="col-sm-9">
+                <div class="checkbox" ng-repeat="allergy in ::allergies">
+                    <label>
+                        <input type="checkbox"
+                               checklist-model="aboutMe.allergies"
+                               checklist-value="allergy.name"> {{ allergy.name }}
+                    </label>
+                </div>
+                <p class="help-block">
+                    Do you have any allergies that care seekers should be aware of?</p>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <label for="caregiver-gender-pref" class="col-sm-3 control-label">
+                Gender preference
+            </label>
+
+            <div class="col-sm-9">
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="aboutMe.gender_preference" value="Other"> No
+                        Preference
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="aboutMe.gender_preference" value="Male"> Men only
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="aboutMe.gender_preference" value="Female"> Women only
+                    </label>
+                </div>
+                <p class="help-block">Do you prefer to provide care for only a certain gender?</p>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <label for="emergency" class="col-sm-3 control-label">Emergency contacts</label>
+
+            <div class="col-sm-9">
+                <div ng-hide="aboutMe.emergencys.length">
+                    No Emergency contact on file.
+                </div>
+                <div ng-show="aboutMe.emergencys.length">
+                    <div ng-repeat="emergency in aboutMe.emergencys">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a ng-click="deleteEmergency($index)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+
+                                <h3 class="panel-title">
+                                    Emergency Contact - {{ $index + 1 }}
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <h5><b>Name: </b>{{ emergency.name }}</h5>
+                                <h5><b>Phone Number: </b>{{ emergency.phone }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <a type="button" class="btn" ng-click="addEmer =! addEmer">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Add emergency contact information
+                    </a>
+                </div>
+                <div ng-hide="addEmer">
+                    <hl-add-emergency></hl-add-emergency>
+                </div>
+
+            </div>
+        </div>
+
+        <hr>
+        <div class="row form-group">
+            <div class="col-sm-3">
+                <button class="btn btn-secondary"
+                        ng-click="caregiverUpdate(aboutMe)"
+                        ng-disabled="ctrlHelper.isLoading">Save Additional Information
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
