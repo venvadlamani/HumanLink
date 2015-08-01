@@ -1,4 +1,114 @@
-<h2 class="no-top-margin">Notification Preferences</h2>
-<pre>
-{{ vm.settings | json }}
-</pre>
+<div class="settings-notifications">
+    <form class="form-horizontal" role="form">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">SMS Settings</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h4>Notify me when</h4>
+
+                        <p class="help-block">(These can be disabled anytime.)</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="vm.notifications.messages_sms">
+                                        I receive a message from another person on Humanlink
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="vm.notifications.logins_sms">
+                                        Changes are made to my humanlink account
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-block btn-secondary"
+                                ng-click="vm.update(vm.notifications)">Save SMS Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Email Settings</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h4>I want to receive</h4>
+
+                        <p class="help-block">(These can be disabled anytime)</p>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               ng-model="vm.notifications.request_reminders_email">
+                                        Care request reminders
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               ng-model="vm.notifications.company_updates_email">
+                                        Company Updates, Surveys, etc.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               ng-model="vm.notifications.company_promotions_email">
+                                        General promotions, user survey, etc.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-block btn-secondary"
+                                ng-click="vm.update(vm.notifications)">Save Email Settings
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

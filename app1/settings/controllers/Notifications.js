@@ -6,31 +6,28 @@
         .controller('Notifications', Notifications);
 
     /* @ngInject */
-    function Notifications($scope, $timeout, SettingsRepo,
+    function Notifications($scope, SettingsRepo,
                            CommonService, CommonEvents) {
         var vm = this;
         vm.settings = null;
+        vm.update = update;
 
         init();
-
         function init() {
-            // Timeout is only for demonstrating the loader.
-            var timer = $timeout(load, 1500);
-            onDestroy(timer);
+            load();
         }
 
         function load() {
-            SettingsRepo.getSettings().then(function(data) {
+            SettingsRepo.getSettings().then(function (data) {
                 CommonService.broadcast(CommonEvents.viewReady);
-                vm.settings = data;
+                vm.notifications = data.notifications;
             });
         }
 
-        function onDestroy(timer) {
-            $scope.$on('$destroy', function () {
-                $timeout.cancel(timer);
-            });
+        function update(notifications) {
+            SettingsRepo.updateNotifications(notifications);
         }
+
     }
 
 })();
