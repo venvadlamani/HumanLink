@@ -16,7 +16,7 @@ angular
 
         $scope.secondaryTemplate = {
             "Caregiver": templBase + 'profile_caregiver.html',
-            "Careseeker": templBase + 'profile_careseeker.html'
+            "Careseeker": templBase + 'recipient.html'
         };
 
         $scope.accountTypes = Constants.accountTypes;

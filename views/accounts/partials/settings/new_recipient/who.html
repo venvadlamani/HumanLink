@@ -1,0 +1,135 @@
+<div class="form-group">
+    <label class="col-md-3 control-label">
+        Who is in need of care?</label>
+
+    <div class="col-md-9">
+        <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-default"
+                    ng-click="chooseMyself(true)"
+                    ng-class="{'active': myself}">Myself
+            </button>
+            <button type="button" class="btn btn-default"
+                    ng-click="chooseMyself(false)"
+                    ng-class="{'active': !myself}">Somebody else
+            </button>
+        </div>
+        <p class="help-block">Are you requesting care for yourself or somebody else?</p>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-first">
+        Name</label>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-2">
+                <select class="form-control" ng-model="recipient.prefix">
+                    <option></option>
+                    <option value="Dr">Dr.</option>
+                    <option value="Ms">Ms.</option>
+                    <option value="Mr">Mr.</option>
+                    <option value="Mrs">Mrs.</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input id="recipient-first" class="form-control"
+                       ng-model="recipient.first" placeholder="Jane" hl-focus/>
+
+                <p class="help-block">First</p>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control"
+                       ng-model="recipient.last" placeholder="Doe"/>
+
+                <p class="help-block">Last</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-street">
+        Address</label>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-7">
+                <input id="recipient-street" class="form-control"
+                       ng-model="recipient.address.street" placeholder="1234 Center Street"/>
+
+                <p class="help-block">Street address</p>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" ng-model="recipient.address.apt"
+                       placeholder="#3" maxlength="6"/>
+
+                <p class="help-block">Apartment number</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <input class="form-control" ng-model="recipient.address.city"
+                       placeholder="Fayetteville"/>
+
+                <p class="help-block">City</p>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control"
+                        ng-model="recipient.address.state"
+                        ng-options="s.name as s.name for s in states"></select>
+
+                <p class="help-block">State</p>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control"
+                       ng-model="recipient.address.zipcode"
+                       placeholder="72701" maxlength="10"/>
+
+                <p class="help-block">Zip code</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label" for="recipient-phone">
+        Phone Number</label>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="tel" id="recipient-phone" class="form-control"
+                       ng-model="recipient.phone_number" placeholder="555-555-5555"
+                       maxlength="12"/>
+            </div>
+        </div>
+        <p class="help-block">A phone number that the care professional can call.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-3 control-label">
+        Gender</label>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4">
+                <select class="form-control" ng-model="recipient.caregiver_gender">
+                    <option value="Male" ng-selected="!recipient.caregiver_gender">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Don't disclose</option>
+                </select>
+            </div>
+        </div>
+        <p class="help-block">Some of our care professionals prefer to work with women.</p>
+    </div>
+</div>
+
+<div class="col-sm-4 col-sm-offset-4">
+    <a ui-sref="settings.new_recipients.needs" class="btn btn-block btn-secondary">Next Section
+    </a>
+</div>
+<pre>RECIPIENT : {{recipient}}</pre>

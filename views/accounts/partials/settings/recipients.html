@@ -11,17 +11,9 @@
             who accepts a job you post.
             The caregiver will use this information to better communicate with
             the care recipient.</p>
-        <button type="button" id="new-care" class="btn btn-link"
-                ng-click="toggleForm()">
-            <h3>
-                <span class="glyphicon glyphicon-plus" ng-hide="forms.showNewCare"></span>
-                <span class="glyphicon glyphicon-minus" ng-show="forms.showNewCare"></span>
-                New Care Recipient
-            </h3>
-        </button>
-        <div ng-if="forms.showNewCare" ng-init="">
-            <hl-new-recipient></hl-new-recipient>
-        </div>
+        <a type="button" id="new-care" class="btn btn-secondary" href="#/settings/new_recipient/new/who">
+            + Add new recipient
+        </a>
 
         <div ng-if="recipients.length">
             <hr/>
@@ -39,6 +31,9 @@
                         Archive</button>
                 </div>
             </div>
+        </div>
+        <div ng-hide="recipients.length"> Creating a recipient profile is easy and
+            speedens your care seeking process.
         </div>
     </div>
 </div>
