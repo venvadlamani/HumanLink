@@ -14,13 +14,6 @@ angular
         $scope.account = userdata;
         $scope.accountForm = angular.copy($scope.account);
 
-        $scope.secondaryTemplate = {
-            "Caregiver": templBase + 'profile_caregiver.html',
-            "Careseeker": templBase + 'profile_careseeker.html'
-        };
-
-        $scope.accountTypes = Constants.accountTypes;
-
         $scope.update = function (model) {
             if (!validate(model)) {
                 return;

@@ -1,0 +1,25 @@
+<div class="new-recipient">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Add Care Recipient</h2>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-justified">
+                <li ui-sref-active="active">
+                    <a ui-sref=".who">Step 1</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref=".needs">Step 2</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref=".otherdata">Step 3</a>
+                </li>
+            </ul>
+            <hr>
+
+            <form class="form-horizontal" ng-submit="save(recipient)">
+                <div ui-view></div>
+            </form>
+        </div>
+    </div>
+</div>

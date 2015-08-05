@@ -1,23 +1,26 @@
 <div class="row settings">
     <div class="col-md-3">
-        <div class="side-nav">
-            <ul class="list-unstyled">
-                <li><a href="#/settings/profile">Basic Information</a></li>
-                <li><a href="#/settings/media">Photos and Interview Videos</a></li>
-                <li><a href="#/settings/verification">Trust and Verification</a></li>
-                <li><a href="#/settings/references">References</a></li>
-                <li><a href="#/settings/reviews">Reviews</a></li>
-            </ul>
+        <div class="list-group">
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.profile">Basic Information</a>
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.media">Photos and Interview Videos</a>
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.verification">Trust and Verification</a>
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.references">References</a>
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.reviews">Reviews</a>
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="profile"><i>Preview Profile</i></a>
         </div>
-        <div class="side-nav">
-            <ul class="list-unstyled">
-                <li><a href="#/settings/profile">Basic Information</a></li>
-                <li><a href="#/settings/recipients">Care Recipients</a></li>
-                <li><a href="#/settings/favorites">Favorite Caregivers</a></li>
-            </ul>
-        </div>
-        <div class="text-center">
-            <a class="btn btn-secondary" href="#/profile">Preview Profile</a>
+        <div class="list-group">
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.profile">Basic Information</a>
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.recipients">Care Recipients</a>
+            <a href class="list-group-item" ui-sref-active-eq="active"
+               ui-sref="settings.favorites">Favorite Caregivers</a>
         </div>
     </div>
     <div class="col-md-9" ui-view></div>

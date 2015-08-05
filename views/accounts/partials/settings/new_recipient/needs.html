@@ -1,0 +1,29 @@
+<div class="form-group">
+    <label class="col-sm-3 control-label">
+        Care Needs</label>
+
+    <div class="col-sm-9">
+        <p class="help-block"> Select the types of care the recipient needs</p>
+
+        <div class="checkbox" ng-repeat="care in ::careServices">
+            <label>
+                <input type="checkbox"
+                       checklist-model="recipient.care_type"
+                       checklist-value="care.name">
+            {{ care.description }}
+                <small class="text-muted">({{ care.skills }})</small>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+        <a ui-sref="settings.new_recipient.who" class="btn btn-block btn-default">Previous
+        </a>
+    </div>
+    <div class="col-sm-4">
+        <a ui-sref="settings.new_recipient.otherdata" class="btn btn-block btn-secondary">Continue
+        </a>
+    </div>
+</div>
