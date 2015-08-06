@@ -1,39 +1,41 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2 class="panel-title">Care Recipients</h2>
-    </div>
-    <div class="panel-body">
-        <p class="lead">Manage your care recipients from here.</p>
+<div class="recipients">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Care Recipients</h2>
+        </div>
+        <div class="panel-body">
+            <p class="lead">Manage your care recipients from here.</p>
 
-        <p>Care recipient information you enter here will
-            expedite your search for an awesome care professional for your loved ones.</p>
+            <p>Care recipient information you enter here will
+                expedite your search for an awesome care professional for your loved ones.</p>
 
-        <a class="btn btn-secondary" ui-sref="settings.new_recipient.who">
-            + Add new recipient
-        </a>
+            <a class="btn btn-secondary" ui-sref="settings.new_recipient.who">
+                + Add new recipient
+            </a>
 
-        <div ng-if="recipients.length">
-            <hr/>
-            <div class="row vmargin3" ng-repeat="rec in recipients">
-                <div class="col-md-6 col-xs-6">
-                    <strong>{{ rec.first }}</strong>
-                </div>
-                <div class="col-md-6 col-xs-6 text-right">
-                    <button type="button" class="btn btn-default"
-                            ng-click="edit(rec)" ng-disabled="rec.isLoading">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        Edit
-                    </button>
-                    <button type="button" class="btn btn-danger"
-                            ng-click="archive(rec)" ng-disabled="rec.isLoading">
-                        <span class="glyphicon glyphicon-trash"></span>
-                        Archive
-                    </button>
+            <div ng-if="recipients.length">
+                <hr/>
+                <div class="row  vmargin3" ng-repeat="rec in recipients">
+                    <div class="col-sm-6">
+                        <p class="lead">{{ rec.first }}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-default buttonpad"
+                                ng-click="edit(rec)" ng-disabled="rec.isLoading">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            Edit
+                        </button>
+                        <button type="button" class="btn btn-danger buttonpad"
+                                ng-click="archive(rec)" ng-disabled="rec.isLoading">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            Archive
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div ng-hide="recipients.length">
-            <p>Creating a recipient profile is easy and speedens your care seeking process. </p>
+            <div ng-hide="recipients.length">
+                <p>Creating a recipient profile is easy and speedens your care seeking process. </p>
+            </div>
         </div>
     </div>
 </div>
