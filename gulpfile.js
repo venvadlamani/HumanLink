@@ -57,7 +57,8 @@ gulp.task('compile-vendor', function() {
         bower + '/angular-bootstrap/ui-bootstrap-tpls.js',
         bower + '/angular-ui-router/release/angular-ui-router.js',
         bower + '/checklist-model/checklist-model.js',
-        bower + '/underscore/underscore-min.js'
+        bower + '/underscore/underscore-min.js',
+        bower + '/pusher/dist/pusher.min.js'
     ], 'vendor.js', false);
 });
 
