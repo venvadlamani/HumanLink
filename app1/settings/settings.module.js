@@ -7,12 +7,13 @@
     angular
         .module('app.settings', [
             'app.core',
-            'app.repo'
+            'app.repo',
+            'Common'
         ])
         .config(Config);
 
     /** ngInject */
-    function Config($stateProvider, $urlRouterProvider) {
+    function Config($stateProvider, $urlRouterProvider, userSessionProvider) {
 
         $urlRouterProvider.otherwise('/notifications');
 
@@ -28,6 +29,9 @@
                     'loader@settings': {
                         templateUrl: '/views/settings/partials/loader.html'
                     }
+                },
+                data: {
+                    role: userSessionProvider.roles.AUTHORIZED
                 }
             })
             .state('settings.notifications', {

@@ -36,6 +36,7 @@
         function updateNotifications(notifications) {
             $log.debug(notifications);
             $log.debug('updateNotifications not implemented');
+            console.log('updateNotifications not implemented');
         }
 
         function addPayment(payment) {
@@ -55,15 +56,15 @@
         function dummyData() {
             var settings = {
                 notifications: {
-                    logins: false,
-                    messages: true,
-                    company_updates: true,
-                    request_reminders: true,
-                    request_updates: true
+                        "logins_sms": false,
+                        "messages_sms": true,
+                        "company_updates_email": true,
+                        "request_reminders_email": false,
+                        "company_promotions_email": true
                 },
                 payment: {
-                    card_type: 'visa',
-                    last_four: '4242'
+                    "card_type": 'visa',
+                    "last_four": '4242'
                 }
             };
             return settings;
