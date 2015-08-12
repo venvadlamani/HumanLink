@@ -29,9 +29,6 @@
                     'loader@settings': {
                         templateUrl: '/views/settings/partials/loader.html'
                     }
-                },
-                data: {
-                    role: userSessionProvider.roles.AUTHORIZED
                 }
             })
             .state('settings.notifications', {
