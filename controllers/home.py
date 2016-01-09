@@ -13,6 +13,9 @@ class Home(base.BaseHandler):
     def caregivers(self):
         self.render('home/caregivers.html')
 
+    def about_us(self):
+        self.render('home/about_us.html')
+
     def POST_submit_contact(self):
         """Contact info POST request."""
 
