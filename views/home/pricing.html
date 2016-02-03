@@ -1,0 +1,79 @@
+[% extends "layouts/blanket.html" %]
+
+[% block title %] Become a HumanLink Caregiver.  [% endblock %]
+
+[% block meta %]
+<meta name="description"
+      content="Become a HumanLink caregiver and earn great money. Be your own boss and get paid for providing care on your own schedule.">
+
+<meta property="og:title" content="Become a HumanLink Caregiver">
+<meta property="og:description"
+      content="Become a HumanLink caregiver and earn great money. Be your own boss and get paid for providing care on your own schedule.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.humanlink.co/caregivers">
+<meta property="og:image" content="https://www.humanlink.co/images/hl.logo.vert.blue.png">
+[% endblock %]
+
+[% block body %]
+<div class="caregivers" ng-app="Home" ng-controller="LandingCtrl">
+
+  [% include "home/_landing-nav.html" %]
+
+  <div class="section">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-offset-2 col-md-3">
+          <div class="benefits">
+
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title">Basic Plan</h3>
+              </div>
+              <div class="panel-body text-center">
+                <h1>$9</h1>
+                <p>per month</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="benefits">
+
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title">Standard Plan</h3>
+              </div>
+              <div class="panel-body text-center">
+                <h1>$49</h1>
+                <p>per month</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="benefits">
+
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title">Premium Plan</h3>
+              </div>
+              <div class="panel-body text-center">
+                <h1>$99</h1>
+                <p>per month</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+[% endblock %] <!-- block -->

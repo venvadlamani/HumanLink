@@ -16,6 +16,9 @@ class Home(base.BaseHandler):
     def about_us(self):
         self.render('home/about_us.html')
 
+    def pricing(self):
+        self.render('home/pricing.html')
+
     def POST_submit_contact(self):
         """Contact info POST request."""
 
