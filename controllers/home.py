@@ -19,6 +19,9 @@ class Home(base.BaseHandler):
     def pricing(self):
         self.render('home/pricing.html')
 
+    def payments(self):
+        self.render('home/payments.html')
+
     def POST_submit_contact(self):
         """Contact info POST request."""
 
