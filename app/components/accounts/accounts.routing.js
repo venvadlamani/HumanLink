@@ -64,6 +64,15 @@
                 templateUrl: '/views/accounts/partials/settings/media.html',
                 controller: 'settingsMediaCtrl'
             })
+            .state('settings.preview', {
+                url: '/settings/preview',
+                templateUrl: '/views/accounts/partials/profile.html',
+                controller: 'manageProfileCtrl'
+            })
+            .state('settings.sample', {
+                url: '/settings/sample',
+                templateUrl: '/views/accounts/partials/sample_profile.html',
+            })
             .state('settings.verification', {
                 url: '/settings/verification',
                 templateUrl: '/views/accounts/partials/settings/verification.html',
