@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="form-group">
+            <input ng-model="emergency.newName" type="text"
+                   class="form-control" placeholder="Please enter name"/>
+
+            <p class="help-block"> Contact Name</p>
+        </div>
+        <div class="form-group">
+            <input ng-model="emergency.newNumber" type="text"
+                   class="form-control" placeholder="Please enter phone number"/>
+
+            <p class="help-block"> Contact Number</p>
+        </div>
+
+        <div class="form-group">
+            <button type="button" class="btn btn-default" ng-click="addEmergency()">
+                Add emergency contact info
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" ng-click="addEmer=true">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>

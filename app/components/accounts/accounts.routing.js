@@ -54,37 +54,10 @@
                 templateUrl: '/views/accounts/partials/settings/profile.html',
                 controller: 'settingsProfileCtrl'
             })
-            .state('settings.recipients', {
-                url: '/settings/recipients',
-                templateUrl: '/views/accounts/partials/settings/recipients.html',
-                controller: 'settingsRecipientsCtrl'
-            })
-            .state('settings.new_recipient', {
-                abstract: true,
-                params: {model: null},
-                templateUrl: '/views/accounts/partials/settings/new_recipient/new.html',
-                controller: 'settingsNewRecipientCtrl'
-            })
-            .state('settings.new_recipient.who', {
-                url: '/settings/recipients/new/',
-                params: {model: null},
-                templateUrl: '/views/accounts/partials/settings/new_recipient/who.html',
-            })
-            .state('settings.new_recipient.needs', {
-                templateUrl: '/views/accounts/partials/settings/new_recipient/needs.html',
-            })
-            .state('settings.new_recipient.otherdata', {
-                templateUrl: '/views/accounts/partials/settings/new_recipient/otherdata.html',
-            })
-            .state('settings.favorites', {
-                url: '/settings/favorites',
-                templateUrl: '/views/accounts/partials/settings/favorites.html',
-                controller: 'settingsFavoritesCtrl'
-            })
             .state('settings.caregiver', {
                 url: '/settings/caregiver',
                 templateUrl: '/views/accounts/partials/settings/caregiver.html',
-                controller: 'settingsCaregiverCtrl'
+                controller: 'settingsProfileCaregiverCtrl'
             })
             .state('settings.media', {
                 url: '/settings/media',
@@ -95,16 +68,6 @@
                 url: '/settings/verification',
                 templateUrl: '/views/accounts/partials/settings/verification.html',
                 controller: 'settingsVerificationCtrl'
-            })
-            .state('settings.references', {
-                url: '/settings/references',
-                templateUrl: '/views/accounts/partials/settings/references.html',
-                controller: 'settingsReferencesCtrl'
-            })
-            .state('settings.reviews', {
-                url: '/settings/reviews',
-                templateUrl: '/views/accounts/partials/settings/reviews.html',
-                controller: 'settingsReviewsCtrl'
             });
     }
 

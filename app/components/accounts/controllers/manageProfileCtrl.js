@@ -6,40 +6,53 @@
 angular
     .module('Accounts')
     .controller('manageProfileCtrl', ['$scope', 'apiService', 'userSession',
-                function ($scope, apiService, userSession) {
-        var profileHelper = new HL.CtrlHelper(),
-            patientsHelper = new HL.CtrlHelper();
+        function ($scope, apiService, userSession) {
 
-        $scope.profile = {
-            money_saved: 150,
-        };
+            var userdata = userSession.userdata;
+            var CaregiverReq = new HL.CtrlHelper();
+            var updateReq = new HL.CtrlHelper();
 
-        getInfo();
+            $scope.caregiverProfile = {};
+            $scope.caregiverAccount = {};
 
-        function getInfo () {
-            profileHelper.success = function (data, status, headers, config) {
-                angular.extend($scope.profile, data);
-                $scope.profile.pictureUrl = 'profile_' + data.first +
-                    data.last + '.png';
-                $scope.profile.bannerUrl = 'banner_' + data.first +
-                    data.last + '.png';
+            //DUMMY DATA - TO BE REMOVED
+            $scope.profile = {
+                city: 'Fayetteville',
+                state: 'AR',
+                mobile_redacted: '(xxx) xxx - xx23',
+
+                education: [{
+                    title: 'CNA',
+                    completion: 'NTI - Completed, December 2014'
+                }, {
+                    title: 'LPN',
+                    completion: 'NTI 2014 - current'
+                }],
             };
 
-            patientsHelper.success = function (data, status, headers, config) {
-                $scope.careRecipients = data;
+            var fetchCaregiver = function (data, success) {
+                $scope.caregiverProfile = data;
+                $scope.caregiverForm = angular.copy(data);
+                $scope.caregiverDetails = angular.copy(data);
             };
 
-            apiService.Accounts.get(userSession.userdata.account_id,
-                                    profileHelper);
-            apiService.Accounts.patients.list(patientsHelper);
-        }
+            init();
+            function init() {
 
-        /**
-         * Add's care_recipient under current account.
-         *
-         * @return void
-         */
-        $scope.addCareRecipient = function () {
-            console.log('addCareRecipient');
-        };
-    }]);
+                updateReq.success = function (accountData, status) {
+                    angular.extend($scope.profile, accountData);
+                    $scope.profile.pictureUrl = 'profile_' + accountData.first +
+                        accountData.last + '.png';
+                    $scope.profile.bannerUrl = 'banner_' + accountData.first +
+                        accountData.last + '.png';
+                };
+                apiService.Accounts.get(userdata.account_id, updateReq);
+
+                CaregiverReq.success = function (caregiverData, status) {
+                    angular.extend($scope.profile, caregiverData);
+                };
+                apiService.Accounts.caregiver.get(userdata.account_id, CaregiverReq);
+
+            }
+
+        }]);
