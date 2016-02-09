@@ -1,12 +1,12 @@
 <form role="form">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2 class="panel-title">Status and Description</h2>
+      <h2 class="panel-title">Headline and Bio</h2>
     </div>
     <div class="panel-body">
       <div class="row form-group">
         <label for="care-status" class="col-sm-3 control-label">
-          Availability
+          Headline
         </label>
 
         <div class="col-sm-9">
@@ -14,8 +14,8 @@
                  id="care-status" class="form-control"/>
 
           <p class="help-block">Your headline is a one sentence description of your
-            current
-            weekly availability. Please state the number of hours you are available per
+            current weekly availability. Please state the number of hours you are
+            available per
             week and the days of the week you will be available to our clients.
             For example - "I am available M-F from 1-4 pm". Please update you
             availability as frequently as possible.
@@ -24,7 +24,7 @@
       </div>
 
       <div class="row form-group">
-        <label for="bio" class="col-sm-3 control-label">Describe yourself</label>
+        <label for="bio" class="col-sm-3 control-label">Bio</label>
 
         <div class="col-sm-9">
                     <textarea ng-model="aboutMe.bio"
@@ -57,10 +57,72 @@
         <div class="col-sm-3">
           <button class="btn btn-secondary"
                   ng-click="caregiverUpdate(aboutMe)"
-                  ng-disabled="ctrlHelper.isLoading">Save Status and Description
+                  ng-disabled="ctrlHelper.isLoading">Save Headline and Bio
           </button>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">Personal Data</h2>
+    </div>
+    <div class="panel-body">
+
+      <div class="row form-group">
+        <label for="gender" class="col-sm-3 control-label">
+          Gender
+        </label>
+
+        <div class="col-sm-9">
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="aboutMe.gender" value="undisclosed">
+              I prefer not to disclose
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="aboutMe.gender" value="female">
+              Female
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="aboutMe.gender" value="male">
+              Male
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label for="live_in" class="col-sm-3 control-label">
+          live-in OR live-out
+        </label>
+
+        <div class="col-sm-9">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="aboutMe.live_in">
+              I am open to live-in arrangements.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row form-group">
+        <div class="col-sm-3">
+          <button class="btn btn-secondary"
+                  ng-click="caregiverUpdate(aboutMe)"
+                  ng-disabled="ctrlHelper.isLoading">Save Personal Data
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </form>

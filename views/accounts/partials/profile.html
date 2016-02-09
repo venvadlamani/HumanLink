@@ -2,7 +2,7 @@
 
   <div class="row text-center">
     <h2>Hello, My name is {{profile.first}} {{profile.last}}</h2>
-    <h5>I live in {{profile.city}}, {{profile.state}}</h5>
+    <h5>I live in {{profile.city}} {{profile.state}}</h5>
   </div>
 
   <hr class="profile-divider">
@@ -32,21 +32,37 @@
         <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
         <div class="col-sm-9">
           <p>Mobile number</p>
-          <small>Verified</small>
+
+          <div ng-show="profile.phone_number_verified">
+            <small>Verified</small>
+          </div>
+          <div ng-hide="profile.phone_number_verified">
+            <small>Not Verified</small>
+          </div>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
         <div class="col-sm-9">
           <p>Offline ID</p>
-          <small>Drivers License</small>
+          <div ng-show="profile.offline_id_verified">
+            <small>Verified</small>
+          </div>
+          <div ng-hide="profile.offline_id_verified">
+            <small>Not Verified</small>
+          </div>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
         <div class="col-sm-9">
           <p>Background verified</p>
-          <small>Verified</small>
+          <div ng-show="profile.background_verified">
+            <small>Verified</small>
+          </div>
+          <div ng-hide="profile.background_verified">
+            <small>Not Verified</small>
+          </div>
         </div>
       </div>
     </div>

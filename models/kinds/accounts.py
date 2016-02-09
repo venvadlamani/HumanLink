@@ -79,7 +79,8 @@ class Caregiver(base.Base):
     account_id = ndb.IntegerProperty(required=True)
     care_services = msgprop.EnumProperty(CareService, repeated=True)
     zipcode = ndb.IntegerProperty()
-    gender = msgprop.EnumProperty(Gender, indexed=True)
+    gender = ndb.StringProperty()
+    gender_old = msgprop.EnumProperty(Gender, indexed=True)
     dob = ndb.DateTimeProperty()
     headline = ndb.StringProperty(indexed=False)
     bio = ndb.TextProperty(indexed=False)
@@ -91,7 +92,7 @@ class Caregiver(base.Base):
     allergies = msgprop.EnumProperty(Allergy, repeated=True, indexed=True)
     transportation = msgprop.EnumProperty(
         Transportation, repeated=True, indexed=True)
-    live_in = ndb.BooleanProperty(default=False)
+    live_in = ndb.BooleanProperty()
     # TODO: Find out if work experience is actually needed.
     #work_experience = ndb.StructuredProperty(WorkExperience, repeated=True)
 

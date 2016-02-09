@@ -2,8 +2,8 @@
 
 angular
     .module('Accounts')
-    .controller('settingsProfileCaregiverCtrl', ['$scope', 'Constants', 'apiService', 'userSession',
-        function ($scope, Constants, apiService, userSession) {
+    .controller('settingsProfileCaregiverCtrl', ['$scope', '$http', 'Constants', 'apiService', 'userSession',
+        function ($scope, $http, Constants, apiService, userSession) {
             var updateReq = new HL.CtrlHelper();
             var userdata = userSession.userdata;
 
@@ -33,6 +33,8 @@ angular
             var init = function () {
                 updateReq.success = function (data, status) {
                     fetch(data, status);
+                    $scope.aboutMe = data;
+                    console.log(data);
                 };
                 apiService.Accounts.caregiver.get(userdata.account_id, updateReq);
             };
@@ -42,6 +44,8 @@ angular
                 if (!validate(model)) {
                     return;
                 }
+                console.log(model);
+
                 // Maybe nothing has been changed.
                 if (angular.equals($scope.caregiver, model)) {
                     return;
@@ -65,8 +69,6 @@ angular
                 if (data.dob) {
                     data.year = new Date(data.dob).getFullYear();
                 }
-                console.log(data);
-                $scope.aboutMe = data;
             };
 
             var validate = function (model) {
@@ -105,35 +107,5 @@ angular
                 // Clear input fields after push
                 $scope.addCert = true;
                 $scope.certification = "";
-            };
-
-            //  Add/Edit experiences
-            $scope.addCertification = function (exper) {
-                if (!$scope.aboutMe.experiences) {
-                    $scope.aboutMe.experiences = [];
-                }
-                $scope.aboutMe.experiences.push(exper);
-
-                // Clear input fields after push
-                $scope.addExper = true;
-                $scope.experience = "";
-            };
-
-            //  Add/Edit languages
-            $scope.addLanguage = function (language) {
-                if (!$scope.aboutMe.languages) {
-                    $scope.aboutMe.languages = [];
-                }
-                $scope.aboutMe.languages.push(language);
-
-                // Clear input fields after push
-                $scope.addLang = true;
-                $scope.language = "";
-            };
-
-            $scope.deleteLanguage = function (index) {
-                console.log("deleting " + index);
-                _.without($scope.aboutMe.languages, index);
-                console.log($scope.aboutMe.certifications);
             };
         }]);
