@@ -150,6 +150,8 @@ def account_update(actor_id, account_dto, _dto=True):
         ac.last = acd.last
     if has_changed(acd.phone_number, ac.phone_number):
         ac.phone_number = acd.phone_number
+    if has_changed(acd.city, ac.city):
+        ac.city = acd.city
     if has_changed(acd.account_type, ac.account_type):
         ac.account_type = acd.account_type
         # First-time caregiver.

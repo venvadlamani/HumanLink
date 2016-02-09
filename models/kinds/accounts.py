@@ -42,11 +42,16 @@ class Account(base.Base, auth_models.User):
     account_type = msgprop.EnumProperty(AccountType)
     first = ndb.StringProperty(indexed=False)
     last = ndb.StringProperty(indexed=False)
+    city = ndb.StringProperty(indexed=False)
     names = ndb.ComputedProperty(lower_names, repeated=True)
     # Facebook ID associated with the account.
     fbid = ndb.StringProperty(indexed=False)
     # Whether the email has been verified or not.
     email_verified = ndb.BooleanProperty(default=False, indexed=False)
+    # Whether the background check has been conducted and has been verified or not.
+    background_verified = ndb.BooleanProperty(default=False, indexed=False)
+    # Whether an Offline id has been verified or not.
+    offline_id_verified = ndb.BooleanProperty(default=False, indexed=False)
     # Whether the account is soft deleted.
     soft_delete = ndb.BooleanProperty(default=False, indexed=False)
     # Phone number. Eventually switch to this:

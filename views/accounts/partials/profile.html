@@ -1,172 +1,55 @@
 <div class="accounts-profile">
 
-    <div class="row text-center">
-        <div class="col-sm-offset-4 col-sm-4">
-          <img src={{profile.pictureUrl}} class="profile-image"
-               alt="/images/hl.logo.horiz.blue.png"/>
-          <h5>{{profile.city}}, {{profile.state}}</h5>
-        </div>
+  <div class="row text-center">
+    <h2>Hello, My name is {{profile.first}} {{profile.last}}</h2>
+    <h5>I live in {{profile.city}}, {{profile.state}}</h5>
+  </div>
+
+  <hr class="profile-divider">
+  <h4 class="text-center">Headline</h4>
+
+  <div class="row text-center">
+    <p>{{profile.headline}}</p>
+  </div>
+
+
+  <hr class="profile-divider">
+  <h4 class="text-center">Bio</h4>
+
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+      <p>{{profile.bio}}</p>
     </div>
+  </div>
 
-    <div class="row text-center">
-        <h2>Hello, My name is {{profile.first}} {{profile.last}}</h2>
-        <h4>{{profile.headline}}</h4>
-    </div>
 
-    <hr class="profile-divider">
+  <hr class="profile-divider">
+  <h4 class="text-center">Trust and Verification</h4>
 
-    <div class="profile-trust">
-        <div class="row">
-            <div class="col-sm-3">
-                <h3>Trust and Verification</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-2">
-                <div class="col-sm-3">
-                    <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
-                    <div class="col-sm-9">
-                        <p>Email</p>
-                        <small>Email verified</small>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
-                    <div class="col-sm-9">
-                        <p>Mobile number</p>
-                        <small>{{profile.mobile_redacted}}</small>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
-                    <div class="col-sm-9">
-                        <p>Offline ID</p>
-                        <small>Drivers License</small>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
-                    <div class="col-sm-9">
-                        <p>Background verified</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr class="profile-divider">
-
+  <div class="profile-trust">
     <div class="row">
-        <div class="col-sm-3">
-            <h3>About me</h3>
+      <div class="col-sm-4">
+        <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
+        <div class="col-sm-9">
+          <p>Mobile number</p>
+          <small>Verified</small>
         </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
+        <div class="col-sm-9">
+          <p>Offline ID</p>
+          <small>Drivers License</small>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="col-sm-3"><span class="glyphicon glyphicon-ok-sign"></span></div>
+        <div class="col-sm-9">
+          <p>Background verified</p>
+          <small>Verified</small>
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-sm-9 col-sm-offset-3">{{profile.bio}}</div>
-    </div>
+  </div>
 
-    <div ng-show="profile.references">
-        <div class="row">
-            <div class="col-sm-12">
-                <h3>References</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9 col-sm-offset-3" ng-repeat="reference in profile.references">
-                <b>{{reference.name}} - </b>
-            {{reference.testimony}}
-            </div>
-        </div>
-    </div>
-
-    <div ng-show="profile.experiences">
-        <div class="row">
-            <div class="col-sm-3">
-                <h3>Education</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9 col-sm-offset-3" ng-repeat="educ in profile.certifications">
-                <p>{{educ.name}}<br>
-                {{educ.date}}
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div ng-show="profile.experiences">
-        <div class="row">
-            <div class="col-sm-3">
-                <h3>Experiences</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9 col-sm-offset-3" ng-repeat="exper in profile.experiences">
-                <p>{{educ.title}}<br>
-                {{educ.start_month}},{{educ.start_year}} - {{educ.end_month}},{{educ.end_year}}
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div ng-show="profile.live_in">
-        <div class="row">
-            <div class="col-sm-3">
-                <h3>Work Preferences</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9 col-sm-offset-3">
-                <label ng-hide="profile.live_in">
-                    I am only interested in Live-Out arrangements; &nbsp; &nbsp; &nbsp;
-                </label>
-                <label ng-show="profile.live_in">
-                    I am open to Live-In arrangements; &nbsp; &nbsp; &nbsp;
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div ng-show="profile.transportation">
-        <div class="row">
-            <div class="col-sm-3">
-                <h3>Transportation</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9 col-sm-offset-3">
-                <label ng-repeat="trans in profile.transportation">
-                {{trans.description}}; &nbsp; &nbsp; &nbsp;
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div ng-show="profile.languages">
-        <div class="row">
-            <div class="col-sm-3">
-                <h3>Languages</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9 col-sm-offset-3">
-                <label ng-repeat="language in profile.languages">
-                {{language}}; &nbsp; &nbsp; &nbsp;
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div ng-show="profile.special_skills">
-        <div class="row">
-            <div class="col-sm-3">
-                <h3>Other Skills</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9 col-sm-offset-3">
-                <label ng-repeat="skills in profile.special_skills">
-                {{skills}}; &nbsp; &nbsp; &nbsp;
-                </label></div>
-        </div>
-    </div>
 </div>

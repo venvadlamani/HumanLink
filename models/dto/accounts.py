@@ -11,7 +11,7 @@ class AccountDto(object):
 
     _props = [
         'id', 'created', 'email', 'email_verified', 'fbid', 'first', 'last',
-        'account_type', 'phone_number', 'phone_number_verified',
+        'account_type', 'phone_number', 'phone_number_verified', 'city',
     ]
 
     @classmethod
