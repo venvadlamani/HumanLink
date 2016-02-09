@@ -26,6 +26,7 @@ class AccountApiModel(BaseApiModel):
     email_verified = Account.email_verified
     first = Account.first
     last = Account.last
+    city = Account.city
     account_type = Account.account_type
     fbid = Account.fbid
     phone_number = Account.phone_number
