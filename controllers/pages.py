@@ -6,3 +6,6 @@ class Pages(base.BaseHandler):
 
     def terms(self):
         self.render('pages/terms.html', {})
+
+    def privacy(self):
+        self.render('pages/privacy.html', {})
