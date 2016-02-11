@@ -6,7 +6,7 @@ from models.kinds.structs import AccountType
 
 import logging
 from webapp2_extras import auth
-
+from google.appengine.api import mail
 
 class Accounts(base.BaseHandler):
     """Accounts and profiles related controller."""
@@ -84,3 +84,11 @@ class Accounts(base.BaseHandler):
             alert = {'type': 'danger', 'message': e.message}
         self.session.add_flash('alert', alert)
         return self.redirect('/accounts#/settings/profile')
+
+    @login_required
+    def POST_contact(self):
+        """Send request to the Helpdesk and log it."""
+        email = self.request_json['email']
+        message = self.request_json['message']
+        user_address = 'ven@humanlink.co'
+        mail.send_mail(email, user_address, 'test', message)

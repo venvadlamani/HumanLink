@@ -42,6 +42,14 @@
                     role: userSessionProvider.roles.AUTHORIZED
                 }
             })
+            .state('contact', {
+                url: '/contact',
+                templateUrl: '/views/accounts/partials/contact.html',
+                controller: 'contactCtrl',
+                data: {
+                    role: userSessionProvider.roles.AUTHORIZED
+                }
+            })
             .state('settings', {
                 abstract: true,
                 templateUrl: '/views/accounts/partials/settings/base_settings.html',

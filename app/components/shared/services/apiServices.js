@@ -50,24 +50,24 @@ angular
                 url: (useEndpoints ? GCE_BASE : '/') + uri,
                 data: data
             })
-            .success(function (data, status, headers, config) {
-                ctrlHelper.isLoading = false;
-                if (angular.isFunction(ctrlHelper.success)) {
-                    ctrlHelper.success(data, status, headers, config);
-                }
-                if (angular.isFunction(ctrlHelper.always)) {
-                    ctrlHelper.always(data, status, headers, config);
-                }
-            })
-            .error(function (data, status, headers, config) {
-                ctrlHelper.isLoading = false;
-                if (angular.isFunction(ctrlHelper.failure)) {
-                    ctrlHelper.failure(data, status, headers, config);
-                }
-                if (angular.isFunction(ctrlHelper.always)) {
-                    ctrlHelper.always(data, status, headers, config);
-                }
-            });
+                .success(function (data, status, headers, config) {
+                    ctrlHelper.isLoading = false;
+                    if (angular.isFunction(ctrlHelper.success)) {
+                        ctrlHelper.success(data, status, headers, config);
+                    }
+                    if (angular.isFunction(ctrlHelper.always)) {
+                        ctrlHelper.always(data, status, headers, config);
+                    }
+                })
+                .error(function (data, status, headers, config) {
+                    ctrlHelper.isLoading = false;
+                    if (angular.isFunction(ctrlHelper.failure)) {
+                        ctrlHelper.failure(data, status, headers, config);
+                    }
+                    if (angular.isFunction(ctrlHelper.always)) {
+                        ctrlHelper.always(data, status, headers, config);
+                    }
+                });
         };
 
         Accounts.login = function (data, ctrlHelper) {
@@ -108,7 +108,11 @@ angular
 
         Accounts.patients.remove = function (patient_id, ctrlHelper) {
             var data = {patient_id: patient_id};
-            apiRequest('POST', 'accounts/patients/remove' ,data, ctrlHelper, true);
+            apiRequest('POST', 'accounts/patients/remove', data, ctrlHelper, true);
+        };
+
+        Accounts.contact = function (data, ctrlHelper) {
+            apiRequest('POST', 'contact.json', data, ctrlHelper, false);
         };
 
         Connections.my = function (data, ctrlHelper) {

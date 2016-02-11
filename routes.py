@@ -20,6 +20,9 @@ routes = [
     webapp2.Route(r'/signup.json', name='signup_post', methods=['POST'],
                   handler='controllers.accounts.Accounts:POST_signup'),
 
+    webapp2.Route(r'/contact.json', name='contact_post', methods=['POST'],
+                  handler='controllers.accounts.Accounts:POST_contact'),
+
     webapp2.Route(r'/verify', name='verify_email', methods=['GET'],
                   handler='controllers.accounts.Accounts:verify_email'),
 
@@ -31,6 +34,9 @@ routes = [
 
     webapp2.Route(r'/terms', name='terms', methods=['GET'],
                   handler='controllers.pages.Pages:terms'),
+
+    webapp2.Route(r'/privacy', name='privacy', methods=['GET'],
+                  handler='controllers.pages.Pages:privacy'),
 
     webapp2.Route(r'/caregivers', name='caregivers', methods=['GET'],
                   handler='controllers.home.Home:caregivers'),
