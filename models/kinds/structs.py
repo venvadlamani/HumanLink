@@ -139,8 +139,7 @@ class License(EndpointsModel):
 class Certification(EndpointsModel):
     """A certification that a caregiver has."""
     name = ndb.StringProperty(required=True)
-    state = msgprop.EnumProperty(State)
-    date = ndb.DateProperty(indexed=False)
+    school = ndb.StringProperty(required=True)
 
 
 class WorkExperience(EndpointsModel):
