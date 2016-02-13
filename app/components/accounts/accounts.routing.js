@@ -47,7 +47,7 @@
                 templateUrl: '/views/accounts/partials/contact.html',
                 controller: 'contactCtrl',
                 data: {
-                    role: userSessionProvider.roles.AUTHORIZED
+                    role: userSessionProvider.roles.GUEST
                 }
             })
             .state('settings', {
