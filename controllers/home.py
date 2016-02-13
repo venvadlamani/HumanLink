@@ -8,19 +8,7 @@ from models.kinds.contacts import ContactUs
 class Home(base.BaseHandler):
 
     def index(self):
-        self.render('home/landing.html')
-
-    def caregivers(self):
-        self.render('home/caregivers.html')
-
-    def about_us(self):
-        self.render('home/about_us.html')
-
-    def pricing(self):
-        self.render('home/pricing.html')
-
-    def payments(self):
-        self.render('home/payments.html')
+        self.render('home/index.html')
 
     def POST_submit_contact(self):
         """Contact info POST request."""

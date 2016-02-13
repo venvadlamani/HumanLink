@@ -1,0 +1,16 @@
+[% extends "site.html" %]
+
+[% block title %] Home [% endblock %]
+
+[% block ng_app -%] Home [%- endblock %]
+[% block ng_controller -%] homeBaseCtrl [%- endblock %]
+
+[% block content %]
+
+<div>
+    [% include "shared/error_box.html" %]
+
+    <div ui-view></div>
+</div>
+
+[% endblock %]

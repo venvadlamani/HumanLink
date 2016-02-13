@@ -11,6 +11,9 @@ routes = [
     webapp2.Route(r'/settings', name='settings_index', methods=['GET'],
                   handler='controllers.settings.Settings:index'),
 
+    webapp2.Route(r'/home', name='home_index', methods=['GET'],
+                  handler='controllers.home.Home:index'),
+
     webapp2.Route(r'/login.json', name='login_post', methods=['POST'],
                   handler='controllers.accounts.Accounts:POST_login'),
 
@@ -31,24 +34,6 @@ routes = [
 
     webapp2.Route(r'/submit_contact', name='submit_contact', methods=['POST'],
                   handler='controllers.home.Home:POST_submit_contact'),
-
-    webapp2.Route(r'/terms', name='terms', methods=['GET'],
-                  handler='controllers.pages.Pages:terms'),
-
-    webapp2.Route(r'/privacy', name='privacy', methods=['GET'],
-                  handler='controllers.pages.Pages:privacy'),
-
-    webapp2.Route(r'/caregivers', name='caregivers', methods=['GET'],
-                  handler='controllers.home.Home:caregivers'),
-
-    webapp2.Route(r'/about_us', name='caregivers', methods=['GET'],
-                  handler='controllers.home.Home:about_us'),
-
-    webapp2.Route(r'/pricing', name='caregivers', methods=['GET'],
-                  handler='controllers.home.Home:pricing'),
-
-    webapp2.Route(r'/payments', name='caregivers', methods=['GET'],
-                  handler='controllers.home.Home:payments'),
 
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),
