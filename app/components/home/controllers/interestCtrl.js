@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Main landing page.
+ * Interest controller
  */
 (function () {
     angular

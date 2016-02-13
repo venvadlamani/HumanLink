@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Careseeker controller
+ * Terms controller
  */
 angular
     .module('Home')
