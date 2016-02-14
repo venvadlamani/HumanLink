@@ -42,6 +42,9 @@ routes = [
                   methods=['GET'],
                   handler='controllers.home.Home:GET_caregiver_general'),
 
+    webapp2.Route(r'/contact', name='contact', methods=['POST'],
+                  handler='controllers.home.Home:POST_contact_request'),
+
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),
 ]

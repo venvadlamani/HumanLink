@@ -40,3 +40,10 @@ class CaregiverGeneral(base.Base):
     # Professional Preferences
     weekdays = ndb.BooleanProperty()
     weekends = ndb.BooleanProperty()
+
+
+class Request(base.Base):
+    """Models a request from Guest/User."""
+    name = ndb.StringProperty(required=True)
+    email = ndb.StringProperty(required=True)
+    message = ndb.StringProperty(required=True)
