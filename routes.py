@@ -1,6 +1,5 @@
 import webapp2
 
-
 routes = [
     webapp2.Route(r'/', name='home', methods=['GET'],
                   handler='controllers.home.Home:index'),
@@ -34,6 +33,14 @@ routes = [
 
     webapp2.Route(r'/submit_contact', name='submit_contact', methods=['POST'],
                   handler='controllers.home.Home:POST_submit_contact'),
+
+    webapp2.Route(r'/submit_caregiver_general', name='submit_caregiver_general',
+                  methods=['POST'],
+                  handler='controllers.home.Home:POST_caregiver_general'),
+
+    webapp2.Route(r'/get_caregiver_general/search.json', name='get_caregiver_general',
+                  methods=['GET'],
+                  handler='controllers.home.Home:GET_caregiver_general'),
 
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),

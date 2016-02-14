@@ -5,32 +5,33 @@
  */
 angular
     .module('Home')
-    .controller('homeBaseCtrl', ['$scope', '$window', function ($scope, $window) {
+    .controller('homeBaseCtrl', ['$scope', '$window', '$http',
+        function ($scope, $window, $http) {
 
-        // CtrlHelper that is shared between the parent and all children.
-        $scope.ctrlHelper = new HL.CtrlHelper();
+            $scope.searchCaregiverResults = {};
+            var results = [];
 
-        $scope.searchResults = [
-            {
-                'name': 'Ven Vadlamani',
-                'phone': '(773) 844 - 7312'
-            },
-            {
-                'name': 'Smita Vadlamani',
-                'phone': '(773) 844 - 7311'
-            },
-        ];
+            var init = function (model) {
+                $http.get('get_caregiver_general/search.json')
+                    .then(function (response) {
+                        angular.forEach(response.data, function (val, key) {
+                            results.push(key);
+                        });
+                        $scope.searchCaregiverResults = angular.extend(response.data);
+                    });
+            };
+            init();
 
-        /**
-         * Go back to the previous page/view.
-         * @return void
-         */
-        $scope.previous = function () {
-            $window.history.back();
-        };
+            /**
+             * Go back to the previous page/view.
+             * @return void
+             */
+            $scope.previous = function () {
+                $window.history.back();
+            };
 
-        $scope.find = function (model) {
+            $scope.caregiverDetails = function (model) {
+                console.log(model);
+            };
 
-        };
-
-    }]);
+        }]);
