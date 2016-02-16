@@ -2,6 +2,8 @@
 
   <div class="row">
     <div class="col-sm-offset-2 col-sm-8">
+      <h3 class="text-center">Guest profile</h3>
+      <h5 class="text-center">You can create a guest profile.</h5>
 
       <form role="form">
 
@@ -18,7 +20,7 @@
 
               <div class="col-sm-9">
                 <input ng-model="aboutMe.name" placeholder="First Name, Last Name"
-                       id="name" class="form-control"/>
+                       id="name" class="form-control" required/>
               </div>
             </div>
 
@@ -30,7 +32,7 @@
               <div class="col-sm-9">
                 <input ng-model="aboutMe.location"
                        placeholder="Bentonville, Bella Vista, etc"
-                       id="location" class="form-control"/>
+                       id="location" class="form-control" required/>
               </div>
             </div>
 
@@ -41,7 +43,7 @@
 
               <div class="col-sm-9">
                 <input ng-model="aboutMe.phone" placeholder="XXX-XXX-XXXX"
-                       id="phone" class="form-control"/>
+                       id="phone" class="form-control" required/>
               </div>
             </div>
 
@@ -67,21 +69,6 @@
                   <label>
                     <input type="radio" ng-model="aboutMe.gender" value="male">
                     Male
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <label for="live_in" class="col-sm-3 control-label">
-                live-in OR live-out
-              </label>
-
-              <div class="col-sm-9">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" ng-model="aboutMe.live_in">
-                    I am open to live-in arrangements.
                   </label>
                 </div>
               </div>
@@ -217,6 +204,21 @@
 
             <div class="row form-group">
               <label for="live_in" class="col-sm-3 control-label">
+                live-in OR live-out
+              </label>
+
+              <div class="col-sm-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.live_in">
+                    I am open to live-in arrangements.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label for="live_in" class="col-sm-3 control-label">
                 I prefer to work
               </label>
 
@@ -247,7 +249,7 @@
           <div class="col-sm-12">
             <button class="btn btn-lg btn-secondary btn-block"
                     ng-click="caregiverGeneralUpdate(aboutMe)"
-                    ng-disabled="ctrlHelper.isLoading">Save Information
+                    ng-disabled="ctrlHelper.isLoading">Save guest profile
             </button>
           </div>
         </div>
