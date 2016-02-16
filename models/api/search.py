@@ -1,9 +1,11 @@
 import services.asserts as asserts
 from models.kinds.accounts import Caregiver
+from models.kinds.home import CaregiverGeneral
 from models.dto import map_props
 from models.dto.search import (
     SearchQueryDto,
-    SearchResultDto
+    SearchResultDto,
+    SearchGeneralCaregiverResultDto,
 )
 from models.api.base import BaseApiModel
 from models.api.accounts import UserApiModel
@@ -64,4 +66,26 @@ class SearchResultApiModel(BaseApiModel):
             user=UserApiModel.from_user_dto(result_dto.user)
         )
         map_props(result_api, result_dto, SearchResultDto._props)
+        return result_api.ToMessage()
+
+
+class SearchGeneralCaregiverResultApiModel(BaseApiModel):
+    cursor = ndb.StringProperty()
+    name = CaregiverGeneral.name
+    phone_number = CaregiverGeneral.phone_number
+    location = CaregiverGeneral.location
+
+    @classmethod
+    def from_result_dto(cls, result_dto):
+        """Translates the given SearchGeneralCaregiverResultDto into a
+        SearchGeneralCaregiverResultApiModel.
+
+        :param result_dto: (dto.search.SearchGeneralCaregiverResultDto)
+        :return (api.search.SearchGeneralCaregiverResultApiModel)
+        """
+        asserts.type_of(result_dto, SearchGeneralCaregiverResultDto)
+
+        result_api = SearchGeneralCaregiverResultApiModel()
+
+        map_props(result_api, result_dto, SearchGeneralCaregiverResultDto._props)
         return result_api.ToMessage()

@@ -25,6 +25,7 @@ angular
             patients: {}
         };
         var Connections = {};
+        var Home = {};
 
         /**
          * Base method to communicate with the APIs.
@@ -119,10 +120,15 @@ angular
             apiRequest('GET', 'connections/my', data, ctrlHelper, true);
         };
 
+        Home.search = function (data, ctrlHelper) {
+            apiRequest('GET', 'home/search', data, ctrlHelper, false);
+        };
+
         // Public methods.
         return {
             Accounts: Accounts,
-            Connections: Connections
+            Connections: Connections,
+            Home: Home
         };
 
     }]);

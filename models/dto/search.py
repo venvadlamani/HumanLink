@@ -1,5 +1,4 @@
 class SearchQueryDto(object):
-
     _props = [
         'cursor', 'care_services', 'zipcode', 'languages', 'licenses',
         'expertise', 'transportation', 'languages', 'gender', 'live_in',
@@ -13,10 +12,20 @@ class SearchQueryDto(object):
 
 
 class SearchResultDto(object):
-
     _props = [
         'cursor', 'user', 'headline', 'wage',
         'references', 'rating', 'response_time'
+    ]
+
+    def __init__(self, **kwargs):
+        for k in self._props:
+            if k in kwargs:
+                setattr(self, k, kwargs.get(k))
+
+
+class SearchGeneralCaregiverResultDto(object):
+    _props = [
+        'cursor', 'name', 'phone_number', 'location'
     ]
 
     def __init__(self, **kwargs):

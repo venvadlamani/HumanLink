@@ -1,45 +1,40 @@
 <form class="form-horizontal" ng-submit="find(search)">
 
   <div class="form-group">
-    <div class="col-sm-8">
-      <input type="text" id="search" class="form-control input-lg"
-             ng-model="search.text" placeholder="Where do you need care?"
-             required/>
-    </div>
-    <div class="col-sm-4">
-      <button type="submit" class="btn btn-lg btn-secondary btn-block">
-        Search for caregivers
-      </button>
-    </div>
-  </div>
-
-  <hr>
-  <div ng-hide="searchResults.length">
-    Please enter the county/city/zipcode to find available caregivers your area.
-  </div>
-  <div ng-show="searchResults.length">
-    <p>
-      There are currently {{ searchResults.length }}  caregiver(s) in your area. Invite
-      new caregivers to your team and start collaborating. It's easy as a pie.
-    </p>
-
-    <div class="media" ng-repeat="member in ::searchResults">
-      <div class="media-left media-top">
-        <a href>
-          <img class="media-object" ng-src="{{ ::member.profile.gravatar_url }}">
-        </a>
+    <div class="row">
+      <div class="col-sm-offset-2 col-sm-6">
+        <input type="text" id="search" class="form-control"
+               ng-model="search.text"
+               placeholder="Where do you need care? Rogers, Bentonville, etc."
+               required/>
       </div>
-      <div class="media-body">
-        <strong>{{ ::member.name }} </strong>
-
-        <div>
-          <span><i class="glyphicon glyphicon-phone"></i> {{ ::member.phone }}</span>
-        </div>
-        <div>
-          <span><i class="glyphicon glyphicon-user"></i> Caregiver Details</span>
-        </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-secondary btn-block">
+          Search
+        </button>
       </div>
     </div>
   </div>
-
 </form>
+
+<hr>
+<div class="col-sm-offset-2">
+  <div class="media" ng-repeat="(key, prop) in searchCaregiverResults">
+    <div class="media-left media-top">
+      <a href ui-sref="previewProfile/{caregiver_key: prop.id}">
+        <img class="media-object" src="https://placehold.it/75x75"/>
+      </a>
+    </div>
+    <div class="media-body">
+      <strong>{{ prop.name }}</strong>
+
+      <div>
+        <span><i class="glyphicon glyphicon-phone"></i> {{ prop.phone_number }}</span>
+      </div>
+      <div>
+        <span><i class="glyphicon glyphicon-home"></i> {{ prop.location }}</span>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>

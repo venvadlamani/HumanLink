@@ -1,0 +1,262 @@
+<div ng-show="showCaregiverForm">
+
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+
+      <form role="form">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Personal Data</h2>
+          </div>
+          <div class="panel-body">
+
+            <div class="row form-group">
+              <label for="name" class="col-sm-3 control-label">
+                Name
+              </label>
+
+              <div class="col-sm-9">
+                <input ng-model="aboutMe.name" placeholder="First Name, Last Name"
+                       id="name" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label for="location" class="col-sm-3 control-label">
+                Preferred Location
+              </label>
+
+              <div class="col-sm-9">
+                <input ng-model="aboutMe.location"
+                       placeholder="Bentonville, Bella Vista, etc"
+                       id="location" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label for="phone" class="col-sm-3 control-label">
+                Phone number
+              </label>
+
+              <div class="col-sm-9">
+                <input ng-model="aboutMe.phone" placeholder="XXX-XXX-XXXX"
+                       id="phone" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label for="gender" class="col-sm-3 control-label">
+                Gender
+              </label>
+
+              <div class="col-sm-9">
+                <div class="radio">
+                  <label>
+                    <input type="radio" ng-model="aboutMe.gender" value="undisclosed">
+                    I prefer not to disclose
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" ng-model="aboutMe.gender" value="female">
+                    Female
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" ng-model="aboutMe.gender" value="male">
+                    Male
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label for="live_in" class="col-sm-3 control-label">
+                live-in OR live-out
+              </label>
+
+              <div class="col-sm-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.live_in">
+                    I am open to live-in arrangements.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Professional Data</h2>
+          </div>
+          <div class="panel-body">
+
+            <div class="row form-group">
+              <label for="schoole" class="col-sm-3 control-label">
+                School/Facility
+              </label>
+
+              <div class="col-sm-9">
+                <input ng-model="aboutMe.school"
+                       placeholder="School or facility where primary certificate was granted"
+                       id="school" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label for="live_in" class="col-sm-3 control-label">
+                Certificates
+              </label>
+
+              <div class="col-sm-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.lpn">
+                    LPN (Licensed Practical Nurse)
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.cna">
+                    CNA (Certified Nursing Aide)
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.iha">
+                    IHA (In-home Assistant)
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.hcs">
+                    HCS (Home Care Specialist)
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.ad">
+                    AD (Alzheimer's disease and Dementia)
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Headline and Bio</h2>
+          </div>
+          <div class="panel-body">
+            <div class="row form-group">
+              <label for="care-status" class="col-sm-3 control-label">
+                Headline
+              </label>
+
+              <div class="col-sm-9">
+                <input ng-model="aboutMe.headline"
+                       placeholder="Enter availability here..."
+                       id="care-status" class="form-control"/>
+
+                <p class="help-block">Your headline is a one sentence description of your
+                  current weekly availability. Please state the number of hours you are
+                  available per
+                  week and the days of the week you will be available to our clients.
+                  For example - "I am available M-F from 1-4 pm". Please update you
+                  availability as frequently as possible.
+                </p>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label for="bio" class="col-sm-3 control-label">Bio</label>
+
+              <div class="col-sm-9">
+                    <textarea ng-model="aboutMe.bio"
+                              placeholder="Write something about yourself"
+                              rows="4" id="bio" class="form-control">
+                    </textarea>
+
+                <p class="help-block"><b>humanlink</b> is built on trust.
+                  Our care seekers want to know that you are compassionate and caring.
+                  This is your opportunity to let them know about your compassion.
+                  Taking a few minutes to build an awesome online profile can increase
+                  your chances of getting hired.
+                </p>
+
+                <p class="help-block">Tell our users what makes you an awesome caregiver:
+                  why should they hire you?
+                  If you are a volunteer at an organization that helps your community or
+                  If you are religious or spiritual share with them why it is important to
+                  you?
+                </p>
+
+                <p class="help-block">Tell our users about things you like:
+                  what are 5 things you can't live without?
+                  Share your favorite travel destinations, books, movies, shows, music,
+                  food.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Professional Preferences</h2>
+          </div>
+          <div class="panel-body">
+
+            <div class="row form-group">
+              <label for="live_in" class="col-sm-3 control-label">
+                I prefer to work
+              </label>
+
+              <div class="col-sm-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.weekdays">
+                    Monday to Friday
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-offset-3 col-sm-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="aboutMe.weekends">
+                    Saturday / Sunday
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="row form-group">
+          <div class="col-sm-12">
+            <button class="btn btn-lg btn-secondary btn-block"
+                    ng-click="caregiverGeneralUpdate(aboutMe)"
+                    ng-disabled="ctrlHelper.isLoading">Save Information
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+<div ng-hide="showCaregiverForm">
+  Your information has been submitted sucessfully. Your profile is now visible to our
+  patient families.
+</div>
