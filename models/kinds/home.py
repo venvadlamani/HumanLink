@@ -34,7 +34,7 @@ class CaregiverGeneral(base.Base):
     ad = ndb.BooleanProperty()
 
     # Headline and Bio
-    headline = ndb.StringProperty(required=True)
+    headline = ndb.StringProperty()
     bio = ndb.StringProperty()
 
     # Professional Preferences
