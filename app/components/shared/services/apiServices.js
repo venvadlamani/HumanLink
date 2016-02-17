@@ -112,7 +112,7 @@ angular
             apiRequest('POST', 'accounts/patients/remove', data, ctrlHelper, true);
         };
 
-        Accounts.contact = function (data, ctrlHelper) {
+        Home.contact = function (data, ctrlHelper) {
             apiRequest('POST', 'contact.json', data, ctrlHelper, false);
         };
 

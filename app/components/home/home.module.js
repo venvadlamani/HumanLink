@@ -53,6 +53,11 @@
                 templateUrl: '/views/home/partials/terms.html',
                 controller: 'termsCtrl'
             })
+            .state('contact', {
+                url: '/contact',
+                templateUrl: '/views/home/partials/contact.html',
+                controller: 'contactCtrl'
+            })
             .state('privacy', {
                 url: '/privacy',
                 templateUrl: '/views/home/partials/privacy.html',
