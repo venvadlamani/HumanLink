@@ -8,6 +8,7 @@ angular
     .controller('homeBaseCtrl', ['$scope', '$window', '$http',
         function ($scope, $window, $http) {
 
+            $scope.searchModel = {};
             $scope.searchCaregiverResults = {};
             var results = [];
 
@@ -30,8 +31,14 @@ angular
                 $window.history.back();
             };
 
-            $scope.caregiverDetails = function (model) {
-                console.log(model);
+            $scope.find = function (model) {
+                $http.post('search_refined', model)
+                    .then(function (response) {
+                        angular.forEach(response.data, function (val, key) {
+                            results.push(key);
+                        });
+                        $scope.searchCaregiverResults = angular.extend(response.data);
+                    });
             };
 
         }]);
