@@ -67,13 +67,12 @@ class Home(base.BaseHandler):
         for caregiver in caregiver_query:
             if not caregiver.id in caregiver_dict:
                 caregiverMap = {
-                    'id': str(caregiver.id),
+                    'id': caregiver.key,
                     'name': caregiver.name,
                     'location': caregiver.location,
                     'photo': ('/images/' + caregiver.phone_number + '.png'),
                     'phone_number': caregiver.phone_number
                 }
-                logging.info(caregiverMap)
                 caregiver_dict[caregiver.id] = caregiverMap
 
         self.write_json(caregiver_dict)
@@ -99,3 +98,37 @@ class Home(base.BaseHandler):
         req.put()
 
         self.write_json({'message': 'Thank you.'})
+
+    def GET_caregiver_profile(self):
+        """Caregiver profile GET request.
+        @params: Caregiver ID to be used for the search
+
+        @return: returns a dictionary of caregiver registered as a guest in the system
+        """
+        caregiver_map = {}
+
+        caregiver_phone = self.request.get('key')
+        qry = CaregiverGeneral.query(
+            CaregiverGeneral.phone_number == str(caregiver_phone)).fetch()
+
+        logging.info('#################')
+        for caregiver in qry:
+            caregiver_map = {
+                'name': caregiver.name,
+                'location': caregiver.location,
+                'phone_number': caregiver.phone_number,
+                'gender': caregiver.gender,
+                'live_in': caregiver.live_in,
+                'school': caregiver.school,
+                'lpn': caregiver.lpn,
+                'cna': caregiver.cna,
+                'iha': caregiver.iha,
+                'ad': caregiver.ad,
+                'hcs': caregiver.hcs,
+                'headline': caregiver.headline,
+                'bio': caregiver.bio,
+                'weekends': caregiver.weekends,
+                'weekdays': caregiver.weekdays,
+            }
+
+        self.write_json(caregiver_map)

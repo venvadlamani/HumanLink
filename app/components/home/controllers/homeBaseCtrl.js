@@ -11,8 +11,8 @@ angular
             $scope.searchCaregiverResults = {};
             var results = [];
 
-            var init = function (model) {
-                $http.get('get_caregiver_general/search.json')
+            var init = function () {
+                $http.get('caregiver_general')
                     .then(function (response) {
                         angular.forEach(response.data, function (val, key) {
                             results.push(key);

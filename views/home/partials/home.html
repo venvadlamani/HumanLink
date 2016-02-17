@@ -21,8 +21,8 @@
 <div class="col-sm-offset-2">
   <div class="media" ng-repeat="(key, prop) in searchCaregiverResults">
     <div class="media-left media-top">
-      <a href ui-sref="previewProfile/{caregiver_key: prop.id}">
-        <img class="media-object" src="https://placehold.it/75x75"/>
+      <a href ui-sref="previewProfile({caregiver_key: prop.phone_number,})">
+        <img class="media-object" src="https://placehold.it/75x75">
       </a>
     </div>
     <div class="media-body">

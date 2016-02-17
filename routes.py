@@ -38,12 +38,16 @@ routes = [
                   methods=['POST'],
                   handler='controllers.home.Home:POST_caregiver_general'),
 
-    webapp2.Route(r'/get_caregiver_general/search.json', name='get_caregiver_general',
+    webapp2.Route(r'/caregiver_general', name='caregiver_general',
                   methods=['GET'],
                   handler='controllers.home.Home:GET_caregiver_general'),
 
     webapp2.Route(r'/contact', name='contact', methods=['POST'],
                   handler='controllers.home.Home:POST_contact_request'),
+
+    webapp2.Route(r'/caregiver_profile', name='caregiver_profile',
+                  methods=['GET'],
+                  handler='controllers.home.Home:GET_caregiver_profile'),
 
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),

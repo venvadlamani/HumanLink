@@ -34,8 +34,8 @@
                 controller: 'caregiverGeneralCtrl'
             })
             .state('previewProfile', {
-                url: '/previewProfile/{caregiver_key}',
-                templateUrl: '/views/home/partials/preview_profile.html',
+                url: '/previewProfile/:caregiver_key',
+                templateUrl: '/views/home/partials/profile_preview.html',
                 controller: 'previewProfileCtrl'
             })
             .state('careseeker', {
