@@ -50,6 +50,9 @@ class Home(base.BaseHandler):
         caregiver.bio = self.request_json.get('bio')
         caregiver.weekdays = self.request_json.get('weekdays')
         caregiver.weekends = self.request_json.get('weekends')
+        caregiver.cats = self.request_json.get('cats')
+        caregiver.dogs = self.request_json.get('dogs')
+        caregiver.smoking = self.request_json.get('smoking')
 
         caregiver.put()
 
@@ -115,6 +118,10 @@ class Home(base.BaseHandler):
                 'bio': caregiver.bio,
                 'weekends': caregiver.weekends,
                 'weekdays': caregiver.weekdays,
+                'cats': caregiver.cats,
+                'dogs': caregiver.dogs,
+                'smoking': caregiver.smoking,
+
             }
 
         self.write_json(caregiver_map)

@@ -17,7 +17,7 @@ SESSION_SECRET = 'humanlink'
 VERIF_SECRET = 'humanlink'
 
 # Mandrill API key.
-MANDRILL_API_KEY = 'DiYzRtiGNDU5D01TyjJhSA'
+MANDRILL_API_KEY = 'XcoD3bPJZFpJwxUTH9ylNw'
 
 
 # Override localhost configs.

@@ -25,6 +25,10 @@ class CaregiverGeneral(base.Base):
     gender = ndb.StringProperty()
     live_in = ndb.BooleanProperty()
 
+    # Headline and Bio
+    headline = ndb.StringProperty()
+    bio = ndb.StringProperty()
+
     # Professional Data
     school = ndb.StringProperty()
     lpn = ndb.BooleanProperty()
@@ -33,13 +37,12 @@ class CaregiverGeneral(base.Base):
     hcs = ndb.BooleanProperty()
     ad = ndb.BooleanProperty()
 
-    # Headline and Bio
-    headline = ndb.StringProperty()
-    bio = ndb.StringProperty()
-
     # Professional Preferences
     weekdays = ndb.BooleanProperty()
     weekends = ndb.BooleanProperty()
+    cats = ndb.BooleanProperty()
+    dogs = ndb.BooleanProperty()
+    smoking = ndb.BooleanProperty()
 
 
 class Request(base.Base):
