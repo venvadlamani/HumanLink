@@ -60,21 +60,8 @@ class Home(base.BaseHandler):
 
         @return: returns a dictionary of all caregivers registered as guests in the system
         """
-
-        caregiver_dict = {}
-        caregiver_query = CaregiverGeneral.query().fetch()
-
-        for caregiver in caregiver_query:
-            if not caregiver.id in caregiver_dict:
-                caregiverMap = {
-                    'id': caregiver.key,
-                    'name': caregiver.name,
-                    'location': caregiver.location,
-                    'photo': ('/images/' + caregiver.phone_number + '.png'),
-                    'phone_number': caregiver.phone_number
-                }
-                caregiver_dict[caregiver.id] = caregiverMap
-
+        search_string = ''
+        caregiver_dict = Home.search_map(search_string)
         self.write_json(caregiver_dict)
 
     def POST_submit_request(self):
@@ -111,7 +98,6 @@ class Home(base.BaseHandler):
         qry = CaregiverGeneral.query(
             CaregiverGeneral.phone_number == str(caregiver_phone)).fetch()
 
-        logging.info('#################')
         for caregiver in qry:
             caregiver_map = {
                 'name': caregiver.name,
@@ -132,3 +118,38 @@ class Home(base.BaseHandler):
             }
 
         self.write_json(caregiver_map)
+
+    def GET_search_refined(self):
+        """Refined Caregiver search request.
+        @params: Location where caregivers are needed
+
+        @return: returns a dictionary of caregiver registered as a guests (FOR NOW)
+        in the system registered for a certain location
+        """
+        search_string = self.request_json.get('search')
+        caregiver_dict = Home.search_map(search_string)
+        self.write_json(caregiver_dict)
+
+    @staticmethod
+    def search_map(search_string):
+
+        caregiver_dict = {}
+
+        if search_string:
+            caregiver_query = CaregiverGeneral.query(CaregiverGeneral.location ==
+                                                     search_string).fetch()
+        else:
+            caregiver_query = CaregiverGeneral.query().fetch()
+
+        for caregiver in caregiver_query:
+            if not caregiver.id in caregiver_dict:
+                caregiverMap = {
+                    'id': caregiver.key,
+                    'name': caregiver.name,
+                    'location': caregiver.location,
+                    'photo': ('/images/' + caregiver.phone_number + '.png'),
+                    'phone_number': caregiver.phone_number
+                }
+                caregiver_dict[caregiver.id] = caregiverMap
+
+        return caregiver_dict
