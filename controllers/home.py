@@ -3,6 +3,7 @@ from controllers import base
 from models.kinds.structs import AccountType
 from models.kinds.home import ContactUs
 from models.kinds.home import CaregiverGeneral
+import services.email
 import logging
 from models.kinds.home import Request
 
@@ -67,26 +68,15 @@ class Home(base.BaseHandler):
         caregiver_dict = Home.search_map(search_string)
         self.write_json(caregiver_dict)
 
-    def POST_submit_request(self):
-        """Request info POST request."""
-
-        name = self.request_json.get('name', '(not provided)')
-        email = self.request_json.get('email', '(not provided)')
-        message = self.request_json.get('message', '(not provided)')
-
-        signee = Request(name=name, email=email, message=message)
-        signee.put()
-
     def POST_contact_request(self):
         """General questions from users/guests POST request."""
-
         req = Request()
         req.name = self.request_json.get('name')
         req.email = self.request_json.get('email')
         req.message = self.request_json.get('message')
-
         req.put()
 
+        services.email.send_email_to_support(req.email, req.name, req.message)
         self.write_json({'message': 'Thank you.'})
 
     def GET_caregiver_profile(self):
