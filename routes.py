@@ -53,6 +53,14 @@ routes = [
                   methods=['POST'],
                   handler='controllers.home.Home:GET_search_refined'),
 
+    webapp2.Route(r'/get_settings_notifications', name='get_settings_notifications',
+                  methods=['GET'],
+                  handler='controllers.settings.Settings:GET_settings_notifications'),
+
+    webapp2.Route(r'/post_settings_notifications', name='post_settings_notifications',
+                  methods=['POST'],
+                  handler='controllers.settings.Settings:POST_settings_notifications'),
+
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),
 ]
