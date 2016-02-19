@@ -60,6 +60,32 @@ class EmailService(object):
                            message=message,
                            async=True)
 
+    def send_email_to_support(self, email, name, message):
+        """Sends an email to the specified account with email verification URL.
+
+        :param account_id: (int)
+            ID of the Account entity.
+        :return: (None)
+        """
+        logging.info("$$$$$$$$$$$$$$$$$$$$$$")
+        logging.info(email)
+
+        message = {
+            'global_merge_vars': [
+                {'name': 'FROM_EMAIL', 'content': email},
+                {'name': 'MESSAGE', 'content': message},
+                {'name': 'NAME', 'content': name},
+            ],
+            'to': [
+                {'email': 'support@humanlink.co'},
+            ],
+        }
+        self._send_from_us(self.md.messages.send_template,
+                           template_name='humanlink-support',
+                           template_content=[],
+                           message=message,
+                           async=True)
+
     @staticmethod
     def md_send(func, **kwargs):
         try:
@@ -79,3 +105,4 @@ class EmailService(object):
 _email_service = EmailService()
 
 send_email_verification = _email_service.send_email_verification
+send_email_to_support = _email_service.send_email_to_support

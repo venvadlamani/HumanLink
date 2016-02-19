@@ -12,7 +12,6 @@ angular
             $scope.showContactForm = true;
 
             $scope.contact = function (model) {
-                console.log(model);
 
                 if (!model.message || !model.name || !model.email) {
                     return;

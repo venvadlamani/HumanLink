@@ -15,7 +15,7 @@
 
         <div class="col-md-9">
           <input type="text" class="form-control" id="name" ng-model="contactData.name"
-                 hl-focus required/>
+                 placeholder="your name" hl-focus required/>
         </div>
       </div>
 
@@ -24,7 +24,7 @@
 
         <div class="col-md-9">
           <input type="email" class="form-control" id="email" ng-model="contactData.email"
-                 required/>
+                 placeholder="your email" required/>
         </div>
       </div>
 
@@ -33,6 +33,7 @@
 
         <div class="col-md-9">
         <textarea class="form-control" id="message"
+                  placeholder="your message here"
                   rows="6" ng-model="contactData.message"></textarea>
         </div>
       </div>
