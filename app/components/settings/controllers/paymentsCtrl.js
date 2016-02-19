@@ -5,7 +5,13 @@
  */
 angular
     .module('Settings')
-    .controller('paymentsCtrl', ['$scope', '$window', function ($scope, $window) {
+    .controller('paymentsCtrl', ['$scope', '$http', function ($scope, $http) {
 
+        $scope.paymentModel = {};
+
+        var init = function () {
+            $scope.paymentModel.plan = 'basic';
+        };
+        init();
 
     }]);
