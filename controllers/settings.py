@@ -1,5 +1,6 @@
 from controllers import base
 from models.kinds.settings import Notifications
+from google.appengine.ext import ndb
 import logging
 
 
@@ -12,14 +13,17 @@ class Settings(base.BaseHandler):
 
     def POST_settings_notifications(self):
         """Notifications POST request."""
-        ntfn = Notifications.query(account_id==self.request_json.get('account_id'))
-        ntfn.email_promotions = self.request_json.get('email_promotions')
-        ntfn.email_updates = self.request_json.get('email_updates')
-        ntfn.sms_account_changes = self.request_json.get('sms_account_changes')
-        ntfn.sms_from_user = self.request_json.get('sms_from_user')
-        ntfn.put()
+        accountid = self.request_json.get('account_id')
+        results = Notifications.query(Notifications.account_id == accountid)
+        new_ntfn = Notifications()
 
-        self.write_json({'message': 'Successful.'})
+        for row in results:
+            new_ntfn = row.key.get()
+            new_ntfn.email_promotions = self.request_json.get('email_promotions')
+            new_ntfn.email_updates = self.request_json.get('email_updates')
+            new_ntfn.sms_account_changes = self.request_json.get('sms_account_changes')
+            new_ntfn.sms_from_user = self.request_json.get('sms_from_user')
+            new_ntfn.put()
 
     def GET_settings_notifications(self):
         """Notifications GET request."""
