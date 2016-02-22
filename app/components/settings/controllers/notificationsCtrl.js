@@ -10,9 +10,10 @@ angular
 
             $scope.notificationModel = {};
             $scope.usr = userSession;
+            var account_id = $scope.usr.userdata.account_id;
 
             var init = function () {
-                $http.get('/get_settings_notifications?account_id=' + $scope.usr.userdata.account_id)
+                $http.get('/get_settings_notifications?account_id=' + account_id)
                     .then(function (response) {
                         $scope.notificationModel = response.data;
                     })
@@ -21,8 +22,7 @@ angular
 
             $scope.updateNotifications = function (model) {
                 //add the usr object
-                model = angular.extend(model, {'account_id': $scope.usr.userdata.account_id});
-                console.log(model);
+                model = angular.extend(model, {'account_id': account_id});
                 $http.post('/post_settings_notifications', model)
                     .success(function (data, status) {
                         $scope.siteAlert.type = "success";
