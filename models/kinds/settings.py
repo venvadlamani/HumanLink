@@ -12,7 +12,5 @@ class Payment(base.Base):
 class Notifications(base.Base):
     """Preferred notifications"""
     account_id = ndb.StringProperty(required=True)
-    sms_from_user = ndb.BooleanProperty()
-    sms_account_changes = ndb.BooleanProperty()
-    email_updates = ndb.BooleanProperty()
-    email_promotions = ndb.BooleanProperty()
+    email_updates = ndb.BooleanProperty(default=False)
+    email_promotions = ndb.BooleanProperty(default=False)
