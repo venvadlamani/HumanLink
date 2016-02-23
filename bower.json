@@ -16,7 +16,8 @@
     "checklist-model": "~0.2",
     "fontawesome": "~4.3",
     "pusher": "~2.2",
-    "underscore": "~1.8"
+    "underscore": "~1.8",
+    "stripe-angular": "~1.0.2"
   },
   "resolutions": {
     "angular": "~1.3"

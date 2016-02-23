@@ -9,7 +9,7 @@ window.HL.helpers = {
     isProd: function () {
         var h = window.location.host;
         return (h.indexOf('humanlink.co') === 0 ||
-                h.indexOf('care-tiger.appspot.com') === 0);
+        h.indexOf('care-tiger.appspot.com') === 0);
     },
 
     /**
@@ -28,6 +28,15 @@ window.HL.helpers = {
     isValidEmail: function (email) {
         var re = /^[^@]+@[^@.]+\.[^@]+$/;
         return re.test(email);
+    },
+
+    /**
+     * Returns whether the given credit card number is in a valid format.
+     */
+    isValidCard: function (card) {
+        var re1 = /^\d{16}$/;
+        var re2 = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+        return re1.test(card) || re2.test(card);
     }
 
 };

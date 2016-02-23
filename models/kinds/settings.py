@@ -2,10 +2,13 @@ from models.kinds import base
 from google.appengine.ext import ndb
 
 
-class Payment(base.Base):
+class Payments(base.Base):
     """Payment information. Currently supports only Stripe."""
-    account_id = ndb.IntegerProperty(required=True)
+    account_id = ndb.StringProperty(required=True)
     payment_plan = ndb.StringProperty()
+    card_number = ndb.StringProperty()
+    expiry_month = ndb.StringProperty()
+    expiry_year = ndb.StringProperty()
     stripe_token = ndb.StringProperty(indexed=False)
 
 
