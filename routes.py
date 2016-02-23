@@ -69,6 +69,10 @@ routes = [
                   methods=['POST'],
                   handler='controllers.settings.Settings:POST_payments'),
 
+    webapp2.Route(r'/post_settings_security', name='post_settings_security',
+                  methods=['POST'],
+                  handler='controllers.settings.Settings:POST_security'),
+
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),
 ]

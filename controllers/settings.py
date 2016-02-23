@@ -1,6 +1,9 @@
 from controllers import base
 from models.kinds.settings import Notifications
 from models.kinds.settings import Payments
+from models.kinds.accounts import Account
+from webapp2_extras import security
+
 from google.appengine.ext import ndb
 
 
@@ -79,3 +82,14 @@ class Settings(base.BaseHandler):
             new_pymt.payment_plan = self.request_json.get('payment_plan')
             new_pymt.stripe_token = self.request_json.get('stripe_token')
             new_pymt.put()
+
+    def POST_security(self):
+        """Security update POST request."""
+        email = self.request_json.get('email')
+        qry = Account.query(Account.email == email)
+
+        for row in qry:
+            acct = row.key.get()
+            acct.password = security.generate_password_hash(
+                self.request_json.get('password'), length=12)
+            acct.put()
