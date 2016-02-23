@@ -1,9 +1,61 @@
 <div class="settings-payments">
-  <form action="/charge" method="post">
+  <form class="form-horizontal">
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h2 class="panel-title">Payment options</h2>
+        <h2 class="panel-title">Payment details</h2>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Card number</h4>
+          </div>
+          <div class="col-sm-3 payment-input">
+            <div class="form-group">
+              <input ng-model="paymentModel.card_number" class="form-control"
+                     placeholder="XXXX XXXX XXXX XX42" maxlength="16"
+                     hl-focus>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Expiry date</h4>
+          </div>
+          <div class="col-sm-1 payment-input">
+            <div class="form-group">
+              <input class="form-control"
+                     placeholder="MM" maxlength="2"
+                     ng-model="paymentModel.expiry_month" required>
+            </div>
+          </div>
+          <div class="col-sm-1 payment-input">
+            <div class="form-group">
+              <input class="form-control"
+                     placeholder="YY" maxlength="2"
+                     ng-model="paymentModel.expiry_year" required>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-block btn-secondary"
+                    ng-click="updatePayments(paymentModel)">Update payment details
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Subscription</h2>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -17,7 +69,8 @@
               <div class="col-sm-12">
                 <div class="radio">
                   <label>
-                    <input type="radio" ng-model="paymentModel.plan" value="basic">
+                    <input type="radio" ng-model="paymentModel.payment_plan"
+                           value="basic">
                     Basic plan - $9.99 / month
                   </label>
                 </div>
@@ -28,7 +81,8 @@
               <div class="col-sm-12">
                 <div class="radio">
                   <label>
-                    <input type="radio" ng-model="paymentModel.plan" value="standard">
+                    <input type="radio" ng-model="paymentModel.payment_plan"
+                           value="standard">
                     Standard plan - $29.99 / month
                   </label>
                 </div>
@@ -39,7 +93,8 @@
               <div class="col-sm-12">
                 <div class="radio">
                   <label>
-                    <input type="radio" ng-model="paymentModel.plan" value="premium">
+                    <input type="radio" ng-model="paymentModel.payment_plan"
+                           value="premium">
                     Premium plan - $49.99 / month
                   </label>
                 </div>
@@ -52,7 +107,7 @@
         <div class="form-group row">
           <div class="col-sm-4">
             <button type="submit" class="btn btn-block btn-secondary"
-                    ng-click="update(paymentModel)">Save plan options
+                    ng-click="updatePayments(paymentModel)">Update subscription plan
             </button>
           </div>
         </div>

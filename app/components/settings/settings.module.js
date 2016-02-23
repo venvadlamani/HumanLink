@@ -8,7 +8,8 @@
         .module('Settings', [
             'ui.bootstrap',
             'checklist-model',
-            'Common'
+            'Common',
+            'stripe'
         ])
         .config(Config);
 
