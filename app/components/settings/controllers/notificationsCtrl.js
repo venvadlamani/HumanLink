@@ -9,6 +9,7 @@ angular
         function ($scope, $http, userSession) {
 
             $scope.notificationModel = {};
+            $scope.errorModel = {};
             $scope.usr = userSession;
             var account_id = $scope.usr.userdata.account_id;
 
@@ -16,7 +17,10 @@ angular
                 $http.get('/get_settings_notifications?account_id=' + account_id)
                     .then(function (response) {
                         $scope.notificationModel = response.data;
-                    })
+                    }, function (response) {
+                        $scope.siteAlert.type = "danger";
+                        $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                    });
             };
             init();
 
