@@ -75,6 +75,31 @@ class Account(base.Base, auth_models.User):
 
 
 class Caregiver(base.Base):
+    """Models a care professionals details."""
+    #   Personal Data
+    account_id = ndb.IntegerProperty(required=True)
+    gender = ndb.StringProperty()
+    city = ndb.StringProperty()
+    # Headline and Bio
+    headline = ndb.StringProperty()
+    bio = ndb.StringProperty()
+    # Professional Data
+    school = ndb.StringProperty()
+    lpn = ndb.BooleanProperty()
+    cna = ndb.BooleanProperty()
+    iha = ndb.BooleanProperty()
+    hcs = ndb.BooleanProperty()
+    ad = ndb.BooleanProperty()
+    # Professional Preferences
+    live_in = ndb.BooleanProperty()
+    weekdays = ndb.BooleanProperty()
+    weekends = ndb.BooleanProperty()
+    cats = ndb.BooleanProperty()
+    dogs = ndb.BooleanProperty()
+    smoking = ndb.BooleanProperty()
+
+
+class Caregiver_old(base.Base):
     """Caregiver specific details."""
     account_id = ndb.IntegerProperty(required=True)
     care_services = msgprop.EnumProperty(CareService, repeated=True)
@@ -94,7 +119,7 @@ class Caregiver(base.Base):
         Transportation, repeated=True, indexed=True)
     live_in = ndb.BooleanProperty()
     # TODO: Find out if work experience is actually needed.
-    #work_experience = ndb.StructuredProperty(WorkExperience, repeated=True)
+    # work_experience = ndb.StructuredProperty(WorkExperience, repeated=True)
 
 
 class Patient(base.Base):
