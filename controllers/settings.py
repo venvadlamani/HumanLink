@@ -3,8 +3,7 @@ from models.kinds.settings import Notifications
 from models.kinds.settings import Payments
 from models.kinds.accounts import Account
 from webapp2_extras import security
-
-from google.appengine.ext import ndb
+import stripe
 
 
 class Settings(base.BaseHandler):
@@ -46,6 +45,17 @@ class Settings(base.BaseHandler):
             new_ntfn.email_updates = self.request_json.get('email_updates')
             new_ntfn.put()
 
+    def POST_security(self):
+        """Security update POST request."""
+        email = self.request_json.get('email')
+        qry = Account.query(Account.email == email)
+
+        for row in qry:
+            acct = row.key.get()
+            acct.password = security.generate_password_hash(
+                self.request_json.get('password'), length=12)
+            acct.put()
+
     def GET_payments(self):
         """Payments GET request."""
         payments_map = {}
@@ -83,13 +93,23 @@ class Settings(base.BaseHandler):
             new_pymt.stripe_token = self.request_json.get('stripe_token')
             new_pymt.put()
 
-    def POST_security(self):
-        """Security update POST request."""
-        email = self.request_json.get('email')
-        qry = Account.query(Account.email == email)
+    def POST_stripe_charge(self):
+        """Charge to stripe POST request."""
+        print '####################'
+        print 'posting charge to stripe'
 
-        for row in qry:
-            acct = row.key.get()
-            acct.password = security.generate_password_hash(
-                self.request_json.get('password'), length=12)
-            acct.put()
+        stripe.api_key = "sk_test_4OVHvnABmSkxZh4kOAO3drwd"
+
+        payload = stripe.Charge.create(
+            amount=400,
+            currency="usd",
+            source={
+                "number": '4242424242424242',
+                "exp_month": 12,
+                "exp_year": 2017,
+                "cvc": '123'
+            },
+            description="Charge for test@example.com"
+        )
+
+        print payload

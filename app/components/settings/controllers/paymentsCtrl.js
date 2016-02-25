@@ -5,35 +5,37 @@
  */
 angular
     .module('Settings')
-    .controller('paymentsCtrl', ['$scope', '$http', 'userSession',
-        function ($scope, $http, userSession) {
+    .controller('paymentsCtrl', ['$scope', '$http', 'userSession', 'stripe',
+        function ($scope, $http, userSession, stripe) {
 
             $scope.paymentModel = {};
             $scope.usr = userSession;
             var account_id = $scope.usr.userdata.account_id;
 
             var init = function () {
-                $http.get('/get_settings_payments?account_id=' + account_id)
-                    .success(function (response) {
-                        $scope.paymentModel = response;
-                    })
-                    .error(function () {
-                        $scope.siteAlert.type = "danger";
-                        $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
-                    });
+
             };
             init();
 
             $scope.updatePayments = function (model) {
-                model = angular.extend(model, {'account_id': account_id});
-                $http.post('/post_settings_payments', model)
-                    .success(function (data, status) {
-                        $scope.siteAlert.type = "success";
-                        $scope.siteAlert.message = "Your settings were updated successfully.";
+                return stripe.card.createToken(model.card_number)
+                    .then(function (response) {
+                        console.log('token created for card ending in ', response.card.last4);
+                        var payment = angular.copy($scope.payment);
+                        payment.card = void 0;
+                        payment.token = response.id;
+                        return $http.post('https://yourserver.com/payments', payment);
                     })
-                    .error(function () {
-                        $scope.siteAlert.type = "danger";
-                        $scope.siteAlert.message = "Oops. There was a problem. Please try again.";
+                    .then(function (payment) {
+                        console.log('successfully submitted payment for $', payment.amount);
+                    })
+                    .catch(function (err) {
+                        if (err.type && /^Stripe/.test(err.type)) {
+                            console.log('Stripe error: ', err.message);
+                        }
+                        else {
+                            console.log('Other error occurred, possibly with your API', err.message);
+                        }
                     });
             };
 

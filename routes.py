@@ -99,6 +99,10 @@ routes = [
                   methods=['POST'],
                   handler='controllers.settings.Settings:POST_notifications'),
 
+    webapp2.Route(r'/post_settings_security', name='post_settings_security',
+                  methods=['POST'],
+                  handler='controllers.settings.Settings:POST_security'),
+
     webapp2.Route(r'/get_settings_payments', name='get_settings_payments',
                   methods=['GET'],
                   handler='controllers.settings.Settings:GET_payments'),
@@ -107,9 +111,9 @@ routes = [
                   methods=['POST'],
                   handler='controllers.settings.Settings:POST_payments'),
 
-    webapp2.Route(r'/post_settings_security', name='post_settings_security',
+    webapp2.Route(r'/charge', name='charge',
                   methods=['POST'],
-                  handler='controllers.settings.Settings:POST_security'),
+                  handler='controllers.settings.Settings:POST_stripe_charge'),
 
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),
