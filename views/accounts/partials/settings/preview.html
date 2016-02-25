@@ -1,0 +1,115 @@
+<div class="settings-profile well">
+
+  <div class="text-center">
+    <img src="https://placehold.it/75x75">
+  </div>
+
+  <hr>
+  <h4 class="text-center">Trust and Verification</h4>
+
+  <div class="profile-trust">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div ng-show="profile.phone_number_verified">
+          <div class="col-sm-3">
+            <span class="glyphicon glyphicon-ok"></span>
+          </div>
+          <div class="col-sm-9">
+            <p>Mobile number</p>
+            <small>Verified</small>
+          </div>
+        </div>
+        <div ng-hide="profile.phone_number_verified">
+          <div class="col-sm-3">
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+          <div class="col-sm-9">
+            <p>Mobile number</p>
+            <small>Not verified</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div ng-show="profile.offline_id_verified">
+          <div class="col-sm-3">
+            <span class="glyphicon glyphicon-ok"></span>
+          </div>
+          <div class="col-sm-9">
+            <p>Offline ID</p>
+            <small>Verified</small>
+          </div>
+        </div>
+        <div ng-hide="profile.offline_id_verified">
+          <div class="col-sm-3">
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+          <div class="col-sm-9">
+            <p>Offline ID</p>
+            <small>Not verified</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div ng-show="profile.background_verified">
+          <div class="col-sm-3">
+            <span class="glyphicon glyphicon-ok"></span>
+          </div>
+          <div class="col-sm-9">
+            <p>Background verified</p>
+            <small>Verified</small>
+          </div>
+        </div>
+        <div ng-hide="profile.background_verified">
+          <div class="col-sm-3">
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+          <div class="col-sm-9">
+            <p>Offline ID</p>
+            <small>Not verified</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+  <h4 class="text-center">Hello, My name is {{profile.name}} </h4>
+  <h5 class="text-center">I live in {{profile.location}} </h5>
+
+  <hr>
+  <h4 class="text-center">Headline</h4>
+
+  <p class="text-center">{{profile.headline}}</p>
+
+  <hr>
+  <h4 class="text-center">Bio</h4>
+
+  <p class="text-center">{{profile.bio}}</p>
+
+  <hr>
+  <h4 class="text-center">Professional data</h4>
+
+  <p class="text-center">School: {{profile.school}}</p>
+
+  <div ng-if="profile.cna" class="text-center"> CNA</div>
+  <div ng-if="profile.lpn" class="text-center"> LPN</div>
+  <div ng-if="profile.iha" class="text-center"> IHA</div>
+  <div ng-if="profile.ad" class="text-center"> AD</div>
+  <div ng-if="profile.hcs" class="text-center"> HCS</div>
+
+  <hr>
+  <h4 class="text-center">Professional preferences</h4>
+
+  <div ng-if="profile.live_in" class="text-center"> I am open to live-in arrangements.
+  </div>
+  <div ng-if="profile.weekdays" class="text-center"> I can work on weekdays.</div>
+  <div ng-if="profile.weekends" class="text-center"> I can work on weekends.</div>
+  <div ng-if="profile.cats" class="text-center"> I am allergic to cats.</div>
+  <div ng-if="profile.dogs" class="text-center"> I am allergic to dogs.</div>
+  <div ng-if="profile.smoking" class="text-center"> I am allergic to smoking.</div>
+
+</div>
