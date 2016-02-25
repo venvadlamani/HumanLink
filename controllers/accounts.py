@@ -4,6 +4,7 @@ from controllers import base
 from controllers.base import login_required
 from models.kinds.structs import AccountType
 from models.kinds.accounts import Account
+from models.kinds.accounts import Caregiver
 import logging
 from webapp2_extras import auth
 from google.appengine.api import mail
@@ -94,6 +95,7 @@ class Accounts(base.BaseHandler):
         user_address = 'ven@humanlink.co'
         mail.send_mail(email, user_address, 'test', message)
 
+    @login_required
     def GET_basic(self):
         """Basic account profile GET request."""
         basic_map = {}
@@ -110,6 +112,7 @@ class Accounts(base.BaseHandler):
 
         self.write_json(basic_map)
 
+    @login_required
     def POST_basic(self):
         """Basic account profile POST request."""
         account_email = self.request_json.get('email')
@@ -121,3 +124,65 @@ class Accounts(base.BaseHandler):
             new_basic.last = self.request_json.get('last')
             new_basic.phone_number = int(self.request_json.get('phone_number'))
             new_basic.put()
+
+    @login_required
+    def GET_caregiver_profile(self):
+        """ Get the caregiver profile for the current account user
+        params: account_id
+        :return:caregiver profile map
+        """
+        caregiver_map = {}
+        account_id = self.request.get('account_id')
+        qry = Caregiver.query(Caregiver.account_id == int(account_id)).fetch()
+
+        for row in qry:
+            caregiver_map = {
+                'city': row.city,
+                'gender': row.gender,
+                'live_in': row.live_in,
+                'school': row.school,
+                'lpn': row.lpn,
+                'cna': row.cna,
+                'hcs': row.hcs,
+                'iha': row.iha,
+                'ad': row.ad,
+                'headline': row.headline,
+                'bio': row.bio,
+                'weekdays': row.weekdays,
+                'weekends': row.weekends,
+                'cats': row.cats,
+                'dogs': row.dogs,
+                'smoking': row.smoking,
+            }
+
+        self.write_json(caregiver_map)
+
+    @login_required
+    def POST_caregiver_profile(self):
+        """ Update the caregiver profile for the current account user
+        params: caregiver profile data
+        :return:caregiver profile map
+        """
+        account_id = self.request_json.get('account_id')
+        qry = Caregiver.query(Caregiver.account_id == int(account_id)).fetch()
+
+        for row in qry:
+            row.city = self.request_json.get('city')
+            row.gender = self.request_json.get('gender')
+            row.live_in = self.request_json.get('live_in')
+            row.school = self.request_json.get('school')
+            row.lpn = self.request_json.get('lpn')
+            row.cna = self.request_json.get('cna')
+            row.hcs = self.request_json.get('hcs')
+            row.iha = self.request_json.get('iha')
+            row.ad = self.request_json.get('ad')
+            row.headline = self.request_json.get('headline')
+            row.bio = self.request_json.get('bio')
+            row.weekdays = self.request_json.get('weekdays')
+            row.weekends = self.request_json.get('weekends')
+            row.cats = self.request_json.get('cats')
+            row.dogs = self.request_json.get('dogs')
+            row.smoking = self.request_json.get('smoking')
+            row.put()
+
+        self.write_json({'message': 'Caregiver profile has been updated.'})
