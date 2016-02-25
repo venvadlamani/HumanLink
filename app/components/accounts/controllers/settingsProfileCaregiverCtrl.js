@@ -4,108 +4,36 @@ angular
     .module('Accounts')
     .controller('settingsProfileCaregiverCtrl', ['$scope', '$http', 'Constants', 'apiService', 'userSession',
         function ($scope, $http, Constants, apiService, userSession) {
-            var updateReq = new HL.CtrlHelper();
-            var userdata = userSession.userdata;
-
+            
             $scope.aboutMe = {};
-
-            $scope.aboutMe.certifications = [];
-            $scope.certifications = {};
-
-            $scope.addCert = true;
-            $scope.addExper = true;
-            $scope.addLang = true;
-            $scope.addLang = true;
-            $scope.addEmer = true;
-
-            $scope.allergies = Constants.allergies;
-            $scope.vaccines = Constants.vaccines;
-            $scope.careServices = Constants.careServices;
-            $scope.expertise = Constants.expertise;
-            $scope.languages = Constants.languages;
-            $scope.transportation = Constants.transportation;
-            $scope.states = Constants.states;
-            $scope.certificates = Constants.certificates;
-
-            $scope.caregiver = null;
-
+            $scope.usr = userSession;
+            var account_id = $scope.usr.userdata.account_id;
 
             var init = function () {
-                updateReq.success = function (data, status) {
-                    fetch(data, status);
-                    $scope.aboutMe = data;
-                    console.log(data);
-                };
-                apiService.Accounts.caregiver.get(userdata.account_id, updateReq);
+                $http.get('/get_caregiver_profile?account_id=' + account_id)
+                    .then(function (response) {
+                        $scope.aboutMe = response.data;
+                    }, function (response) {
+                        $scope.siteAlert.type = "danger";
+                        $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                    });
             };
             init();
 
-            $scope.caregiverUpdate = function (model) {
-                if (!validate(model)) {
-                    return;
-                }
-                console.log(model);
+            $scope.caregiverProfileUpdate = function caregiverProfileUpdate(model) {
+                console.log("account_id : " + account_id);
+                angular.extend(model, {'account_id': account_id});
 
-                // Maybe nothing has been changed.
-                if (angular.equals($scope.caregiver, model)) {
-                    return;
-                }
-                if (model.year) {
-                    model.dob = new Date(model.year, 0);
-                }
-                updateReq.success = function (data, status) {
-                    fetch(data, status);
-                    $scope.siteAlert.type = "success";
-                    $scope.siteAlert.message = "Changes have been saved.";
-                };
-                updateReq.failure = function (data, status) {
-                    $scope.siteAlert.type = "danger";
-                    $scope.siteAlert.message = "Uh-oh, there was a problem.";
-                };
-                apiService.Accounts.caregiver.update(model, updateReq);
+                $http.post('/post_caregiver_profile', model)
+                    .success(function (data, status) {
+                        $scope.siteAlert.type = "success";
+                        $scope.siteAlert.message = "Changes have been saved.";
+                        $scope.showCaregiverForm = false;
+                    })
+                    .error(function () {
+                        $scope.siteAlert.type = "danger";
+                        $scope.siteAlert.message = "Oops. There was an error. Please try again.";
+                    });
             };
 
-            var fetch = function (data, success) {
-                if (data.dob) {
-                    data.year = new Date(data.dob).getFullYear();
-                }
-            };
-
-            var validate = function (model) {
-                if (model.year && (model.year < 1900 ||
-                    model.year > new Date().getFullYear() - 10)) {
-                    return false;
-                }
-                return true;
-            };
-
-            //Maintain care services
-            $scope.toggleSelection = function toggleSelection(careService) {
-                console.log(careService);
-                if ($scope.aboutMe.careServicesSelection) {
-                    var idx = $scope.aboutMe.careServicesSelection.indexOf(careService);
-
-                    // is currently selected
-                    if (idx > -1) {
-                        $scope.aboutMe.careServicesSelection.splice(idx, 1);
-                    }
-
-                    // is newly selected
-                    else {
-                        $scope.aboutMe.careServicesSelection.push(careService);
-                    }
-                }
-            };
-
-            //  Add/Edit certifications
-            $scope.addCertification = function (certification) {
-                if (!$scope.aboutMe.certifications) {
-                    $scope.aboutMe.certifications = [];
-                }
-                $scope.aboutMe.certifications.push(certification);
-
-                // Clear input fields after push
-                $scope.addCert = true;
-                $scope.certification = "";
-            };
         }]);
