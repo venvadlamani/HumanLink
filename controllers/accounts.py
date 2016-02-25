@@ -186,3 +186,50 @@ class Accounts(base.BaseHandler):
             row.put()
 
         self.write_json({'message': 'Caregiver profile has been updated.'})
+
+    @login_required
+    def GET_caregiver_profile_preview(self):
+        """ Get the caregiver profile preview for the current account user
+        params: account_id
+        :return:caregiver profile map
+        """
+        caregiver_map = {}
+        account_map = {}
+        account_id = self.request.get('account_id')
+        email = self.request.get('email')
+
+        qry_cgr = Caregiver.query(Caregiver.account_id == int(account_id)).fetch()
+        for row in qry_cgr:
+            caregiver_map = {
+                'city': row.city,
+                'gender': row.gender,
+                'live_in': row.live_in,
+                'school': row.school,
+                'lpn': row.lpn,
+                'cna': row.cna,
+                'hcs': row.hcs,
+                'iha': row.iha,
+                'ad': row.ad,
+                'headline': row.headline,
+                'bio': row.bio,
+                'weekdays': row.weekdays,
+                'weekends': row.weekends,
+                'cats': row.cats,
+                'dogs': row.dogs,
+                'smoking': row.smoking,
+            }
+
+        qry_acct = Account.query(Account.email == email).fetch()
+        for row in qry_acct:
+            account_map = {
+                'phone_number': row.phone_number,
+                'phone_number_verified ': row.phone_number_verified,
+                'email_verified': row.email_verified,
+                'background_verified': row.background_verified,
+            }
+
+        profile_map = {
+            'caregiver': caregiver_map,
+            'account': account_map
+        }
+        self.write_json(profile_map)

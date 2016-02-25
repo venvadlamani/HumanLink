@@ -66,8 +66,8 @@
             })
             .state('settings.preview', {
                 url: '/settings/preview',
-                templateUrl: '/views/accounts/partials/profile.html',
-                controller: 'manageProfileCtrl'
+                templateUrl: '/views/accounts/partials/settings/preview.html',
+                controller: 'previewProfileCtrl'
             })
             .state('settings.sample', {
                 url: '/settings/sample',

@@ -68,6 +68,10 @@ routes = [
                   methods=['POST'],
                   handler='controllers.accounts.Accounts:POST_caregiver_profile'),
 
+    webapp2.Route(r'/get_caregiver_profile_preview', name='get_caregiver_profile_preview',
+                  methods=['GET'],
+                  handler='controllers.accounts.Accounts:GET_caregiver_profile_preview'),
+
     # Routes for the Settings module ----------------------------
     webapp2.Route(r'/settings', name='settings_index', methods=['GET'],
                   handler='controllers.settings.Settings:index'),
