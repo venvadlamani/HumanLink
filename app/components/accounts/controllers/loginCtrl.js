@@ -1,9 +1,9 @@
-'use strict';
-
 /**
  * Controller for the login view.
  */
 (function () {
+    'use strict';
+
     angular
         .module('Accounts')
         .controller('loginCtrl', Ctrl);
