@@ -3,12 +3,12 @@
 angular
     .module('Accounts')
     .controller('settingsProfileCtrl',
-    ['$scope', '$window', 'Constants', 'userSession', 'apiService',
-        function ($scope, $window, Constants, userSession, apiService) {
+    ['$scope', '$window', '$http', 'Constants', 'userSession',
+        function ($scope, $window, $http, Constants, userSession) {
 
             var userdata = userSession.userdata;
-            var templBase = '/views/accounts/partials/settings/';
-            var updateReq = new HL.CtrlHelper();
+            $scope.usr = userSession;
+            var account_email = $scope.usr.userdata.email;
 
             // Placeholder until initial data is loaded.
             $scope.account = userdata;
@@ -18,16 +18,16 @@ angular
                 if (!validate(model)) {
                     return;
                 }
-                updateReq.success = function (data, status) {
-                    fetch(data, status);
-                    $scope.siteAlert.type = "success";
-                    $scope.siteAlert.message = "Changes have been saved.";
-                };
-                updateReq.failure = function (data, status) {
-                    $scope.siteAlert.type = "danger";
-                    $scope.siteAlert.message = "Uh-oh, there was a problem.";
-                };
-                apiService.Accounts.update(model, updateReq);
+                $http.post('/post_account_basic', model)
+                    .success(function (data, status) {
+                        fetch(data, status);
+                        $scope.siteAlert.type = "success";
+                        $scope.siteAlert.message = "Your basic settings were updated successfully.";
+                    })
+                    .error(function () {
+                        $scope.siteAlert.type = "danger";
+                        $scope.siteAlert.message = "Oops. There was a problem. Please try again.";
+                    });
             };
 
             var fetch = function (data, status) {
@@ -52,10 +52,13 @@ angular
             };
 
             var init = function () {
-                updateReq.success = function (data, status) {
-                    fetch(data, status);
-                };
-                apiService.Accounts.get(userdata.account_id, updateReq);
+                $http.get('/get_account_basic?email=' + account_email)
+                    .then(function (response) {
+                        $scope.accountForm = response.data;
+                    }, function (response) {
+                        $scope.siteAlert.type = "danger";
+                        $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                    });
             };
             init();
         }]);

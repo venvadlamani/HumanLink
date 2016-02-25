@@ -3,10 +3,11 @@ import services.exp as exp
 from controllers import base
 from controllers.base import login_required
 from models.kinds.structs import AccountType
-
+from models.kinds.accounts import Account
 import logging
 from webapp2_extras import auth
 from google.appengine.api import mail
+
 
 class Accounts(base.BaseHandler):
     """Accounts and profiles related controller."""
@@ -92,3 +93,31 @@ class Accounts(base.BaseHandler):
         message = self.request_json['message']
         user_address = 'ven@humanlink.co'
         mail.send_mail(email, user_address, 'test', message)
+
+    def GET_basic(self):
+        """Basic account profile GET request."""
+        basic_map = {}
+        email = self.request.get('email')
+        qry = Account.query(Account.email == email).fetch()
+
+        for row in qry:
+            basic_map = {
+                'first': row.first,
+                'last': row.last,
+                'phone_number': row.phone_number,
+                'email': row.email,
+            }
+
+        self.write_json(basic_map)
+
+    def POST_basic(self):
+        """Basic account profile POST request."""
+        account_email = self.request_json.get('email')
+        qry = Account.query(Account.email == account_email)
+
+        for row in qry:
+            new_basic = row.key.get()
+            new_basic.first = self.request_json.get('first')
+            new_basic.last = self.request_json.get('last')
+            new_basic.phone_number = int(self.request_json.get('phone_number'))
+            new_basic.put()
