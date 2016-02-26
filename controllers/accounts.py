@@ -1,4 +1,5 @@
 import services.accounts
+import services.email
 import services.exp as exp
 from controllers import base
 from controllers.base import login_required
@@ -7,7 +8,6 @@ from models.kinds.accounts import Account
 from models.kinds.accounts import Caregiver
 import logging
 from webapp2_extras import auth
-from google.appengine.api import mail
 
 
 class Accounts(base.BaseHandler):
@@ -93,14 +93,17 @@ class Accounts(base.BaseHandler):
         email = self.request_json['email']
         message = self.request_json['message']
         user_address = 'ven@humanlink.co'
-        mail.send_mail(email, user_address, 'test', message)
+        services.email.send_email_to_support(email, user_address, message)
 
     def POST_password_reset(self):
         """Send request to the Helpdesk and log it."""
         email = self.request_json['email']
-        message = 'Please reset my password. Thank you.'
-        user_address = 'ven@humanlink.co'
-        mail.send_mail(email, user_address, 'test', message)
+        qry = Account.query(Account.email == email).fetch()
+
+        for row in qry:
+            account_id = row.key.id()
+
+        services.email.send_password_reset(email, account_id)
 
     @login_required
     def GET_basic(self):
