@@ -34,6 +34,14 @@
                     role: userSessionProvider.roles.GUEST
                 }
             })
+            .state('reset', {
+                url: '/reset',
+                templateUrl: '/views/accounts/partials/reset.html',
+                controller: 'resetCtrl',
+                data: {
+                    role: userSessionProvider.roles.GUEST
+                }
+            })
             .state('profile', {
                 url: '/profile',
                 templateUrl: '/views/accounts/partials/profile.html',
