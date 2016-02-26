@@ -84,7 +84,7 @@ class EmailService(object):
                            message=message,
                            async=True)
 
-    def send_password_reset(self, email, account_id):
+    def send_password_reset(self, account_id):
         """Sends an email to the specified account with password reset URL.
 
         :param account_id: (int)
@@ -93,7 +93,9 @@ class EmailService(object):
         """
         account = services.accounts.account_by_id(account_id, _dto=False)
         qs = {'email': account.email, 'token': account.verification_token}
-        verif_url = ('http://www.humanlink.co/verify?' + urllib.urlencode(qs))
+        verif_url = (
+            'http://www.humanlink.co/accounts#/reset_password?' + urllib.urlencode(qs))
+
         message = {
             'global_merge_vars': [
                 {'name': 'VERIFICATION_URL', 'content': verif_url},

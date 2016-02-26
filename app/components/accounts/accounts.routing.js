@@ -42,6 +42,14 @@
                     role: userSessionProvider.roles.GUEST
                 }
             })
+            .state('reset_password', {
+                url: '/reset_password',
+                templateUrl: '/views/accounts/partials/reset_password.html',
+                controller: 'resetPasswordCtrl',
+                data: {
+                    role: userSessionProvider.roles.GUEST
+                }
+            })
             .state('profile', {
                 url: '/profile',
                 templateUrl: '/views/accounts/partials/profile.html',
