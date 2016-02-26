@@ -45,7 +45,7 @@ class EmailService(object):
         account = services.accounts.account_by_id(account_id, _dto=False)
 
         qs = {'email': account.email, 'token': account.verification_token}
-        verif_url = ('https://www.humanlink.co/verify?' + urllib.urlencode(qs))
+        verif_url = ('http://www.humanlink.co/verify?' + urllib.urlencode(qs))
         message = {
             'global_merge_vars': [
                 {'name': 'VERIFICATION_URL', 'content': verif_url},
@@ -67,8 +67,6 @@ class EmailService(object):
             ID of the Account entity.
         :return: (None)
         """
-        logging.info("$$$$$$$$$$$$$$$$$$$$$$")
-        logging.info(email)
 
         message = {
             'global_merge_vars': [
@@ -82,6 +80,30 @@ class EmailService(object):
         }
         self._send_from_us(self.md.messages.send_template,
                            template_name='humanlink-support',
+                           template_content=[],
+                           message=message,
+                           async=True)
+
+    def send_password_reset(self, email, account_id):
+        """Sends an email to the specified account with password reset URL.
+
+        :param account_id: (int)
+            ID of the Account entity.
+        :return: (None)
+        """
+        account = services.accounts.account_by_id(account_id, _dto=False)
+        qs = {'email': account.email, 'token': account.verification_token}
+        verif_url = ('http://www.humanlink.co/verify?' + urllib.urlencode(qs))
+        message = {
+            'global_merge_vars': [
+                {'name': 'VERIFICATION_URL', 'content': verif_url},
+            ],
+            'to': [
+                {'email': account.email},
+            ],
+        }
+        self._send_from_us(self.md.messages.send_template,
+                           template_name='humanlink_password_reset',
                            template_content=[],
                            message=message,
                            async=True)
@@ -106,3 +128,4 @@ _email_service = EmailService()
 
 send_email_verification = _email_service.send_email_verification
 send_email_to_support = _email_service.send_email_to_support
+send_password_reset = _email_service.send_password_reset
