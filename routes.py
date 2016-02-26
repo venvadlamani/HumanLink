@@ -40,6 +40,9 @@ routes = [
     webapp2.Route(r'/logout', name='logout', methods=['GET'],
                   handler='controllers.accounts.Accounts:logout'),
 
+    webapp2.Route(r'/reset', name='reset', methods=['POST'],
+                  handler='controllers.accounts.Accounts:POST_password_reset'),
+
     webapp2.Route(r'/signup.json', name='signup_post', methods=['POST'],
                   handler='controllers.accounts.Accounts:POST_signup'),
 

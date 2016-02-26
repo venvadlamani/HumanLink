@@ -95,6 +95,13 @@ class Accounts(base.BaseHandler):
         user_address = 'ven@humanlink.co'
         mail.send_mail(email, user_address, 'test', message)
 
+    def POST_password_reset(self):
+        """Send request to the Helpdesk and log it."""
+        email = self.request_json['email']
+        message = 'Please reset my password. Thank you.'
+        user_address = 'ven@humanlink.co'
+        mail.send_mail(email, user_address, 'test', message)
+
     @login_required
     def GET_basic(self):
         """Basic account profile GET request."""
