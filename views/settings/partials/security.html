@@ -15,7 +15,14 @@
           <div class="col-sm-6">
             <input type="password" class="form-control" id="password"
                    placeholder="New password"
-                   ng-model="loginModel.password">
+                   ng-model="loginModel.password" minlength="6" required>
+
+            <div class="has-warning" ng-if="form.password.$dirty">
+              <div class="help-block" ng-messages="form.password.$error">
+                <div ng-message="minlength">Please enter at least six characters.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -26,7 +33,14 @@
           <div class="col-sm-6">
             <input type="password" class="form-control" id="password_confirm"
                    placeholder="Confirm password"
-                   ng-model="loginModel.password_confirm">
+                   ng-model="loginModel.password_confirm" minlength="6" required>
+
+            <div class="has-warning" ng-if="form.password_confirm.$dirty">
+              <div class="help-block" ng-messages="form.password_confirm.$error">
+                <div ng-message="minlength">Please enter at least six characters.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
