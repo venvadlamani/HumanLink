@@ -8,6 +8,7 @@ from models.kinds.accounts import Account
 from models.kinds.accounts import Caregiver
 import logging
 from webapp2_extras import auth
+from webapp2_extras import security
 
 
 class Accounts(base.BaseHandler):
@@ -58,6 +59,39 @@ class Accounts(base.BaseHandler):
             logging.info('Invalid password. email: %s' % email)
             raise exp.BadRequestExp('You entered a wrong password.')
 
+    def POST_password_reset(self):
+        """Send request to reset the password."""
+        email = self.request_json['email']
+        qry = Account.query(Account.email == email).fetch()
+        account_id = ''
+        for row in qry:
+            account_id = row.key.id()
+
+        services.email.send_password_reset(account_id)
+
+    def POST_password_reset_form(self):
+        """actually reset the password"""
+        email = self.request.get('email', '')
+        token = self.request.get('token', '')
+
+        try:
+            if not email or not token:
+                raise exp.ServiceExp('Invalid email or verification token.')
+            email = self.request_json.get('email')
+            qry = Account.query(Account.email == email)
+            for row in qry:
+                acct = row.key.get()
+                acct.password = security.generate_password_hash(
+                    self.request_json.get('password'), length=12)
+                acct.put()
+
+            msg = '{} has been confirmed.'.format(email)
+            alert = {'type': 'success', 'message': msg}
+        except exp.ServiceExp as e:
+            alert = {'type': 'danger', 'message': e.message}
+        self.session.add_flash('alert', alert)
+        return self.redirect('/accounts#/settings/profile')
+
     @login_required
     def logout(self):
         """Log-out the current user and redirect to home page."""
@@ -94,16 +128,6 @@ class Accounts(base.BaseHandler):
         message = self.request_json['message']
         user_address = 'ven@humanlink.co'
         services.email.send_email_to_support(email, user_address, message)
-
-    def POST_password_reset(self):
-        """Send request to the Helpdesk and log it."""
-        email = self.request_json['email']
-        qry = Account.query(Account.email == email).fetch()
-
-        for row in qry:
-            account_id = row.key.id()
-
-        services.email.send_password_reset(email, account_id)
 
     @login_required
     def GET_basic(self):

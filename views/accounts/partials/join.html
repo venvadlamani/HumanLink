@@ -1,19 +1,20 @@
 <div class="account-join">
-  <div class="card">
+  <div class="card card-half">
 
     <div ng-switch="viewMode">
 
       <div ng-switch-when="join_form">
         <div class="col-md-8 col-md-offset-2">
 
-          <h3 class="text-center">Join HumanLink.</h3>
+          <h2 class="text-center">Join HumanLink</h2>
+          <h4 class="text-center">Please enter the information below to get started.</h4>
 
           <form class="form-horizontal" role="form">
 
             <div class="form-group">
-              <label for="email" class="col-md-4 control-label">Email</label>
+              <label for="email" class="col-md-3 control-label">Email</label>
 
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <input type="email" class="form-control" id="email"
                        placeholder="name@example.com"
                        ng-model="signupModel.email" hl-focus>
@@ -21,9 +22,9 @@
             </div>
 
             <div class="form-group">
-              <label for="password" class="col-md-4 control-label">Password</label>
+              <label for="password" class="col-md-3 control-label">Password</label>
 
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <input type="password" class="form-control" id="password"
                        placeholder="Password"
                        ng-model="signupModel.password">
@@ -31,9 +32,9 @@
             </div>
 
             <div class="form-group">
-              <label for="password_confirm" class="col-md-4 control-label">Confirm</label>
+              <label for="password_confirm" class="col-md-3 control-label">Confirm</label>
 
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <input type="password" class="form-control" id="password_confirm"
                        placeholder="Confirm password"
                        ng-model="signupModel.password_confirm">
@@ -41,10 +42,10 @@
             </div>
 
             <div class="form-group">
-              <label for="invitation_code" class="col-md-4 control-label">Invitation
+              <label for="invitation_code" class="col-md-3 control-label">Invitation
                 code</label>
 
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <input type="text" class="form-control" id="invitation_code"
                        placeholder="abcd"
                        ng-model="signupModel.invite" maxlength="5">
@@ -52,9 +53,9 @@
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label">Primary use</label>
+              <label class="col-md-3 control-label">Primary use</label>
 
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <div class="radio">
                   <label>
                     <input type="radio" ng-model="signupModel.account_type" value="0">
@@ -71,24 +72,25 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-offset-4 col-md-8">
-                By clicking on "Join for free" below, you are agreeing to the
-                <a href="/terms" target="_blank">Terms and Conditions</a>.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-offset-4 col-md-8">
+              <div class="col-md-offset-3 col-md-9">
                 <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-                <button class="btn btn-primary"
+                <button class="btn btn-secondary"
                         ng-click="join(signupModel)" ng-disabled="ctrlHelper.isLoading">
-                  Join for free
+                  Sign up
                 </button>
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-offset-4 col-md-8">
+              <div class="col-md-offset-3 col-md-9">
+                By signing up I am agreeing to the
+                <a href="/home#/terms">Terms of Service</a> and <a
+                      href="/home#/privacy">Privacy Policy</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-offset-3 col-md-9">
                 Already a member? <a ui-sref="login">Sign in.</a>
               </div>
             </div>

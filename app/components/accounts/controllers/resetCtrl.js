@@ -7,7 +7,7 @@ angular
     .module('Accounts')
     .controller('resetCtrl', ['$scope', '$http', function ($scope, $http) {
 
-        var viewModes = ['reset_form', 'reset_sent'];
+        var viewModes = ['construction', 'reset_form', 'reset_sent'];
         $scope.viewMode = viewModes[0];
 
         $scope.resetModel = {

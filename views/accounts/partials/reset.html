@@ -39,6 +39,11 @@
         <p class="lead text-center">An email has been sent to
           <strong>{{ resetModel.email }}</strong> with further instructions.</p>
       </div>
+      <div ng-switch-when="construction">
+        <p class="lead text-center">This page is under construction. Please send an email
+          to <strong>support@humanlink.co</strong> if you need assistance.</p>
+      </div>
+
     </div>
 
   </div>
