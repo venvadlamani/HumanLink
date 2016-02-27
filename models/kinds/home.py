@@ -15,36 +15,6 @@ class ContactUs(base.Base):
     referrer = ndb.StringProperty()
 
 
-class CaregiverGeneral(base.Base):
-    """Models a caregiver who has not created an account."""
-    #   Personal Data
-    name = ndb.StringProperty(required=True)
-    location = ndb.StringProperty(required=True)
-    phone_number = ndb.StringProperty(required=True)
-    photo = ndb.StringProperty()
-    gender = ndb.StringProperty()
-    live_in = ndb.BooleanProperty()
-
-    # Headline and Bio
-    headline = ndb.StringProperty()
-    bio = ndb.StringProperty()
-
-    # Professional Data
-    school = ndb.StringProperty()
-    lpn = ndb.BooleanProperty()
-    cna = ndb.BooleanProperty()
-    iha = ndb.BooleanProperty()
-    hcs = ndb.BooleanProperty()
-    ad = ndb.BooleanProperty()
-
-    # Professional Preferences
-    weekdays = ndb.BooleanProperty()
-    weekends = ndb.BooleanProperty()
-    cats = ndb.BooleanProperty()
-    dogs = ndb.BooleanProperty()
-    smoking = ndb.BooleanProperty()
-
-
 class Request(base.Base):
     """Models a request from Guest/User."""
     name = ndb.StringProperty(required=True)

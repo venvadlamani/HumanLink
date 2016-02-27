@@ -76,13 +76,25 @@ class Account(base.Base, auth_models.User):
 
 class Caregiver(base.Base):
     """Models a care professionals details."""
+    #   Basic information
+    general_profile = ndb.BooleanProperty()
+    first_name = ndb.StringProperty()
+    last_name = ndb.StringProperty()
+    phone_number_primary = ndb.StringProperty()
+    phone_number_secondary = ndb.StringProperty()
+    email = ndb.StringProperty()
+
     #   Personal Data
-    account_id = ndb.IntegerProperty(required=True)
+    account_id = ndb.IntegerProperty()
     gender = ndb.StringProperty()
+    county = ndb.StringProperty
     city = ndb.StringProperty()
+    zipcode = ndb.StringProperty()
+
     # Headline and Bio
     headline = ndb.StringProperty()
     bio = ndb.StringProperty()
+
     # Professional Data
     school = ndb.StringProperty()
     lpn = ndb.BooleanProperty()
@@ -90,6 +102,7 @@ class Caregiver(base.Base):
     iha = ndb.BooleanProperty()
     hcs = ndb.BooleanProperty()
     ad = ndb.BooleanProperty()
+
     # Professional Preferences
     live_in = ndb.BooleanProperty()
     weekdays = ndb.BooleanProperty()
