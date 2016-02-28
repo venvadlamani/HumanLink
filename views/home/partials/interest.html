@@ -1,101 +1,105 @@
-<div class="well">
-  <div class="row text-center">
-    <h1>Interest form</h1>
-  </div>
+<div class="interest">
+  <div class="card">
 
-  <div class="section section-invite" id="invite">
-    <div class="container">
-      <div class="row col-sm-offset-1 col-sm-10">
-        <form class="form-horizontal" ng-submit="invite(contact)">
+    <div class="section section-invite" id="invite">
+      <div class="container">
+        <div class="row text-center">
+          <h1>Interest form</h1>
+        </div>
 
-          <div ng-hide="showInvite" class="text-center">
-            <h4>Thank you for signing up. You will hear from us soon.</h4>
+        <div class="row col-sm-offset-1 col-sm-10">
+          <form class="form-horizontal" ng-submit="invite(contact)">
 
-            <div>
-              <p>Follow us on social media. We are friendly!
+            <div ng-hide="showInvite" class="text-center">
+              <h4>Thank you for signing up. You will hear from us soon.</h4>
 
-              <p>
-              <ul class="list-inline">
-                <li><a href="https://www.facebook.com/humanlink">
-                  <i class="fa fa-facebook-official"></i></a></li>
-                <li><a href="https://twitter.com/humanlinkcares">
-                  <i class="fa fa-twitter-square"></i></a></li>
-                <li><a href="https://plus.google.com/+HumanlinkCares">
-                  <i class="fa fa-google-plus-square"></i></a></li>
-              </ul>
-            </div>
-          </div>
+              <div>
+                <p>Follow us on social media. We are friendly!
 
-          <div ng-show="showInvite">
-            <div class="form-group">
-              <label for="contact-name"
-                     class="col-sm-4 control-label">Name</label>
-
-              <div class="col-sm-4">
-                <input type="text" id="contact-name" class="form-control"
-                       ng-model="contact.name" placeholder="Jane Doe" required/>
+                <p>
+                <ul class="list-inline">
+                  <li><a href="https://www.facebook.com/humanlink">
+                    <i class="fa fa-facebook-official"></i></a></li>
+                  <li><a href="https://twitter.com/humanlinkcares">
+                    <i class="fa fa-twitter-square"></i></a></li>
+                  <li><a href="https://plus.google.com/+HumanlinkCares">
+                    <i class="fa fa-google-plus-square"></i></a></li>
+                </ul>
               </div>
             </div>
-            <div class="form-group">
-              <label for="contact-email"
-                     class="col-sm-4 control-label">Email</label>
 
-              <div class="col-sm-4">
-                <input type="email" id="contact-email" class="form-control"
-                       ng-model="contact.email" placeholder="name@example.com" required/>
+            <div ng-show="showInvite">
+              <div class="form-group">
+                <label for="contact-name"
+                       class="col-sm-4 control-label">Name</label>
+
+                <div class="col-sm-4">
+                  <input type="text" id="contact-name" class="form-control"
+                         ng-model="contact.name" placeholder="Jane Doe" required/>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="contact-zipcode"
-                     class="col-sm-4 control-label">ZIP Code</label>
+              <div class="form-group">
+                <label for="contact-email"
+                       class="col-sm-4 control-label">Email</label>
 
-              <div class="col-sm-4">
-                <input type="tel" id="contact-zipcode" class="form-control"
-                       ng-model="contact.zipcode" placeholder="72701" maxlength="5"/>
+                <div class="col-sm-4">
+                  <input type="email" id="contact-email" class="form-control"
+                         ng-model="contact.email" placeholder="name@example.com"
+                         required/>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="contact-referrer"
-                     class="col-sm-4 control-label">Referred By</label>
+              <div class="form-group">
+                <label for="contact-zipcode"
+                       class="col-sm-4 control-label">ZIP Code</label>
 
-              <div class="col-sm-8">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <input type="text" id="contact-referred" class="form-control"
-                           ng-model="contact.referrer" placeholder="Optional"/>
+                <div class="col-sm-4">
+                  <input type="tel" id="contact-zipcode" class="form-control"
+                         ng-model="contact.zipcode" placeholder="72701" maxlength="5"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-referrer"
+                       class="col-sm-4 control-label">Referred By</label>
+
+                <div class="col-sm-8">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" id="contact-referred" class="form-control"
+                             ng-model="contact.referrer" placeholder="Optional"/>
+                    </div>
+                  </div>
+                  <span class="help-block">How did you hear about us?</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" ng-model="contact.interest" value="2">
+                      I am an Agency or Family seeking care
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" ng-model="contact.interest" value="1">
+                      I am an Independent caregiver
+                    </label>
                   </div>
                 </div>
-                <span class="help-block">How did you hear about us?</span>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-4 col-sm-8">
-                <div class="radio">
-                  <label>
-                    <input type="radio" ng-model="contact.interest" value="2">
-                    I am an Agency or Family seeking care
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" ng-model="contact.interest" value="1">
-                    I am an Independent caregiver
-                  </label>
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-4">
+                  <button type="submit" class="btn btn-primary btn-block">
+                    Invite Me
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <div class="col-sm-offset-4 col-sm-4">
-                <button type="submit" class="btn btn-primary btn-block">
-                  Invite Me
-                </button>
-              </div>
-            </div>
-          </div>
 
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>

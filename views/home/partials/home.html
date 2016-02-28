@@ -1,50 +1,26 @@
-<form class="form-horizontal" role="form">
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-offset-2 col-sm-6">
-        <input type="text" id="search" name="search" class="form-control"
-               ng-model="searchModel.search"
-               placeholder="Where do you need care? Rogers, Bentonville, etc."
-               required/>
-      </div>
-      <div class="col-sm-2">
-        <button type="submit" ng-click="find(searchModel)"
-                class="btn btn-secondary btn-block">
-          Search
-        </button>
-      </div>
-    </div>
-  </div>
-</form>
-<hr>
-
-<div ng-repeat="(key, prop) in searchCaregiverResults | orderBy: prop.phone_number">
-  <div class="media">
-
-    <div class="col-sm-offset-1 col-sm-2">
-      <div class="media-left media-top">
-        <a href ui-sref="previewProfile({caregiver_key: prop.phone_number,})">
-          <img class="media-object" src="https://placehold.it/75x75">
-        </a>
-      </div>
-    </div>
-
-    <div class="col-sm-9">
-      <div class="media-body">
-        <h4><strong>{{ prop.name }}</strong></h4>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <span><i class="glyphicon glyphicon-phone"></i> {{ prop.phone_number }}</span>
-          </div>
-          <div class="col-sm-4">
-            <span><i class="glyphicon glyphicon-home"></i> {{ prop.location }}</span>
-          </div>
+<div class="landing">
+  <!-- About Section -  general benefits of Humanlink for the patient families-->
+  <section class="horizontal" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Humanlink</h2>
+          <hr class="star-heart">
         </div>
-
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-lg-offset-3 text-center">
+          <button ui-sref="careseeker" class="btn btn-lg  btn-block btn-outline">
+            <strong>I am a care seeker</strong>
+          </button>
+        </div>
+        <div class="col-lg-3 text-center">
+          <button ui-sref="caregiver" class="btn btn-lg  btn-block  btn-outline">
+            <strong>I am a care professional</strong>
+          </button>
+        </div>
       </div>
     </div>
+  </section>
 
-  </div>
-  <hr>
 </div>

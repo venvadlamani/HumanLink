@@ -5,7 +5,7 @@
  */
 angular
     .module('Home')
-    .controller('homeBaseCtrl', ['$scope', '$window', '$http',
+    .controller('faqCtrl', ['$scope', '$window', '$http',
         function ($scope, $window, $http) {
 
         }]);

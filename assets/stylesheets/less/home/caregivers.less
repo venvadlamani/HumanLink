@@ -1,26 +1,72 @@
 .caregivers {
-
-  .section-welcome {
-    .bg-type();
-    background-image: url("/images/landing/caregivers_cover.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 600px;
-    padding: 80px 0;
+  .container {
+    padding-top: 75px;
+    padding-bottom: 75px;
   }
 
-  .section-benefits {
-    img {
-      float: right;
-      max-height: 600px;
-    }
+  /*
+   SECTION HORIZONTAL - TYPE
+  */
+
+  section.horizontal {
+    background: @type;
+    color: white;
+
+  }
+  section.horizontal h2 {
+    font-size: 3em;
+  }
+  section.horizontal a,
+  section.horizontal a:hover,
+  section.horizontal a:focus,
+  section.horizontal a:active,
+  section.horizontal a.active {
+    color: white;
+    outline: none;
   }
 
-  .section-cg-benefits {
+  section.vertical {
     .fa, .material-icons {
-      font-size: 75px;
+      font-size: 100px;
     }
+  }
+  /*
+   button outline (type)
+  */
+  .btn-outline-type {
+    color: white;
+    font-size: 20px;
+    border: solid 2px white;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+  }
+  .btn-outline-type:hover,
+  .btn-outline-type:focus,
+  .btn-outline-type:active,
+  .btn-outline-type.active {
+    color: @type;
+    background: white;
+    border: solid 2px white;
+  }
+  /*
+  hr with star-light
+  */
+  hr.star-heart {
+    padding: 0;
+    border: none;
+    border-top: solid 5px;
+    text-align: center;
+    max-width: 250px;
+  }
+  hr.star-heart:after {
+    content: '\2665';
+    font-size: 2em;
+    display: inline-block;
+    position: relative;
+    top: -0.8em;
+    background-color: @type;
+    padding: 0 0.25em;
   }
 
 }

@@ -28,6 +28,16 @@
                 templateUrl: '/views/home/partials/caregiver.html',
                 controller: 'caregiverCtrl'
             })
+            .state('search', {
+                url: '/search',
+                templateUrl: '/views/home/partials/search.html',
+                controller: 'searchCtrl'
+            })
+            .state('faq', {
+                url: '/faq',
+                templateUrl: '/views/home/partials/faq.html',
+                controller: 'faqCtrl'
+            })
             .state('caregiverGeneral', {
                 url: '/caregiverGeneral',
                 templateUrl: '/views/home/partials/caregiverGeneral.html',
