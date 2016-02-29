@@ -87,7 +87,7 @@ class Caregiver(base.Base):
     #   Personal Data
     account_id = ndb.IntegerProperty()
     gender = ndb.StringProperty()
-    county = ndb.StringProperty
+    county = ndb.StringProperty()
     city = ndb.StringProperty()
     zipcode = ndb.StringProperty()
 

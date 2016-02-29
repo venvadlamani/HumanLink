@@ -172,6 +172,8 @@ class Accounts(base.BaseHandler):
         for row in qry:
             caregiver_map = {
                 'city': row.city,
+                'zipcode': row.zipcode,
+                'county': row.county,
                 'gender': row.gender,
                 'live_in': row.live_in,
                 'school': row.school,
@@ -199,9 +201,10 @@ class Accounts(base.BaseHandler):
         """
         account_id = self.request_json.get('account_id')
         qry = Caregiver.query(Caregiver.account_id == int(account_id)).fetch()
-
         for row in qry:
             row.city = self.request_json.get('city')
+            row.zipcode = self.request_json.get('zipcode')
+            row.county = self.request_json.get('county')
             row.gender = self.request_json.get('gender')
             row.live_in = self.request_json.get('live_in')
             row.school = self.request_json.get('school')
@@ -236,6 +239,8 @@ class Accounts(base.BaseHandler):
         for row in qry_cgr:
             caregiver_map = {
                 'city': row.city,
+                'county': row.county,
+                'zipcode': row.zipcode,
                 'gender': row.gender,
                 'live_in': row.live_in,
                 'school': row.school,
@@ -256,6 +261,8 @@ class Accounts(base.BaseHandler):
         qry_acct = Account.query(Account.email == email).fetch()
         for row in qry_acct:
             account_map = {
+                'first_name': row.first,
+                'last_name': row.last,
                 'phone_number': row.phone_number,
                 'phone_number_verified ': row.phone_number_verified,
                 'email_verified': row.email_verified,

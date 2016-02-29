@@ -41,10 +41,41 @@
                 City</label>
 
               <div class="col-sm-6">
-                <input class="form-control" ng-model="aboutMe.city"
+                <input class="form-control" name="profile-city"
+                       ng-model="aboutMe.city"
                        placeholder="Bentonville"/>
 
                 <p class="help-block">City of residence.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="profile-zipcode" class="col-sm-3 control-label">
+                Zipcode</label>
+
+              <div class="col-sm-6">
+                <input class="form-control" name="profile-zipcode"
+                       ng-model="aboutMe.zipcode"
+                       placeholder="72756"/>
+
+                <p class="help-block">Zipcode of residence</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="profile-county" class="col-sm-3 control-label">
+                County</label>
+
+              <div class="col-sm-6">
+                <input class="form-control" name="profile-county"
+                       ng-model="aboutMe.county"
+                       placeholder="Benton county"/>
+
+                <p class="help-block">County of residence</p>
               </div>
             </div>
           </div>
