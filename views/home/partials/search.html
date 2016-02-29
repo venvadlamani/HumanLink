@@ -1,0 +1,51 @@
+<div class="search">
+  <div class="container">
+
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-offset-2 col-lg-6">
+            <input type="text" id="search" name="search" class="form-control input-lg"
+                   ng-model="searchModel.search"
+                   placeholder="Where do you need care? Rogers, Bentonville, etc."/>
+          </div>
+          <div class="col-lg-2">
+            <button ng-click="find(searchModel)"
+                    class="btn btn-lg btn-block btn-outline-primary">Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div ng-repeat="(key, prop) in searchCaregiverResults | orderBy: prop.phone_number">
+      <div class="media">
+        <div class="col-sm-offset-1 col-sm-2">
+          <div class="media-left media-top">
+            <a href ui-sref="previewProfile({caregiver_key: prop.phone_number,})">
+              <img class="media-object" src="https://placehold.it/75x75">
+            </a>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <div class="media-body">
+            <h4><strong>{{ prop.name }}</strong></h4>
+
+            <div class="row">
+              <div class="col-sm-4">
+              <span><i
+                      class="glyphicon glyphicon-phone"></i> {{ prop.phone_number }}</span>
+              </div>
+              <div class="col-sm-4">
+                <span><i class="glyphicon glyphicon-home"></i> {{ prop.location }}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

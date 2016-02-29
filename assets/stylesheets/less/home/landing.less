@@ -1,5 +1,74 @@
 .landing {
 
+  .container {
+    padding-top: 75px;
+    padding-bottom: 75px;
+  }
+
+  /*
+   SECTION HORIZONTAL - PRIMARY
+  */
+
+  section.horizontal {
+    background: @primary;
+    color: white;
+  }
+  section.horizontal h2 {
+    font-size: 3em;
+  }
+  section.horizontal a,
+  section.horizontal a:hover,
+  section.horizontal a:focus,
+  section.horizontal a:active,
+  section.horizontal a.active {
+    color: white;
+    outline: none;
+  }
+
+  /*
+   button outline (primary)
+  */
+  .btn-outline {
+    color: white;
+    font-size: 20px;
+    border: solid 2px white;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+  }
+  .btn-outline:hover,
+  .btn-outline:focus,
+  .btn-outline:active,
+  .btn-outline.active {
+    color: @primary;
+    background: white;
+    border: solid 2px white;
+  }
+
+  /*
+  hr with star-light
+  */
+  hr.star-heart  {
+    padding: 0;
+    border: none;
+    border-top: solid 5px;
+    text-align: center;
+    max-width: 250px;
+  }
+  hr.star-heart:after {
+    content: '\2661';
+    font-size: 2em;
+    display: inline-block;
+    position: relative;
+    top: -0.8em;
+    background-color: @primary;
+    padding: 0 0.25em;
+  }
+
+  /*
+   OLD STUFF - Can be deleted if not reusable
+  */
+
   .section-welcome {
     .bg-type();
     background-image: url("/images/landing/cover.jpg");
@@ -14,8 +83,8 @@
     .steps {
       @media (min-width: 970px) {
         padding-top: 50px;
-     }
-   }
+      }
+    }
     .title {
       margin-top: 30px;
     }
@@ -23,7 +92,7 @@
       float: right;
       max-height: 600px;
     }
-    h1{
+    h1 {
       color: @type;
       line-height: 135%;
     }
@@ -31,30 +100,13 @@
 
   .section-benefits {
     .bg-secondary();
+    img {
+      float: right;
+      max-height: 600px;
+    }
 
     .fa, .material-icons {
       font-size: 140px;
-    }
-  }
-
-  .section-pricing {
-    ul {
-      line-height: 2em;
-    }
-  }
-
-  .section-invite {
-    .bg-type();
-
-    form {
-      background: @backgroundFaded;
-      color: @text-color;
-      padding: 20px 10px;
-      border: 10px solid @gray-light;
-
-      img {
-        height: 80px;
-      }
     }
   }
 

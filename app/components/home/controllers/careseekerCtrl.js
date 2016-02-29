@@ -5,7 +5,7 @@
  */
 angular
     .module('Home')
-    .controller('careseekerCtrl', ['$scope', '$window', function ($scope, $window) {
+    .controller('careseekerCtrl', ['$scope', 'userSession', function ($scope, userSession) {
 
 
     }]);
