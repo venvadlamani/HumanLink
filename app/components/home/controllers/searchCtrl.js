@@ -10,16 +10,9 @@ angular
 
             $scope.searchModel = {};
             $scope.searchCaregiverResults = {};
-            var results = [];
 
             var init = function () {
-                $http.get('search_caregivers')
-                    .then(function (response) {
-                        angular.forEach(response.data, function (val, key) {
-                            results.push(key);
-                        });
-                        $scope.searchCaregiverResults = angular.extend(response.data);
-                    });
+                console.log("hello");
             };
             init();
 
@@ -32,13 +25,16 @@ angular
             };
 
             $scope.find = function (model) {
-                $http.post('search_refined', model)
-                    .then(function (response) {
-                        angular.forEach(response.data, function (val, key) {
-                            results.push(key);
-                        });
-                        $scope.searchCaregiverResults = angular.extend(response.data);
-                    });
+                $http({
+                    url: '/search_caregivers',
+                    method: "GET",
+                    params: {search_string: model.search_string}
+                }).then(function (response) {
+                    $scope.searchCaregiverResults = response.data;
+                }, function (response) {
+                    $scope.siteAlert.type = "danger";
+                    $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                });
             };
 
         }]);

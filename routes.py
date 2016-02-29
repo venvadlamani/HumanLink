@@ -11,10 +11,6 @@ routes = [
     webapp2.Route(r'/submit_contact', name='submit_contact', methods=['POST'],
                   handler='controllers.home.Home:POST_submit_contact'),
 
-    webapp2.Route(r'/search_caregivers', name='search_caregivers',
-                  methods=['GET'],
-                  handler='controllers.home.Home:GET_search_caregivers'),
-
     webapp2.Route(r'/caregiver_profile', name='caregiver_profile',
                   methods=['GET'],
                   handler='controllers.home.Home:GET_caregiver_profile'),
@@ -26,9 +22,9 @@ routes = [
     webapp2.Route(r'/contact', name='contact', methods=['POST'],
                   handler='controllers.home.Home:POST_contact_request'),
 
-    webapp2.Route(r'/search_refined', name='search_refined',
-                  methods=['POST'],
-                  handler='controllers.home.Home:GET_search_refined'),
+    webapp2.Route(r'/search_caregivers', name='search_caregivers',
+                  methods=['GET'],
+                  handler='controllers.home.Home:GET_search_caregivers'),
 
     # Routes for the Accounts module ----------------------------
     webapp2.Route(r'/accounts', name='accounts_index', methods=['GET'],

@@ -241,6 +241,8 @@ class Accounts(base.BaseHandler):
                 'city': row.city,
                 'county': row.county,
                 'zipcode': row.zipcode,
+                'phone_number_primary': row.phone_number_primary,
+                'phone_number_secondary': row.phone_number_secondary,
                 'gender': row.gender,
                 'live_in': row.live_in,
                 'school': row.school,
