@@ -11,20 +11,21 @@ routes = [
     webapp2.Route(r'/submit_contact', name='submit_contact', methods=['POST'],
                   handler='controllers.home.Home:POST_submit_contact'),
 
-    webapp2.Route(r'/submit_caregiver_general', name='submit_caregiver_general',
-                  methods=['POST'],
-                  handler='controllers.home.Home:POST_caregiver_general'),
-
-    webapp2.Route(r'/caregiver_general', name='caregiver_general',
+    webapp2.Route(r'/search_caregivers', name='search_caregivers',
                   methods=['GET'],
-                  handler='controllers.home.Home:GET_caregiver_general'),
-
-    webapp2.Route(r'/contact', name='contact', methods=['POST'],
-                  handler='controllers.home.Home:POST_contact_request'),
+                  handler='controllers.home.Home:GET_search_caregivers'),
 
     webapp2.Route(r'/caregiver_profile', name='caregiver_profile',
                   methods=['GET'],
                   handler='controllers.home.Home:GET_caregiver_profile'),
+
+    webapp2.Route(r'/submit_caregiver_general', name='submit_caregiver_general',
+                  methods=['POST'],
+                  handler='controllers.home.Home:POST_caregiver_general'),
+
+    webapp2.Route(r'/contact', name='contact', methods=['POST'],
+                  handler='controllers.home.Home:POST_contact_request'),
+
 
     webapp2.Route(r'/search_refined', name='search_refined',
                   methods=['POST'],

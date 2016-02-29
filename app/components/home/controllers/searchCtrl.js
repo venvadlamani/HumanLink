@@ -5,15 +5,15 @@
  */
 angular
     .module('Home')
-    .controller('searchCtrl', ['$scope', '$window', '$http',
-        function ($scope, $window, $http) {
+    .controller('searchCtrl', ['$scope', '$http', 'userSession',
+        function ($scope, $http, userSession) {
 
             $scope.searchModel = {};
             $scope.searchCaregiverResults = {};
             var results = [];
 
             var init = function () {
-                $http.get('caregiver_general')
+                $http.get('search_caregivers')
                     .then(function (response) {
                         angular.forEach(response.data, function (val, key) {
                             results.push(key);

@@ -5,7 +5,7 @@
  */
 angular
     .module('Home')
-    .controller('homeBaseCtrl', ['$scope', '$window', '$http',
-        function ($scope, $window, $http) {
+    .controller('homeBaseCtrl', ['$scope', '$http', 'userSession',
+        function ($scope, $http, userSession) {
 
         }]);

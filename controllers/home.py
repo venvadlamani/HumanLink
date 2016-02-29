@@ -2,9 +2,8 @@ from google.appengine.api import taskqueue
 from controllers import base
 from models.kinds.structs import AccountType
 from models.kinds.home import ContactUs
-from models.kinds.home import CaregiverGeneral
+from models.kinds.accounts import Caregiver
 import services.email
-import logging
 from models.kinds.home import Request
 
 
@@ -35,10 +34,12 @@ class Home(base.BaseHandler):
     def POST_caregiver_general(self):
         """Caregiver General POST request."""
 
-        caregiver = CaregiverGeneral()
-        caregiver.name = self.request_json.get('name')
-        caregiver.location = self.request_json.get('location')
-        caregiver.phone_number = self.request_json.get('phone')
+        caregiver = Caregiver()
+        caregiver.first_name = self.request_json.get('first_name')
+        caregiver.last_name = self.request_json.get('last_name')
+        caregiver.city = self.request_json.get('city')
+        caregiver.county = self.request_json.get('county')
+        caregiver.zipcode = self.request_json.get('zipcode')
         caregiver.gender = self.request_json.get('gender')
         caregiver.live_in = self.request_json.get('live_in')
         caregiver.school = self.request_json.get('school')
@@ -59,7 +60,7 @@ class Home(base.BaseHandler):
 
         self.write_json({'message': 'Thank you.'})
 
-    def GET_caregiver_general(self):
+    def GET_search_caregivers(self):
         """Caregiver General GET request.
 
         @return: returns a dictionary of all caregivers registered as guests in the system
@@ -87,15 +88,16 @@ class Home(base.BaseHandler):
         """
         caregiver_map = {}
 
-        caregiver_phone = self.request.get('key')
-        qry = CaregiverGeneral.query(
-            CaregiverGeneral.phone_number == str(caregiver_phone)).fetch()
+        qry = Caregiver.query().fetch()
 
         for caregiver in qry:
             caregiver_map = {
                 'name': caregiver.name,
-                'location': caregiver.location,
-                'phone_number': caregiver.phone_number,
+                'phone_number_primary': caregiver.phone_number_primary,
+                'phone_number_secondary': caregiver.phone_number_secondary,
+                'county': caregiver.county,
+                'city': caregiver.city,
+                'zipcode': caregiver.zipcode,
                 'gender': caregiver.gender,
                 'live_in': caregiver.live_in,
                 'school': caregiver.school,
@@ -111,9 +113,7 @@ class Home(base.BaseHandler):
                 'cats': caregiver.cats,
                 'dogs': caregiver.dogs,
                 'smoking': caregiver.smoking,
-
             }
-
         self.write_json(caregiver_map)
 
     def GET_search_refined(self):
@@ -129,23 +129,21 @@ class Home(base.BaseHandler):
 
     @staticmethod
     def search_map(search_string):
-
         caregiver_dict = {}
+        print '-------------------'
+        print search_string
 
         if search_string:
-            caregiver_query = CaregiverGeneral.query(CaregiverGeneral.location ==
-                                                     search_string).fetch()
+            caregiver_query = Caregiver.query(Caregiver.city ==
+                                              search_string).fetch()
         else:
-            caregiver_query = CaregiverGeneral.query().fetch()
+            caregiver_query = Caregiver.query().fetch()
 
         for caregiver in caregiver_query:
             if not caregiver.id in caregiver_dict:
                 caregiverMap = {
                     'id': caregiver.key,
-                    'name': caregiver.name,
-                    'location': caregiver.location,
-                    'photo': ('/images/' + caregiver.phone_number + '.png'),
-                    'phone_number': caregiver.phone_number
+                    'city': caregiver.city,
                 }
                 caregiver_dict[caregiver.id] = caregiverMap
 
