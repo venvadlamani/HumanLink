@@ -11,7 +11,11 @@
   section.horizontal {
     background: @type;
     color: white;
-
+  }
+  section.enlarged-icons {
+    .fa, .material-icons {
+      font-size: 100px;
+    }
   }
   section.horizontal h2 {
     font-size: 3em;
@@ -30,6 +34,10 @@
       font-size: 100px;
     }
   }
+  section.vertical h2 {
+    font-size: 3em;
+  }
+
   /*
    button outline (type)
   */
@@ -49,8 +57,9 @@
     background: white;
     border: solid 2px white;
   }
+
   /*
-  hr with star-light
+  hr with star-heart
   */
   hr.star-heart {
     padding: 0;
@@ -69,4 +78,23 @@
     padding: 0 0.25em;
   }
 
+  /*
+  hr with star-heart
+  */
+  hr.spotlight {
+    padding: 0;
+    border: none;
+    border-top: solid 5px;
+    text-align: center;
+    max-width: 250px;
+  }
+  hr.spotlight:after {
+    content: '\25c6';
+    font-size: 2em;
+    display: inline-block;
+    position: relative;
+    top: -0.8em;
+    background-color: white;
+    padding: 0 0.25em;
+  }
 }
