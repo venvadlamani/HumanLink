@@ -26,7 +26,6 @@ routes = [
     webapp2.Route(r'/contact', name='contact', methods=['POST'],
                   handler='controllers.home.Home:POST_contact_request'),
 
-
     webapp2.Route(r'/search_refined', name='search_refined',
                   methods=['POST'],
                   handler='controllers.home.Home:GET_search_refined'),
@@ -105,4 +104,16 @@ routes = [
 
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),
+
+    # Routes for the Admin module ----------------------------
+    webapp2.Route(r'/admin', name='admin_index', methods=['GET'],
+                  handler='controllers.admin.Admin:index'),
+
+    webapp2.Route(r'/get_admin_verification', name='get_admin_verification',
+                  methods=['GET'],
+                  handler='controllers.admin.Admin:GET_admin_verification'),
+
+    webapp2.Route(r'/post_admin_verification', name='post_admin_verification',
+                  methods=['POST'],
+                  handler='controllers.admin.Admin:POST_admin_verification'),
 ]

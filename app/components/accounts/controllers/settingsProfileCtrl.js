@@ -23,6 +23,7 @@ angular
                         fetch(data, status);
                         $scope.siteAlert.type = "success";
                         $scope.siteAlert.message = "Your basic settings were updated successfully.";
+                        $window.location.reload();
                     })
                     .error(function () {
                         $scope.siteAlert.type = "danger";

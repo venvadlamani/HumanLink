@@ -1,0 +1,147 @@
+<div class="admin-verification">
+  <form class="form-horizontal" role="form">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Email</h2>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Caregiver email</h4>
+          </div>
+          <div class="col-sm-8">
+            <input ng-model="verificationModel.email" class="form-control"
+                   placeholder="something@email.com" hl-focus>
+          </div>
+        </div>
+        <hr>
+
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-block btn-secondary"
+                    ng-click="getVerification(verificationModel)">Get verifications
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Care professional verification</h2>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Phone</h4>
+          </div>
+
+          <div class="col-sm-8">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"
+                           ng-model="verificationModel.phone_verified">
+                    Phone verified
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12">
+                <textarea ng-model="verificationModel.phone_verified_notes"
+                          placeholder="When? Who? How?"
+                          rows="4" id="bio" class="form-control">
+                </textarea>
+
+                <p class="help-block">Phone verification notes</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Background check</h4>
+          </div>
+
+          <div class="col-sm-8">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"
+                           ng-model="verificationModel.background_verified">
+                    Background check
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12">
+                <textarea ng-model="verificationModel.background_verified_notes"
+                          placeholder="When? Who? How?"
+                          rows="4" id="bio" class="form-control">
+                </textarea>
+
+                <p class="help-block">Background check notes</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Offline ID</h4>
+          </div>
+
+          <div class="col-sm-8">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"
+                           ng-model="verificationModel.offlineID_verified">
+                    Offline ID verified
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12">
+                <textarea ng-model="verificationModel.offlineID_verified_notes"
+                          placeholder="When? Who? How?"
+                          rows="4" id="bio" class="form-control">
+                </textarea>
+
+                <p class="help-block">Offline ID verification notes</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <hr>
+
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-block btn-secondary"
+                    ng-click="updateVerification(verificationModel)">Save verifications
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
