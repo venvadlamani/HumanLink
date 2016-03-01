@@ -30,16 +30,13 @@
   }
 
   section.vertical {
-    .fa, .material-icons {
-      font-size: 100px;
-    }
   }
   section.vertical h2 {
     font-size: 3em;
   }
 
   /*
-   button outline (type)
+   button outline type
   */
   .btn-outline-type {
     color: white;
@@ -56,6 +53,26 @@
     color: @type;
     background: white;
     border: solid 2px white;
+  }
+
+  /*
+   button outline type inverse
+  */
+  .btn-outline-type-inverse {
+    color: @type;
+    font-size: 20px;
+    border: solid 2px @type;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+  }
+  .btn-outline-type-inverse:hover,
+  .btn-outline-type-inverse:focus,
+  .btn-outline-type-inverse:active,
+  .btn-outline-type-inverse.active {
+    color: white;
+    background: @type;
+    border: solid 2px @type;
   }
 
   /*
