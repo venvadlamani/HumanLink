@@ -78,8 +78,6 @@ class Caregiver(base.Base):
     """Models a care professionals details."""
     #   Basic information
     general_profile = ndb.BooleanProperty()
-    first_name = ndb.StringProperty()
-    last_name = ndb.StringProperty()
     phone_number_primary = ndb.StringProperty()
     phone_number_secondary = ndb.StringProperty()
     email = ndb.StringProperty()
@@ -111,6 +109,13 @@ class Caregiver(base.Base):
     dogs = ndb.BooleanProperty()
     smoking = ndb.BooleanProperty()
 
+    # Verfication
+    phone_verified = ndb.BooleanProperty(required=False)
+    phone_verified_notes = ndb.StringProperty()
+    background_verified = ndb.BooleanProperty(required=False)
+    background_verified_notes = ndb.StringProperty()
+    offlineID_verified = ndb.BooleanProperty(required=False)
+    offlineID_verified_notes = ndb.StringProperty()
 
 class Caregiver_old(base.Base):
     """Caregiver specific details."""
