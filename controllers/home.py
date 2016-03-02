@@ -3,6 +3,7 @@ from controllers import base
 from models.kinds.structs import AccountType
 from models.kinds.home import ContactUs
 from models.kinds.accounts import Caregiver
+from models.kinds.accounts import Account
 import services.email
 from models.kinds.home import Request
 
@@ -60,15 +61,6 @@ class Home(base.BaseHandler):
 
         self.write_json({'message': 'Thank you.'})
 
-    def GET_search_caregivers(self):
-        """Caregiver General GET request.
-
-        @return: returns a dictionary of all caregivers registered as guests in the system
-        """
-        search_string = ''
-        caregiver_dict = Home.search_map(search_string)
-        self.write_json(caregiver_dict)
-
     def POST_contact_request(self):
         """General questions from users/guests POST request."""
         req = Request()
@@ -116,35 +108,34 @@ class Home(base.BaseHandler):
             }
         self.write_json(caregiver_map)
 
-    def GET_search_refined(self):
-        """Refined Caregiver search request.
-        @params: Location where caregivers are needed
+    #   SEARCH API CALLS
+    def GET_search_caregivers(self):
+        """Caregiver General GET request.
 
-        @return: returns a dictionary of caregiver registered as a guests (FOR NOW)
-        in the system registered for a certain location
+        @return: returns a dictionary of all caregivers registered as guests in the system
         """
-        search_string = self.request_json.get('search')
-        caregiver_dict = Home.search_map(search_string)
-        self.write_json(caregiver_dict)
-
-    @staticmethod
-    def search_map(search_string):
+        search_string = self.request.get('search_string')
         caregiver_dict = {}
+
         print '-------------------'
         print search_string
 
         if search_string:
-            caregiver_query = Caregiver.query(Caregiver.city ==
-                                              search_string).fetch()
+            caregiver_query = Caregiver.query(Caregiver.city == search_string).fetch()
         else:
             caregiver_query = Caregiver.query().fetch()
 
-        for caregiver in caregiver_query:
-            if not caregiver.id in caregiver_dict:
+        for row in caregiver_query:
+            if not row.id in caregiver_dict:
+                cgvr_account = Account.query(Account.caregiver_id == row.key.id()).fetch()
+                print cgvr_account[0].first
                 caregiverMap = {
-                    'id': caregiver.key,
-                    'city': caregiver.city,
+                    'first_name': cgvr_account[0].first,
+                    'last_name': cgvr_account[0].last,
+                    'phone_number': cgvr_account[0].phone_number,
+                    'headline': row.headline,
+                    'bio': row.bio,
+                    'city': row.city,
                 }
-                caregiver_dict[caregiver.id] = caregiverMap
-
-        return caregiver_dict
+                caregiver_dict[row.id] = caregiverMap
+        self.write_json(caregiver_dict)
