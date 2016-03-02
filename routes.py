@@ -101,6 +101,11 @@ routes = [
     webapp2.Route(r'/queue/slack', name='slack', methods=['POST'],
                   handler='controllers.tqueue.QueueHandler:slack'),
 
+    # Routes for the Dashboard module ----------------------------
+    webapp2.Route(r'/dashboard', name='dashboard_index', methods=['GET'],
+                  handler='controllers.dashboard.Dashboard:index'),
+
+
     # Routes for the Admin module ----------------------------
     webapp2.Route(r'/admin', name='admin_index', methods=['GET'],
                   handler='controllers.admin.Admin:index'),
