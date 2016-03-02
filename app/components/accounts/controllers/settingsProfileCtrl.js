@@ -8,6 +8,7 @@ angular
 
             var userdata = userSession.userdata;
             $scope.usr = userSession;
+            var account_id = $scope.usr.userdata.account_id;
             var account_email = $scope.usr.userdata.email;
 
             // Placeholder until initial data is loaded.
@@ -18,12 +19,14 @@ angular
                 if (!validate(model)) {
                     return;
                 }
+                model = angular.extend(model, {email: account_email});
+
                 $http.post('/post_account_basic', model)
                     .success(function (data, status) {
                         fetch(data, status);
                         $scope.siteAlert.type = "success";
                         $scope.siteAlert.message = "Your basic settings were updated successfully.";
-                        $window.location.reload();
+                        //$window.location.reload();
                     })
                     .error(function () {
                         $scope.siteAlert.type = "danger";
@@ -53,13 +56,16 @@ angular
             };
 
             var init = function () {
-                $http.get('/get_account_basic?email=' + account_email)
-                    .then(function (response) {
-                        $scope.accountForm = response.data;
-                    }, function (response) {
-                        $scope.siteAlert.type = "danger";
-                        $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
-                    });
+                $http({
+                    url: '/get_account_basic',
+                    method: "GET",
+                    params: {email: account_email}
+                }).then(function (response) {
+                    $scope.accountForm = response.data;
+                }, function (response) {
+                    $scope.siteAlert.type = "danger";
+                    $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                });
             };
             init();
         }]);
