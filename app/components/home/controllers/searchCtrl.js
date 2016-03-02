@@ -12,7 +12,16 @@ angular
             $scope.searchCaregiverResults = {};
 
             var init = function () {
-                console.log("hello");
+                $http({
+                    url: '/search_caregivers',
+                    method: "GET",
+                    params: {search_string: ''}
+                }).then(function (response) {
+                    $scope.searchCaregiverResults = response.data;
+                }, function (response) {
+                    $scope.siteAlert.type = "danger";
+                    $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                });
             };
             init();
 

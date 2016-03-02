@@ -21,12 +21,12 @@
 
   <div class="container">
     <div ng-show="searchCaregiverResults">
-      <div ng-repeat="(key, prop) in searchCaregiverResults | orderBy: prop.phone_number_primary">
+      <div ng-repeat="cgvr in searchCaregiverResults">
         <div class="row">
 
           <div class="col-md-offset-3 col-md-2">
             <a href
-               ui-sref="previewProfile({caregiver_key: prop.phone_number_primary })">
+               ui-sref="previewProfile({caregiver_key: cgvr.phone_number })">
               <img class="media-object" src="https://placehold.it/75x75">
             </a>
           </div>
@@ -35,15 +35,15 @@
             <div class="row">
               <h4>
                 <i class="material-icons">contact_phone</i>
-                <strong>{{prop.first_name}} {{prop.last_name}} </strong>
+                <strong>{{cgvr.first_name}} {{cgvr.last_name}} </strong>
               </h4>
 
               <div class="row">
                 <div class="col-md-3">
-                  <i class="material-icons">phone</i> {{ prop.phone_number }}
+                  <i class="material-icons">phone</i> {{ cgvr.phone_number }}
                 </div>
                 <div class="col-md-3">
-                  <i class="material-icons">add_location</i> {{ prop.city }}
+                  <i class="material-icons">add_location</i> {{ cgvr.city }}
                 </div>
               </div>
             </div>
