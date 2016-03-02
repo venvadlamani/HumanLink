@@ -75,8 +75,18 @@
                        ng-model="aboutMe.county"
                        placeholder="Benton county"/>
 
-                <p class="help-block">County of residence</p>
+                <p class="help-block">County</p>
               </div>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row form-group">
+            <div class="col-sm-4">
+              <button class="btn btn-lg btn-secondary btn-block"
+                      ng-click="caregiverProfileUpdate(aboutMe)"
+                      ng-disabled="ctrlHelper.isLoading">Save personal data
+              </button>
             </div>
           </div>
 
@@ -141,6 +151,16 @@
             </div>
           </div>
 
+          <hr>
+          <div class="row form-group">
+            <div class="col-sm-4">
+              <button class="btn btn-lg btn-secondary btn-block"
+                      ng-click="caregiverProfileUpdate(aboutMe)"
+                      ng-disabled="ctrlHelper.isLoading">Save headline & bio
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -199,6 +219,16 @@
                   AD (Alzheimer's disease and Dementia)
                 </label>
               </div>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row form-group">
+            <div class="col-sm-4">
+              <button class="btn btn-lg btn-secondary btn-block"
+                      ng-click="caregiverProfileUpdate(aboutMe)"
+                      ng-disabled="ctrlHelper.isLoading">Save professional data
+              </button>
             </div>
           </div>
 
@@ -281,16 +311,16 @@
             </div>
           </div>
 
-        </div>
-      </div>
+          <hr>
+          <div class="row form-group">
+            <div class="col-sm-4">
+              <button class="btn btn-lg btn-secondary btn-block"
+                      ng-click="caregiverProfileUpdate(aboutMe)"
+                      ng-disabled="ctrlHelper.isLoading">Save preferences
+              </button>
+            </div>
+          </div>
 
-
-      <div class="row form-group">
-        <div class="col-sm-12">
-          <button class="btn btn-lg btn-secondary btn-block"
-                  ng-click="caregiverProfileUpdate(aboutMe)"
-                  ng-disabled="ctrlHelper.isLoading">Save caregiver profile
-          </button>
         </div>
       </div>
 
