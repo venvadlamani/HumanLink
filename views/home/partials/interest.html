@@ -3,12 +3,12 @@
 
     <div class="section section-invite" id="invite">
       <div class="container">
-        <div class="row text-center">
-          <h1>Interest form</h1>
-        </div>
 
         <div class="row col-sm-offset-1 col-sm-10">
           <form class="form-horizontal" ng-submit="invite(contact)">
+            <div class="row text-center">
+              <h1>Interest form</h1>
+            </div>
 
             <div ng-hide="showInvite" class="text-center">
               <h4>Thank you for signing up. You will hear from us soon.</h4>
@@ -30,41 +30,47 @@
 
             <div ng-show="showInvite">
               <div class="form-group">
-                <label for="contact-name"
-                       class="col-sm-4 control-label">Name</label>
+                <div class="col-sm-4">
+                  <h3 class="text-right">Name</h3>
+                </div>
 
                 <div class="col-sm-4">
-                  <input type="text" id="contact-name" class="form-control"
+                  <input type="text" id="contact-name" class="form-control input-lg"
                          ng-model="contact.name" placeholder="Jane Doe" required/>
                 </div>
               </div>
+
               <div class="form-group">
-                <label for="contact-email"
-                       class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-4">
+                  <h3 class="text-right">Email</h3>
+                </div>
 
                 <div class="col-sm-4">
-                  <input type="email" id="contact-email" class="form-control"
+                  <input type="email" id="contact-email" class="form-control input-lg"
                          ng-model="contact.email" placeholder="name@example.com"
                          required/>
                 </div>
               </div>
               <div class="form-group">
-                <label for="contact-zipcode"
-                       class="col-sm-4 control-label">ZIP Code</label>
+                <div class="col-sm-4">
+                  <h3 class="text-right">Zipcode</h3>
+                </div>
 
                 <div class="col-sm-4">
-                  <input type="tel" id="contact-zipcode" class="form-control"
+                  <input type="tel" id="contact-zipcode" class="form-control input-lg"
                          ng-model="contact.zipcode" placeholder="72701" maxlength="5"/>
                 </div>
               </div>
               <div class="form-group">
-                <label for="contact-referrer"
-                       class="col-sm-4 control-label">Referred By</label>
+                <div class="col-sm-4">
+                  <h3 class="text-right">Referred By</h3>
+                </div>
 
                 <div class="col-sm-8">
                   <div class="row">
                     <div class="col-sm-6">
-                      <input type="text" id="contact-referred" class="form-control"
+                      <input type="text" id="contact-referred"
+                             class="form-control input-lg"
                              ng-model="contact.referrer" placeholder="Optional"/>
                     </div>
                   </div>
@@ -76,20 +82,22 @@
                   <div class="radio">
                     <label>
                       <input type="radio" ng-model="contact.interest" value="2">
-                      I am an Agency or Family seeking care
+
+                      <p class="lead"> I am a care seeker </p>
                     </label>
                   </div>
                   <div class="radio">
                     <label>
                       <input type="radio" ng-model="contact.interest" value="1">
-                      I am an Independent caregiver
+
+                      <p class="lead"> I am a care professional</p>
                     </label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-4">
-                  <button type="submit" class="btn btn-primary btn-block">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">
                     Invite Me
                   </button>
                 </div>
