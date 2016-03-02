@@ -1,9 +1,7 @@
-from google.appengine.api import taskqueue
 from controllers import base
-from models.kinds.structs import AccountType
-from models.kinds.home import ContactUs
 from models.kinds.accounts import Account
 from models.kinds.accounts import Caregiver
+from webapp2_extras import security
 
 
 class Admin(base.BaseHandler):
@@ -11,7 +9,7 @@ class Admin(base.BaseHandler):
         self.render('admin/index.html')
 
     def GET_admin_verification(self):
-        """Get the verification data of caregvier.
+        """Get the verification data of caregiver.
         @params: email of caregiver
 
         @return: returns a dictionary of caregiver verification records
@@ -20,7 +18,7 @@ class Admin(base.BaseHandler):
         cgvr_email = self.request.get('email')
         caregiver_dict = {}
 
-        #only admins can run this functionality
+        # only admins can run this functionality
         if requestor_email == 'ven@humanlink.co':
             #   Get caregiver account object
             acct_qry = Account.query(Account.email == cgvr_email).fetch()
@@ -37,21 +35,15 @@ class Admin(base.BaseHandler):
                 'offlineID_verified': cgvr_qry[0].offlineID_verified,
                 'offlineID_verified_notes': cgvr_qry[0].offlineID_verified_notes,
             }
-            print '--------------------'
-            print caregiver_dict
         else:
             self.write_json({'message': 'No admin privileges.'})
 
         self.write_json(caregiver_dict)
 
     def POST_admin_verification(self):
-        """Update password of user."""
+        """Update verification details of caregiver."""
         cgvr_email = self.request_json.get('email')
         acct_qry = Account.query(Account.email == cgvr_email).fetch()
-
-        print '*******************'
-        print cgvr_email
-        print acct_qry
 
         #   Get caregiver verifications
         cgvr_qry = Caregiver.query(Caregiver.account_id == acct_qry[0].key.id())
@@ -68,3 +60,23 @@ class Admin(base.BaseHandler):
             cgvr.put()
 
         self.write_json({'message': 'Updated'})
+
+    def POST_admin_password(self):
+        """Update password of user."""
+        email = self.request_json.get('email')
+        pwd = self.request_json.get('password')
+
+        acct_qry = Account.query(Account.email == email).fetch()
+
+        for row in acct_qry:
+            acct = row.key.get()
+            acct.password = security.generate_password_hash(
+                self.request_json.get('password'), length=12)
+            acct.put()
+
+    def POST_admin_invite(self):
+        """Update password of user."""
+        email = self.request_json.get('email')
+
+        print '************'
+        print email
