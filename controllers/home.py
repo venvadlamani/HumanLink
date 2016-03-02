@@ -1,4 +1,5 @@
 from google.appengine.api import taskqueue
+from google.appengine.ext import ndb
 from controllers import base
 from models.kinds.structs import AccountType
 from models.kinds.home import ContactUs
@@ -79,12 +80,15 @@ class Home(base.BaseHandler):
         @return: returns a dictionary of caregiver registered as a guest in the system
         """
         caregiver_map = {}
-
-        qry = Caregiver.query().fetch()
+        account_id = int(self.request.get('account_id'))
+        qry = Caregiver.query(Caregiver.account_id == account_id).fetch()
 
         for caregiver in qry:
+            cgvr_account = Account.query(Account.caregiver_id == caregiver.key.id()).fetch()
             caregiver_map = {
-                'name': caregiver.name,
+                'first_name': cgvr_account[0].first,
+                'last_name': cgvr_account[0].last,
+                'phone_number': cgvr_account[0].phone_number,
                 'phone_number_primary': caregiver.phone_number_primary,
                 'phone_number_secondary': caregiver.phone_number_secondary,
                 'county': caregiver.county,
@@ -117,22 +121,22 @@ class Home(base.BaseHandler):
         search_string = self.request.get('search_string')
         caregiver_dict = {}
 
-        print '-------------------'
-        print search_string
-
+        #   currently expecting Geo based searches. In the future Search needs will change
         if search_string:
-            caregiver_query = Caregiver.query(Caregiver.city == search_string).fetch()
+            caregiver_query = Caregiver.query(ndb.OR(Caregiver.city == search_string,
+                                                     Caregiver.zipcode == search_string,
+                                                     Caregiver.county == search_string)).fetch()
         else:
             caregiver_query = Caregiver.query().fetch()
 
         for row in caregiver_query:
             if not row.id in caregiver_dict:
                 cgvr_account = Account.query(Account.caregiver_id == row.key.id()).fetch()
-                print cgvr_account[0].first
                 caregiverMap = {
                     'first_name': cgvr_account[0].first,
                     'last_name': cgvr_account[0].last,
                     'phone_number': cgvr_account[0].phone_number,
+                    'account_id': row.account_id,
                     'headline': row.headline,
                     'bio': row.bio,
                     'city': row.city,
