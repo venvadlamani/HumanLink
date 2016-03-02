@@ -84,7 +84,8 @@ class Home(base.BaseHandler):
         qry = Caregiver.query(Caregiver.account_id == account_id).fetch()
 
         for caregiver in qry:
-            cgvr_account = Account.query(Account.caregiver_id == caregiver.key.id()).fetch()
+            cgvr_account = Account.query(
+                Account.caregiver_id == caregiver.key.id()).fetch()
             caregiver_map = {
                 'first_name': cgvr_account[0].first,
                 'last_name': cgvr_account[0].last,
@@ -119,7 +120,7 @@ class Home(base.BaseHandler):
         @return: returns a dictionary of all caregivers registered as guests in the system
         """
         search_string = self.request.get('search_string')
-        caregiver_dict = {}
+        caregiver_array = []
 
         #   currently expecting Geo based searches. In the future Search needs will change
         if search_string:
@@ -130,16 +131,16 @@ class Home(base.BaseHandler):
             caregiver_query = Caregiver.query().fetch()
 
         for row in caregiver_query:
-            if not row.id in caregiver_dict:
-                cgvr_account = Account.query(Account.caregiver_id == row.key.id()).fetch()
-                caregiverMap = {
-                    'first_name': cgvr_account[0].first,
-                    'last_name': cgvr_account[0].last,
-                    'phone_number': cgvr_account[0].phone_number,
-                    'account_id': row.account_id,
-                    'headline': row.headline,
-                    'bio': row.bio,
-                    'city': row.city,
-                }
-                caregiver_dict[row.id] = caregiverMap
-        self.write_json(caregiver_dict)
+            cgvr_account = Account.query(Account.caregiver_id == row.key.id()).fetch()
+            caregiverMap = {
+                'first_name': cgvr_account[0].first,
+                'last_name': cgvr_account[0].last,
+                'phone_number': cgvr_account[0].phone_number,
+                'account_id': row.account_id,
+                'headline': row.headline,
+                'bio': row.bio,
+                'city': row.city,
+            }
+            caregiver_array.append(caregiverMap)
+
+        self.write_json(caregiver_array)

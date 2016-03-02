@@ -21,8 +21,9 @@
 
   <div class="container">
     <div ng-show="searchCaregiverResults">
+      <p class="lead">Showing {{ searchCaregiverResults.length }} care professionals.</p>
+      <hr>
       <div ng-repeat="cgvr in searchCaregiverResults">
-        <hr>
         <div class="row vmargin20">
 
           <div class="col-md-offset-2 col-md-3">
