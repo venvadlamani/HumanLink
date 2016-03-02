@@ -150,7 +150,7 @@ class Accounts(base.BaseHandler):
     def POST_basic(self):
         """Basic account profile POST request."""
         account_email = self.request_json.get('email')
-        qry = Account.query(Account.email == account_email)
+        qry = Account.query(Account.email == account_email).fetch()
 
         for row in qry:
             new_basic = row.key.get()

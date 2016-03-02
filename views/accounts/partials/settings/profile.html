@@ -25,10 +25,10 @@
 
             <div class="col-sm-4">
               <input ng-model="accountForm.first" placeholder="Jane" id="profile-name"
-                     class="form-control" hl-focus>
+                     class="form-control" hl-focus required>
             </div>
             <div class="col-sm-4">
-              <input class="form-control" ng-model="accountForm.last" placeholder="Doe"/>
+              <input class="form-control" ng-model="accountForm.last" placeholder="Doe" required>
             </div>
           </div>
 
@@ -39,7 +39,7 @@
             <div class="col-sm-4">
               <input id="profile-phone" class="form-control"
                      ng-model="accountForm.phone_number" placeholder="555-555-5555"
-                     maxlength="12"/>
+                     maxlength="12" required>
             </div>
           </div>
         </div>
