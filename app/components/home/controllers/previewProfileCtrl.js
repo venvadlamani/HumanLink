@@ -12,7 +12,7 @@ angular
             $scope.profile = {};
 
             var init = function () {
-                $http.get('caregiver_profile?key=' + caregiverKey)
+                $http.get('caregiver_profile?account_id=' + caregiverKey)
                     .then(function (response) {
                         $scope.profile = response.data;
                     });
