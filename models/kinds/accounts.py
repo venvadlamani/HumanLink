@@ -76,8 +76,10 @@ class Account(base.Base, auth_models.User):
 
 class Caregiver(base.Base):
     """Models a care professionals details."""
-    #   Basic information
+    #   Is this a guest caregiver?
     general_profile = ndb.BooleanProperty()
+
+    #   Basic information
     phone_number_primary = ndb.StringProperty()
     phone_number_secondary = ndb.StringProperty()
     email = ndb.StringProperty()

@@ -122,8 +122,8 @@ routes = [
                   methods=['POST'],
                   handler='controllers.admin.Admin:POST_admin_password'),
 
-    webapp2.Route(r'/post_admin_invite', name='post_admin_invite',
+    webapp2.Route(r'/post_admin_guest_caregiver', name='post_admin_guest_caregiver',
                   methods=['POST'],
-                  handler='controllers.admin.Admin:POST_admin_invite'),
+                  handler='controllers.admin.Admin:POST_admin_guest_caregiver'),
 
 ]
