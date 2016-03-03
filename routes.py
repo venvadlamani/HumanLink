@@ -117,4 +117,13 @@ routes = [
     webapp2.Route(r'/post_admin_verification', name='post_admin_verification',
                   methods=['POST'],
                   handler='controllers.admin.Admin:POST_admin_verification'),
+
+    webapp2.Route(r'/post_admin_password', name='post_admin_password',
+                  methods=['POST'],
+                  handler='controllers.admin.Admin:POST_admin_password'),
+
+    webapp2.Route(r'/post_admin_invite', name='post_admin_invite',
+                  methods=['POST'],
+                  handler='controllers.admin.Admin:POST_admin_invite'),
+
 ]
