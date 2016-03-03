@@ -23,13 +23,13 @@
       <h4 class="text-center">I live in {{profile.city}}, {{profile.county}} County </h4>
 
       <hr>
-      <h2 class="text-center">Trust and Verification</h2>
+      <h3 class="text-center">Trust and Verification</h3>
 
       <div class="profile-trust">
         <div class="row">
 
           <div class="col-sm-4">
-            <div ng-show="profile.phone_number_verified">
+            <div ng-show="profile.phone_verified">
               <div class="col-sm-3">
                 <h3>
                   <span class="glyphicon glyphicon-ok-sign"></span>
@@ -42,7 +42,7 @@
               </div>
             </div>
 
-            <div ng-hide="profile.phone_number_verified">
+            <div ng-hide="profile.phone_verified">
               <div class="col-sm-3">
                 <h3>
                   <span class="glyphicon glyphicon-remove-sign"></span>
@@ -57,7 +57,7 @@
           </div>
 
           <div class="col-sm-4">
-            <div ng-show="profile.offline_id_verified">
+            <div ng-show="profile.offlineID_verified">
               <div class="col-sm-3">
                 <h3>
                   <span class="glyphicon glyphicon-ok-sign"></span>
@@ -70,7 +70,7 @@
               </div>
             </div>
 
-            <div ng-hide="profile.offline_id_verified">
+            <div ng-hide="profile.offlineID_verified">
               <div class="col-sm-3">
                 <h3>
                   <span class="glyphicon glyphicon-remove-sign"></span>

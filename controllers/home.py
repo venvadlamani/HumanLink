@@ -110,6 +110,9 @@ class Home(base.BaseHandler):
                 'cats': caregiver.cats,
                 'dogs': caregiver.dogs,
                 'smoking': caregiver.smoking,
+                'phone_verified': caregiver.phone_verified,
+                'background_verified': caregiver.background_verified,
+                'offlineID_verified': caregiver.offlineID_verified,
             }
         self.write_json(caregiver_map)
 
