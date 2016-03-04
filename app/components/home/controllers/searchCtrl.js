@@ -25,6 +25,12 @@ angular
             };
             init();
 
+            $scope.showUser = function (offlineID, background, phone) {
+                if (offlineID && background && phone) {
+                    return true;
+                }
+            };
+
             /**
              * Go back to the previous page/view.
              * @return void
