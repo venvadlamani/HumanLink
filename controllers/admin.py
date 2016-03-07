@@ -64,7 +64,6 @@ class Admin(base.BaseHandler):
     def POST_admin_password(self):
         """Update password of user."""
         email = self.request_json.get('email')
-        pwd = self.request_json.get('password')
 
         acct_qry = Account.query(Account.email == email).fetch()
 
@@ -74,9 +73,13 @@ class Admin(base.BaseHandler):
                 self.request_json.get('password'), length=12)
             acct.put()
 
-    def POST_admin_invite(self):
-        """Update password of user."""
-        email = self.request_json.get('email')
+    def POST_admin_guest_caregiver(self):
+        """Update guest caregiver"""
+        primary_phone_number = self.request_json.get('primary_phone_number')
 
-        print '************'
-        print email
+        #   Get caregiver verifications
+        cgvr_qry = Caregiver.query(
+            Caregiver.phone_number_primary == primary_phone_number).fetch()
+
+        if cgvr_qry > 0:
+            print "not empty"
