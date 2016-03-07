@@ -143,6 +143,9 @@ class Home(base.BaseHandler):
                 'headline': row.headline,
                 'bio': row.bio,
                 'city': row.city,
+                'offlineID_verified': row.offlineID_verified,
+                'phone_verified': row.phone_verified,
+                'background_verified': row.background_verified,
             }
             caregiver_array.append(caregiverMap)
 

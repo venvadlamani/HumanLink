@@ -21,38 +21,44 @@
 
   <div class="results-container">
     <div ng-show="searchCaregiverResults">
-      <p class="lead">Showing {{ searchCaregiverResults.length }} care professionals.</p>
       <hr>
+      <p class="lead">{{ searchCaregiverResults.length }} care professional(s).</p>
+
       <div ng-repeat="cgvr in searchCaregiverResults">
-        <div class="row vmargin20">
+        <div ng-show="showUser(cgvr.offlineID_verified, cgvr.background_verified, cgvr.phone_verified)">
 
-          <div class="col-md-offset-2 col-md-2">
-            <a href
-               ui-sref="previewProfile({caregiver_key: cgvr.account_id })">
-              <img class="media-object" src="https://placehold.it/120x120">
-            </a>
-          </div>
-
-          <div class="col-md-5">
-            <div class="row">
-              <h2><strong> {{cgvr.first_name}} {{cgvr.last_name}} </strong></h2>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <h4><i class="material-icons">add_location</i> {{ cgvr.city }}</h4>
+          <div class="result">
+            <div class="row col-sm-offset-1">
+              <div class="media">
+                <div class="media-left">
+                  <a href ui-sref="previewProfile({caregiver_key: cgvr.account_id })">
+                    <img class="media-object" src="https://placehold.it/75x75" alt="">
+                  </a>
                 </div>
-                <div class="col-md-6">
-                  <h4><i class="material-icons">phone</i>
-                    ( {{ cgvr.phone_number.slice(0,3) }}
-                    )  {{ cgvr.phone_number.slice(3,6) }}
-                    - {{ cgvr.phone_number.slice(6,10) }}</h4>
+                <div class="media-body">
+                  <h3 class="media-heading">{{cgvr.first_name}} {{cgvr.last_name}}</h3>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="lead">
+                        <i class="material-icons">add_location</i> {{ cgvr.city }}
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="lead">
+                        <i class="material-icons">phone</i>
+                        (XXX) XXX - XX {{ cgvr.phone_number.slice(8,10) }}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          <hr>
           </div>
+
         </div>
       </div>
+
     </div>
   </div>
   <div ng-hide="searchCaregiverResults">

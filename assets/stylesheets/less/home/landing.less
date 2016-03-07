@@ -12,6 +12,9 @@
   section.horizontal {
     background: @primary;
     color: white;
+    .container-fluid {
+      padding: 100px;
+    }
   }
   section.horizontal h2 {
     font-size: 3em;
@@ -63,51 +66,6 @@
     top: -0.8em;
     background-color: @primary;
     padding: 0 0.25em;
-  }
-
-  /*
-   OLD STUFF - Can be deleted if not reusable
-  */
-
-  .section-welcome {
-    .bg-type();
-    background-image: url("/images/landing/cover.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 600px;
-    padding: 80px 0;
-  }
-
-  .section-overview {
-    .steps {
-      @media (min-width: 970px) {
-        padding-top: 50px;
-      }
-    }
-    .title {
-      margin-top: 30px;
-    }
-    img {
-      float: right;
-      max-height: 600px;
-    }
-    h1 {
-      color: @type;
-      line-height: 135%;
-    }
-  }
-
-  .section-benefits {
-    .bg-secondary();
-    img {
-      float: right;
-      max-height: 600px;
-    }
-
-    .fa, .material-icons {
-      font-size: 140px;
-    }
   }
 
 }
