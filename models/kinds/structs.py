@@ -9,8 +9,8 @@ from protorpc import messages
 
 
 class AccountType(messages.Enum):
-    Caregiver = 0
-    Careseeker = 1
+    Careseeker = 0
+    Caregiver = 1
     Professional = 2
     CommunityLeader = 3
 
