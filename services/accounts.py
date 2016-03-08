@@ -6,7 +6,6 @@ from models.kinds.accounts import (
     Caregiver,
     Patient,
 )
-from models.kinds.connections import ConnList
 from models.kinds.structs import AccountType
 from models.dto.accounts import (
     AccountDto,
@@ -19,7 +18,7 @@ import logging
 from google.appengine.ext import ndb
 
 
-def create_account(email, password_raw, account_type, auth_id_pre='local:',
+def create_account(email, password_raw, auth_id_pre='local:',
                    _dto=True):
     """Creates a new account. Sends an email confirmation.
 
@@ -32,13 +31,20 @@ def create_account(email, password_raw, account_type, auth_id_pre='local:',
     """
     asserts.type_of(email, basestring)
     asserts.type_of(password_raw, basestring)
-    asserts.type_of(account_type, AccountType)
 
     email = email.lower()
     auth_id = auth_id_pre + email
 
     account = _create_new_account(email, password_raw, auth_id)
-    _account_setup(account_type, account)
+
+    """
+    This step used to differentiate between care seekers and care providers
+    Updated Sign Up will treat all account creators as care seekers by default during
+    creation. Care provider option will be provided from account management module
+    - VV
+    """
+    account.account_type = AccountType.Careseeker
+    account.put()
 
     # Async email.
     services.email.send_email_verification(account.id)
@@ -386,7 +392,8 @@ def _account_setup(account_type, account):
 
     :return: (None)
     """
-    account.account_type = account_type
+
+    """
     # Connections list.
     connlist = ConnList(account_id=account.id)
     connlist.put()
@@ -396,4 +403,4 @@ def _account_setup(account_type, account):
         caregiver = Caregiver(account_id=account.id)
         caregiver.put()
         account.caregiver_id = caregiver.id
-    account.put()
+    """
