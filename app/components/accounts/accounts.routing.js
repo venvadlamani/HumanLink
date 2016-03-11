@@ -70,26 +70,33 @@
                 templateUrl: '/views/accounts/partials/settings/profile.html',
                 controller: 'settingsProfileCtrl'
             })
-            .state('settings.caregiver', {
+            .state('provider', {
+                abstract: true,
+                templateUrl: '/views/accounts/partials/settings/base_settings_provider.html',
+                data: {
+                    role: userSessionProvider.roles.AUTHORIZED
+                }
+            })
+            .state('provider.caregiver', {
                 url: '/settings/caregiver',
                 templateUrl: '/views/accounts/partials/settings/caregiver.html',
                 controller: 'settingsProfileCaregiverCtrl'
             })
-            .state('settings.media', {
+            .state('provider.media', {
                 url: '/settings/media',
                 templateUrl: '/views/accounts/partials/settings/media.html',
                 controller: 'settingsMediaCtrl'
             })
-            .state('settings.preview', {
+            .state('provider.preview', {
                 url: '/settings/preview',
                 templateUrl: '/views/accounts/partials/settings/preview.html',
                 controller: 'previewProfileCtrl'
             })
-            .state('settings.sample', {
+            .state('provider.sample', {
                 url: '/settings/sample',
                 templateUrl: '/views/accounts/partials/sample_profile.html',
             })
-            .state('settings.verification', {
+            .state('provider.verification', {
                 url: '/settings/verification',
                 templateUrl: '/views/accounts/partials/settings/verification.html',
                 controller: 'settingsVerificationCtrl'
