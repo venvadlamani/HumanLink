@@ -28,7 +28,8 @@
                 console.log('HEY! Remove the /r absolute URL once migrated to the new backend.');
                 var redirector = 'http://eb.humanlink.co/r?url=';
                 var next = $stateParams.next || HL.baseUrl + '/accounts#/settings/profile';
-                $window.location.href = redirector + decodeURIComponent(next);
+                //$window.location.href = redirector + decodeURIComponent(next);
+                $window.location.href = '/home#/search';
             };
             apiService.Accounts.login(model, ctrlHelper);
         };
