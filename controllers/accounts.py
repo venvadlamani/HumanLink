@@ -6,6 +6,7 @@ from controllers.base import login_required
 from models.kinds.structs import AccountType
 from models.kinds.accounts import Account
 from models.kinds.accounts import Caregiver
+from models.kinds.accounts import Seeker
 import logging
 from webapp2_extras import auth
 from webapp2_extras import security
@@ -155,6 +156,7 @@ class Accounts(base.BaseHandler):
     @login_required
     def GET_caregiver_profile(self):
         """ Get the caregiver profile for the current account user
+
         params: account_id
         :return:caregiver profile map
         """
@@ -189,8 +191,9 @@ class Accounts(base.BaseHandler):
     @login_required
     def POST_caregiver_profile(self):
         """ Update the caregiver profile for the current account user
+
         params: caregiver profile data
-        :return:caregiver profile map
+        :return:success/error message
         """
         account_id = self.request_json.get('account_id')
         qry = Caregiver.query(Caregiver.account_id == int(account_id)).fetch()
@@ -220,6 +223,7 @@ class Accounts(base.BaseHandler):
     @login_required
     def GET_caregiver_profile_preview(self):
         """ Get the caregiver profile preview for the current account user
+
         params: account_id
         :return:caregiver profile map
         """
@@ -269,3 +273,84 @@ class Accounts(base.BaseHandler):
             'account': account_map
         }
         self.write_json(profile_map)
+
+    @login_required
+    def GET_seeker_profile(self):
+        """ Get the seeker org/team profile
+
+        params: account_id
+        :return:caregiver profile map
+        """
+
+        seeker_map = {}
+        account_id = self.request.get('account_id')
+        qry = Seeker.query(Seeker.account_id == int(account_id)).fetch()
+        print "----------------"
+        print len(qry)
+
+        if len(qry) > 0:
+            for row in qry:
+                seeker_map = {
+                    'team_name': row.team_name,
+                    'mission': row.mission,
+                    'main_phone': row.main_phone,
+                    'website': row.website,
+                    'email': row.email,
+                    'caregiver_needs': row.caregiver_needs,
+                    'hoyer_lift': row.hoyer_lift,
+                    'cough_assist': row.cough_assist,
+                    'adaptive_utensil': row.adaptive_utensil,
+                    'meal_prep': row.meal_prep,
+                    'housekeeping': row.housekeeping,
+                }
+
+            self.write_json(seeker_map)
+        else:
+            print '--------------------'
+            self.write_json(
+                {
+                    'count': '0',
+                    'message': 'Care seeker profile doesnt exist. Please create one.'
+                })
+
+    @login_required
+    def POST_seeker_profile(self):
+        """ Update the seeker profile
+
+        params: seeker profile data
+        :return: success/error message
+        """
+        account_id = self.request_json.get('account_id')
+        qry = Seeker.query(Seeker.account_id == int(account_id)).fetch()
+
+        if len(qry) > 0:
+            for row in qry:
+                row.team_name = self.request_json.get('team_name')
+                row.mission = self.request_json.get('mission')
+                row.main_phone = self.request_json.get('main_phone')
+                row.website = self.request_json.get('website')
+                row.email = self.request_json.get('email')
+                row.caregiver_needs = self.request_json.get('caregiver_needs')
+                row.hoyer_lift = self.request_json.get('hoyer_lift')
+                row.cough_assist = self.request_json.get('cough_assist')
+                row.adaptive_utensil = self.request_json.get('adaptive_utensil')
+                row.meal_prep = self.request_json.get('meal_prep')
+                row.housekeeping = self.request_json.get('housekeeping')
+                row.put()
+
+            self.write_json({'message': 'Caregiver profile has been updated.'})
+        else:
+            skr = Seeker()
+            skr.account_id = int(account_id)
+            skr.team_name = self.request_json.get('team_name')
+            skr.mission = self.request_json.get('mission')
+            skr.main_phone = self.request_json.get('main_phone')
+            skr.website = self.request_json.get('website')
+            skr.email = self.request_json.get('email')
+            skr.caregiver_needs = self.request_json.get('caregiver_needs')
+            skr.hoyer_lift = bool(self.request_json.get('hoyer_lift'))
+            skr.cough_assist = self.request_json.get('cough_assist')
+            skr.adaptive_utensil = self.request_json.get('adaptive_utensil')
+            skr.meal_prep = self.request_json.get('meal_prep')
+            skr.housekeeping = self.request_json.get('housekeeping')
+            skr.put()

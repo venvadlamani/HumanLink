@@ -70,6 +70,16 @@
                 templateUrl: '/views/accounts/partials/settings/profile.html',
                 controller: 'settingsProfileCtrl'
             })
+            .state('settings.seeker', {
+                url: '/settings/seeker',
+                templateUrl: '/views/accounts/partials/settings/seeker.html',
+                controller: 'settingsSeekerCtrl'
+            })
+            .state('settings.seeker_preview', {
+                url: '/settings/seeker_preview',
+                templateUrl: '/views/accounts/partials/settings/seeker_preview.html',
+                controller: 'settingsSeekerCtrl'
+            })
             .state('provider', {
                 abstract: true,
                 templateUrl: '/views/accounts/partials/settings/base_settings_provider.html',
@@ -89,7 +99,7 @@
             })
             .state('provider.preview', {
                 url: '/settings/preview',
-                templateUrl: '/views/accounts/partials/settings/preview.html',
+                templateUrl: '/views/accounts/partials/settings/provider_preview.html',
                 controller: 'previewProfileCtrl'
             })
             .state('provider.sample', {

@@ -1,0 +1,33 @@
+<div class="settings-profile">
+  <div class="card">
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <img src="https://placehold.it/200x200">
+      </div>
+      <div class="col-md-8">
+        <h2>{{ aboutMe.team_name }}</h2>
+        <h4>Mission: {{ aboutMe.mission }}</h4>
+        <h4>Website: <a ng-href="{{ aboutMe.website }}">{{aboutMe.website}}</a></h4>
+        <h4>Phone: {{ aboutMe.main_phone }}</h4>
+      </div>
+    </div>
+
+    <hr>
+    <h3>Typical needs</h3>
+    <div ng-show="aboutMe.meal_prep">Light meal prep</div>
+    <div ng-show="aboutMe.adaptive_utensil">Adaptive utensil training</div>
+    <div ng-show="aboutMe.housekeeping">Light housekeeping</div>
+    <div ng-show="aboutMe.cough_assist">Cough assist machine training</div>
+    <div ng-show="aboutMe.hoyer_lift">Hoyer life training</div>
+
+    <hr>
+    <h3>Care wanted</h3>
+    <p>{{ aboutMe.caregiver_needs }}</p>
+
+    <hr>
+    <h3>Care team</h3>
+
+  </div>
+</div>
