@@ -26,6 +26,7 @@ routes = [
                   methods=['GET'],
                   handler='controllers.home.Home:GET_search_caregivers'),
 
+
     # Routes for the Accounts module ----------------------------
     webapp2.Route(r'/accounts', name='accounts_index', methods=['GET'],
                   handler='controllers.accounts.Accounts:index'),
@@ -73,6 +74,15 @@ routes = [
     webapp2.Route(r'/get_caregiver_profile_preview', name='get_caregiver_profile_preview',
                   methods=['GET'],
                   handler='controllers.accounts.Accounts:GET_caregiver_profile_preview'),
+
+    webapp2.Route(r'/get_seeker_profile', name='get_seeker_profile',
+                  methods=['GET'],
+                  handler='controllers.accounts.Accounts:GET_seeker_profile'),
+
+    webapp2.Route(r'/post_seeker_profile', name='post_seeker_profile',
+                  methods=['POST'],
+                  handler='controllers.accounts.Accounts:POST_seeker_profile'),
+
 
     # Routes for the Settings module ----------------------------
     webapp2.Route(r'/settings', name='settings_index', methods=['GET'],

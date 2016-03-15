@@ -119,6 +119,26 @@ class Caregiver(base.Base):
     offlineID_verified = ndb.BooleanProperty(required=False)
     offlineID_verified_notes = ndb.StringProperty()
 
+
+class Seeker(base.Base):
+    """Models a care seekers public profile."""
+
+    #   Org/Team info
+    account_id = ndb.IntegerProperty(required=True)
+    team_name = ndb.StringProperty()
+    mission = ndb.StringProperty()
+    main_phone = ndb.StringProperty()
+    website = ndb.StringProperty()
+    email = ndb.StringProperty()
+
+    #   Org/Team Needs info (general needs)
+    caregiver_needs = ndb.StringProperty()
+    hoyer_lift = ndb.BooleanProperty()
+    cough_assist = ndb.BooleanProperty()
+    adaptive_utensil = ndb.BooleanProperty()
+    meal_prep = ndb.BooleanProperty()
+    housekeeping = ndb.BooleanProperty()
+
 class Caregiver_old(base.Base):
     """Caregiver specific details."""
     account_id = ndb.IntegerProperty(required=True)
