@@ -24,8 +24,11 @@ routes = [
 
     webapp2.Route(r'/search_caregivers', name='search_caregivers',
                   methods=['GET'],
-                  handler='controllers.home.Home:GET_search_caregivers'),
+                  handler='controllers.home.Home:GET_caregivers'),
 
+    webapp2.Route(r'/search_seekers', name='search_seekers',
+                  methods=['GET'],
+                  handler='controllers.home.Home:GET_seekers'),
 
     # Routes for the Accounts module ----------------------------
     webapp2.Route(r'/accounts', name='accounts_index', methods=['GET'],

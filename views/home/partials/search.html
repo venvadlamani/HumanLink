@@ -19,11 +19,50 @@
     </form>
   </div>
 
+  <hr>
+  <h2>Care seekers</h2>
+
+  <div class="results-container">
+    <div ng-show="searchSeekerResults">
+      <div ng-repeat="skr in searchSeekerResults">
+        <div class="result">
+          <div class="row col-sm-offset-1">
+            <div class="media">
+              <div class="media-left">
+                <a href ui-sref="previewProfile({seeker_key: skr.account_id })">
+                  <img class="media-object" src="https://placehold.it/75x75" alt="">
+                </a>
+              </div>
+              <div class="media-body">
+                <h3 class="media-heading">{{ skr.team_name }}</h3>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="lead"><i class="material-icons">home</i> {{ skr.mission }}
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="lead">
+                      <i class="material-icons">phone</i>
+                      ({{ skr.main_phone.slice(0,3) }}) {{ skr.main_phone.slice(3,6) }}
+                      - {{ skr.main_phone.slice(6,10) }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <h2>Care providers</h2>
+
   <div class="results-container">
     <div ng-show="searchCaregiverResults">
-      <hr>
-      <p class="lead">{{ searchCaregiverResults.length }} care professional(s).</p>
-
       <div ng-repeat="cgvr in searchCaregiverResults">
         <div ng-show="showUser(cgvr.offlineID_verified, cgvr.background_verified, cgvr.phone_verified)">
 
@@ -58,7 +97,6 @@
 
         </div>
       </div>
-
     </div>
   </div>
   <div ng-hide="searchCaregiverResults">
