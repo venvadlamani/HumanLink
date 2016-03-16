@@ -136,20 +136,21 @@ class Home(base.BaseHandler):
 
         if len(caregiver_query) > 0:
             for row in caregiver_query:
-                cgvr_account = Account.get_by_id(row.account_id)
-                caregiverMap = {
-                    'first_name': cgvr_account.first,
-                    'last_name': cgvr_account.last,
-                    'phone_number': cgvr_account.phone_number,
-                    'account_id': row.account_id,
-                    'headline': row.headline,
-                    'bio': row.bio,
-                    'city': row.city,
-                    'offlineID_verified': row.offlineID_verified,
-                    'phone_verified': row.phone_verified,
-                    'background_verified': row.background_verified,
-                }
-                caregiver_array.append(caregiverMap)
+                if (row.offlineID_verified and row.background_verified and row.phone_verified):
+                    cgvr_account = Account.get_by_id(row.account_id)
+                    caregiverMap = {
+                        'first_name': cgvr_account.first,
+                        'last_name': cgvr_account.last,
+                        'phone_number': cgvr_account.phone_number,
+                        'account_id': row.account_id,
+                        'headline': row.headline,
+                        'bio': row.bio,
+                        'city': row.city,
+                        'offlineID_verified': row.offlineID_verified,
+                        'phone_verified': row.phone_verified,
+                        'background_verified': row.background_verified,
+                    }
+                    caregiver_array.append(caregiverMap)
             self.write_json(caregiver_array)
         else:
             self.write_json(
@@ -176,13 +177,9 @@ class Home(base.BaseHandler):
                     'team_name': row.team_name,
                     'mission': row.mission,
                     'main_phone': row.main_phone,
-                    'team_name': row.team_name,
-                    'mission': row.mission,
+                    'website': row.website,
                 }
                 seeker_array.append(seekerMap)
-
-            print '================='
-            print seeker_array
             self.write_json(seeker_array)
         else:
             self.write_json(
