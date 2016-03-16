@@ -13,6 +13,10 @@ angular
                 $http.get('/get_caregiver_profile?account_id=' + account_id)
                     .then(function (response) {
                         $scope.aboutMe = response.data;
+                        if (response.data.count === '0') {
+                            $scope.siteAlert.type = "success";
+                            $scope.siteAlert.message = (response.data.message);
+                        }
                     }, function (response) {
                         $scope.siteAlert.type = "danger";
                         $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");

@@ -129,6 +129,7 @@ class Seeker(base.Base):
     mission = ndb.StringProperty()
     main_phone = ndb.StringProperty()
     website = ndb.StringProperty()
+    video = ndb.StringProperty()
     email = ndb.StringProperty()
 
     #   Org/Team Needs info (general needs)
