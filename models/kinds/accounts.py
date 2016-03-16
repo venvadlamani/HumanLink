@@ -112,11 +112,11 @@ class Caregiver(base.Base):
     smoking = ndb.BooleanProperty()
 
     # Verfication
-    phone_verified = ndb.BooleanProperty(required=False)
+    phone_verified = ndb.BooleanProperty(default=False)
     phone_verified_notes = ndb.StringProperty()
-    background_verified = ndb.BooleanProperty(required=False)
+    background_verified = ndb.BooleanProperty(default=False)
     background_verified_notes = ndb.StringProperty()
-    offlineID_verified = ndb.BooleanProperty(required=False)
+    offlineID_verified = ndb.BooleanProperty(default=False)
     offlineID_verified_notes = ndb.StringProperty()
 
 
