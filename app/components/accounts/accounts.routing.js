@@ -92,19 +92,15 @@
                 templateUrl: '/views/accounts/partials/settings/caregiver.html',
                 controller: 'settingsProfileCaregiverCtrl'
             })
-            .state('provider.media', {
-                url: '/settings/media',
-                templateUrl: '/views/accounts/partials/settings/media.html',
-                controller: 'settingsMediaCtrl'
-            })
             .state('provider.preview', {
                 url: '/settings/preview',
                 templateUrl: '/views/accounts/partials/settings/provider_preview.html',
                 controller: 'previewProfileCtrl'
             })
-            .state('provider.sample', {
-                url: '/settings/sample',
-                templateUrl: '/views/accounts/partials/sample_profile.html',
+            .state('provider.media', {
+                url: '/settings/media',
+                templateUrl: '/views/accounts/partials/settings/media.html',
+                controller: 'settingsMediaCtrl'
             })
             .state('provider.verification', {
                 url: '/settings/verification',

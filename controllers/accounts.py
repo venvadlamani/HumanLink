@@ -164,29 +164,35 @@ class Accounts(base.BaseHandler):
         account_id = self.request.get('account_id')
         qry = Caregiver.query(Caregiver.account_id == int(account_id)).fetch()
 
-        for row in qry:
-            caregiver_map = {
-                'city': row.city,
-                'zipcode': row.zipcode,
-                'county': row.county,
-                'gender': row.gender,
-                'live_in': row.live_in,
-                'school': row.school,
-                'lpn': row.lpn,
-                'cna': row.cna,
-                'hcs': row.hcs,
-                'iha': row.iha,
-                'ad': row.ad,
-                'headline': row.headline,
-                'bio': row.bio,
-                'weekdays': row.weekdays,
-                'weekends': row.weekends,
-                'cats': row.cats,
-                'dogs': row.dogs,
-                'smoking': row.smoking,
-            }
-
-        self.write_json(caregiver_map)
+        if len(qry) > 0:
+            for row in qry:
+                caregiver_map = {
+                    'city': row.city,
+                    'zipcode': row.zipcode,
+                    'county': row.county,
+                    'gender': row.gender,
+                    'live_in': row.live_in,
+                    'school': row.school,
+                    'lpn': row.lpn,
+                    'cna': row.cna,
+                    'hcs': row.hcs,
+                    'iha': row.iha,
+                    'ad': row.ad,
+                    'headline': row.headline,
+                    'bio': row.bio,
+                    'weekdays': row.weekdays,
+                    'weekends': row.weekends,
+                    'cats': row.cats,
+                    'dogs': row.dogs,
+                    'smoking': row.smoking,
+                }
+            self.write_json(caregiver_map)
+        else:
+            self.write_json(
+                {
+                    'count': '0',
+                    'message': 'Care provider profile doesnt exist. Please create one.'
+                })
 
     @login_required
     def POST_caregiver_profile(self):
@@ -197,28 +203,54 @@ class Accounts(base.BaseHandler):
         """
         account_id = self.request_json.get('account_id')
         qry = Caregiver.query(Caregiver.account_id == int(account_id)).fetch()
-        for row in qry:
-            row.city = self.request_json.get('city')
-            row.zipcode = self.request_json.get('zipcode')
-            row.county = self.request_json.get('county')
-            row.gender = self.request_json.get('gender')
-            row.live_in = self.request_json.get('live_in')
-            row.school = self.request_json.get('school')
-            row.lpn = self.request_json.get('lpn')
-            row.cna = self.request_json.get('cna')
-            row.hcs = self.request_json.get('hcs')
-            row.iha = self.request_json.get('iha')
-            row.ad = self.request_json.get('ad')
-            row.headline = self.request_json.get('headline')
-            row.bio = self.request_json.get('bio')
-            row.weekdays = self.request_json.get('weekdays')
-            row.weekends = self.request_json.get('weekends')
-            row.cats = self.request_json.get('cats')
-            row.dogs = self.request_json.get('dogs')
-            row.smoking = self.request_json.get('smoking')
-            row.put()
 
-        self.write_json({'message': 'Caregiver profile has been updated.'})
+        if len(qry) > 0:
+            for row in qry:
+                row.city = self.request_json.get('city')
+                row.zipcode = self.request_json.get('zipcode')
+                row.county = self.request_json.get('county')
+                row.gender = self.request_json.get('gender')
+                row.live_in = self.request_json.get('live_in')
+                row.school = self.request_json.get('school')
+                row.lpn = self.request_json.get('lpn')
+                row.cna = self.request_json.get('cna')
+                row.hcs = self.request_json.get('hcs')
+                row.iha = self.request_json.get('iha')
+                row.ad = self.request_json.get('ad')
+                row.headline = self.request_json.get('headline')
+                row.bio = self.request_json.get('bio')
+                row.weekdays = self.request_json.get('weekdays')
+                row.weekends = self.request_json.get('weekends')
+                row.cats = self.request_json.get('cats')
+                row.dogs = self.request_json.get('dogs')
+                row.smoking = self.request_json.get('smoking')
+                row.put()
+            self.write_json({'message': 'Caregiver profile has been updated.'})
+        else:
+            cgvr = Caregiver()
+            cgvr.account_id = int(account_id)
+            cgvr.city = self.request_json.get('city')
+            cgvr.zipcode = self.request_json.get('zipcode')
+            cgvr.county = self.request_json.get('county')
+            cgvr.gender = self.request_json.get('gender')
+            cgvr.live_in = self.request_json.get('live_in')
+            cgvr.school = self.request_json.get('school')
+            cgvr.lpn = self.request_json.get('lpn')
+            cgvr.cna = self.request_json.get('cna')
+            cgvr.hcs = self.request_json.get('hcs')
+            cgvr.iha = self.request_json.get('iha')
+            cgvr.ad = self.request_json.get('ad')
+            cgvr.headline = self.request_json.get('headline')
+            cgvr.bio = self.request_json.get('bio')
+            cgvr.weekdays = self.request_json.get('weekdays')
+            cgvr.weekends = self.request_json.get('weekends')
+            cgvr.cats = self.request_json.get('cats')
+            cgvr.dogs = self.request_json.get('dogs')
+            cgvr.smoking = self.request_json.get('smoking')
+            cgvr.put()
+            self.write_json({'message': 'Caregiver profile has been created.'})
+
+
 
     @login_required
     def GET_caregiver_profile_preview(self):
@@ -285,8 +317,6 @@ class Accounts(base.BaseHandler):
         seeker_map = {}
         account_id = self.request.get('account_id')
         qry = Seeker.query(Seeker.account_id == int(account_id)).fetch()
-        print "----------------"
-        print len(qry)
 
         if len(qry) > 0:
             for row in qry:
@@ -295,6 +325,7 @@ class Accounts(base.BaseHandler):
                     'mission': row.mission,
                     'main_phone': row.main_phone,
                     'website': row.website,
+                    'video': row.video,
                     'email': row.email,
                     'caregiver_needs': row.caregiver_needs,
                     'hoyer_lift': row.hoyer_lift,
@@ -306,7 +337,6 @@ class Accounts(base.BaseHandler):
 
             self.write_json(seeker_map)
         else:
-            print '--------------------'
             self.write_json(
                 {
                     'count': '0',
@@ -329,6 +359,7 @@ class Accounts(base.BaseHandler):
                 row.mission = self.request_json.get('mission')
                 row.main_phone = self.request_json.get('main_phone')
                 row.website = self.request_json.get('website')
+                row.video = self.request_json.get('video')
                 row.email = self.request_json.get('email')
                 row.caregiver_needs = self.request_json.get('caregiver_needs')
                 row.hoyer_lift = self.request_json.get('hoyer_lift')
@@ -346,6 +377,7 @@ class Accounts(base.BaseHandler):
             skr.mission = self.request_json.get('mission')
             skr.main_phone = self.request_json.get('main_phone')
             skr.website = self.request_json.get('website')
+            skr.video = self.request_json.get('video')
             skr.email = self.request_json.get('email')
             skr.caregiver_needs = self.request_json.get('caregiver_needs')
             skr.hoyer_lift = bool(self.request_json.get('hoyer_lift'))
