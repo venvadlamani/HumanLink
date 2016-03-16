@@ -18,10 +18,24 @@ angular
                     params: {search_string: ''}
                 }).then(function (response) {
                     $scope.searchCaregiverResults = response.data;
+
                 }, function (response) {
                     $scope.siteAlert.type = "danger";
                     $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
                 });
+
+                $http({
+                    url: '/search_seekers',
+                    method: "GET",
+                    params: {search_string: ''}
+                }).then(function (response) {
+                    $scope.searchSeekerResults = response.data;
+
+                }, function (response) {
+                    $scope.siteAlert.type = "danger";
+                    $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                });
+
             };
             init();
 

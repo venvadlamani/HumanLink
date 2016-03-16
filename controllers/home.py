@@ -4,6 +4,7 @@ from controllers import base
 from models.kinds.structs import AccountType
 from models.kinds.home import ContactUs
 from models.kinds.accounts import Caregiver
+from models.kinds.accounts import Seeker
 from models.kinds.accounts import Account
 import services.email
 from models.kinds.home import Request
@@ -116,8 +117,8 @@ class Home(base.BaseHandler):
             }
         self.write_json(caregiver_map)
 
-    #   SEARCH API CALLS
-    def GET_search_caregivers(self):
+    #   PROVIDER SEARCH
+    def GET_caregivers(self):
         """Caregiver General GET request.
 
         @return: returns a dictionary of all caregivers registered as guests in the system
@@ -133,20 +134,59 @@ class Home(base.BaseHandler):
         else:
             caregiver_query = Caregiver.query().fetch()
 
-        for row in caregiver_query:
-            cgvr_account = Account.query(Account.caregiver_id == row.key.id()).fetch()
-            caregiverMap = {
-                'first_name': cgvr_account[0].first,
-                'last_name': cgvr_account[0].last,
-                'phone_number': cgvr_account[0].phone_number,
-                'account_id': row.account_id,
-                'headline': row.headline,
-                'bio': row.bio,
-                'city': row.city,
-                'offlineID_verified': row.offlineID_verified,
-                'phone_verified': row.phone_verified,
-                'background_verified': row.background_verified,
-            }
-            caregiver_array.append(caregiverMap)
+        if len(caregiver_query) > 0:
+            for row in caregiver_query:
+                cgvr_account = Account.get_by_id(row.account_id)
+                caregiverMap = {
+                    'first_name': cgvr_account.first,
+                    'last_name': cgvr_account.last,
+                    'phone_number': cgvr_account.phone_number,
+                    'account_id': row.account_id,
+                    'headline': row.headline,
+                    'bio': row.bio,
+                    'city': row.city,
+                    'offlineID_verified': row.offlineID_verified,
+                    'phone_verified': row.phone_verified,
+                    'background_verified': row.background_verified,
+                }
+                caregiver_array.append(caregiverMap)
+            self.write_json(caregiver_array)
+        else:
+            self.write_json(
+                {
+                    'count': '0',
+                    'message': 'No care providers exist.'
+                })
 
-        self.write_json(caregiver_array)
+    # SEEKER SEARCH
+    def GET_seekers(self):
+        """ Search for care seekers request.
+
+        @return: returns a dictionary of all caregivers registered as guests in the system
+        """
+        seeker_array = []
+
+        #   currently expecting Geo based searches. In the future Search needs will change
+        seeker_query = Seeker.query().fetch()
+
+        if len(seeker_query) > 0:
+            for row in seeker_query:
+                seekerMap = {
+                    'account_id': row.account_id,
+                    'team_name': row.team_name,
+                    'mission': row.mission,
+                    'main_phone': row.main_phone,
+                    'team_name': row.team_name,
+                    'mission': row.mission,
+                }
+                seeker_array.append(seekerMap)
+
+            print '================='
+            print seeker_array
+            self.write_json(seeker_array)
+        else:
+            self.write_json(
+                {
+                    'count': '0',
+                    'message': 'No care seekers exist.'
+                })
