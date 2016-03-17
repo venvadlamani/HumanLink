@@ -76,9 +76,9 @@ class Home(base.BaseHandler):
 
     def GET_caregiver_profile(self):
         """Caregiver profile GET request.
-        @params: Caregiver ID to be used for the search
 
-        @return: returns a dictionary of caregiver registered as a guest in the system
+        @params: Caregiver ID to be used for the search
+        @return: returns a dictionary of caregiver
         """
         caregiver_map = {}
         account_id = int(self.request.get('account_id'))
@@ -136,7 +136,8 @@ class Home(base.BaseHandler):
 
         if len(caregiver_query) > 0:
             for row in caregiver_query:
-                if (row.offlineID_verified and row.background_verified and row.phone_verified):
+                if (
+                                row.offlineID_verified and row.background_verified and row.phone_verified):
                     cgvr_account = Account.get_by_id(row.account_id)
                     caregiverMap = {
                         'first_name': cgvr_account.first,
@@ -187,3 +188,30 @@ class Home(base.BaseHandler):
                     'count': '0',
                     'message': 'No care seekers exist.'
                 })
+
+    def GET_seeker_profile(self):
+        """GET seeker profile.
+
+        @params: account_id
+        @return: returns seeker profile
+        """
+        seeker_map = {}
+        account_id = int(self.request.get('account_id'))
+        qry = Seeker.query(Seeker.account_id == account_id).fetch()
+        for row in qry:
+            seeker_map = {
+                'team_name': row.team_name,
+                'mission': row.mission,
+                'main_phone': row.main_phone,
+                'website': row.website,
+                'video': row.video,
+                'email': row.email,
+                'caregiver_needs': row.caregiver_needs,
+                'hoyer_lift': row.hoyer_lift,
+                'cough_assist': row.cough_assist,
+                'adaptive_utensil': row.adaptive_utensil,
+                'meal_prep': row.meal_prep,
+                'housekeeping': row.housekeeping,
+            }
+
+        self.write_json(seeker_map)

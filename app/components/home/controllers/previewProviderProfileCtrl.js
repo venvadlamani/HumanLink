@@ -5,7 +5,7 @@
  */
 angular
     .module('Home')
-    .controller('previewProfileCtrl', ['$scope', '$window', '$stateParams', '$http',
+    .controller('previewProviderProfileCtrl', ['$scope', '$window', '$stateParams', '$http',
         function ($scope, $window, $stateParams, $http) {
 
             var caregiverKey = $stateParams.caregiver_key;

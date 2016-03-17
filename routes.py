@@ -15,6 +15,10 @@ routes = [
                   methods=['GET'],
                   handler='controllers.home.Home:GET_caregiver_profile'),
 
+    webapp2.Route(r'/seeker_profile', name='seeker_profile',
+                  methods=['GET'],
+                  handler='controllers.home.Home:GET_seeker_profile'),
+
     webapp2.Route(r'/submit_caregiver_general', name='submit_caregiver_general',
                   methods=['POST'],
                   handler='controllers.home.Home:POST_caregiver_general'),
