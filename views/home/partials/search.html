@@ -22,7 +22,7 @@
   <tabset>
     <tab index="0" heading="Care Seekers">
       <div class="results-container">
-        <p class="lead">{{ searchCaregiverResults.length }} care seeker(s).</p>
+        <p class="lead">{{ searchSeekerResults.length }} care seekers.</p>
 
         <div ng-show="searchSeekerResults">
           <div ng-repeat="skr in searchSeekerResults">
@@ -30,7 +30,7 @@
               <div class="row col-sm-offset-1">
                 <div class="media">
                   <div class="media-left">
-                    <a href ui-sref="previewProfile({seeker_key: skr.account_id })">
+                    <a href ui-sref="previewSeekerProfile({account_id: skr.account_id })">
                       <img class="media-object" src="https://placehold.it/75x75" alt="">
                     </a>
                   </div>
@@ -56,14 +56,14 @@
     <tab index="1" heading="Care Providers">
       <div class="results-container">
         <div ng-show="searchCaregiverResults">
-          <p class="lead">{{ searchCaregiverResults.length }} provider(s).</p>
+          <p class="lead">{{ searchCaregiverResults.length }} care providers.</p>
 
           <div ng-repeat="cgvr in searchCaregiverResults">
             <div class="result">
               <div class="row col-sm-offset-1">
                 <div class="media">
                   <div class="media-left">
-                    <a href ui-sref="previewProfile({caregiver_key: cgvr.account_id })">
+                    <a href ui-sref="previewProviderProfile({caregiver_key: cgvr.account_id })">
                       <img class="media-object" src="https://placehold.it/75x75" alt="">
                     </a>
                   </div>

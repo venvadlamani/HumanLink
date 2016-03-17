@@ -38,10 +38,15 @@
                 templateUrl: '/views/home/partials/faq.html',
                 controller: 'faqCtrl'
             })
-            .state('previewProfile', {
-                url: '/previewProfile/:caregiver_key',
-                templateUrl: '/views/home/partials/profile_preview.html',
-                controller: 'previewProfileCtrl'
+            .state('previewProviderProfile', {
+                url: '/previewProviderProfile/:caregiver_key',
+                templateUrl: '/views/home/partials/previewProviderProfile.html',
+                controller: 'previewProviderProfileCtrl'
+            })
+            .state('previewSeekerProfile', {
+                url: '/previewSeekerProfile/:account_id',
+                templateUrl: '/views/home/partials/previewSeekerProfile.html',
+                controller: 'previewSeekerProfileCtrl'
             })
             .state('careseeker', {
                 url: '/careseeker',
