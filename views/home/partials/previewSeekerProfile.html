@@ -3,32 +3,48 @@
 
     <div class="row">
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <img src="https://placehold.it/200x200">
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
         <h2>{{ aboutMe.team_name }}</h2>
         <h4>Mission: {{ aboutMe.mission }}</h4>
         <h4>Website: <a ng-href="{{ aboutMe.website }}">{{aboutMe.website}}</a></h4>
         <h4>Video: <a ng-href="{{ aboutMe.video }}">{{aboutMe.video}}</a></h4>
-        <h4>Phone: {{ aboutMe.main_phone }}</h4>
+        <h4>Phone: ({{ aboutMe.main_phone.slice(0,3) }}
+          ) {{ aboutMe.main_phone.slice(3,6) }}
+          - {{ aboutMe.main_phone.slice(6,10) }}</h4>
       </div>
     </div>
 
-    <hr>
-    <h3>Typical needs</h3>
-    <div ng-show="aboutMe.meal_prep">Light meal prep</div>
-    <div ng-show="aboutMe.adaptive_utensil">Adaptive utensil training</div>
-    <div ng-show="aboutMe.housekeeping">Light housekeeping</div>
-    <div ng-show="aboutMe.cough_assist">Cough assist machine training</div>
-    <div ng-show="aboutMe.hoyer_lift">Hoyer life training</div>
+    <div class="row">
+      <div class="col-md-offset-3 col-md-9">
+        <hr>
+        <h2>Typical care needs</h2>
 
-    <hr>
-    <h3>Care wanted</h3>
-    <p>{{ aboutMe.caregiver_needs }}</p>
+        <div ng-show="aboutMe.meal_prep"><h4>Light meal prep</h4></div>
+        <div ng-show="aboutMe.adaptive_utensil"><h4>Adaptive utensil training</h4></div>
+        <div ng-show="aboutMe.housekeeping"><h4>Light housekeeping</h4></div>
+        <div ng-show="aboutMe.cough_assist"><h4>Cough assist machine training</h4></div>
+        <div ng-show="aboutMe.hoyer_lift"><h4>Hoyer lift training</h4></div>
 
-    <hr>
-    <h3>Care team</h3>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-offset-3 col-md-9">
+        <hr>
+        <h2>Current care needs</h2>
+
+        <h4>{{ aboutMe.caregiver_needs }}</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-3 col-md-9">
+        <hr>
+        <h2>Current care team</h2>
+      </div>
+    </div>
   </div>
 </div>

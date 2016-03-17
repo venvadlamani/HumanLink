@@ -21,6 +21,7 @@
 
   <tabset>
     <tab index="0" heading="Care Seekers">
+
       <div class="results-container">
         <p class="lead">{{ searchSeekerResults.length }} care seekers.</p>
 
@@ -55,15 +56,16 @@
 
     <tab index="1" heading="Care Providers">
       <div class="results-container">
-        <div ng-show="searchCaregiverResults">
-          <p class="lead">{{ searchCaregiverResults.length }} care providers.</p>
+        <p class="lead">{{ searchCaregiverResults.length }} care providers.</p>
 
+        <div ng-show="searchCaregiverResults">
           <div ng-repeat="cgvr in searchCaregiverResults">
             <div class="result">
               <div class="row col-sm-offset-1">
                 <div class="media">
                   <div class="media-left">
-                    <a href ui-sref="previewProviderProfile({caregiver_key: cgvr.account_id })">
+                    <a href
+                       ui-sref="previewProviderProfile({caregiver_key: cgvr.account_id })">
                       <img class="media-object" src="https://placehold.it/75x75" alt="">
                     </a>
                   </div>

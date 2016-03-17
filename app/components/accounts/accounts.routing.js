@@ -50,14 +50,6 @@
                     role: userSessionProvider.roles.GUEST
                 }
             })
-            .state('profile', {
-                url: '/profile',
-                templateUrl: '/views/accounts/partials/profile.html',
-                controller: 'manageProfileCtrl',
-                data: {
-                    role: userSessionProvider.roles.AUTHORIZED
-                }
-            })
             .state('settings', {
                 abstract: true,
                 templateUrl: '/views/accounts/partials/settings/base_settings.html',
@@ -77,7 +69,7 @@
             })
             .state('settings.seeker_preview', {
                 url: '/settings/seeker_preview',
-                templateUrl: '/views/accounts/partials/settings/seeker_preview.html',
+                templateUrl: '/views/home/partials/previewSeekerProfile.html',
                 controller: 'settingsSeekerCtrl'
             })
             .state('provider', {
@@ -94,7 +86,7 @@
             })
             .state('provider.preview', {
                 url: '/settings/preview',
-                templateUrl: '/views/accounts/partials/settings/provider_preview.html',
+                templateUrl: '/views/home/partials/previewProviderProfile.html',
                 controller: 'previewProfileCtrl'
             })
             .state('provider.media', {
