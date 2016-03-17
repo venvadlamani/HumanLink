@@ -38,11 +38,6 @@
                 templateUrl: '/views/home/partials/faq.html',
                 controller: 'faqCtrl'
             })
-            .state('caregiverGeneral', {
-                url: '/caregiverGeneral',
-                templateUrl: '/views/home/partials/caregiverGeneral.html',
-                controller: 'caregiverGeneralCtrl'
-            })
             .state('previewProfile', {
                 url: '/previewProfile/:caregiver_key',
                 templateUrl: '/views/home/partials/profile_preview.html',
