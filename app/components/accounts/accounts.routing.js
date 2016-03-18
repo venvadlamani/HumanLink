@@ -62,6 +62,11 @@
                 templateUrl: '/views/accounts/partials/settings/profile.html',
                 controller: 'settingsProfileCtrl'
             })
+            .state('settings.connections', {
+                url: '/settings/connections',
+                templateUrl: '/views/accounts/partials/settings/connections.html',
+                controller: 'connectionsCtrl'
+            })
             .state('settings.seeker', {
                 url: '/settings/seeker',
                 templateUrl: '/views/accounts/partials/settings/seeker.html',

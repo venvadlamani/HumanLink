@@ -7,6 +7,8 @@ from models.kinds.structs import AccountType
 from models.kinds.accounts import Account
 from models.kinds.accounts import Caregiver
 from models.kinds.accounts import Seeker
+from models.kinds.connections import ConnList
+from models.kinds.connections import ConnRequest
 import logging
 from webapp2_extras import auth
 from webapp2_extras import security
@@ -293,3 +295,23 @@ class Accounts(base.BaseHandler):
             skr.meal_prep = self.request_json.get('meal_prep')
             skr.housekeeping = self.request_json.get('housekeeping')
             skr.put()
+
+    @login_required
+    def GET_connections(self):
+        """ Get the current accounts connections
+
+        params: account_id
+        :return: return connections
+        """
+        account_id = int(self.request.get('account_id'))
+        qry = ConnRequest.query(ConnList.account_id == account_id).fetch()
+
+        if len(qry) > 0:
+            print "==="
+            print qry
+        else:
+            self.write_json(
+                {
+                    'count': '0',
+                    'message': 'You have no connections.'
+                })

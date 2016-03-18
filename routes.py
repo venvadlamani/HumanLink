@@ -78,6 +78,9 @@ routes = [
                   methods=['POST'],
                   handler='controllers.accounts.Accounts:POST_seeker_profile'),
 
+    webapp2.Route(r'/get_connections', name='get_connections',
+                  methods=['GET'],
+                  handler='controllers.accounts.Accounts:GET_connections'),
 
     # Routes for the Settings module ----------------------------
     webapp2.Route(r'/settings', name='settings_index', methods=['GET'],
