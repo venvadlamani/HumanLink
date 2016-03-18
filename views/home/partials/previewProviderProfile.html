@@ -3,12 +3,23 @@
 
     <div class="row">
       <div class="col-md-3 text-center">
-        <img src="https://placehold.it/200x200">
+        <img src="https://placehold.it/150x150">
+        <p class="vmargin10"><button class="btn btn-primary">Connect</button></p>
       </div>
       <div class="col-md-9">
         <h3><strong>{{profile.first_name}} {{profile.last_name}}</strong></h3>
-        <h4><strong>{{profile.headline}}</strong></h4>
         <h4>Location: {{profile.city}}, {{profile.county}} </h4>
+        <h4>Phone: ({{ profile.phone_number.slice(0,3) }}
+          ) {{ profile.phone_number.slice(3,6) }}
+          - {{ profile.phone_number.slice(6,10) }}</h4>
+        <h4></h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-3 col-md-9">
+        <hr>
+        <h4>Headline: <strong>{{profile.headline}}</strong></h4>
         <h4>Bio: {{profile.bio}}</h4>
       </div>
     </div>
