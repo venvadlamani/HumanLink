@@ -12,13 +12,6 @@
         <h4>Phone: ({{ profile.phone_number.slice(0,3) }}
           ) {{ profile.phone_number.slice(3,6) }}
           - {{ profile.phone_number.slice(6,10) }}</h4>
-        <h4></h4>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-offset-3 col-md-9">
-        <hr>
         <h4>Headline: <strong>{{profile.headline}}</strong></h4>
         <h4>Bio: {{profile.bio}}</h4>
       </div>
@@ -27,7 +20,7 @@
     <div class="row">
       <div class="col-md-offset-3 col-md-9">
         <hr>
-        <h3>Professional data</h3>
+        <h3>Education</h3>
         <h4>School: {{profile.school}}</h4>
         <h4>
           <div ng-if="profile.cna">Degree: CNA</div>
@@ -42,7 +35,7 @@
     <div class="row">
       <div class="col-md-offset-3 col-md-9">
         <hr>
-        <h3>Professional preferences</h3>
+        <h3>Preferences</h3>
         <h4>
           <div ng-if="profile.live_in"> I am open to live-in arrangements.</div>
           <div ng-if="profile.weekdays"> I can work on weekdays.</div>
