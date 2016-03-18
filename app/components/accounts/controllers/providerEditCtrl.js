@@ -2,7 +2,7 @@
 
 angular
     .module('Accounts')
-    .controller('settingsProfileCaregiverCtrl', ['$scope', '$http', 'Constants', 'apiService', 'userSession',
+    .controller('providerEditCtrl', ['$scope', '$http', 'Constants', 'apiService', 'userSession',
         function ($scope, $http, Constants, apiService, userSession) {
             
             $scope.aboutMe = {};

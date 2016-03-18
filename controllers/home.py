@@ -34,35 +34,6 @@ class Home(base.BaseHandler):
 
         self.write_json({'message': 'Thank you.'})
 
-    def POST_caregiver_general(self):
-        """Caregiver General POST request."""
-
-        caregiver = Caregiver()
-        caregiver.first_name = self.request_json.get('first_name')
-        caregiver.last_name = self.request_json.get('last_name')
-        caregiver.city = self.request_json.get('city')
-        caregiver.county = self.request_json.get('county')
-        caregiver.zipcode = self.request_json.get('zipcode')
-        caregiver.gender = self.request_json.get('gender')
-        caregiver.live_in = self.request_json.get('live_in')
-        caregiver.school = self.request_json.get('school')
-        caregiver.lpn = self.request_json.get('lpn')
-        caregiver.cna = self.request_json.get('cna')
-        caregiver.hcs = self.request_json.get('hcs')
-        caregiver.iha = self.request_json.get('iha')
-        caregiver.ad = self.request_json.get('ad')
-        caregiver.headline = self.request_json.get('headline')
-        caregiver.bio = self.request_json.get('bio')
-        caregiver.weekdays = self.request_json.get('weekdays')
-        caregiver.weekends = self.request_json.get('weekends')
-        caregiver.cats = self.request_json.get('cats')
-        caregiver.dogs = self.request_json.get('dogs')
-        caregiver.smoking = self.request_json.get('smoking')
-
-        caregiver.put()
-
-        self.write_json({'message': 'Thank you.'})
-
     def POST_contact_request(self):
         """General questions from users/guests POST request."""
         req = Request()
