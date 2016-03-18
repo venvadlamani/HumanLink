@@ -21,15 +21,20 @@ test:
    - ./bin/circleci.bash tests
 
 deployment:
+#  prod:
+#    branch: master
+#    commands:
+#      - ./bin/circleci.bash deploy care-tiger
+
   prod:
-    branch: master
+    branch: alpha
     commands:
       - ./bin/circleci.bash deploy care-tiger
 
-  staging:
-    branch: alpha
-    commands:
-      - ./bin/circleci.bash deploy care-tiger-staging
+#  staging:
+#    branch: alpha
+#    commands:
+#      - ./bin/circleci.bash deploy care-tiger-staging
 
   kanat-dev:
     branch: kanat-dev
