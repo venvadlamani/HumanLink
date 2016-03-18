@@ -79,15 +79,15 @@
                     role: userSessionProvider.roles.AUTHORIZED
                 }
             })
-            .state('provider.caregiver', {
-                url: '/settings/caregiver',
-                templateUrl: '/views/accounts/partials/settings/caregiver.html',
-                controller: 'settingsProfileCaregiverCtrl'
+            .state('provider.edit', {
+                url: '/settings/provider_edit',
+                templateUrl: '/views/accounts/partials/settings/provider.html',
+                controller: 'providerEditCtrl'
             })
             .state('provider.preview', {
                 url: '/settings/preview',
                 templateUrl: '/views/home/partials/previewProviderProfile.html',
-                controller: 'previewProfileCtrl'
+                controller: 'providerPreviewCtrl'
             })
             .state('provider.media', {
                 url: '/settings/media',

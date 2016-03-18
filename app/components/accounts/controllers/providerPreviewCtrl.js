@@ -5,7 +5,7 @@
  */
 angular
     .module('Accounts')
-    .controller('previewProfileCtrl', ['$scope', 'userSession', '$http',
+    .controller('providerPreviewCtrl', ['$scope', 'userSession', '$http',
         function ($scope, userSession, $http) {
 
             $scope.profile = {};
