@@ -10,7 +10,7 @@ angular
             var account_id = $scope.usr.userdata.account_id;
 
             var init = function () {
-                $http.get('/get_seeker_profile?account_id=' + account_id)
+                $http.get('/seeker_profile?account_id=' + account_id)
                     .then(function (response) {
                         $scope.aboutMe = response.data;
                         if (response.data.count === '0') {

@@ -19,10 +19,6 @@ routes = [
                   methods=['GET'],
                   handler='controllers.home.Home:GET_seeker_profile'),
 
-    webapp2.Route(r'/submit_caregiver_general', name='submit_caregiver_general',
-                  methods=['POST'],
-                  handler='controllers.home.Home:POST_caregiver_general'),
-
     webapp2.Route(r'/contact', name='contact', methods=['POST'],
                   handler='controllers.home.Home:POST_contact_request'),
 
@@ -81,10 +77,6 @@ routes = [
     webapp2.Route(r'/get_caregiver_profile_preview', name='get_caregiver_profile_preview',
                   methods=['GET'],
                   handler='controllers.accounts.Accounts:GET_caregiver_profile_preview'),
-
-    webapp2.Route(r'/get_seeker_profile', name='get_seeker_profile',
-                  methods=['GET'],
-                  handler='controllers.accounts.Accounts:GET_seeker_profile'),
 
     webapp2.Route(r'/post_seeker_profile', name='post_seeker_profile',
                   methods=['POST'],

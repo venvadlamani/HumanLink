@@ -250,8 +250,6 @@ class Accounts(base.BaseHandler):
             cgvr.put()
             self.write_json({'message': 'Caregiver profile has been created.'})
 
-
-
     @login_required
     def GET_caregiver_profile_preview(self):
         """ Get the caregiver profile preview for the current account user
@@ -305,43 +303,6 @@ class Accounts(base.BaseHandler):
             'account': account_map
         }
         self.write_json(profile_map)
-
-    @login_required
-    def GET_seeker_profile(self):
-        """ Get the seeker org/team profile
-
-        params: account_id
-        :return:caregiver profile map
-        """
-
-        seeker_map = {}
-        account_id = self.request.get('account_id')
-        qry = Seeker.query(Seeker.account_id == int(account_id)).fetch()
-
-        if len(qry) > 0:
-            for row in qry:
-                seeker_map = {
-                    'team_name': row.team_name,
-                    'mission': row.mission,
-                    'main_phone': row.main_phone,
-                    'website': row.website,
-                    'video': row.video,
-                    'email': row.email,
-                    'caregiver_needs': row.caregiver_needs,
-                    'hoyer_lift': row.hoyer_lift,
-                    'cough_assist': row.cough_assist,
-                    'adaptive_utensil': row.adaptive_utensil,
-                    'meal_prep': row.meal_prep,
-                    'housekeeping': row.housekeeping,
-                }
-
-            self.write_json(seeker_map)
-        else:
-            self.write_json(
-                {
-                    'count': '0',
-                    'message': 'Care seeker profile doesnt exist. Please create one.'
-                })
 
     @login_required
     def POST_seeker_profile(self):
