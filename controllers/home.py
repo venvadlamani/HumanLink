@@ -56,12 +56,11 @@ class Home(base.BaseHandler):
         qry = Caregiver.query(Caregiver.account_id == account_id).fetch()
 
         for caregiver in qry:
-            cgvr_account = Account.query(
-                Account.caregiver_id == caregiver.key.id()).fetch()
+            cgvr_account = Account.get_by_id(account_id)
             caregiver_map = {
-                'first_name': cgvr_account[0].first,
-                'last_name': cgvr_account[0].last,
-                'phone_number': cgvr_account[0].phone_number,
+                'first_name': cgvr_account.first,
+                'last_name': cgvr_account.last,
+                'phone_number': cgvr_account.phone_number,
                 'phone_number_primary': caregiver.phone_number_primary,
                 'phone_number_secondary': caregiver.phone_number_secondary,
                 'county': caregiver.county,

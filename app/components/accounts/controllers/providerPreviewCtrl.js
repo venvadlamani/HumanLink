@@ -15,11 +15,11 @@ angular
 
             var init = function () {
                 $http({
-                    url: '/get_caregiver_profile_preview',
+                    url: '/caregiver_profile',
                     method: "GET",
-                    params: {account_id: account_id, email: email}
+                    params: {account_id: account_id}
                 }).then(function (response) {
-                    $scope.profile = angular.extend(response.data.caregiver, response.data.account, $scope.usr.userdata);
+                    $scope.profile = response.data;
                 }, function (response) {
                     $scope.siteAlert.type = "danger";
                     $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
