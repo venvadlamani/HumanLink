@@ -9,6 +9,7 @@ class ConnStatus(messages.Enum):
     """Connection request status."""
     Pending = 0
     Accepted = 1
+    Disconnected = 2
 
 
 class ConnRequest(base.Base):
