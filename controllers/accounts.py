@@ -315,3 +315,21 @@ class Accounts(base.BaseHandler):
                     'count': '0',
                     'message': 'You have no connections.'
                 })
+
+    @login_required
+    def POST_connection_request(self):
+        """ Get the current accounts connections
+
+        params: account_id
+        :return: return connections
+        """
+        from_id = int(self.request.get('from_id'))
+        to_id = int(self.request.get('to_id'))
+        message = self.request.get('message')
+
+        con = ConnRequest()
+        con.from_id = from_id
+        con.to_id = to_id
+        con.message = message
+        con.put()
+        self.write_json({'message': 'You connection request was sent successfully.'})
