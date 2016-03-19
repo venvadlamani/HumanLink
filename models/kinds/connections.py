@@ -19,8 +19,8 @@ class ConnRequest(base.Base):
     :key to_id: (int) ID of the account the request was sent to.
     :key status: (.ConnStatus) Status of the connection request.
     """
-    from_id = ndb.IntegerProperty(required=True)
-    to_id = ndb.IntegerProperty(required=True)
+    from_id = ndb.IntegerProperty(required=True, indexed=True)
+    to_id = ndb.IntegerProperty(required=True, indexed=True)
     message = ndb.TextProperty()
     status = msgprop.EnumProperty(ConnStatus, default=ConnStatus.Pending)
 
@@ -31,7 +31,7 @@ class ConnList(base.Base):
     :key account_id: ID the account this list belongs to.
     :key accepted_reqs: Accepted connection requests IDs.
     """
-    account_id = ndb.IntegerProperty(required=True)
+    account_id = ndb.IntegerProperty(required=True, indexed=True)
     accepted_reqs = ndb.IntegerProperty(repeated=True)
 
     @property
