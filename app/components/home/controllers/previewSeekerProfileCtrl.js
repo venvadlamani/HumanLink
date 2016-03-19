@@ -5,18 +5,34 @@
  */
 angular
     .module('Home')
-    .controller('previewSeekerProfileCtrl', ['$scope', '$window', '$stateParams', '$http',
-        function ($scope, $window, $stateParams, $http) {
+    .controller('previewSeekerProfileCtrl', ['$scope', '$window', '$stateParams', '$http', 'userSession',
+        function ($scope, $window, $stateParams, $http, userSession) {
 
-            var account_id = $stateParams.account_id;
+            var seeker_id = $stateParams.account_id;
             $scope.aboutMe = {};
+            $scope.usr = userSession;
+            var account_id = $scope.usr.userdata.account_id;
 
             var init = function () {
-                $http.get('/seeker_profile?account_id=' + account_id)
+                $http.get('/seeker_profile?account_id=' + seeker_id)
                     .then(function (response) {
                         $scope.aboutMe = response.data;
                     });
             };
             init();
+
+            $scope.connect = function(){
+                $http({
+                    url: '/post_connection_request',
+                    method: "POST",
+                    params: {from_id: account_id, to_id: seeker_id, message: "I would like to connect with you."}
+                }).then(function (response) {
+                    $scope.siteAlert.type = "success";
+                    $scope.siteAlert.message = response.data.message;
+                }, function (response) {
+                    $scope.siteAlert.type = "danger";
+                    $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                });
+            }
 
         }]);
