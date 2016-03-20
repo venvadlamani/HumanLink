@@ -131,6 +131,7 @@ class Seeker(base.Base):
     website = ndb.StringProperty()
     video = ndb.StringProperty()
     email = ndb.StringProperty()
+    public = ndb.BooleanProperty(default=True, indexed=True)
 
     #   Org/Team Needs info (general needs)
     caregiver_needs = ndb.StringProperty()

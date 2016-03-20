@@ -122,13 +122,7 @@ class Home(base.BaseHandler):
                         'background_verified': row.background_verified,
                     }
                     caregiver_array.append(caregiverMap)
-            self.write_json(caregiver_array)
-        else:
-            self.write_json(
-                {
-                    'count': '0',
-                    'message': 'No care providers exist.'
-                })
+        self.write_json(caregiver_array)
 
     # SEEKER SEARCH
     def GET_seekers(self):
@@ -139,7 +133,7 @@ class Home(base.BaseHandler):
         seeker_array = []
 
         #   currently expecting Geo based searches. In the future Search needs will change
-        seeker_query = Seeker.query().fetch()
+        seeker_query = Seeker.query(Seeker.public == True).fetch()
 
         if len(seeker_query) > 0:
             for row in seeker_query:
@@ -151,13 +145,7 @@ class Home(base.BaseHandler):
                     'website': row.website,
                 }
                 seeker_array.append(seekerMap)
-            self.write_json(seeker_array)
-        else:
-            self.write_json(
-                {
-                    'count': '0',
-                    'message': 'No care seekers exist.'
-                })
+        self.write_json(seeker_array)
 
     def GET_seeker_profile(self):
         """GET seeker profile.
