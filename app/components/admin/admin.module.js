@@ -30,6 +30,16 @@
                 templateUrl: '/views/admin/partials/verification.html',
                 controller: 'verificationCtrl'
             })
+            .state('admin.seeker', {
+                url: '/seeker',
+                templateUrl: '/views/admin/partials/seeker.html',
+                controller: 'seekerCtrl'
+            })
+            .state('admin.provider', {
+                url: '/provider',
+                templateUrl: '/views/admin/partials/provider.html',
+                controller: 'providerCtrl'
+            })
             .state('admin.password', {
                 url: '/password',
                 templateUrl: '/views/admin/partials/password.html',
