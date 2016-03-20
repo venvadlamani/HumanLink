@@ -87,6 +87,22 @@ routes = [
                   methods=['POST'],
                   handler='controllers.accounts.Accounts:POST_connection_accept'),
 
+    webapp2.Route(r'/get_images', name='get_images',
+                  methods=['GET'],
+                  handler='controllers.accounts.Accounts:GET_images'),
+
+    webapp2.Route(r'/post_image', name='post_image',
+                  methods=['POST'],
+                  handler='controllers.accounts.Accounts:POST_image'),
+
+    webapp2.Route(r'/get_images2', name='get_images2',
+                  methods=['GET'],
+                  handler='controllers.accounts.ViewPhotoHandler:get'),
+
+    webapp2.Route(r'/post_image2', name='post_image2',
+                  methods=['POST'],
+                  handler='controllers.accounts.PhotoUploadHandler:post'),
+
     # Routes for the Settings module ----------------------------
     webapp2.Route(r'/settings', name='settings_index', methods=['GET'],
                   handler='controllers.settings.Settings:index'),
@@ -117,7 +133,6 @@ routes = [
     # Routes for the Dashboard module ----------------------------
     webapp2.Route(r'/dashboard', name='dashboard_index', methods=['GET'],
                   handler='controllers.dashboard.Dashboard:index'),
-
 
     # Routes for the Admin module ----------------------------
     webapp2.Route(r'/admin', name='admin_index', methods=['GET'],

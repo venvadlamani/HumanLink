@@ -61,3 +61,45 @@ angular
             }
         };
     });
+/**
+ * Creating a service for file objects. Getting it inside the scopr of the controller.
+ */
+angular
+    .module('Common')
+    .directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function () {
+                    scope.$apply(function () {
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
+
+/**
+ *
+ */
+angular
+    .module('Common')
+    .service('fileUpload', ['$http', function ($http) {
+        this.uploadFileToUrl = function (file, uploadUrl, account_id) {
+            var fd = new FormData();
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined},
+                params: {'account_id': account_id},
+            }).success(function () {
+                    console.log("Success");
+                })
+                .error(function () {
+                    console.log("Failed");
+                });
+        }
+    }]);

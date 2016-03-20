@@ -5,6 +5,7 @@ from controllers import base
 from controllers.base import login_required
 from models.kinds.structs import AccountType
 from models.kinds.accounts import Account
+from models.kinds.accounts import UserPhoto
 from models.kinds.accounts import Caregiver
 from models.kinds.accounts import Seeker
 from models.kinds.connections import ConnList
@@ -15,7 +16,10 @@ from webapp2_extras import auth
 from webapp2_extras import security
 from google.appengine.ext import ndb
 from google.appengine.api import mail
-
+from google.appengine.api import users
+from google.appengine.ext import blobstore
+from google.appengine.ext.webapp import blobstore_handlers
+from google.appengine.api import images
 
 class Accounts(base.BaseHandler):
     """Accounts and profiles related controller."""
@@ -369,11 +373,6 @@ class Accounts(base.BaseHandler):
 
     @login_required
     def POST_connection_accept(self):
-        """ Get the current accounts connections
-
-        params: account_id
-        :return: return connections
-        """
         from_id = int(self.request.get('from_id'))
         to_id = int(self.request.get('to_id'))
 
@@ -386,3 +385,63 @@ class Accounts(base.BaseHandler):
             row.put()
 
         self.write_json({'message': 'Accepted.'})
+
+    @login_required
+    def POST_image(self):
+        """ Get the current accounts connections
+
+        params: account_id
+        :return: return connections
+        """
+        account_id = int(self.request.get('account_id'))
+        img = self.request.get('myFile')
+
+        acct = Account.get_by_id(account_id)
+        acct.image = img
+        acct.put()
+        print '****************'
+        print account_id
+
+    @login_required
+    def GET_images(self):
+        """ Get the current accounts connections
+
+        params: account_id
+        :return: return connections
+        """
+        account_id = int(self.request.get('account_id'))
+        acct = Account.get_by_id(account_id)
+        acct_map = {
+            'first': acct.first,
+            'last': acct.last,
+            'image': acct.image
+        }
+        self.response.headers['Content-Type'] = 'image/png'
+        # self.response.out.write(acct.image)
+        self.write_json(acct_map)
+
+
+class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        account_id = int(self.request.get('account_id'))
+        img = self.request.get('myFile')
+        print '================1'
+
+        try:
+            upload = self.get_uploads()[0]
+            print '================2'
+            print upload
+
+            user_photo = UserPhoto(account_id, blob_key=upload.key())
+            user_photo.put()
+            self.redirect('/view_photo/%s' % upload.key())
+        except:
+            self.error(500)
+
+
+class ViewPhotoHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self, photo_key):
+        if not blobstore.get(photo_key):
+            self.error(404)
+        else:
+            self.send_blob(photo_key)

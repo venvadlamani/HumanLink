@@ -66,12 +66,20 @@ class Account(base.Base, auth_models.User):
     payment_id = ndb.IntegerProperty(indexed=False)
     # connections.ConnList ID.
     connlist_id = ndb.IntegerProperty(indexed=False)
+    # Media
+    image = ndb.BlobProperty(indexed=False)
 
     @property
     def verification_token(self):
         """Returns the email verification token for this account."""
         return hashlib.md5(
             (configs.VERIF_SECRET + self.email).encode('utf-8')).hexdigest()
+
+
+# This datastore model keeps track of which users uploaded which photos.
+class UserPhoto(base.Base):
+    account_id = ndb.IntegerProperty()
+    blob_key = ndb.BlobKeyProperty()
 
 
 class Caregiver(base.Base):
