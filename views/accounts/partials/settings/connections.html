@@ -6,7 +6,9 @@
 
         <div ng-repeat="conn in connections | filter: {status: 'Accepted'} as accepted">
           <div class="result">
-            <h4>{{ conn.first }} {{ conn.last }}</h4>
+            <p>Name: {{ conn.first }} {{ conn.last }}</p>
+
+            <p>Email: {{ conn.email }}</p>
 
             <a href="/home#/previewSeekerProfile/{{conn.account_id }}">Seeker
               profile</a>
@@ -26,7 +28,9 @@
 
         <div ng-repeat="conn in connections | filter: {status: 'Pending'} as pending">
           <div class="result">
-            <h4>{{ conn.first }} {{ conn.last }}</h4>
+            <p>Name: {{ conn.first }} {{ conn.last }}<p>
+
+            <p>Email: {{ conn.email }} </p>
 
             <a href="/home#/previewSeekerProfile/{{conn.account_id }}">Seeker
               profile</a>

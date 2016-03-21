@@ -316,6 +316,7 @@ class Accounts(base.BaseHandler):
                     'account_id': row.from_id,
                     'first': acct.first,
                     'last': acct.last,
+                    'email': acct.auth_ids[0].replace("local:", "", 1),
                     'message': row.message,
                     'status': row.status,
                 }
