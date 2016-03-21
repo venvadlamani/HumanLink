@@ -322,12 +322,6 @@ class Accounts(base.BaseHandler):
                 connection_list.append(connection_map)
 
             self.write_json(connection_list)
-        else:
-            self.write_json(
-                {
-                    'count': '0',
-                    'message': 'You have no connections.'
-                })
 
     @login_required
     def POST_connection_request(self):

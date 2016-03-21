@@ -2,8 +2,9 @@
   <tabset>
     <tab index="0" heading="My connections">
       <div class="results-container">
-        <div ng-repeat="conn in connections | filter: {status: 'Accepted'} ">
+        <p>You have {{accepted.length}} connections.</p>
 
+        <div ng-repeat="conn in connections | filter: {status: 'Accepted'} as accepted">
           <div class="result">
             <h4>{{ conn.first }} {{ conn.last }}</h4>
 
@@ -19,10 +20,11 @@
     </tab>
 
 
-    <tab index="0" heading="Pending connections">
+    <tab index="0" heading="Requests">
       <div class="results-container">
-        <div ng-repeat="conn in connections | filter: {status: 'Pending'}">
+        <p>You have {{pending.length}} requests.</p>
 
+        <div ng-repeat="conn in connections | filter: {status: 'Pending'} as pending">
           <div class="result">
             <h4>{{ conn.first }} {{ conn.last }}</h4>
 
