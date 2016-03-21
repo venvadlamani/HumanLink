@@ -25,7 +25,7 @@ angular
                 $http({
                     url: '/post_connection_request',
                     method: "POST",
-                    params: {from_id: account_id, to_id: provider_id, message: "I would like to connect with you."}
+                    params: {from_id: account_id, to_id: provider_id, message: "I want to connect with you."}
                 }).then(function (response) {
                     $scope.siteAlert.type = "success";
                     $scope.siteAlert.message = response.data.message;
