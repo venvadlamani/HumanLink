@@ -9,9 +9,11 @@ from models.kinds.accounts import Caregiver
 from models.kinds.accounts import Seeker
 from models.kinds.connections import ConnList
 from models.kinds.connections import ConnRequest
+from models.kinds.connections import ConnStatus
 import logging
 from webapp2_extras import auth
 from webapp2_extras import security
+from google.appengine.ext import ndb
 
 
 class Accounts(base.BaseHandler):
@@ -303,12 +305,23 @@ class Accounts(base.BaseHandler):
         params: account_id
         :return: return connections
         """
+        connection_list = []
         account_id = int(self.request.get('account_id'))
-        qry = ConnRequest.query(ConnList.account_id == account_id).fetch()
+        qry = ConnRequest.query(ConnRequest.to_id == account_id).fetch()
 
         if len(qry) > 0:
-            print "==="
-            print qry
+            for row in qry:
+                acct = Account.get_by_id(row.from_id)
+                connection_map = {
+                    'account_id': row.from_id,
+                    'first': acct.first,
+                    'last': acct.last,
+                    'message': row.message,
+                    'status': row.status,
+                }
+                connection_list.append(connection_map)
+
+            self.write_json(connection_list)
         else:
             self.write_json(
                 {
@@ -333,3 +346,23 @@ class Accounts(base.BaseHandler):
         con.message = message
         con.put()
         self.write_json({'message': 'You connection request was sent successfully.'})
+
+    @login_required
+    def POST_connection_accept(self):
+        """ Get the current accounts connections
+
+        params: account_id
+        :return: return connections
+        """
+        from_id = int(self.request.get('from_id'))
+        to_id = int(self.request.get('to_id'))
+
+        qry = ConnRequest.query(
+            ndb.OR(ndb.AND(ConnRequest.from_id == from_id, ConnRequest.to_id == to_id),
+                   ndb.AND(ConnRequest.to_id == from_id,
+                           ConnRequest.from_id == to_id))).fetch()
+        for row in qry:
+            row.status = ConnStatus.Accepted
+            row.put()
+
+        self.write_json({'message': 'Accepted.'})

@@ -5,8 +5,8 @@
  */
 angular
     .module('Accounts')
-    .controller('connectionsCtrl', ['$scope', 'userSession', '$http',
-        function ($scope, userSession, $http) {
+    .controller('connectionsCtrl', ['$scope', '$state', '$http', 'userSession',
+        function ($scope, $state, $http, userSession) {
 
             $scope.connections = {};
             $scope.usr = userSession;
@@ -25,5 +25,19 @@ angular
                 });
             };
             init();
+
+            $scope.accept = function (model) {
+                $http({
+                    url: '/post_connection_accept',
+                    method: "POST",
+                    params: {to_id: account_id, from_id: model}
+                }).then(function (response) {
+                    $scope.connections = response.data;
+                    $state.reload();
+                }, function (response) {
+                    $scope.siteAlert.type = "danger";
+                    $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                });
+            }
 
         }]);
