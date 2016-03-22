@@ -18,7 +18,7 @@ import logging
 from google.appengine.ext import ndb
 
 
-def create_account(email, password_raw, auth_id_pre='local:',
+def create_account(email, password_raw, first_name, last_name, auth_id_pre='local:',
                    _dto=True):
     """Creates a new account. Sends an email confirmation.
 
@@ -35,7 +35,7 @@ def create_account(email, password_raw, auth_id_pre='local:',
     email = email.lower()
     auth_id = auth_id_pre + email
 
-    account = _create_new_account(email, password_raw, auth_id)
+    account = _create_new_account(email, password_raw, first_name, last_name, auth_id)
 
     """
     This step used to differentiate between care seekers and care providers
@@ -360,7 +360,7 @@ def patient_update(actor_id, patient_dto, _dto=True):
     return PatientDto.from_patient_ndb(patient)
 
 
-def _create_new_account(email, password_raw, auth_id):
+def _create_new_account(email, password_raw, first_name, last_name, auth_id):
     """Performs validation and stores a new account.
 
     :return: (kinds.accounts.Account)
@@ -378,6 +378,8 @@ def _create_new_account(email, password_raw, auth_id):
         auth_id=auth_id,
         unique_properties=['email'],
         email=email,
+        first=first_name,
+        last=last_name,
         password_raw=password_raw)
     if not success:
         logging.info('Signup failed. email: %s' % email)
