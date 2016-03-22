@@ -27,8 +27,10 @@ class Accounts(base.BaseHandler):
         """Sign-up POST request."""
         email = self.request_json['email']
         pass_raw = self.request_json['password']
+        first_name = self.request_json['first_name']
+        last_name = self.request_json['last_name']
 
-        account = services.accounts.create_account(email, pass_raw)
+        account = services.accounts.create_account(email, pass_raw, first_name, last_name)
 
         if account:
             logging.info('Signup success. email: %s' % email)
