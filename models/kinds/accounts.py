@@ -76,8 +76,8 @@ class Account(base.Base, auth_models.User):
 
 class Caregiver(base.Base):
     """Models a care professionals details."""
-    #   Is this a guest caregiver?
-    general_profile = ndb.BooleanProperty()
+    #   Is this profile public (related to search results)
+    public = ndb.BooleanProperty(default=True, indexed=True)
 
     #   Basic information
     phone_number_primary = ndb.StringProperty()
@@ -123,6 +123,9 @@ class Caregiver(base.Base):
 class Seeker(base.Base):
     """Models a care seekers public profile."""
 
+    #   Is this profile public (related to search results)
+    public = ndb.BooleanProperty(default=True, indexed=True)
+
     #   Org/Team info
     account_id = ndb.IntegerProperty(required=True)
     team_name = ndb.StringProperty()
@@ -131,7 +134,6 @@ class Seeker(base.Base):
     website = ndb.StringProperty()
     video = ndb.StringProperty()
     email = ndb.StringProperty()
-    public = ndb.BooleanProperty(default=True, indexed=True)
 
     #   Org/Team Needs info (general needs)
     caregiver_needs = ndb.StringProperty()
@@ -140,6 +142,7 @@ class Seeker(base.Base):
     adaptive_utensil = ndb.BooleanProperty()
     meal_prep = ndb.BooleanProperty()
     housekeeping = ndb.BooleanProperty()
+
 
 class Caregiver_old(base.Base):
     """Caregiver specific details."""
