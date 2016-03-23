@@ -39,7 +39,7 @@
                 controller: 'faqCtrl'
             })
             .state('previewProviderProfile', {
-                url: '/previewProviderProfile/:caregiver_key',
+                url: '/previewProviderProfile/:account_id',
                 templateUrl: '/views/home/partials/previewProviderProfile.html',
                 controller: 'previewProviderProfileCtrl'
             })
