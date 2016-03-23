@@ -14,37 +14,6 @@ class Home(base.BaseHandler):
     def index(self):
         self.render('home/index.html')
 
-    def POST_submit_contact(self):
-        """Contact info POST request."""
-
-        name = self.request_json.get('name', '(not provided)')
-        email = self.request_json.get('email', '(not provided)')
-        interest = int(self.request_json.get('interest', 0))
-        zipcode = self.request_json.get('zipcode', '(not provided)')
-        referrer = self.request_json.get('referrer', '')
-
-        signee = ContactUs(name=name, email=email, zipcode=zipcode,
-                           interest=interest, referrer=referrer)
-        signee.put()
-
-        taskqueue.add(url='/queue/slack', params={
-            'text': 'New intererst! *{}* ({}) from *{}*.'
-                      .format(name, AccountType(interest - 1), zipcode)
-        })
-
-        self.write_json({'message': 'Thank you.'})
-
-    def POST_contact_request(self):
-        """General questions from users/guests POST request."""
-        req = Request()
-        req.name = self.request_json.get('name')
-        req.email = self.request_json.get('email')
-        req.message = self.request_json.get('message')
-        req.put()
-
-        services.email.send_email_to_support(req.email, req.name, req.message)
-        self.write_json({'message': 'Thank you.'})
-
     def GET_caregiver_profile(self):
         """Caregiver profile GET request.
 
@@ -173,3 +142,34 @@ class Home(base.BaseHandler):
             }
 
         self.write_json(seeker_map)
+
+    def POST_submit_contact(self):
+        """Contact info POST request."""
+
+        name = self.request_json.get('name', '(not provided)')
+        email = self.request_json.get('email', '(not provided)')
+        interest = int(self.request_json.get('interest', 0))
+        zipcode = self.request_json.get('zipcode', '(not provided)')
+        referrer = self.request_json.get('referrer', '')
+
+        signee = ContactUs(name=name, email=email, zipcode=zipcode,
+                           interest=interest, referrer=referrer)
+        signee.put()
+
+        taskqueue.add(url='/queue/slack', params={
+            'text': 'New intererst! *{}* ({}) from *{}*.'
+                      .format(name, AccountType(interest - 1), zipcode)
+        })
+
+        self.write_json({'message': 'Thank you.'})
+
+    def POST_contact_request(self):
+        """General questions from users/guests POST request."""
+        req = Request()
+        req.name = self.request_json.get('name')
+        req.email = self.request_json.get('email')
+        req.message = self.request_json.get('message')
+        req.put()
+
+        services.email.send_email_to_support(req.email, req.name, req.message)
+        self.write_json({'message': 'Thank you.'})
