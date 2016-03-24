@@ -8,9 +8,6 @@ routes = [
     webapp2.Route(r'/home', name='home_index', methods=['GET'],
                   handler='controllers.home.Home:index'),
 
-    webapp2.Route(r'/submit_contact', name='submit_contact', methods=['POST'],
-                  handler='controllers.home.Home:POST_submit_contact'),
-
     webapp2.Route(r'/caregiver_profile', name='caregiver_profile',
                   methods=['GET'],
                   handler='controllers.home.Home:GET_caregiver_profile'),
