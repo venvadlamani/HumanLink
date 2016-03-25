@@ -21,6 +21,17 @@ angular
                         $scope.siteAlert.type = "danger";
                         $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
                     });
+                $http({
+                    url: '/get_connections',
+                    method: "GET",
+                    params: {account_id: account_id}
+                }).then(function (response) {
+                    $scope.connections = response.data;
+                }, function (response) {
+                    $scope.siteAlert.type = "danger";
+                    $scope.siteAlert.message = ("Oops. " + response.status + " Error. Please try again.");
+                });
+
             };
             init();
 

@@ -127,21 +127,21 @@ class Seeker(base.Base):
     public = ndb.BooleanProperty(default=True, indexed=True)
 
     #   Org/Team info
-    account_id = ndb.IntegerProperty(required=True)
-    team_name = ndb.StringProperty()
+    account_id = ndb.IntegerProperty(required=True, indexed=True)
+    team_name = ndb.StringProperty(indexed=True)
     mission = ndb.StringProperty()
-    main_phone = ndb.StringProperty()
+    main_phone = ndb.StringProperty(indexed=True)
     website = ndb.StringProperty()
     video = ndb.StringProperty()
     email = ndb.StringProperty()
 
     #   Org/Team Needs info (general needs)
     caregiver_needs = ndb.StringProperty()
-    hoyer_lift = ndb.BooleanProperty()
-    cough_assist = ndb.BooleanProperty()
-    adaptive_utensil = ndb.BooleanProperty()
-    meal_prep = ndb.BooleanProperty()
-    housekeeping = ndb.BooleanProperty()
+    hoyer_lift = ndb.BooleanProperty(default=False)
+    cough_assist = ndb.BooleanProperty(default=False)
+    adaptive_utensil = ndb.BooleanProperty(default=False)
+    meal_prep = ndb.BooleanProperty(default=False)
+    housekeeping = ndb.BooleanProperty(default=False)
 
 
 class Caregiver_old(base.Base):
