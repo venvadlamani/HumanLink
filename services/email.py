@@ -110,16 +110,24 @@ class EmailService(object):
                            message=message,
                            async=True)
 
-    def send_connection_request(self, from_email, to_email, message):
+    def send_connection_request(self, from_fname, from_lname, from_email, to_fname,
+                                to_email, message):
         """Sends an connection request email
 
-        :param  from_email: (string)
+        :param
+                from_fname: (string)
+                from_lname: (string)
+                from_email: (string)
+                to_fname: (string)
                 to_email: (string)
                 message: (string)
         :return: (None)
         """
         message = {
             'global_merge_vars': [
+                {'name': 'FNAME1', 'content': to_fname},
+                {'name': 'FNAME2', 'content': from_fname},
+                {'name': 'LNAME2', 'content': from_lname},
                 {'name': 'FROM_EMAIL', 'content': from_email},
                 {'name': 'MESSAGE', 'content': message}
             ],
