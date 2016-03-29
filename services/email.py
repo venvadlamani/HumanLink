@@ -136,7 +136,7 @@ class EmailService(object):
             ],
         }
         self._send_from_us(self.md.messages.send_template,
-                           template_name='humanlink-support',
+                           template_name='humanlink-connection-request',
                            template_content=[],
                            message=message,
                            async=True)
