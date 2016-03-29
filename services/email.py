@@ -110,6 +110,29 @@ class EmailService(object):
                            message=message,
                            async=True)
 
+    def send_connection_request(self, from_email, to_email, message):
+        """Sends an connection request email
+
+        :param  from_email: (string)
+                to_email: (string)
+                message: (string)
+        :return: (None)
+        """
+        message = {
+            'global_merge_vars': [
+                {'name': 'FROM_EMAIL', 'content': from_email},
+                {'name': 'MESSAGE', 'content': message}
+            ],
+            'to': [
+                {'email': to_email},
+            ],
+        }
+        self._send_from_us(self.md.messages.send_template,
+                           template_name='humanlink-support',
+                           template_content=[],
+                           message=message,
+                           async=True)
+
     @staticmethod
     def md_send(func, **kwargs):
         try:
@@ -131,3 +154,4 @@ _email_service = EmailService()
 send_email_verification = _email_service.send_email_verification
 send_email_to_support = _email_service.send_email_to_support
 send_password_reset = _email_service.send_password_reset
+send_connection_request = _email_service.send_connection_request
