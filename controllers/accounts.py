@@ -345,8 +345,8 @@ class Accounts(base.BaseHandler):
         con.to_id = to_id
         con.message = message
         con.put()
-
-        services.email.send_connection_request(from_ac.email, to_ac.email, message)
+        services.email.send_connection_request(from_ac.first, from_ac.last, from_ac.email,
+                                               to_ac.first, to_ac.email, message)
         self.write_json({'message': 'You connection request was sent successfully.'})
 
     @login_required
