@@ -5,7 +5,10 @@
 
       <div class="col-md-3 text-center">
         <img src="https://placehold.it/150x150">
-        <p class="vmargin10"><button class="btn btn-primary" ng-click="connect()">Connect</button></p>
+
+        <p class="vmargin10">
+          <button class="btn btn-primary" ng-click="connect()">Connect</button>
+        </p>
       </div>
       <div class="col-md-9">
         <h2>{{ aboutMe.team_name }}</h2>
@@ -46,8 +49,18 @@
         <hr>
         <h2>Current care team</h2>
 
+        <div ng-repeat="conn in connections">
+          <h4>
+            <a href
+               ng-href="/home#/previewProviderProfile/{{conn.account_id}}">
+            {{ conn.first }} {{ conn.last }}
+            </a>
+          </h4>
+          <h5>{{ conn.status }}</h5>
+
+          <hr>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<pre>{{connections | json}}</pre>
