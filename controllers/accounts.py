@@ -14,6 +14,7 @@ import logging
 from webapp2_extras import auth
 from webapp2_extras import security
 from google.appengine.ext import ndb
+from google.appengine.api import mail
 
 
 class Accounts(base.BaseHandler):
@@ -345,8 +346,13 @@ class Accounts(base.BaseHandler):
         con.to_id = to_id
         con.message = message
         con.put()
-        services.email.send_connection_request(from_ac.first, from_ac.last, from_ac.email,
-                                               to_ac.first, to_ac.email, message)
+        # services.email.send_connection_request(from_ac.first, from_ac.last, from_ac.email,
+        #                                               to_ac.first, to_ac.email, message)
+        mail.send_mail(sender=from_ac.email, to=to_ac.email,
+                       subject="You have a connection request",
+                       body=""" Dear """ + to_ac.first + """:
+
+                       You have received a connection request.""")
         self.write_json({'message': 'You connection request was sent successfully.'})
 
     @login_required
