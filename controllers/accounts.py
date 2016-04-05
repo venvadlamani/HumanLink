@@ -348,11 +348,27 @@ class Accounts(base.BaseHandler):
         con.put()
         # services.email.send_connection_request(from_ac.first, from_ac.last, from_ac.email,
         #                                               to_ac.first, to_ac.email, message)
-        mail.send_mail(sender=from_ac.email, to=to_ac.email,
-                       subject="You have a connection request",
-                       body=""" Dear """ + to_ac.first + """:
+        message = mail.EmailMessage(sender=from_ac.email,
+                                    subject="You have a connection request")
+        message.to = to_ac.email
+        message.body = """Dear """ + to_ac.first + """ :
+        You have received a connection request from """ + from_ac.first + from_ac.last + """
+        """
+        message.html = """
+        <html><head></head><body>
+        Dear Albert:
 
-                       You have received a connection request.""")
+        Your example.com account has been approved.  You can now visit
+        http://www.example.com/ and sign in using your Google Account to
+        access new features.
+
+        Please let us know if you have any questions.
+
+        The example.com Team
+        </body></html>
+        """
+        message.send()
+
         self.write_json({'message': 'You connection request was sent successfully.'})
 
     @login_required
