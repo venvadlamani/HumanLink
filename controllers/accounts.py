@@ -346,25 +346,21 @@ class Accounts(base.BaseHandler):
         con.to_id = to_id
         con.message = message
         con.put()
-        # services.email.send_connection_request(from_ac.first, from_ac.last, from_ac.email,
-        #                                               to_ac.first, to_ac.email, message)
+
         message = mail.EmailMessage(sender=from_ac.email,
                                     subject="You have a connection request")
         message.to = to_ac.email
-        message.body = """Dear """ + to_ac.first + """ :
-        You have received a connection request from """ + from_ac.first + from_ac.last + """
-        """
         message.html = """
         <html><head></head><body>
-        Dear Albert:
+        Dear """ + to_ac.first + """ :
+        <br>
+        You have received a connection request from """ + from_ac.first + from_ac.last + """.<br>
+        You can now visit http://www.humanlink.co/accounts#/settings/connections OR
+        click <a href="http://www.humanlink.co/accounts#/settings/connections">here</a>
+        to approve the request.
 
-        Your example.com account has been approved.  You can now visit
-        http://www.example.com/ and sign in using your Google Account to
-        access new features.
-
-        Please let us know if you have any questions.
-
-        The example.com Team
+        <p>Please let us know if you have any questions.</p>
+        <p>The Humanlink Team</p>
         </body></html>
         """
         message.send()
